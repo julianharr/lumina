@@ -34,7 +34,7 @@ gem 'devise'
 gem 'faker'
 gem 'font-awesome-sass'
 gem 'geocoder'
-gem 'has_friendship', github: 'sungwoncho/has_friendship'
+gem 'has_friendship', github: 'sungwoncho/has_friendship' # https://github.com/sungwoncho/has_friendship
 gem 'pretender'
 gem 'pundit'
 gem 'pg_search', '~> 2.3.0'
