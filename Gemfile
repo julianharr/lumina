@@ -26,6 +26,7 @@ gem 'redis', '~> 4.0'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
+gem 'acts-as-taggable-on', '~> 7.0' # https://github.com/mbleigh/acts-as-taggable-on
 gem 'autoprefixer-rails'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cloudinary', '~> 1.16.0'
@@ -33,6 +34,7 @@ gem 'devise'
 gem 'faker'
 gem 'font-awesome-sass'
 gem 'geocoder'
+gem 'has_friendship', github: 'sungwoncho/has_friendship'
 gem 'pretender'
 gem 'pundit'
 gem 'pg_search', '~> 2.3.0'

@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/sungwoncho/has_friendship.git
+  revision: 7d9e44bb00578bb2b5d4e3221388450d9365fec6
+  specs:
+    has_friendship (1.1.8)
+      activemodel (>= 4.2.0, < 6.2)
+      activerecord (>= 4.2.0, < 6.2)
+      activesupport (>= 4.2.0, < 6.2)
+      stateful_enum
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -60,6 +70,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    acts-as-taggable-on (7.0.0)
+      activerecord (>= 5.0, < 6.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (10.2.4.0)
@@ -233,6 +245,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stateful_enum (0.6.0)
     thor (1.1.0)
     tilt (2.0.10)
     turbolinks (5.2.1)
@@ -273,6 +286,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 7.0)
   autoprefixer-rails
   bootsnap (>= 1.4.4)
   byebug
@@ -283,6 +297,7 @@ DEPENDENCIES
   faker
   font-awesome-sass
   geocoder
+  has_friendship!
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)
