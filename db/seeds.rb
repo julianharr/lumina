@@ -33,9 +33,7 @@ puts "-- Making Humans"
 user = get_git_info("julianharr")
 user_image = URI.parse(user["avatar_url"]).open
 
-# file = File.open(user_image)
-
-make_me = User.new(
+make_me = User.new( # change to create! later
   first_name: user["name"].split.first,
   last_name: user["name"].split[1],
   git_name: user["login"],
