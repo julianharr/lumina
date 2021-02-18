@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_18_092257) do
+ActiveRecord::Schema.define(version: 2021_02_18_100402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,8 +59,16 @@ ActiveRecord::Schema.define(version: 2021_02_18_092257) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_two_id"
+    t.bigint "user_three_id"
+    t.bigint "user_four_id"
+    t.bigint "user_five_id"
     t.index ["event_id"], name: "index_chatrooms_on_event_id"
+    t.index ["user_five_id"], name: "index_chatrooms_on_user_five_id"
+    t.index ["user_four_id"], name: "index_chatrooms_on_user_four_id"
     t.index ["user_id"], name: "index_chatrooms_on_user_id"
+    t.index ["user_three_id"], name: "index_chatrooms_on_user_three_id"
+    t.index ["user_two_id"], name: "index_chatrooms_on_user_two_id"
   end
 
   create_table "donates", force: :cascade do |t|
@@ -84,16 +92,6 @@ ActiveRecord::Schema.define(version: 2021_02_18_092257) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_events_on_user_id"
-  end
-
-  create_table "favourites", force: :cascade do |t|
-    t.string "favourited_type"
-    t.bigint "favourited_id"
-    t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["favourited_type", "favourited_id"], name: "index_favourites_on_favourited"
-    t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
   create_table "friendships", id: :serial, force: :cascade do |t|
@@ -206,6 +204,10 @@ ActiveRecord::Schema.define(version: 2021_02_18_092257) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chatrooms", "events"
   add_foreign_key "chatrooms", "users"
+  add_foreign_key "chatrooms", "users", column: "user_five_id"
+  add_foreign_key "chatrooms", "users", column: "user_four_id"
+  add_foreign_key "chatrooms", "users", column: "user_three_id"
+  add_foreign_key "chatrooms", "users", column: "user_two_id"
   add_foreign_key "donates", "charities"
   add_foreign_key "donates", "users"
   add_foreign_key "events", "users"
