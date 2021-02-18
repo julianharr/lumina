@@ -1,2 +1,0 @@
-class Favourite < ApplicationRecord
-end
