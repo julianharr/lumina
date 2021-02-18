@@ -3,4 +3,7 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  # TODO
+  # Define Feed and Dashboard in this controller
 end
