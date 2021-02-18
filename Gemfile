@@ -38,7 +38,6 @@ gem 'has_friendship', github: 'sungwoncho/has_friendship' # https://github.com/s
 gem 'pretender'
 gem 'pundit'
 gem 'pg_search', '~> 2.3.0'
-gem 'rubocop'
 gem 'simple_form'
 gem 'turbolinks_render'
 group :development, :test do
@@ -59,6 +58,7 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'rubocop'
 end
 
 group :test do
