@@ -2,7 +2,6 @@
 # https://github.com/andrewbonas/rails_facebook
 #
 #
-
 require "open-uri"
 require 'json'
 
@@ -25,39 +24,38 @@ puts "-- Making Humans"
 ## kill all images in all models ##
 
 ## User Master OverLoad # HOLD GME !! ##
-1.times do
-  file = File.open("./db/avatars/00.jpeg")
 
-  make_me = User.create!(
-    first_name: "Jullian",
-    last_name: "Daddy",
-    git_user: "",
-    bio: "$GME goes BRRRRRRRR 💎🙌",
-    location: "Melbourne",
-    email: "spin@gmail.com",
-    admin: true,
-    password: "123456"
-  )
-  make_me.avatar.attach(io: file, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
-  puts "made #{make_me.first_name} #{make_me.last_name}"
-end
+file = File.open("./db/avatars/00.jpeg")
+
+make_me = User.create!(
+  first_name: "Jullian",
+  last_name: "Daddy",
+  git_user: "",
+  bio: "$GME goes BRRRRRRRR 💎🙌",
+  location: "Melbourne",
+  email: "spin@gmail.com",
+  admin: true,
+  password: "123456"
+)
+make_me.avatar.attach(io: file, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
+puts "made #{make_me.first_name} #{make_me.last_name}"
 
 ## User Standard User ##
-1.times do
-  file = File.open("./db/avatars/22.png")
 
-  make_me = User.create!(
-    first_name: "Standard",
-    last_name: "User",
-    bio: "I'm user a standard user, looking at a Dev..",
-    location: "Melbourne",
-    email: "user@gmail.com",
-    admin: false,
-    password: "123456"
-  )
-  make_me.avatar.attach(io: file, filename: "#{make_me.first_name}.png", content_type: 'image/png')
-  puts "made #{make_me.first_name} #{make_me.last_name}"
-end
+file = File.open("./db/avatars/22.png")
+
+make_me = User.create!(
+  first_name: "Standard",
+  last_name: "User",
+  bio: "I'm user a standard user, looking at a Dev..",
+  location: "Melbourne",
+  email: "user@gmail.com",
+  admin: false,
+  password: "123456"
+)
+make_me.avatar.attach(io: file, filename: "#{make_me.first_name}.png", content_type: 'image/png')
+puts "made #{make_me.first_name} #{make_me.last_name}"
+
 ## Make the Plebs ##
 count = 0
 
