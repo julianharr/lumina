@@ -1,0 +1,2 @@
+class FavouriteEventsController < ApplicationController
+end
