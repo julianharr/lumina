@@ -30,7 +30,6 @@ gem 'autoprefixer-rails'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cloudinary', '~> 1.16.0'
 gem 'devise'
-gem 'dotenv-rails', groups: %i[development test]
 gem 'faker'
 gem 'font-awesome-sass'
 gem 'geocoder'
