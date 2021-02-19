@@ -111,6 +111,16 @@ ActiveRecord::Schema.define(version: 2021_02_18_103314) do
     t.index ["scope"], name: "index_favorites_on_scope"
   end
 
+  create_table "favourites", force: :cascade do |t|
+    t.string "favourited_type"
+    t.bigint "favourited_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["favourited_type", "favourited_id"], name: "index_favourites_on_favourited"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
+  end
+
   create_table "friendships", id: :serial, force: :cascade do |t|
     t.string "friendable_type"
     t.integer "friendable_id"
