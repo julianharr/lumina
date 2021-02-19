@@ -1,0 +1,13 @@
+.container-banner {
+  border: 2px solid red;
+  height: 80vh;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+#container-banner-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid red;
+}
