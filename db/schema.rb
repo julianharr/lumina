@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_18_103314) do
+ActiveRecord::Schema.define(version: 2021_02_20_011713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,11 +50,11 @@ ActiveRecord::Schema.define(version: 2021_02_18_103314) do
     t.string "website"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "category"
   end
 
   create_table "chatrooms", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "event_id", null: false
     t.string "name"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2021_02_18_103314) do
     t.bigint "user_three_id"
     t.bigint "user_four_id"
     t.bigint "user_five_id"
+    t.bigint "event_id"
     t.index ["event_id"], name: "index_chatrooms_on_event_id"
     t.index ["user_five_id"], name: "index_chatrooms_on_user_five_id"
     t.index ["user_four_id"], name: "index_chatrooms_on_user_four_id"
@@ -84,13 +85,15 @@ ActiveRecord::Schema.define(version: 2021_02_18_103314) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.datetime "date"
-    t.string "location"
+    t.string "address"
     t.text "description"
     t.string "organiser"
     t.integer "attendees"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "longitude"
+    t.float "latitude"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -109,16 +112,6 @@ ActiveRecord::Schema.define(version: 2021_02_18_103314) do
     t.index ["favoritor_id", "favoritor_type"], name: "fk_favorites"
     t.index ["favoritor_type", "favoritor_id"], name: "index_favorites_on_favoritor"
     t.index ["scope"], name: "index_favorites_on_scope"
-  end
-
-  create_table "favourites", force: :cascade do |t|
-    t.string "favourited_type"
-    t.bigint "favourited_id"
-    t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["favourited_type", "favourited_id"], name: "index_favourites_on_favourited"
-    t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
   create_table "friendships", id: :serial, force: :cascade do |t|
@@ -216,6 +209,8 @@ ActiveRecord::Schema.define(version: 2021_02_18_103314) do
     t.string "location"
     t.string "nickname"
     t.date "birthday"
+    t.float "longitude"
+    t.float "latitude"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
