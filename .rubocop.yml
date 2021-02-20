@@ -10,7 +10,7 @@ AllCops:
     - "test/**/*"
 
 Style/ConditionalAssignment:
-  Enabled: false
+  Enabled: true
 Style/StringLiterals:
   Enabled: false
 Style/RedundantReturn:
