@@ -9,6 +9,33 @@ require "net/http"
 #
 batch_466 = [
   "glenntippett",
+  "mrchvs",
+  "melwers",
+  "avrilpryce",
+  "Michiel-DK",
+  "PatriciaZB",
+  "theHem-code",
+  "Linda8875",
+  "juliends",
+  "ThierryMR",
+  "Micheledebruyn",
+  "Inbal-Gordon",
+  "ilia-ber",
+  "cassy-dodd",
+  "petia182",
+  "Botlike31",
+  "nkhape",
+  "AlvaroPata",
+  "may-moff",
+  "vdelgadobenito",
+  "tristanmahe",
+  "Pierre-L99",
+  "Nooshin-8",
+  "anaisfr",
+  "camimurg",
+  "GuidoCaldara",
+  "enitschorn",
+  "rayhanw",
   "matoni109",
   "Tom-Tee",
   "cdrmr18",
@@ -49,8 +76,8 @@ def get_git_info(git_name)
   response = https.request(request)
   user = JSON.parse(response.read_body)
 
-  first_name = user["name"].present? ? user["name"].split.first : user["login"].capitalize
-  last_name = user["name"].present? ? user["name"].split[1] : ""
+  first_name = user["name"].present? ? user["name"].split.first.capitalize : user["login"].capitalize
+  last_name = user["name"].present? ? user["name"].split[1]&.capitalize : ""
   bio = user["bio"].present? ? user["bio"] : Faker::Quote.matz
   location = user["location"].present? ? user["location"] : Faker::Address.city
   email = user["email"].nil? ? Faker::Internet.email : user["email"]
@@ -104,9 +131,9 @@ make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", co
 puts "made #{make_me.first_name} #{make_me.last_name}"
 
 ## Make the Plebs ##
-# batch_466.each do |element|
-#   get_git_info(element)
-# end
+batch_466.each do |element|
+  get_git_info(element)
+end
 
 puts "--- Making Humans Ended !"
 
