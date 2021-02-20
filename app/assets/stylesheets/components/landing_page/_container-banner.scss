@@ -8,4 +8,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+    h1 {
+      font-size: 48px;
+    }
+}
+
+.form-landing {
+    #email {
+      border-radius: 2px;
+      padding: 6.75px 13.5px;
+      line-height: 1.5;
+    }
 }
