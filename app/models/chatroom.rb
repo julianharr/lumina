@@ -7,7 +7,8 @@ class Chatroom < ApplicationRecord
   belongs_to :user_three, optional: true, class_name: :User, foreign_key: :user_three_id
   belongs_to :user_four, optional: true, class_name: :User, foreign_key: :user_four_id
   belongs_to :user_five, optional: true, class_name: :User, foreign_key: :user_five_id
-  belongs_to :event, optional: true
+  # need to fix below
+  # belongs_to :event, optional: true
   # vals
   # null
   validates :name, optional: true
