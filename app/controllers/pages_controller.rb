@@ -4,6 +4,12 @@ class PagesController < ApplicationController
   def home
   end
 
+
   # TODO
   # Define Feed and Dashboard in this controller
+
+  def feed
+    @user = current_user
+    authorize @user
+  end
 end
