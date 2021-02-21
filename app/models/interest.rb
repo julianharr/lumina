@@ -4,5 +4,5 @@ class Interest < ApplicationRecord
   # belongs_to :user, through: :userinterests, dependent: :destroy
 
   # vals
-  validates :name, presence: true
+  # validates :name, presence: true
 end
