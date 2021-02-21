@@ -43,9 +43,16 @@ make_me = User.new( # change to create! later
   admin: true,
   password: "123456"
 )
+
+if make_me.save
+  puts "saved user"
+else
+  puts "user creation failed"
+end
+
 make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
 puts "made #{make_me.first_name} #{make_me.last_name}"
-binding.pry
+
 # ## User Standard User ##
 
 # file = File.open("./db/avatars/22.png")
@@ -171,6 +178,7 @@ binding.pry
 #   end
 # end
 # puts "--- Making Reviews ENDED !"
+
 puts "---"
 puts "---"
 puts "--- GAME OVER ---"
