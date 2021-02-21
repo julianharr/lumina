@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+
   ## active storage
   has_one_attached :avatar
 
