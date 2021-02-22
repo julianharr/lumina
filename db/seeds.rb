@@ -11,47 +11,47 @@ require_relative "seed_items"
 batch_466 = [
   "glenntippett",
   "mrchvs",
-  "melwers",
-  "avrilpryce",
-  "Michiel-DK",
-  "PatriciaZB",
-  "theHem-code",
-  "Linda8875",
-  "juliends",
-  "ThierryMR",
-  "Micheledebruyn",
-  "Inbal-Gordon",
-  "ilia-ber",
-  "cassy-dodd",
-  "petia182",
-  "Botlike31",
-  "nkhape",
-  "AlvaroPata",
-  "may-moff",
-  "vdelgadobenito",
-  "tristanmahe",
-  "Pierre-L99",
-  "Nooshin-8",
-  "anaisfr",
-  "camimurg",
-  "GuidoCaldara",
-  "enitschorn",
-  "rayhanw",
-  "matoni109",
-  "Tom-Tee",
-  "cdrmr18",
-  "jarrydanthony",
-  "10035",
-  "lucieroland",
-  "anLpk",
-  "diego-mogollon",
-  "maksimumeffort",
-  "lunarness",
-  "Escapewithcode",
-  "santanu0013",
-  "DraganGasic",
-  "cheenaelise",
-  "joshwbarnes",
+  # "melwers",
+  # "avrilpryce",
+  # "Michiel-DK",
+  # "PatriciaZB",
+  # "theHem-code",
+  # "Linda8875",
+  # "juliends",
+  # "ThierryMR",
+  # "Micheledebruyn",
+  # "Inbal-Gordon",
+  # "ilia-ber",
+  # "cassy-dodd",
+  # "petia182",
+  # "Botlike31",
+  # "nkhape",
+  # "AlvaroPata",
+  # "may-moff",
+  # "vdelgadobenito",
+  # "tristanmahe",
+  # "Pierre-L99",
+  # "Nooshin-8",
+  # "anaisfr",
+  # "camimurg",
+  # "GuidoCaldara",
+  # "enitschorn",
+  # "rayhanw",
+  # "matoni109",
+  # "Tom-Tee",
+  # "cdrmr18",
+  # "jarrydanthony",
+  # "10035",
+  # "lucieroland",
+  # "anLpk",
+  # "diego-mogollon",
+  # "maksimumeffort",
+  # "lunarness",
+  # "Escapewithcode",
+  # "santanu0013",
+  # "DraganGasic",
+  # "cheenaelise",
+  # "joshwbarnes",
   "rbalendra",
   "appu4ever"
 ]
@@ -75,7 +75,7 @@ def get_git_info(git_name)
   email = user["email"].nil? ? Faker::Internet.email : user["email"]
 
   user_image = URI.parse(user["avatar_url"]).open
-  make_me = User.new( # change to create! later
+  make_me = User.create( # change to create! later
     first_name: first_name.to_s,
     last_name: last_name.to_s,
     git_name: user["login"],
@@ -97,9 +97,9 @@ puts "---"
 puts "---"
 puts "cleaning house :)"
 User.destroy_all
+Wishlist.destroy_all
 Item.destroy_all
-# Booking.destroy_all
-# Review.destroy_all
+Charity.destroy_all
 # Favourite.destroy_all
 
 # Kills all Active storage items ##
@@ -114,7 +114,7 @@ git_back = open(url).read
 user = JSON.parse(git_back)
 user_image = URI.parse(user["avatar_url"]).open
 
-make_me = User.new( # change to create! later
+make_me = User.create!( # change to create! later
   first_name: user["name"].split.first,
   last_name: user["name"].split[1],
   git_name: user["login"],
@@ -130,13 +130,29 @@ make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", co
 puts "made #{make_me.first_name} #{make_me.last_name}"
 
 ## Make the Plebs ##
-# batch_466.each do |element|
-#   get_git_info(element)
-# end
+batch_466.each do |element|
+  get_git_info(element)
+end
 
 puts "--- Making Humans Ended !"
 
 puts "--- Making Wish Lists !!"
+# whats in a wish list ?
+#
+list_users = User.pluck(:id)
+list_users.each do |element|
+  make_me = Wishlist.new(
+    user_id: element
+  )
+    # binding.pry
+  if make_me.valid?
+    make_me.save!
+    puts "made Wishlist # #{make_me.id}"
+  else
+    puts "Item didn't work out ..."
+  end
+
+end
 
 puts "--- Making Wish Lists Ended !"
 

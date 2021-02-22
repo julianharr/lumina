@@ -1,26 +1,24 @@
-puts "I'm the items seed file "
+puts "I'm in the items seed file "
 
 def make_items
   user_image = "https://images-na.ssl-images-amazon.com/images/I/41nzI1lhIVL._SX327_BO1,204,203,200_.jpg"
-  item_one = Item.create(
+  item_one = Item.create!(
     name: "A Promised Land Novel",
     price: 27.99,
     link: 'https://www.amazon.com.au/A-Promised-Land/dp/B08JCV95VB/?pf_rd_r=VQEYTM5H2207W1VP143P&pf_rd_p=24775cd0-99dd-4031-a438-674f5fa1369a&pd_rd_r=ca722146-b60c-4bd1-89a3-967280554e48&pd_rd_w=b2zem&pd_rd_wg=5xKAv&ref_=pd_gw_unk',
     description: 'A riveting, deeply personal account of history in the making - from the president who inspired us to believe in the power of democracy',
-    wishlist_id: rand(1..18)
-  )
+    wishlist_id: Wishlist.pluck(:id).sample )
   user_image = URI.parse(user_image).open
   item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-  binding.pry
+  # binding.pry
   user_image = "https://m.media-amazon.com/images/I/51nDhGOv0oL.jpg"
   item_two = Item.create(
     name: "Greenlights Novel",
     price: 15.99,
     link: 'https://www.amazon.com.au/Greenlights/dp/B08J43CXZ4/?pf_rd_r=VQEYTM5H2207W1VP143P&pf_rd_p=24775cd0-99dd-4031-a438-674f5fa1369a&pd_rd_r=ca722146-b60c-4bd1-89a3-967280554e48&pd_rd_w=b2zem&pd_rd_wg=5xKAv&ref_=pd_gw_unk',
     description: 'From the Academy Award-winning actor, an unconventional memoir filled with raucous stories.',
-    wishlist_id: rand(1..18)
-  )
+    wishlist_id: Wishlist.pluck(:id).sample  )
   user_image = URI.parse(user_image).open
   item_two.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
@@ -30,8 +28,7 @@ def make_items
     price: 119.00,
     link: 'https://www.amazon.com.au/Edifier-R1280DB-Bookshelf-Bluetooth-Wireless/dp/B01NCTNZRC?ref_=Oct_s9_apbd_orec_hd_bw_b5KcQSR&pf_rd_r=V9ZY4AGCZABT2NPB051D&pf_rd_p=e590eaf4-3875-5bba-aeee-7c3f7efc3390&pf_rd_s=merchandised-search-10&pf_rd_t=BROWSE&pf_rd_i=4885349051',
     description: 'Black wood look to keep the classic look with a new twist on the style of modern technology. Now your speakers can blend in well with your PC.',
-    wishlist_id: rand(1..18)
-  )
+  wishlist_id: Wishlist.pluck(:id).sample  )
   user_image = URI.parse(user_image).open
   item_three.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
@@ -41,8 +38,7 @@ def make_items
     price: 89.00,
     link: 'https://www.amazon.com.au/Edifier-R1280DB-Bookshelf-Bluetooth-Wireless/dp/B01NCTNZRC?ref_=Oct_s9_apbd_orec_hd_bw_b5KcQSR&pf_rd_r=V9ZY4AGCZABT2NPB051D&pf_rd_p=e590eaf4-3875-5bba-aeee-7c3f7efc3390&pf_rd_s=merchandised-search-10&pf_rd_t=BROWSE&pf_rd_i=4885349051',
     description: 'Redesigned from the ground up for precision gaming. Dual vibration feedback. Stereo headphone jack for private audio',
-    wishlist_id: rand(1..18)
-  )
+  wishlist_id: Wishlist.pluck(:id).sample  )
   user_image = URI.parse(user_image).open
   item_four.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
@@ -52,8 +48,7 @@ def make_items
     price: 59.00,
     link: "https://www.amazon.com.au/Echo-Dot-3rd-Gen-Charcoal/dp/B07PJV9DHV?ref_=Oct_s9_apbd_orec_hd_bw_b5KbHxT&pf_rd_r=KJTNACN3E162GEPFW8K9&pf_rd_p=cae77b0b-f636-522e-bb40-3b139093711c&pf_rd_s=merchandised-search-10&pf_rd_t=BROWSE&pf_rd_i=4885078051",
     description: "cho Dot is our most popular voice-controlled speaker, now with improved sound and a new design.",
-    wishlist_id: rand(1..18)
-  )
+  wishlist_id: Wishlist.pluck(:id).sample  )
   user_image = URI.parse(user_image).open
   item_five.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
