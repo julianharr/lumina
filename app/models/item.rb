@@ -1,7 +1,8 @@
 class Item < ApplicationRecord
   # ass
   belongs_to :wishlist
-  belongs_to :user, through: :wishlist, dependent: :destroy
+  # need to fix below
+  # belongs_to :user, through: :wishlist, dependent: :destroy
 
   # vals
   validates :name, presence: true
