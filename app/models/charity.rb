@@ -1,7 +1,7 @@
 class Charity < ApplicationRecord
   # ass
   belongs_to :donate
-  has_many :users, through: :donates, dependent: :destroy
+  has_many :users, through: :donate, dependent: :destroy
 
   # vals
   validates :location, presence: true
