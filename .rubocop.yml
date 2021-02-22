@@ -8,7 +8,8 @@ AllCops:
     - "support/**/*"
     - "tmp/**/*"
     - "test/**/*"
-    - "db/"
+    - "db/**/"
+    - "db/schema.rb"
 
 Style/ConditionalAssignment:
   Enabled: true
@@ -35,7 +36,7 @@ Lint/MissingSuper:
 Style/FrozenStringLiteralComment:
   Enabled: false
 Layout/LineLength:
-  Max: 120
+  Max: 220
 Style/EmptyMethod:
   Enabled: false
 Bundler/OrderedGems:
