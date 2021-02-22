@@ -2,6 +2,7 @@ require "open-uri"
 require 'json'
 require "uri"
 require "net/http"
+require 'csv'
 
 require_relative "seed_items"
 # https://github.com/pejotrich/flatmate
@@ -130,9 +131,9 @@ make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", co
 puts "made #{make_me.first_name} #{make_me.last_name}"
 
 ## Make the Plebs ##
-batch_466.each do |element|
-  get_git_info(element)
-end
+# batch_466.each do |element|
+#   get_git_info(element)
+# end
 
 puts "--- Making Humans Ended !"
 
@@ -157,10 +158,37 @@ end
 puts "--- Making Wish Lists Ended !"
 
 puts "--- Making Items Bro !!"
-make_items
+# make_items
 puts "--- Making Items Ended !"
-# #   ### Make some Bookings ###
+###
+puts "--- Make Charities from CSV "###
 
+
+
+csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+filepath    = 'db/csv/lumina_charitylist_seedfile.csv'
+# CSV will return a HASH format
+CSV.foreach(filepath, csv_options) do |row|
+  #  puts "#{row['Charity/Non-profit name']}, #{row['Description']},  #{row['Location']},  #{row['Website']},  #{row['Category']}"
+
+make_me = Charity.new(
+    name: row['Charity/Non-profit name'],
+    description: row['Description'],
+    location: row['Location'],
+    website: row['Website'],
+    category: row['Category']
+  )
+     binding.pry
+  if make_me.valid?
+    make_me.save!
+    puts "made Charity # #{make_me.id}"
+  else
+    puts "Item didn't work out ..."
+  end
+
+  end
+
+puts "--- Charities Done :) "###
 # puts "-- Making Bookings !"
 # # Day.where(:reference_date => 3.months.ago..Time.now).count
 # # => 721
