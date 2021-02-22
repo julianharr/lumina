@@ -10,6 +10,12 @@ class PagesController < ApplicationController
 
   def feed
     @user = current_user
-    authorize @user
+    # authorize @user
   end
+
+  def dashboard
+    @user = current_user
+    # authorize @user
+  end
+
 end
