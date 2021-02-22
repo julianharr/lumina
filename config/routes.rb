@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   get '/feed', to: 'pages#feed'
+  get '/dashboard', to: 'pages#dashboard'
   get 'user/:id', to: 'users#show', as: :profile
   resources :events, only: [:index, :show] do
     resources :chatrooms, only: [:create]
