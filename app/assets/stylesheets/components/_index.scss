@@ -4,7 +4,9 @@
 @import "landing_page/container-banner";
 @import "landing_page/_container-landing-info";
 @import "landing_page/_container-landing-bottom";
-@import "side_bar";
+@import "side_bar/side_bar";
+@import "feed_card";
+
 
 // Charity Page
 @import "charities_page/_charity_page";
