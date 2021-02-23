@@ -1,1 +1,10 @@
 <h1 class="m-5">The Lumina Dashboard bro!!!</h1>
+
+<%= image_tag @user.avatar %>
+
+<h2>Wishlist</h2>
+<% @current_user.wishlist.items.each do |item| %>
+  <h3><%= item.name %></h3>
+  <h3><%= item.price %></h3>
+  <h3><%= item.link %></h3>
+<% end %>
