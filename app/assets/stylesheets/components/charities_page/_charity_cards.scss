@@ -1,0 +1,32 @@
+.card-charity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 750px;
+  height: 600px;
+  background-color: #151823;
+  box-shadow: 0px 0px 20px 0.75px #49416D;
+  padding: 0;
+  margin: 40px 0;
+  border-radius: 10px;
+}
+
+.card-charity img {
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  margin: 0;
+}
+
+.card-charity h1 {
+  text-align: left;
+  font-weight: 760;
+  padding: 10px 10px 0px 20px;
+  color: $white;
+}
+
+.card-charity p {
+  padding: 10px 20px;
+  text-align: left;
+  color: $light-gray;
+  font-size: 18px;
+}

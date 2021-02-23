@@ -1,0 +1,44 @@
+/* The Loading Animation */
+
+.loading{
+  width: 150px;
+  height: 70px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  a {
+    margin-left: 16px;
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.ball{
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: white;
+  margin: 0 10px;
+}
+
+.first{
+  animation: slide 2s  ease-in-out infinite ;
+  animation-delay: .1s;
+}
+.second{
+  animation: slide 2s ease-in-out infinite;
+  animation-delay: .5s;
+}
+.third{
+  animation: slide 2s ease-in-out infinite;
+  animation-delay: 1s;
+}
+@keyframes slide{
+    from{
+        transform: translateY(-30px);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
