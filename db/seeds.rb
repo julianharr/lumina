@@ -10,50 +10,50 @@ require_relative "seed_items"
 #
 batch_466 = [
   "glenntippett",
-  "mrchvs",
-  "melwers",
-  "avrilpryce",
-  "Michiel-DK",
-  "PatriciaZB",
-  "theHem-code",
-  "Linda8875",
-  "juliends",
-  "ThierryMR",
-  "Micheledebruyn",
-  "Inbal-Gordon",
-  "ilia-ber",
-  "cassy-dodd",
-  "petia182",
-  "Botlike31",
-  "nkhape",
-  "AlvaroPata",
-  "may-moff",
-  "vdelgadobenito",
-  "tristanmahe",
-  "Pierre-L99",
-  "Nooshin-8",
-  "anaisfr",
-  "camimurg",
-  "GuidoCaldara",
-  "enitschorn",
-  "rayhanw",
-  "matoni109",
-  "Tom-Tee",
-  "cdrmr18",
-  "jarrydanthony",
-  "10035",
-  "lucieroland",
-  "anLpk",
-  "diego-mogollon",
-  "maksimumeffort",
-  "lunarness",
-  "Escapewithcode",
-  "santanu0013",
-  "DraganGasic",
-  "cheenaelise",
-  "joshwbarnes",
-  "rbalendra",
-  "appu4ever"
+  # "mrchvs",
+  # "melwers",
+  # "avrilpryce",
+  # "Michiel-DK",
+  # "PatriciaZB",
+  # "theHem-code",
+  # "Linda8875",
+  # "juliends",
+  # "ThierryMR",
+  # "Micheledebruyn",
+  # "Inbal-Gordon",
+  # "ilia-ber",
+  # "cassy-dodd",
+  # "petia182",
+  # "Botlike31",
+  # "nkhape",
+  # "AlvaroPata",
+  # "may-moff",
+  # "vdelgadobenito",
+  # "tristanmahe",
+  # "Pierre-L99",
+  # "Nooshin-8",
+  # "anaisfr",
+  # "camimurg",
+  # "GuidoCaldara",
+  # "enitschorn",
+  # "rayhanw",
+  # "matoni109",
+  # "Tom-Tee",
+  # "cdrmr18",
+  # "jarrydanthony",
+  # "10035",
+  # "lucieroland",
+  # "anLpk",
+  # "diego-mogollon",
+  # "maksimumeffort",
+  # "lunarness",
+  # "Escapewithcode",
+  # "santanu0013",
+  # "DraganGasic",
+  # "cheenaelise",
+  # "joshwbarnes",
+  # "rbalendra",
+  # "appu4ever"
 ]
 
 def get_git_info(git_name)
@@ -166,7 +166,17 @@ puts "--- Making Wish Lists Ended !"
 puts "--- Making Items Bro !!"
 
 # Call the make_items method from the seed_items file
-make_items
+# make_items
+user_image = "https://images-na.ssl-images-amazon.com/images/I/41nzI1lhIVL._SX327_BO1,204,203,200_.jpg"
+item_one = Item.create!(
+  name: "A Promised Land Novel",
+  price: 27.99,
+  link: 'https://www.amazon.com.au/A-Promised-Land/dp/B08JCV95VB/?pf_rd_r=VQEYTM5H2207W1VP143P&pf_rd_p=24775cd0-99dd-4031-a438-674f5fa1369a&pd_rd_r=ca722146-b60c-4bd1-89a3-967280554e48&pd_rd_w=b2zem&pd_rd_wg=5xKAv&ref_=pd_gw_unk',
+  description: 'A riveting, deeply personal account of history in the making - from the president who inspired us to believe in the power of democracy',
+  wishlist_id: Wishlist.pluck(:id).sample )
+user_image = URI.parse(user_image).open
+item_one.image.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
+
 
 puts "Finished making items"
 # puts "--- Making Favourites Start !"

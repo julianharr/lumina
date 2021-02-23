@@ -9,7 +9,7 @@ def make_items
     description: 'A riveting, deeply personal account of history in the making - from the president who inspired us to believe in the power of democracy',
     wishlist_id: Wishlist.pluck(:id).sample )
   user_image = URI.parse(user_image).open
-  item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+  item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
   # binding.pry
   user_image = "https://m.media-amazon.com/images/I/51nDhGOv0oL.jpg"
@@ -20,7 +20,7 @@ def make_items
     description: 'From the Academy Award-winning actor, an unconventional memoir filled with raucous stories.',
     wishlist_id: Wishlist.pluck(:id).sample  )
   user_image = URI.parse(user_image).open
-  item_two.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+  item_two.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
   user_image = "https://images-na.ssl-images-amazon.com/images/I/91r79g3OlHL._AC_SL1500_.jpg"
   item_three = Item.create(
@@ -30,7 +30,7 @@ def make_items
     description: 'Black wood look to keep the classic look with a new twist on the style of modern technology. Now your speakers can blend in well with your PC.',
   wishlist_id: Wishlist.pluck(:id).sample  )
   user_image = URI.parse(user_image).open
-  item_three.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+  item_three.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
   user_image = "https://images-na.ssl-images-amazon.com/images/I/619IjjRuMgL._AC_SL1500_.jpg"
   item_four = Item.create(
@@ -40,7 +40,7 @@ def make_items
     description: 'Redesigned from the ground up for precision gaming. Dual vibration feedback. Stereo headphone jack for private audio',
   wishlist_id: Wishlist.pluck(:id).sample  )
   user_image = URI.parse(user_image).open
-  item_four.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+  item_four.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
   user_image = "https://images-na.ssl-images-amazon.com/images/I/61MdyHSbxHL._AC_SL1100_.jpg"
   item_five = Item.create(
@@ -50,7 +50,7 @@ def make_items
     description: "cho Dot is our most popular voice-controlled speaker, now with improved sound and a new design.",
   wishlist_id: Wishlist.pluck(:id).sample  )
   user_image = URI.parse(user_image).open
-  item_five.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+  item_five.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/513YGV2RT4L._AC_SL1000_.jpg"
@@ -62,7 +62,7 @@ item_six = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images.asos-media.com/products/guess-muticolour-dial-watch/22139571-1-silver?$XXL$&wid=513&fit=constrain"
 item_seven = Item.create(
@@ -73,7 +73,7 @@ item_seven = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/517cJC1ys7L._AC_SL1024_.jpg"
 item_eight = Item.create(
@@ -84,7 +84,7 @@ item_eight = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/51oK1KrmNML._AC_SL1498_.jpg"
 item_nine = Item.create(
@@ -95,7 +95,7 @@ item_nine = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/51BYKGV8znL._AC_.jpg"
 item_ten = Item.create(
@@ -106,7 +106,7 @@ item_ten = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/81OogbwE9xL._AC_SL1500_.jpg"
 item_eleven = Item.create(
@@ -117,7 +117,7 @@ item_eleven = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/61LAOcHxN8L._AC_UY500_.jpg"
 item_twelve = Item.create(
@@ -128,7 +128,7 @@ item_twelve = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/61qqNyr3ItL._AC_SL1362_.jpg"
 item_thirteen = Item.create(
@@ -139,7 +139,7 @@ item_thirteen = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://myer-media.com.au/wcsstore/MyerCatalogAssetStore/images/40/401/3639/200/7/807270320/807270320_1_1_720x928.jpg"
 item_fourteen = Item.create(
@@ -150,7 +150,7 @@ item_fourteen = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/61ySjgN1J7L._AC_SL1500_.jpg"
 item_fifteen = Item.create(
@@ -161,7 +161,7 @@ item_fifteen = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/61E3iyQBU-L.jpg"
 item_sixteen = Item.create(
@@ -172,7 +172,7 @@ item_sixteen = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/61c3iPKAmwL._AC_SL1200_.jpg"
 item_seventeen = Item.create(
@@ -182,7 +182,7 @@ item_seventeen = Item.create(
   description: "ANTI-BURST - Professional grade PVC material, extensive testing and a unique anti-burst design provides for the highest quality."
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/61gud3gnjuL._AC_SL1001_.jpg"
 item_eighteen = Item.create(
@@ -193,7 +193,7 @@ item_eighteen = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://www.guitarparadise.com.au/resources/40391ba3/product/product-4736/450-squier%20affinity%20tele%20black.jpg"
 item_nineteen = Item.create(
@@ -204,7 +204,7 @@ item_nineteen = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://underarmour.scene7.com/is/image/Underarmour/V5ProdWithBadge?rp=standard-0pad|pdpMainDesktop&scl=1&fmt=jpg&qlt=85&resMode=sharp2&cache=on,off&bgc=F0F0F0&rect=0,0,612,650&$p_pos=306,325&$p_size=612,650&extendN=0,0.00,0,0.00&$p_src=is{Underarmour/1342656-424_SLF_SL}"
 item_twenty = Item.create(
@@ -215,7 +215,7 @@ item_twenty = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/61VtiyDp3PL._AC_SL1000_.jpg"
 item_twenty_one = Item.create(
@@ -226,7 +226,7 @@ item_twenty_one = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/71R6r39nBKL._AC_SL1425_.jpg"
 item_twenty_two = Item.create(
@@ -238,7 +238,7 @@ item_twenty_two = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/81A4KqJc98L._AC_SL1400_.jpg"
 item_twenty_three = Item.create(
@@ -249,7 +249,7 @@ item_twenty_three = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/71hTV17WYiL._AC_SL1024_.jpg"
 item_twenty_four = Item.create(
@@ -260,7 +260,7 @@ item_twenty_four = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/71zV7OiJuhL._AC_SL1500_.jpg"
 item_twenty_five = Item.create(
@@ -271,7 +271,7 @@ item_twenty_five = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/61ISjgFTbRL._AC_SL1500_.jpg"
 item_twenty_six = Item.create(
@@ -282,7 +282,7 @@ item_twenty_six = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/81bEuNZRdAL._AC_SL1500_.jpg"
 item_twenty_seven = Item.create(
@@ -293,7 +293,7 @@ item_twenty_seven = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/810z0nFKivL._AC_SL1500_.jpg"
 item_twenty_eight = Item.create(
@@ -304,7 +304,7 @@ item_twenty_eight = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/61kQqplOEqL._AC_SL1500_.jpg"
 item_twenty_nine = Item.create(
@@ -315,7 +315,7 @@ item_twenty_nine = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/61unEqDNjvL._AC_SL1100_.jpg"
 item_thirty = Item.create(
@@ -327,7 +327,7 @@ item_thirty = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/615AHkg5RqL._AC_SL1500_.jpg"
 item_thirty_one = Item.create(
@@ -338,7 +338,7 @@ item_thirty_one = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 user_image = "https://images-na.ssl-images-amazon.com/images/I/61BtkSjcC4L._AC_SL1000_.jpg"
 item_thirty_two = Item.create(
@@ -349,7 +349,7 @@ item_thirty_two = Item.create(
   wishlist_id: rand(1..18)
 )
 user_image = URI.parse(user_image).open
-item_one.images.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
+item_one.images.attach(io: user_image, filename: "image.jpg", content_type: 'image/jpg')
 
 # items_array = [item_one, item_two, item_three, item_four, item_five, item_six, item_seven, item_eight, item_nine, item_ten, item_eleven, item_twelve, item_thirteen, item_fourteen, item_fifteen, item_sixteen, item_seventeen, item_eighteen, item_nineteen, item_twenty, item_twenty_one, item_twenty_two, item_twenty_three, item_twenty_four, item_twenty_five, item_twenty_six]
 
