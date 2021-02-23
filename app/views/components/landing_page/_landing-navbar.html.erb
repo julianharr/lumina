@@ -1,6 +1,8 @@
-<div class="container mb-5 mt-2 d-flex justify-content-between">
+<div class="container mb-5 mt-2 d-flex justify-content-end">
 
-  <%= link_to "About", '#', class:"btn btn-outline-info"%>
-  <%= link_to "Sign in", new_user_session_path, class:"btn btn-outline-light" %>
-  <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light" %>
+  <%= link_to "About", '#', class:"btn btn-info ml-3 "%>
+  <%= link_to "Sign in", new_user_session_path, class:"btn btn-light ml-3" %>
+  <% if @current_user == @user %>
+    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-danger ml-3" %>
+  <% end %>
 </div>
