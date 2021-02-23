@@ -14,6 +14,13 @@
 
 // Body styling
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: linear-gradient(138deg, rgba(23,21,58,1) 0%, rgba(76,37,99,0.9150035014005602) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }

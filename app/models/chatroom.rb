@@ -11,5 +11,5 @@ class Chatroom < ApplicationRecord
   # belongs_to :event, optional: true
   # vals
   # null
-  validates :name, optional: true
+  # validates :name, optional: true
 end
