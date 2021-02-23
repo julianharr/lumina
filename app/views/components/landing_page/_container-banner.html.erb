@@ -12,16 +12,14 @@
       from around the world, engage with your local community, and give back to those who might need it the most.
     </p>
 
-    <div class="form-landing">
-      <input type="text" placeholder="Email address" id="email">
+    <form class="form-inline">
+      <%= link_to "Sign up for Lumina", new_user_registration_path, class:"btn btn-success btn-sign-up" %>
+    </form>
 
-      <!-- Change button to direct to sign up page -->
-      <button type="submit" class="btn btn-success">Sign up for Lumina</button>
-    </div>
+
   </div>
-
-  <!-- Image of girl on rocket -->
-  <div id="container-banner-image">
-    <%= image_tag 'Saly-1.png', class:"img-fluid" %>
+  <div class="container-banner-right">
+    <!-- Image of girl on rocket -->
+      <%= image_tag 'Saly-1.png', class: "img-fluid" %>
   </div>
 </div>

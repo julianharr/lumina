@@ -1,19 +1,15 @@
-<div class="container" id="container-landing-bottom">
-  <h1>
-    Turn your <span id="landingtext-community">community</span>
-    into your family.
-  </h1>
-  <p>
-    Making new friends feels harder the older you get. Tell us what you’re passionate about and we’ll connect you to events and other Lumina members you’ll love. You’ll be besties in no time.
-  </p>
-
-  <div class="form-landing">
-      <input type="text" placeholder="Email address">
-
-      <!-- Change button to direct to sign up page -->
-      <button type="submit" class="btn btn-success">Sign up for Lumina</button>
-  </div>
-
+<div class="container d-flex flex-column" id="container-landing-bottom">
+  <div class="col-md-10">
+    <h1>
+      Turn your <span id="landingtext-community">community</span>
+      into your family.
+    </h1>
+    <p>
+      Making new friends feels harder the older you get. Tell us what you’re passionate about and we’ll connect you to events and other Lumina members you’ll love. You’ll be besties in no time.
+    </p>
+    <form class="form-inline">
+      <%= link_to "Sign up for Lumina", new_user_registration_path, class:"btn btn-success btn-sign-up" %>
+    </form>
   <%= image_tag 'Saly-19.png', class:"img-fluid" %>
-
+  </div>
 </div>

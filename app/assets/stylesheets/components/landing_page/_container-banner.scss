@@ -1,22 +1,22 @@
 .container-banner {
-  height: 80vh;
-  width: 90vw;
   margin: 0 auto;
+  width: 90%;
+  min-width: 90%;
 }
 
 #container-banner-left {
+  padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
     h1 {
-      font-size: 48px;
+      font-size: 56px;
     }
 }
 
-.form-landing {
-    #email {
-      border-radius: 2px;
-      padding: 6.75px 13.5px;
-      line-height: 1.5;
-    }
+@media only screen and (max-width: 900px) {
+  .container-banner {
+    flex-direction: column;
+  }
 }
+
