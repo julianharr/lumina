@@ -4,7 +4,6 @@ class PagesController < ApplicationController
   def home
   end
 
-
   # TODO
   # Define Feed and Dashboard in this controller
 
@@ -17,5 +16,4 @@ class PagesController < ApplicationController
     @user = current_user
     # authorize @user
   end
-
 end

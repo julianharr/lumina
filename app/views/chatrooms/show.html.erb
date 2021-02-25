@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="container mt-5">
+    <h1>#<%= @chatroom.name %></h1>
+    <div class="bg-light p-4 mb-2">
+      <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+        <% @chatroom.messages.each do |message| %>
+          <%= render 'messages/message', message: message %>
+        <% end %>
+      </div>
+    </div>
+    <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+      <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}"%>
+      <%= f.submit "Send", class:"btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
