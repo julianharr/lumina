@@ -9,13 +9,13 @@
         </button>
       </div>
       <div class="modal-body">
-        <h1 style="color:darkblue">#<%= @chatroom.name %></h1>
+        <h1 style="color:darkblue">Conversation</h1>
         <div class="chatroom">
           <div>
             <div class="message-container" id="message-<%= @message.id %>">
             <i class="author">
-            <span><%= @user.first_name %></span>
-            <small><%= @user.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+              <span><%= @user.first_name %></span>
+              <small><%= @user.created_at.strftime("%a %b %e at %l:%M%p") %></small>
             </i>
             <p style="color: purple; font-weight: 350;">Test</p>
             </div>

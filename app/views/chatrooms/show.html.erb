@@ -1,23 +1,22 @@
-<div class="d-flex">
-  <div class="list-group w-200px bg-white br-light">
+<div class="container m-5 d-flex">
+  <div class="list-group w-200px bg-white br-light m-5">
     <% @chatrooms.each do |chatroom| %>
-      <%= link_to "##{chatroom.name}", chatroom_path(chatroom), class: "list-group-item #{'active' if chatroom == @chatroom}" %>
+      <%= link_to "View", chatroom_path(chatroom), class: "list-group-item #{'active' if chatroom == @chatroom}" %>
     <% end %>
   </div>
 
-
   <div class="chatroom">
-    <h1>#<%= @chatroom.name %></h1>
+    <h1>Conversations</h1>
+  <div>
 
-    <div>
-      <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-        <% @chatroom.messages.each do |message| %>
-          <%= render "messages/message", message: message %>
-        <% end %>
-      </div>
+  <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+    <% @chatroom.messages.each do |message| %>
+      <%= render "messages/message", message: message %>
+    <% end %>
+  </div>
 
-      <%= simple_form_for [ @chatroom, @message ], html: { autocomplete: 'off' } do |f| %>
-        <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
-      <% end %>
+  <%= simple_form_for [ @chatroom, @message ], html: { autocomplete: 'off' } do |f| %>
+    <%= f.input :content, label: false, placeholder: "Type your message" %>
+  <% end %>
   </div>
 </div>
