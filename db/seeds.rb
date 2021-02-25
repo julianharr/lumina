@@ -157,7 +157,7 @@ list_users.each do |element|
     make_me.save!
     puts "made Wishlist # #{make_me.id}"
   else
-    puts "Item didn't work out ..."
+    puts "List didn't work out ..."
   end
 
 end
@@ -165,6 +165,36 @@ end
 puts "--- Making Wish Lists Ended !"
 
 puts "--- Making Items Bro !!"
+make_items()
+puts "--- Making Items ENDED !!"
+
+puts "--- Making Charities Start "
+csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+filepath    = 'db/csv/csv_charities.csv'
+# CSV will return a HASH format
+CSV.foreach(filepath, csv_options) do |row|
+   # puts "#{row['Charity/Non-profit name']}, #{row['Description']},  #{row['Location']},  #{row['Website']},  #{row['Category']}"
+make_me = Charity.new(
+    name: row['Charity/Non-profit name'],
+    description: row['Description'],
+    location: row['Location'],
+    website: row['Website'],
+    category: row['Category']
+    # donate ID
+  )
+     # binding.pry
+  if make_me.valid?
+    make_me.save!
+    puts "made Charity # #{make_me.id}"
+  else
+    puts "Charity didn't work out ..."
+  end
+  end
+
+puts "--- Charities Done :) "###
+
+puts "---"
+puts "--- GAME OVER ---"
 # make_items
 # puts "--- Making Items Ended !"
 # #   ### Make some Bookings ###
@@ -655,36 +685,6 @@ puts "--- Making Items Bro !!"
 # end
 # puts "--- Making Reviews ENDED !"
 
-puts "---"
-
-
-
-csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
-filepath    = 'db/csv/csv_charities.csv'
-# CSV will return a HASH format
-CSV.foreach(filepath, csv_options) do |row|
-   # puts "#{row['Charity/Non-profit name']}, #{row['Description']},  #{row['Location']},  #{row['Website']},  #{row['Category']}"
-make_me = Charity.new(
-    name: row['Charity/Non-profit name'],
-    description: row['Description'],
-    location: row['Location'],
-    website: row['Website'],
-    category: row['Category']
-    # donate ID
-  )
-     # binding.pry
-  if make_me.valid?
-    make_me.save!
-    puts "made Charity # #{make_me.id}"
-  else
-    puts "Charity didn't work out ..."
-  end
-  end
-
-puts "--- Charities Done :) "###
-
-puts "---"
-puts "--- GAME OVER ---"
 
 
 
