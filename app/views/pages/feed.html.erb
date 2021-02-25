@@ -11,6 +11,46 @@
         Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Animi libero explicabo, odio ipsum dolorem est nemo quis itaque sapiente nam laborum veritatis repellat.
 
       </div>
+      <% @users.each do |user| %>
+      <div class="card-for-feed ">
+        <%= user.first_name %> <%= user.last_name %>
+        <%= link_to 'Chat', chatrooms_path(user_two: user), method: :post, "data-toggle" => "modal", "data-target" => '#chatModal' %>
+
+        <!-- Chat modal -->
+        <div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel" style="color:darkblue">Message Thread</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h3 style="color:grey">Test</h3>
+
+                <div class="chatroom">
+                  <div>
+                    <div id="messages">
+                      <%#= render "messages/message" %>
+                    </div>
+                  </div>
+                </div>
+                <%#= simple_form_for [ @chatroom ] do |f| %>
+                <%#= f.input :name, placeholder: 'Name for chatroom' %>
+                <%#= f.submit "Send message", class: "btn btn-primary my-2" %>
+                <%# end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <% end %>
+
   </div>
   <div class="m-5">
     <br>
