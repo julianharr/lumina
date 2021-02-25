@@ -1,0 +1,67 @@
+.nopad {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+/*image gallery*/
+.image-checkbox {
+  cursor: pointer;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 4px solid transparent;
+  margin-bottom: 0;
+  outline: 0;
+}
+.image-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.image-checkbox-checked {
+  border-color: #4783B0;
+}
+.image-checkbox .fa {
+  position: absolute;
+  color: #4A79A3;
+  background-color: #fff;
+  padding: 10px;
+  top: 0;
+  right: 0;
+}
+
+.img-responsive {
+  height: 150px;
+}
+
+.image-checkbox-checked .fa {
+  display: block !important;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . . ."
+    ". . . ."
+    ". . . .";
+}
+
+
+
+.card-category {
+  background-size: cover;
+  background-position: center;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 200px;
+}
+
