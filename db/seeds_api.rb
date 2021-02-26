@@ -119,25 +119,26 @@ meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "food"
 def meetup_event_spooler(options = {})
   # Time.at(seconds_since_epoch_integer).to_datetime
   ## hash it up
-  options["events"]
-    .binding.pry
-  make_me = Event.create( # change to create! later
-    # add category to event
-    name: options["name"],
-    date: options["local_date"],
-    venue_name: options["venue"]["name"],
-    address: options["venue"]["address_1"],
-    description: options["description"],
-    meetup_link: options["link"],
-    organiser: options["group"]["name"],
-    attendees: options["yes_rsvp_count"],
-    user_id: options[],
-    longitude: options["venue"]["lon"],
-    latitude: options["venue"]["lat"],
-    category: options[:meetup_cat],
-    meetup_event_id: options["id"],
-    meetup_update: options["updated"]
-  )
+  options["events"].each do |value|
+    binding.pry
+    make_me = Event.create( # change to create! later
+      # add category to event
+      name: value["name"],
+      date: value["local_date"],
+      venue_name: value["venue"]["name"],
+      address: value["venue"]["address_1"],
+      description: value["description"],
+      meetup_link: value["link"],
+      organiser: value["group"]["name"],
+      attendees: value["yes_rsvp_count"],
+      user_id: value[],
+      longitude: value["venue"]["lon"],
+      latitude: value["venue"]["lat"],
+      # category: value[:meetup_cat],
+      meetup_event_id: value["id"],
+      meetup_update: value["updated"]
+    )
+  end
 end
 
 ## spool up events ..
