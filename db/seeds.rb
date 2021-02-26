@@ -3,7 +3,7 @@ require 'json'
 require "uri"
 require "net/http"
 require_relative "seed_items"
-# require_relative "seeds_api"
+require_relative "seeds_api"
 # https://github.com/pejotrich/flatmate
 # https://github.com/andrewbonas/rails_facebook
 #
@@ -51,8 +51,8 @@ batch_466 = [
   # "santanu0013",
   # "DraganGasic",
   "cheenaelise",
-  "joshwbarnes",
-  "rbalendra",
+  # "joshwbarnes",
+  # "rbalendra",
   "appu4ever"
 ]
 

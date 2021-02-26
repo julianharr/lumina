@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_26_030919) do
+ActiveRecord::Schema.define(version: 2021_02_26_050232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,10 @@ ActiveRecord::Schema.define(version: 2021_02_26_030919) do
     t.float "longitude"
     t.float "latitude"
     t.string "category"
+    t.integer "meetup_event_id"
+    t.datetime "meetup_update"
+    t.string "meetup_link"
+    t.string "venue_name"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

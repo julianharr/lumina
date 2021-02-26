@@ -3,6 +3,7 @@ require 'json'
 require "uri"
 require "net/http"
 require 'dotenv'
+require 'date'
 
 puts "I've attached the API Seeds File !! "
 ## get the first access token
@@ -98,7 +99,10 @@ def meetup_events_finder(options = {})
   request["Cookie"] = "MEETUP_AFFIL=affil=meetup; MEETUP_BROWSER_ID=\"id=8f29c91f-3033-4eda-a298-190fc2071d55\"; MEETUP_CSRF=dbccdafc-8e61-4007-9a5a-4c92c81dbdc5; MEETUP_MEMBER=\"id=154567222&status=4&timestamp=1614293651&bs=0&tz=Australia%2FMelbourne&zip=meetup2&country=au&city=Melbourne&state=&lat=-37.81&lon=144.96&ql=false&s=802d872fc49dd2c821523298ccdec801cad92d53&scope=ALL\"; MEETUP_TRACK=id=5e0859a6-c334-4f2b-bd73-818934553be7&l=1&s=a7bf3696ab6fe266da7143de4cb39f9fc2698c45; SIFT_SESSION_ID=20670450-2624-4174-a947-cce0ab741e54"
 
   response = https.request(request)
-  pp result = JSON.parse(response.body) # result hash
+  result = JSON.parse(response.body) # result hash
+  result[:meetup_cat] = cat
+  # pp result["events"]
+  return result
 end
 
 def cert_meetup_api
@@ -111,14 +115,30 @@ end
 
 meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "food" })
 
-# ## create the Events ##
-# # add category to event
-# t.string "name"
-# t.datetime "date"
-# t.string "address"
-# t.text "description"
-# t.string "organiser"
-# t.integer "attendees"
-# t.bigint "user_id"
-# t.float "longitude"
-# t.float "latitude"
+## create the Events ##
+def meetup_event_spooler(options = {})
+  # Time.at(seconds_since_epoch_integer).to_datetime
+  ## hash it up
+  options["events"]
+    .binding.pry
+  make_me = Event.create( # change to create! later
+    # add category to event
+    name: options["name"],
+    date: options["local_date"],
+    venue_name: options["venue"]["name"],
+    address: options["venue"]["address_1"],
+    description: options["description"],
+    meetup_link: options["link"],
+    organiser: options["group"]["name"],
+    attendees: options["yes_rsvp_count"],
+    user_id: options[],
+    longitude: options["venue"]["lon"],
+    latitude: options["venue"]["lat"],
+    category: options[:meetup_cat],
+    meetup_event_id: options["id"],
+    meetup_update: options["updated"]
+  )
+end
+
+## spool up events ..
+meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "food" }))
