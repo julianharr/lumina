@@ -20,4 +20,9 @@ class PagesController < ApplicationController
     @user = current_user
     # authorize @user
   end
+
+  def interests
+    @user = current_user
+  end
+
 end

@@ -1,0 +1,25 @@
+<div class="text-center">
+  <h1>Interests Page</h1>
+</div>
+
+<% interests = %w(arts music outdoors tech photography learning food family health wellness sports fitness writing language LGBTQ film sci-fi games books dance animals pets crafts fashion beauty business environment dogs cats wildlife education) %>
+
+<div class="container d-flex justify-content-center">
+  <div class="cards">
+   <!--  <form action="/feed"> -->
+    <% interests.each do |interest| %>
+    <div class="m-3 text-center">
+      <label class="image-checkbox" data-name="<%= interest %>">
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+            <%= interest %>
+          </div>
+      </label>
+    </div>
+      <!-- </form> -->
+    <%end %>
+    </div>
+  </div>
+  <div class="text-center">
+    <%= link_to "Submit", interests_path, method: :post, id: "next-page", class:"btn btn-primary m-5" %>
+  </div>
+</div>
