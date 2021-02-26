@@ -1,4 +1,4 @@
-puts "I've linked the seed file ! "
+puts "I've linked the seed items file ! "
 def make_items
   puts "I'm in the items seed file ! "
   user_image = "https://images-na.ssl-images-amazon.com/images/I/41nzI1lhIVL._SX327_BO1,204,203,200_.jpg"

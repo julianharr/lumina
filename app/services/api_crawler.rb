@@ -15,6 +15,9 @@ class ApiCrawler
     auth = { username: ENV['EVENT_F_USER'], password: ENV['EVENT_F_PASS'] }
     response = HTTParty.get('https://api.eventfinda.com.au/v2/events.json?rows=2', basic_auth: auth)
   end
+
+  def meetup_api_get
+  end
 end
 
 # def send_tweet
@@ -27,10 +30,9 @@ end
 #   client.update(@message)
 # end
 
-find = ApiCrawler.new("event")
-p find
-binding.pry
-
+# find = ApiCrawler.new("event")
+# p find
+# binding.pry
 
 # require 'rest-client'
 # require 'json'

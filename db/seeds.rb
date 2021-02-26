@@ -110,32 +110,32 @@ puts "done cleaning house.."
 puts "-- Making Humans"
 
 # User Master OverLoad # HOLD GME !! ##
-url = "https://api.github.com/users/julianharr"
-git_back = open(url).read
-user = JSON.parse(git_back)
-user_image = URI.parse(user["avatar_url"]).open
+# url = "https://api.github.com/users/julianharr"
+# git_back = open(url).read
+# user = JSON.parse(git_back)
+# user_image = URI.parse(user["avatar_url"]).open
 
-make_me = User.create!( # change to create! later
-  first_name: user["name"].split.first,
-  last_name: user["name"].split[1],
-  git_name: user["login"],
-  bio: user["bio"],
-  location: user["location"],
-  nickname: user["login"],
-  birthday: Faker::Date.birthday(min_age: 18, max_age: 33),
-  email: "spin@gmail.com",
-  admin: true,
-  password: "123456"
-)
+# make_me = User.create!( # change to create! later
+#   first_name: user["name"].split.first,
+#   last_name: user["name"].split[1],
+#   git_name: user["login"],
+#   bio: user["bio"],
+#   location: user["location"],
+#   nickname: user["login"],
+#   birthday: Faker::Date.birthday(min_age: 18, max_age: 33),
+#   email: "spin@gmail.com",
+#   admin: true,
+#   password: "123456"
+# )
 
-if make_me.save
-  puts "saved user"
-else
-  puts "user creation failed"
-end
+# if make_me.save
+#   puts "saved user"
+# else
+#   puts "user creation failed"
+# end
 
-make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
-puts "made #{make_me.first_name} #{make_me.last_name}"
+# make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
+# puts "made #{make_me.first_name} #{make_me.last_name}"
 
 
 ## Make the Plebs ##
