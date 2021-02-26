@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # associations
   has_one :wishlist, dependent: :destroy
   has_many :items, through: :wishlist, dependent: :destroy
+  has_many :events, dependent: :destroy
   has_many :chatrooms, dependent: :destroy
   has_many :messages, dependent: :destroy
 
@@ -21,6 +22,7 @@ class User < ApplicationRecord
   ## active storage
   has_one_attached :avatar
 
-  INTERESTS = %w[arts music outdoors tech photography learning food family health wellness sports fitness writing language LGBTQ film sci-fi games books dance animals pets crafts fashion beauty business environment dogs cats wildlife education]
+  INTERESTS = %w[arts music outdoors tech photography learning food family health wellness sports fitness writing language LGBTQ film sci-fi games books dance animals pets crafts fashion beauty business environment
+                 dogs cats wildlife education]
 
 end
