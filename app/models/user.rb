@@ -5,7 +5,7 @@ class User < ApplicationRecord
   # associations
   has_one :wishlist, dependent: :destroy
   has_many :items, through: :wishlist, dependent: :destroy
-
+  has_many :events, dependent: :destroy
   # Frienship Gem
   has_friendship
 

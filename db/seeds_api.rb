@@ -100,7 +100,7 @@ def meetup_events_finder(options = {})
 
   response = https.request(request)
   result = JSON.parse(response.body) # result hash
-  result[:meetup_cat] = cat
+  result["meetup_cat"] = cat
   # pp result["events"]
   return result
 end
@@ -113,15 +113,16 @@ def cert_meetup_api
   # request_oauth_token # 3
 end
 
-meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "food" })
+# meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "food" })
 
 ## create the Events ##
 def meetup_event_spooler(options = {})
   # Time.at(seconds_since_epoch_integer).to_datetime
   ## hash it up
+  category = options["meetup_cat"]
+  # options comes in from meetup_events_finder
   options["events"].each do |value|
-    binding.pry
-    make_me = Event.create( # change to create! later
+    make_me = Event.new( # change to create! later
       # add category to event
       name: value["name"],
       date: value["local_date"],
@@ -131,15 +132,19 @@ def meetup_event_spooler(options = {})
       meetup_link: value["link"],
       organiser: value["group"]["name"],
       attendees: value["yes_rsvp_count"],
-      user_id: value[],
+      user_id: User.where(admin: true).first.id,
       longitude: value["venue"]["lon"],
       latitude: value["venue"]["lat"],
-      # category: value[:meetup_cat],
+      category: category,
       meetup_event_id: value["id"],
       meetup_update: value["updated"]
     )
+    # binding.pry
+    if make_me.valid?
+      make_me.save!
+      puts "made event # #{make_me.id}"
+    else
+      puts "Event didn't work out ..."
+    end
   end
 end
-
-## spool up events ..
-meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "food" }))

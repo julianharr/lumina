@@ -50,7 +50,7 @@ batch_466 = [
   # "Escapewithcode",
   # "santanu0013",
   # "DraganGasic",
-  "cheenaelise",
+  # "cheenaelise",
   # "joshwbarnes",
   # "rbalendra",
   "appu4ever"
@@ -150,54 +150,57 @@ end
 
 puts "--- Making Humans Ended !"
 
-# puts "--- Making Wish Lists !!"
-# # whats in a wish list ?
-# #
-# list_users = User.pluck(:id)
-# list_users.each do |element|
-#   make_me = Wishlist.new(
-#     user_id: element
-#   )
-#     # binding.pry
-#   if make_me.valid?
-#     make_me.save!
-#     puts "made Wishlist # #{make_me.id}"
-#   else
-#     puts "List didn't work out ..."
-#   end
+puts "--- Making Wish Lists !!"
+# whats in a wish list ?
+#
+list_users = User.pluck(:id)
+list_users.each do |element|
+  make_me = Wishlist.new(
+    user_id: element
+  )
+  # binding.pry
+  if make_me.valid?
+    make_me.save!
+    puts "made Wishlist # #{make_me.id}"
+  else
+    puts "List didn't work out ..."
+  end
+end
 
-# end
+puts "--- Making Wish Lists Ended !"
 
-# puts "--- Making Wish Lists Ended !"
+puts "--- Making Items Bro !!"
+make_items
+puts "--- Making Items ENDED !!"
 
-# puts "--- Making Items Bro !!"
-# make_items()
-# puts "--- Making Items ENDED !!"
+puts "--- Making Charities Start "
+csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+filepath    = 'db/csv/csv_charities.csv'
+# CSV will return a HASH format
+CSV.foreach(filepath, csv_options) do |row|
+  # puts "#{row['Charity/Non-profit name']}, #{row['Description']},  #{row['Location']},  #{row['Website']},  #{row['Category']}"
+  make_me = Charity.new(
+    name: row['Charity/Non-profit name'],
+    description: row['Description'],
+    location: row['Location'],
+    website: row['Website']
+    # category: row['Category']
+    # donate ID
+  )
+  # binding.pry
+  if make_me.valid?
+    make_me.save!
+    puts "made Charity # #{make_me.id}"
+  else
+    puts "Charity didn't work out ..."
+  end
+end
 
-# puts "--- Making Charities Start "
-# csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
-# filepath    = 'db/csv/csv_charities.csv'
-# # CSV will return a HASH format
-# CSV.foreach(filepath, csv_options) do |row|
-#    # puts "#{row['Charity/Non-profit name']}, #{row['Description']},  #{row['Location']},  #{row['Website']},  #{row['Category']}"
-# make_me = Charity.new(
-#     name: row['Charity/Non-profit name'],
-#     description: row['Description'],
-#     location: row['Location'],
-#     website: row['Website'],
-#     category: row['Category']
-#     # donate ID
-#   )
-#      # binding.pry
-#   if make_me.valid?
-#     make_me.save!
-#     puts "made Charity # #{make_me.id}"
-#   else
-#     puts "Charity didn't work out ..."
-#   end
-#   end
+puts "--- Charities Done :) " ###
 
-# puts "--- Charities Done :) "###
+puts "--- spool up events ---"
+meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "food" }))
+puts "--- Events Over ---"
 
 puts "---"
 puts "--- GAME OVER ---"
