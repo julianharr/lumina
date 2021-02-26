@@ -1,5 +1,5 @@
 class Chatroom < ApplicationRecord
-  # ass
+  # associations
   has_many :messages
 
   belongs_to :user

@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   resources :wishlists, only: [:show] do
     resources :items, only: [:new, :create]
   end
-  resources :chatrooms, only: [:create, :show, :destroy] do
-    resources :messages, only: [:create]
+  resources :chatrooms, only: [:index, :show, :create] do
+    resources :messages, only: :create
   end
   resources :user_interests, only: [:create, :destroy]
   resources :interests, only: [:create]

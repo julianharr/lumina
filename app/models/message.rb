@@ -1,7 +1,8 @@
 class Message < ApplicationRecord
-  # ass
-  belongs_to :chatroom, dependent: :destroy
+  # associations
   belongs_to :user
-  # val
+  belongs_to :chatroom
+
+  # validations
   validates :content, presence: true
 end
