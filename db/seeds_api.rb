@@ -24,7 +24,7 @@ def get_initial_token
 
   result = JSON.parse(response.body)
   p result&.key?("code") ? puts("--- Passed step one initial token") : puts("--- step 1 FAILED..")
-  return result["code"] # {"code":"bc807ec3af945ed60fc1686c65c43344"}
+  return result["code"]
 end
 
 ## add token to get outh token
@@ -69,7 +69,7 @@ def request_oauth_token
 
   response = https.request(request)
   result = JSON.parse(response.body)
-  p result&.key?("oauth_token") ? puts("--- Passed step three oauth_token") : puts("--- step e FAILED..")
+  p result&.key?("oauth_token") ? puts("--- Passed step three oauth_token") : puts("--- step 3 FAILED..")
   return result
   # {"oauth_token"=>"xxx", "oauth_token_secret"=>"xxx", "refresh_token"=>"xxx", "expires_in"=>3600, "member"=>{"id"=>381717, "name"=>"someguy", "email"=>"email", "status"=>"active", "joined"=>1404391594000, "city"=>"Melbourne", "country"=>"au", "localized_country_name"=>"Australia", "lat"=>-37.81, "lon"=>144.96, "photo"=>{"id"=>303641096, "highres_link"=>"https://secure.meetupstatic.com/photos/member/a/0/8/8/highres_303641096.jpeg", "photo_link"=>"https://secure.meetupstatic.com/photos/member/a/0/8/8/member_303641096.jpeg", "thumb_link"=>"https://secure.meetupstatic.com/photos/member/a/0/8/8/thumb_303641096.jpeg", "type"=>"member", "base_url"=>"https://secure.meetupstatic.com"}, "is_pro_admin"=>true}}
 end
@@ -109,4 +109,16 @@ def cert_meetup_api
   # request_oauth_token # 3
 end
 
-meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "sex" })
+meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "food" })
+
+# ## create the Events ##
+# # add category to event
+# t.string "name"
+# t.datetime "date"
+# t.string "address"
+# t.text "description"
+# t.string "organiser"
+# t.integer "attendees"
+# t.bigint "user_id"
+# t.float "longitude"
+# t.float "latitude"

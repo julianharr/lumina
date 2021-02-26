@@ -2,16 +2,15 @@ require "open-uri"
 require 'json'
 require "uri"
 require "net/http"
-#
 require_relative "seed_items"
-require_relative "seeds_api"
+# require_relative "seeds_api"
 # https://github.com/pejotrich/flatmate
 # https://github.com/andrewbonas/rails_facebook
 #
 #
 batch_466 = [
   "glenntippett",
-  "mrchvs",
+  # "mrchvs",
   # "melwers",
   # "avrilpryce",
   # "Michiel-DK",
@@ -51,16 +50,17 @@ batch_466 = [
   # "Escapewithcode",
   # "santanu0013",
   # "DraganGasic",
-  # "cheenaelise",
-  # "joshwbarnes",
+  "cheenaelise",
+  "joshwbarnes",
   "rbalendra",
   "appu4ever"
 ]
 
 def get_git_info(git_name)
-  url = "https://api.github.com/users/#{git_name}"
-  parsed_url = URI.parse url
-  https = Net::HTTP.new(parsed_url.host, parsed_url.port)
+  # url = "https://api.github.com/users/#{git_name}"
+  url = URI("https://api.github.com/users/#{git_name}")
+
+  https = Net::HTTP.new(url.host, url.port)
   https.use_ssl = true
 
   request = Net::HTTP::Get.new(url)
@@ -68,14 +68,15 @@ def get_git_info(git_name)
 
   response = https.request(request)
   user = JSON.parse(response.read_body)
-
+  # binding.pry
   first_name = user["name"].present? ? user["name"].split.first.capitalize : user["login"].capitalize
   last_name = user["name"].present? ? user["name"].split[1]&.capitalize : ""
   bio = user["bio"].present? ? user["bio"] : Faker::Quote.matz
-  location = user["location"].present? ? user["location"] : Faker::Address.city
+  location = user["location"].present? ? user["location"] : %w[Perth Sydney Hobart].sample
   email = user["email"].nil? ? Faker::Internet.email : user["email"]
+  interests = %w[arts music outdoors tech photography learning food family health wellness sports fitness writing language LGBTQ film sci-fi games books dance animals pets crafts fashion beauty business environment
+                 dogs cats wildlife education]
 
-  user_image = URI.parse(user["avatar_url"]).open
   make_me = User.create( # change to create! later
     first_name: first_name.to_s,
     last_name: last_name.to_s,
@@ -89,8 +90,13 @@ def get_git_info(git_name)
     password: "123456"
   )
 
+  3.times { make_me.interest_list.add(interests.sample) }
+  make_me.save!
+  p make_me.interest_list
+  user_image = URI.parse(user["avatar_url"]).open
   make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
   puts "made #{make_me.first_name} #{make_me.last_name}"
+  sleep 1
 end
 
 puts "--- GAME  START ---"
@@ -110,40 +116,39 @@ puts "done cleaning house.."
 puts "-- Making Humans"
 
 # User Master OverLoad # HOLD GME !! ##
-# url = "https://api.github.com/users/julianharr"
-# git_back = open(url).read
-# user = JSON.parse(git_back)
-# user_image = URI.parse(user["avatar_url"]).open
+url = "https://api.github.com/users/julianharr"
+git_back = open(url).read
+user = JSON.parse(git_back)
+user_image = URI.parse(user["avatar_url"]).open
 
-# make_me = User.create!( # change to create! later
-#   first_name: user["name"].split.first,
-#   last_name: user["name"].split[1],
-#   git_name: user["login"],
-#   bio: user["bio"],
-#   location: user["location"],
-#   nickname: user["login"],
-#   birthday: Faker::Date.birthday(min_age: 18, max_age: 33),
-#   email: "spin@gmail.com",
-#   admin: true,
-#   password: "123456"
-# )
+make_me = User.create!( # change to create! later
+  first_name: user["name"].split.first,
+  last_name: user["name"].split[1],
+  git_name: user["login"],
+  bio: user["bio"],
+  location: user["location"],
+  nickname: user["login"],
+  birthday: Faker::Date.birthday(min_age: 18, max_age: 33),
+  email: "spin@gmail.com",
+  admin: true,
+  password: "123456"
+)
+make_me.interest_list.add("outdoors")
+if make_me.save
+  puts "---"
+else
+  puts "user creation failed"
+end
 
-# if make_me.save
-#   puts "saved user"
-# else
-#   puts "user creation failed"
-# end
+make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
+puts "made #{make_me.first_name} #{make_me.last_name}"
 
-# make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
-# puts "made #{make_me.first_name} #{make_me.last_name}"
+# Make the Plebs ##
+batch_466.each do |element|
+  get_git_info(element)
+end
 
-
-## Make the Plebs ##
-# batch_466.each do |element|
-#   get_git_info(element)
-# end
-
-# puts "--- Making Humans Ended !"
+puts "--- Making Humans Ended !"
 
 # puts "--- Making Wish Lists !!"
 # # whats in a wish list ?
@@ -228,8 +233,6 @@ puts "--- GAME OVER ---"
 
 # puts "--- Making Reviews Start !"
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/41nzI1lhIVL._SX327_BO1,204,203,200_.jpg"
 # item_one = Item.create(
 #    name: "A Promised Land Novel",
@@ -240,8 +243,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://m.media-amazon.com/images/I/51nDhGOv0oL.jpg"
 # item_two = Item.create(
@@ -254,8 +255,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/91r79g3OlHL._AC_SL1500_.jpg"
 # item_three = Item.create(
 #    name: "Edifier R1280DB Powered Bluetooth Bookshelf Speakers",
@@ -266,8 +265,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/619IjjRuMgL._AC_SL1500_.jpg"
 # item_four = Item.create(
@@ -280,8 +277,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/61MdyHSbxHL._AC_SL1100_.jpg"
 # item_five = Item.create(
 #    name: "Echo Dot (3rd Gen) – Smart speaker with Alexa -",
@@ -292,8 +287,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/513YGV2RT4L._AC_SL1000_.jpg"
 # item_six = Item.create(
@@ -306,8 +299,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images.asos-media.com/products/guess-muticolour-dial-watch/22139571-1-silver?$XXL$&wid=513&fit=constrain"
 # item_seven = Item.create(
 #    name: "GUESS Women's Stainless Steel Two-Tone Crystal Accented Watch",
@@ -318,8 +309,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/517cJC1ys7L._AC_SL1024_.jpg"
 # item_eight = Item.create(
@@ -332,8 +321,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/51oK1KrmNML._AC_SL1498_.jpg"
 # item_nine = Item.create(
 #    name: "Road To Vitality - Push Up Bars",
@@ -344,8 +331,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/51BYKGV8znL._AC_.jpg"
 # item_ten = Item.create(
@@ -359,8 +344,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/81OogbwE9xL._AC_SL1500_.jpg"
 # item_eleven = Item.create(
 #    name: "Philips Air Fryer Premium XXL for Fry/Bake/Grill/Roast with Fat Removal and Rapid Air Technology",
@@ -371,8 +354,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://www.converse.com.au/media/catalog/product/cache/506b4e978a2aaf2437105399caeb33bd/u/n/unisex_converse_chuck_taylor_all_star_classic_colour_low_top_white_17652_0.jpg"
 # item_twelve = Item.create(
@@ -385,8 +366,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/61qqNyr3ItL._AC_SL1362_.jpg"
 # item_thirteen = Item.create(
 #    name: "Mass Effect Legendary Edition - PlayStation 4",
@@ -397,8 +376,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://myer-media.com.au/wcsstore/MyerCatalogAssetStore/images/40/401/3639/200/7/807270320/807270320_1_1_720x928.jpg"
 # item_fourteen = Item.create(
@@ -411,8 +388,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/61ySjgN1J7L._AC_SL1500_.jpg"
 # item_fifteen = Item.create(
 #    name: "PlayStation VR Starter Pack",
@@ -423,8 +398,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/61E3iyQBU-L.jpg"
 # item_sixteen = Item.create(
@@ -437,8 +410,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/61c3iPKAmwL._AC_SL1200_.jpg"
 # item_seventeen = Item.create(
 #    name: "Meteor Anti-Burst Yoga Ball",
@@ -448,8 +419,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/61gud3gnjuL._AC_SL1001_.jpg"
 # item_eighteen = Item.create(
@@ -462,8 +431,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://www.guitarparadise.com.au/resources/40391ba3/product/product-4736/450-squier%20affinity%20tele%20black.jpg"
 # item_nineteen = Item.create(
 #    name: "Fender Telecaster Electric Guitar",
@@ -474,8 +441,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://underarmour.scene7.com/is/image/Underarmour/V5ProdWithBadge?rp=standard-0pad|pdpMainDesktop&scl=1&fmt=jpg&qlt=85&resMode=sharp2&cache=on,off&bgc=F0F0F0&rect=0,0,612,650&$p_pos=306,325&$p_size=612,650&extendN=0,0.00,0,0.00&$p_src=is{Underarmour/1342656-424_SLF_SL}"
 # item_twenty = Item.create(
@@ -488,8 +453,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/61VtiyDp3PL._AC_SL1000_.jpg"
 # item_twenty_one = Item.create(
 #    name: "38 Inch Acoustic Guitar Classical Guitar",
@@ -500,8 +463,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/71R6r39nBKL._AC_SL1425_.jpg"
 # item_twenty_two = Item.create(
@@ -515,8 +476,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/81A4KqJc98L._AC_SL1400_.jpg"
 # item_twenty_three = Item.create(
 #    name: "Justin Bieber Changes",
@@ -527,8 +486,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/71hTV17WYiL._AC_SL1024_.jpg"
 # item_twenty_four = Item.create(
@@ -541,8 +498,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/71zV7OiJuhL._AC_SL1500_.jpg"
 # item_twenty_five = Item.create(
 #    name: "Mr. Potato Head",
@@ -553,8 +508,6 @@ puts "--- GAME OVER ---"
 #   )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/61ISjgFTbRL._AC_SL1500_.jpg"
 # item_twenty_six = Item.create(
@@ -567,8 +520,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/81bEuNZRdAL._AC_SL1500_.jpg"
 # item_twenty_seven = Item.create(
 #    name: "GIGABYTE GeForce RTX 3080",
@@ -579,8 +530,6 @@ puts "--- GAME OVER ---"
 #  )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/810z0nFKivL._AC_SL1500_.jpg"
 # item_twenty_eight = Item.create(
@@ -593,8 +542,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/61kQqplOEqL._AC_SL1500_.jpg"
 # item_twenty_nine = Item.create(
 #    name: "Bosch CityMower 18",
@@ -605,8 +552,6 @@ puts "--- GAME OVER ---"
 #     )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/61unEqDNjvL._AC_SL1100_.jpg"
 # item_thirty = Item.create(
@@ -620,8 +565,6 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/615AHkg5RqL._AC_SL1500_.jpg"
 # item_thirty_one = Item.create(
 #    name: "Grillz Charcoal BBQ Smoker Camping Grill Portable Barbeque",
@@ -632,8 +575,6 @@ puts "--- GAME OVER ---"
 #     )
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
-
-
 
 # user_image = "https://images-na.ssl-images-amazon.com/images/I/61BtkSjcC4L._AC_SL1000_.jpg"
 # item_twenty_two = Item.create(
@@ -646,10 +587,7 @@ puts "--- GAME OVER ---"
 # user_image = URI.parse(user_image).open
 # item_one.image.attach(io: user_image, filename: "image.jpeg", content_type: 'image/jpeg')
 
-
-
 # items_array = [item_one, item_two, item_three, item_four, item_five, item_six, item_seven, item_eight, item_nine, item_ten, item_eleven, item_twelve, item_thirteen, item_fourteen, item_fifteen, item_sixteen, item_seventeen, item_eighteen, item_nineteen, item_twenty, item_twenty_one, item_twenty_two, item_twenty_three, item_twenty_four, item_twenty_five, item_twenty_six]
-
 
 # items_array.each do |item|
 #   item
@@ -685,9 +623,3 @@ puts "--- GAME OVER ---"
 #   end
 # end
 # puts "--- Making Reviews ENDED !"
-
-
-
-
-
-
