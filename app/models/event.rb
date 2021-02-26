@@ -9,7 +9,7 @@ class Event < ApplicationRecord
   validates :date, presence: true
   validates :description, presence: true,
                           length: { maximum: 10_000, too_long: "%{count} characters is the maximum allowed" }
-  validates :organiser, presence: true
+  # validates :organiser, presence: true
   validates :attendees, numericality: { only_integer: true }
   ## active storage
   has_one_attached :image

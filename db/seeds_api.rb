@@ -121,30 +121,40 @@ def meetup_event_spooler(options = {})
   ## hash it up
   category = options["meetup_cat"]
   # options comes in from meetup_events_finder
+  # binding.pry
   options["events"].each do |value|
     make_me = Event.new( # change to create! later
       # add category to event
+      # user.update(name: 'Dave')
       name: value["name"],
       date: value["local_date"],
-      venue_name: value["venue"]["name"],
-      address: value["venue"]["address_1"],
       description: value["description"],
       meetup_link: value["link"],
       organiser: value["group"]["name"],
       attendees: value["yes_rsvp_count"],
       user_id: User.where(admin: true).first.id,
-      longitude: value["venue"]["lon"],
-      latitude: value["venue"]["lat"],
       category: category,
       meetup_event_id: value["id"],
       meetup_update: value["updated"]
     )
-    # binding.pry
-    if make_me.valid?
-      make_me.save!
-      puts "made event # #{make_me.id}"
-    else
-      puts "Event didn't work out ..."
+    if value["venue"]&.present?
+      make_me.update(
+        venue_name: value["venue"]["name"],
+        longitude: value["venue"]["lon"],
+        latitude: value["venue"]["lat"],
+        address: value["venue"]["address_1"]
+      )
     end
+    # add image
+    next unless make_me.valid?
+
+    make_me.save
+    puts "made event # #{make_me.name}"
+    # binding.pry
+    next unless value["featured_photo"]&.present? # ["photo_link"].instance_of?(String)
+
+    event_image = URI.parse(value["featured_photo"]["photo_link"]).open
+    make_me.image.attach(io: event_image, filename: "#{make_me.name}.jpg", content_type: 'image/jpg')
+    make_me.image.attached? ? puts("Event Image In") : puts("didn't work out")
   end
 end
