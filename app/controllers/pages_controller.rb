@@ -18,4 +18,8 @@ class PagesController < ApplicationController
     # authorize @user
   end
 
+  def interests
+    @user = current_user
+  end
+
 end
