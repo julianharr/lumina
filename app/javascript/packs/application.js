@@ -24,9 +24,11 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
+// For chatrooms
+import { initChatroomCable } from '../channels/chatroom_channel';
+
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
+  initChatroomCable();
 });
 
 // *********************************************************************************************
@@ -59,3 +61,59 @@ function createPost(){
 //   Appending the post to the container.
   container.appendChild(post);
 }
+
+
+
+// This is JAVASCRIPT for the INTERESTS SELECTOR
+// image gallery
+// // init the state from the input
+// $(".image-checkbox").each(function () {
+//   if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
+//     $(this).addClass('image-checkbox-checked');
+//   }
+//   else {
+//     $(this).removeClass('image-checkbox-checked');
+//   }
+// });
+function arrayRemove(arr, value) {
+
+        return arr.filter(function(ele){
+            return ele != value;
+        });
+    }
+
+window.interests = []
+
+const images = document.querySelectorAll(".image-checkbox")
+if (images) {
+  const nextPage = document.getElementById("next-page")
+  // nextPage.href = nextPage.href + "?interests="
+  images.forEach((image) => {
+    image.addEventListener('click', () => {
+      image.classList.toggle('image-checkbox-checked')
+      if (image.classList.contains('image-checkbox-checked')) {
+        window.interests.push(image.dataset.name)
+        // nextPage.href = nextPage.href + window.interests
+      }   else {
+        window.interests = arrayRemove(window.interests, image.dataset.name)
+      }
+        nextPage.href = "/interests?interest=" + window.interests
+    })
+  })
+}
+
+
+
+
+// sync the state to the input
+// $(".image-checkbox").on("click", function (e) {
+//   $(this).toggleClass('image-checkbox-checked');
+//   var $checkbox = $(this).find('input[type="checkbox"]');
+//   $checkbox.prop("checked",!$checkbox.prop("checked"))
+// console.log($(this).classList)
+//   e.preventDefault();
+// });
+
+
+
+

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   get '/feed', to: 'pages#feed'
+  get '/interests', to: 'pages#interests'
   get '/dashboard', to: 'pages#dashboard'
   get 'user/:id', to: 'users#show', as: :profile
   resources :events, only: [:index, :show] do
@@ -14,10 +15,11 @@ Rails.application.routes.draw do
   resources :wishlists, only: [:show] do
     resources :items, only: [:new, :create]
   end
-  resources :chatrooms, only: [:create, :show, :destroy] do
-    resources :messages, only: [:create]
+  resources :chatrooms, only: [:index, :show, :create] do
+    resources :messages, only: :create
   end
   resources :user_interests, only: [:create, :destroy]
+  resources :interests, only: [:create]
   resources :items, except: [:new, :create]
   resources :messages, except: [:destroy]
   #DONATE THROUGH USER??
