@@ -170,10 +170,16 @@ group_1.each do |user|
     user1 = User.find_by(id: user)
     friend = User.find_by(id: friends_find)
     user1.friend_request(friend)
-    friend.accept_request(user1)
+    num = rand(1..2)
+    if num > 1
+      friend.accept_request(user1)
+      friend_found = User.find_by(id: user1.friends.ids.last)
+      puts " #{user1.git_name} is friends with #{friend_found.first_name}"
+    else
+      friend.decline_request(user1)
+      puts " #{user1.git_name} got ReJected!!"
+    end
     # binding.pry
-    friend_found = User.find_by(id: user1.friends.ids.last)
-    puts " #{user1.git_name} is friends with #{friend_found.first_name}"
   end
 end
 
@@ -185,10 +191,16 @@ group_3.each do |user|
     user1 = User.find_by(id: user)
     friend = User.find_by(id: friends_find)
     user1.friend_request(friend)
-    friend.accept_request(user1)
+    num = rand(1..2)
+    if num > 1
+      friend.accept_request(user1)
+      friend_found = User.find_by(id: user1.friends.ids.last)
+      puts " #{user1.git_name} is friends with #{friend_found.first_name}"
+    else
+      friend.decline_request(user1)
+      puts " #{user1.git_name} got ReJected!!"
+    end
     # binding.pry
-    friend_found = User.find_by(id: user1.friends.ids.last)
-    puts " #{user1.git_name} is friends with #{friend_found.first_name}"
   end
 end
 
@@ -200,10 +212,16 @@ group_2.each do |user|
     user1 = User.find_by(id: user)
     friend = User.find_by(id: friends_find)
     user1.friend_request(friend)
-    friend.accept_request(user1)
+    num = rand(1..2)
+    if num > 1
+      friend.accept_request(user1)
+      friend_found = User.find_by(id: user1.friends.ids.last)
+      puts " #{user1.git_name} is friends with #{friend_found.first_name}"
+    else
+      friend.decline_request(user1)
+      puts " #{user1.git_name} got ReJected!!"
+    end
     # binding.pry
-    friend_found = User.find_by(id: user1.friends.ids.last)
-    puts " #{user1.git_name} is friends with #{friend_found.first_name}"
   end
 end
 
