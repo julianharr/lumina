@@ -103,17 +103,11 @@ if (images) {
 }
 
 
+// MAPBOX
 
+import { initMapbox } from '../plugins/init_mapbox';
 
-// sync the state to the input
-// $(".image-checkbox").on("click", function (e) {
-//   $(this).toggleClass('image-checkbox-checked');
-//   var $checkbox = $(this).find('input[type="checkbox"]');
-//   $checkbox.prop("checked",!$checkbox.prop("checked"))
-// console.log($(this).classList)
-//   e.preventDefault();
-// });
-
-
-
+document.addEventListener('turbolinks:load', () => {
+  initMapbox();
+})
 
