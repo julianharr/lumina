@@ -4,12 +4,13 @@ class ChatroomsController < ApplicationController
   def index
     # Specify what users have access to the chatrooms
     @chatrooms = Chatroom.where(user: current_user)
+    @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
   end
 
   def show
-    @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
+    # @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
     @chatroom = Chatroom.find(params[:id])
-    @messages = Message.where(user: current_user).or(Message.where(user_two: current_user))
+    @messages = @chatroom.messages
     @message = Message.new
   end
 
