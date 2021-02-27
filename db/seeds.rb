@@ -6,7 +6,7 @@ require_relative "seed_items"
 require_relative "seeds_api"
 # https://github.com/pejotrich/flatmate
 # https://github.com/andrewbonas/rails_facebook
-#
+# https://github.com/rka97/Unive/tree/master/app
 #
 batch_466 = [
   "glenntippett",
@@ -105,8 +105,13 @@ puts "cleaning house :)"
 User.destroy_all
 Wishlist.destroy_all
 Item.destroy_all
-Charity.destroy_all
 Event.destroy_all
+# Friendship.destroy_all
+Charity.destroy_all
+Favorite.destroy_all
+Event.destroy_all
+Message.destroy_all
+Chatroom.destroy_all
 
 # Kills all Active storage items ##
 ActiveStorage::Attachment.all.each { |attachment| attachment.purge }
@@ -146,70 +151,97 @@ puts "made #{make_me.first_name} #{make_me.last_name}"
 batch_466.each do |element|
   get_git_info(element)
 end
-
 puts "--- Making Humans Ended !"
+puts "--- Making Humans Friendships !"
+
+## TODO: get all the users
+user_arr = User.all.ids
+# slice in parts
+split_arr = user_arr.in_groups(3, false)
+group_1 = split_arr[0]
+group_2 = split_arr[1]
+group_3 = split_arr[2]
+binding.pry
+# find users
+group_1.each do |user|
+  friends = group_2
+  friends.each do |friends_find|
+    user1 = User.find_by(id: user)
+    friend = User.find_by(id: friends_find)
+    # binding.pry
+    user1.friend_request(friend)
+    friend.accept_request(user1)
+    p user1.id
+    p user1.friends.ids
+  end
+end
+
+# request each other
+# rand #er of requests
+
+puts "--- Friendships Generator Ended!"
 
 puts "--- Making Wish Lists !!"
 # whats in a wish list ?
 #
-list_users = User.pluck(:id)
-list_users.each do |element|
-  make_me = Wishlist.new(
-    user_id: element
-  )
-  # binding.pry
-  if make_me.valid?
-    make_me.save!
-    puts "made Wishlist # #{make_me.id}"
-  else
-    puts "List didn't work out ..."
-  end
-end
-
-puts "--- Making Wish Lists Ended !"
-
-puts "--- Making Items Bro !!"
-make_items
-puts "--- Making Items ENDED !!"
-
-puts "--- Making Charities Start "
-csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
-filepath    = 'db/csv/csv_charities.csv'
-# CSV will return a HASH format
-CSV.foreach(filepath, csv_options) do |row|
-  # puts "#{row['Charity/Non-profit name']}, #{row['Description']},  #{row['Location']},  #{row['Website']},  #{row['Category']}"
-  make_me = Charity.new(
-    name: row['Charity/Non-profit name'],
-    description: row['Description'],
-    location: row['Location'],
-    website: row['Website']
-    # category: row['Category']
-    # donate ID
-  )
-  # binding.pry
-  if make_me.valid?
-    make_me.save!
-    puts "made Charity # #{make_me.id}"
-  else
-    puts "Charity didn't work out ..."
-  end
-end
-
-puts "--- Charities Done :) " ###
-puts "---"
-puts "---"
-puts "--- Spooling up events ---"
-meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "tech" }))
-interests_melb = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
-# interests_melb.each do |element|
-#   meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: element }))
+# list_users = User.pluck(:id)
+# list_users.each do |element|
+#   make_me = Wishlist.new(
+#     user_id: element
+#   )
+#   # binding.pry
+#   if make_me.valid?
+#     make_me.save!
+#     puts "made Wishlist # #{make_me.id}"
+#   else
+#     puts "List didn't work out ..."
+#   end
 # end
-# # syd = 33.8861° S, 151.2111° E
-# interests_syd = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
-# interests_syd.each do |element|
-#   meetup_event_spooler(meetup_events_finder({ latitude: "-33.8861", longitude: "151.2111", category: element }))
+
+# puts "--- Making Wish Lists Ended !"
+
+# puts "--- Making Items Bro !!"
+# make_items
+# puts "--- Making Items ENDED !!"
+
+# puts "--- Making Charities Start "
+# csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+# filepath    = 'db/csv/csv_charities.csv'
+# # CSV will return a HASH format
+# CSV.foreach(filepath, csv_options) do |row|
+#   # puts "#{row['Charity/Non-profit name']}, #{row['Description']},  #{row['Location']},  #{row['Website']},  #{row['Category']}"
+#   make_me = Charity.new(
+#     name: row['Charity/Non-profit name'],
+#     description: row['Description'],
+#     location: row['Location'],
+#     website: row['Website']
+#     # category: row['Category']
+#     # donate ID
+#   )
+#   # binding.pry
+#   if make_me.valid?
+#     make_me.save!
+#     puts "made Charity # #{make_me.id}"
+#   else
+#     puts "Charity didn't work out ..."
+#   end
 # end
-puts "--- Events Over ---"
-puts "---"
-puts "---"
-puts "--- GAME OVER ---"
+
+# puts "--- Charities Done :) " ###
+# puts "---"
+# puts "---"
+# puts "--- Spooling up events ---"
+# meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "tech" }))
+# interests_melb = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
+# # interests_melb.each do |element|
+# #   meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: element }))
+# # end
+# # # syd = 33.8861° S, 151.2111° E
+# # interests_syd = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
+# # interests_syd.each do |element|
+# #   meetup_event_spooler(meetup_events_finder({ latitude: "-33.8861", longitude: "151.2111", category: element }))
+# # end
+# puts "--- Events Over ---"
+# puts "---"
+# puts "---"
+# puts "--- GAME OVER ---"
