@@ -30,27 +30,27 @@ batch_466 = [
   # "may-moff",
   # "vdelgadobenito",
   # "tristanmahe",
-  "Pierre-L99",
-  "Nooshin-8",
-  "anaisfr",
-  "camimurg",
-  "GuidoCaldara",
-  "enitschorn",
-  "rayhanw",
-  "matoni109",
-  "Tom-Tee",
-  "cdrmr18",
-  "jarrydanthony",
-  "10035",
-  "lucieroland",
-  "anLpk",
-  "diego-mogollon",
-  "maksimumeffort",
-  "lunarness",
-  "Escapewithcode",
-  "santanu0013",
-  "DraganGasic",
-  "cheenaelise",
+  # "Pierre-L99",
+  # "Nooshin-8",
+  # "anaisfr",
+  # "camimurg",
+  # "GuidoCaldara",
+  # "enitschorn",
+  # "rayhanw",
+  # "matoni109",
+  # "Tom-Tee",
+  # "cdrmr18",
+  # "jarrydanthony",
+  # "10035",
+  # "lucieroland",
+  # "anLpk",
+  # "diego-mogollon",
+  # "maksimumeffort",
+  # "lunarness",
+  # "Escapewithcode",
+  # "santanu0013",
+  # "DraganGasic",
+  # "cheenaelise",
   "joshwbarnes",
   "rbalendra",
   "appu4ever"
@@ -199,15 +199,16 @@ puts "--- Charities Done :) " ###
 puts "---"
 puts "---"
 puts "--- Spooling up events ---"
+meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "tech" }))
 interests_melb = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
-interests_melb.each do |element|
-  meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: element }))
-end
-# syd = 33.8861° S, 151.2111° E
-interests_syd = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
-interests_syd.each do |element|
-  meetup_event_spooler(meetup_events_finder({ latitude: "-33.8861", longitude: "151.2111", category: element }))
-end
+# interests_melb.each do |element|
+#   meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: element }))
+# end
+# # syd = 33.8861° S, 151.2111° E
+# interests_syd = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
+# interests_syd.each do |element|
+#   meetup_event_spooler(meetup_events_finder({ latitude: "-33.8861", longitude: "151.2111", category: element }))
+# end
 puts "--- Events Over ---"
 puts "---"
 puts "---"
