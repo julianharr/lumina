@@ -7,8 +7,8 @@ class Event < ApplicationRecord
   # vals
   validates :name, presence: true
   validates :date, presence: true
-  validates :description, presence: true,
-                          length: { maximum: 10_000, too_long: "%{count} characters is the maximum allowed" }
+  validates :description,
+            length: { maximum: 10_000, too_long: "%{count} characters is the maximum allowed" }
   # validates :organiser, presence: true
   validates :attendees, numericality: { only_integer: true }
   ## active storage
