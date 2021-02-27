@@ -128,6 +128,7 @@ def meetup_event_spooler(options = {})
       # user.update(name: 'Dave')
       name: value["name"],
       date: value["local_date"],
+      event_time: value["event_time"],
       description: value["description"],
       meetup_link: value["link"],
       organiser: value["group"]["name"],
