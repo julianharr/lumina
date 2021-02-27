@@ -12,19 +12,19 @@ batch_466 = [
   "glenntippett",
   "mrchvs",
   "melwers",
-  # "avrilpryce",
-  # "Michiel-DK",
-  # "PatriciaZB",
-  # "theHem-code",
-  # "Linda8875",
-  # "juliends",
-  # "ThierryMR",
-  # "Micheledebruyn",
-  # "Inbal-Gordon",
-  # "ilia-ber",
-  # "cassy-dodd",
-  # "petia182",
-  # "Botlike31",
+  "avrilpryce",
+  "Michiel-DK",
+  "PatriciaZB",
+  "theHem-code",
+  "Linda8875",
+  "juliends",
+  "ThierryMR",
+  "Micheledebruyn",
+  "Inbal-Gordon",
+  "ilia-ber",
+  "cassy-dodd",
+  "petia182",
+  "Botlike31",
   "nkhape",
   "AlvaroPata",
   "may-moff",
@@ -170,14 +170,16 @@ group_1.each do |user|
     user1 = User.find_by(id: user)
     friend = User.find_by(id: friends_find)
     user1.friend_request(friend)
-    num = rand(1..2)
-    if num > 1
+    num = rand(1..3)
+    if num < 2
       friend.accept_request(user1)
       friend_found = User.find_by(id: user1.friends.ids.last)
       puts " #{user1.git_name} is friends with #{friend_found.first_name}"
-    else
+    elsif num == 2
       friend.decline_request(user1)
       puts " #{user1.git_name} got ReJected!!"
+    else
+      puts " #{user1.git_name} has been left hangin.."
     end
     # binding.pry
   end
@@ -191,14 +193,16 @@ group_3.each do |user|
     user1 = User.find_by(id: user)
     friend = User.find_by(id: friends_find)
     user1.friend_request(friend)
-    num = rand(1..2)
-    if num > 1
+    num = rand(1..3)
+    if num < 2
       friend.accept_request(user1)
       friend_found = User.find_by(id: user1.friends.ids.last)
       puts " #{user1.git_name} is friends with #{friend_found.first_name}"
-    else
+    elsif num == 2
       friend.decline_request(user1)
       puts " #{user1.git_name} got ReJected!!"
+    else
+      puts " #{user1.git_name} has been left hangin.."
     end
     # binding.pry
   end
@@ -212,14 +216,16 @@ group_2.each do |user|
     user1 = User.find_by(id: user)
     friend = User.find_by(id: friends_find)
     user1.friend_request(friend)
-    num = rand(1..2)
-    if num > 1
+    num = rand(1..3)
+    if num < 2
       friend.accept_request(user1)
       friend_found = User.find_by(id: user1.friends.ids.last)
       puts " #{user1.git_name} is friends with #{friend_found.first_name}"
-    else
+    elsif num == 2
       friend.decline_request(user1)
       puts " #{user1.git_name} got ReJected!!"
+    else
+      puts " #{user1.git_name} has been left hangin.."
     end
     # binding.pry
   end
@@ -228,66 +234,71 @@ end
 puts "--- Friendships Generator Ended!"
 
 puts "--- Making Wish Lists !!"
-# whats in a wish list ?
+list_users = User.pluck(:id)
+list_users.each do |element|
+  make_me = Wishlist.new(
+    user_id: element
+  )
+  # binding.pry
+  if make_me.valid?
+    make_me.save!
+    puts "made Wishlist # #{make_me.id}"
+  else
+    puts "List didn't work out ..."
+  end
+end
+
+puts "--- Making Wish Lists Ended !"
+
+puts "--- Making Items Bro !!"
+make_items
+puts "--- Making Items ENDED !!"
+
+puts "--- Making Charities Start "
+csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+filepath    = 'db/csv/csv_charities.csv'
+# CSV will return a HASH format
+CSV.foreach(filepath, csv_options) do |row|
+  # puts "#{row['Charity/Non-profit name']}, #{row['Description']},  #{row['Location']},  #{row['Website']},  #{row['Category']}"
+  make_me = Charity.new(
+    name: row['Charity/Non-profit name'],
+    description: row['Description'],
+    location: row['Location'],
+    website: row['Website']
+    # category: row['Category']
+    # donate ID
+  )
+  # binding.pry
+  if make_me.valid?
+    make_me.save!
+    puts "made Charity # #{make_me.id}"
+  else
+    puts "Charity didn't work out ..."
+  end
+end
+
+puts "--- Charities Done :) " ###
+puts "---"
+puts "---"
+puts "--- Spooling up events ---"
 #
-# list_users = User.pluck(:id)
-# list_users.each do |element|
-#   make_me = Wishlist.new(
-#     user_id: element
-#   )
-#   # binding.pry
-#   if make_me.valid?
-#     make_me.save!
-#     puts "made Wishlist # #{make_me.id}"
-#   else
-#     puts "List didn't work out ..."
-#   end
-# end
-
-# puts "--- Making Wish Lists Ended !"
-
-# puts "--- Making Items Bro !!"
-# make_items
-# puts "--- Making Items ENDED !!"
-
-# puts "--- Making Charities Start "
-# csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
-# filepath    = 'db/csv/csv_charities.csv'
-# # CSV will return a HASH format
-# CSV.foreach(filepath, csv_options) do |row|
-#   # puts "#{row['Charity/Non-profit name']}, #{row['Description']},  #{row['Location']},  #{row['Website']},  #{row['Category']}"
-#   make_me = Charity.new(
-#     name: row['Charity/Non-profit name'],
-#     description: row['Description'],
-#     location: row['Location'],
-#     website: row['Website']
-#     # category: row['Category']
-#     # donate ID
-#   )
-#   # binding.pry
-#   if make_me.valid?
-#     make_me.save!
-#     puts "made Charity # #{make_me.id}"
-#   else
-#     puts "Charity didn't work out ..."
-#   end
-# end
-
-# puts "--- Charities Done :) " ###
-# puts "---"
-# puts "---"
-# puts "--- Spooling up events ---"
-# meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "tech" }))
+# Local meetup API tester below first
+#
+meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "tech" }))
+#
+#
+# Big Daddy Events Scraper Below !!! Caution !!!
+#
 # interests_melb = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
-# # interests_melb.each do |element|
-# #   meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: element }))
-# # end
-# # # syd = 33.8861° S, 151.2111° E
-# # interests_syd = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
-# # interests_syd.each do |element|
-# #   meetup_event_spooler(meetup_events_finder({ latitude: "-33.8861", longitude: "151.2111", category: element }))
-# # end
-# puts "--- Events Over ---"
-# puts "---"
-# puts "---"
-# puts "--- GAME OVER ---"
+# interests_melb.each do |element|
+#   meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: element }))
+# end
+# # syd = 33.8861° S, 151.2111° E
+# interests_syd = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
+# interests_syd.each do |element|
+#   meetup_event_spooler(meetup_events_finder({ latitude: "-33.8861", longitude: "151.2111", category: element }))
+# end
+puts "--- Events Over ---"
+puts "---"
+puts "---"
+puts "--- GAME OVER ---"
