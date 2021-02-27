@@ -6,10 +6,41 @@ h3 {
 p {
   color:white;
   font-weight: 200;
+  margin:0;
 }
 
 .card-for-feed {
   height: 180px;
   width: 644px;
   background-color:#2A1F3D;
+}
+
+.card-for-feed-charity {
+  height: 220px;
+  width: 644px;
+  background-color:#2A1F3D;
+  border-radius: 4px;
+  color:white;
+  position:relative;
+}
+
+.heart {
+
+}
+
+.ribbon {
+  font-size: 50px;
+  color:#6060d0;
+}
+
+.location {
+  position:absolute;
+  top: 0;
+  margin: 50px;
+}
+
+.donate-btn {
+  position:absolute;
+  top: 0;
+  margin: 50px;
 }
