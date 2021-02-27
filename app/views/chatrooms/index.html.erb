@@ -7,6 +7,13 @@
     <%= link_to "#{chatroom.name}", chatroom_path(chatroom) %>
   <% end %>
   <% @chatrooms.each do |chatroom| %>
+
+    <% if chatroom == current_user %>
+      <%= cl_image_tag(chatroom.user.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
+    <% else %>
+      <%= cl_image_tag(chatroom.user_two.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
+    <% end %>
+
     <%= link_to "#{chatroom.user_two.first_name} - #{chatroom.created_at.strftime("%d %b, %-l:%M%P")}", chatroom_path(chatroom), class: "list-group-item #{'active' if chatroom == @chatroom}" %>
   <% end %>
 </div>
