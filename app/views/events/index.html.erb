@@ -1,1 +1,17 @@
-<%= render 'components/side_bar/side_bar_final' %>
+<div class="container-fluid m-0 p-0">
+  <div class="d-flex">
+    <div>
+      <%= render 'components/side_bar/side_bar_final' %>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 p-0 m-0 ">
+      <div class="container-map">
+        <div id="map"
+             style="width: 100%; height: 600px;"
+             data-markers="<%= @markers.to_json %>"
+             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
