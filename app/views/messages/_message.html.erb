@@ -1,5 +1,8 @@
 <div class="message-container" id="message-<%= message.id %>">
   <i class="author">
+    <%= image_tag message.user.avatar, class:"img-fluid mb-2 img-thumbnail", style: "width: 130px;" %>
+    <span style="color:lightgrey"><%= message.user.nickname %></span>
+    <small style="color:lightgrey"><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
   </i>
   <p style="color: white; font-weight: 350;"><%= message.content %></p>
 </div>
