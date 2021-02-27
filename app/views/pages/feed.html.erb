@@ -14,6 +14,7 @@
       <% @users.each do |user| %>
       <div class="card-for-feed mb-2">
         <%= user.first_name %> <%= user.last_name %> <br>
+        <% message_creation = Time.now %>
         <%= link_to 'Chat', chatrooms_path(user_two_id: user), method: :post, class:"btn btn-primary my-2" %>
       </div>
       <% end %>

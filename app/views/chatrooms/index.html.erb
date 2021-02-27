@@ -1,8 +1,10 @@
 <div class="container m-5">
-  <h1>Hellooooooo</h1>
   <h2 style="color:white"><%= current_user.first_name %>'s Messages</h2>
   <% @chatrooms.each do |chatroom| %>
     <%= link_to "#{chatroom.name}", chatroom_path(chatroom) %>
+  <% end %>
+  <% @chatrooms.each do |chatroom| %>
+    <%= link_to "#{chatroom.user_two.first_name} - #{chatroom.created_at.strftime("%d %b, %-l:%M%P")}", chatroom_path(chatroom), class: "list-group-item #{'active' if chatroom == @chatroom}" %>
   <% end %>
 </div>
 
