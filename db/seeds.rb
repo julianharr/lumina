@@ -30,27 +30,27 @@ batch_466 = [
   # "may-moff",
   # "vdelgadobenito",
   # "tristanmahe",
-  "Pierre-L99",
-  "Nooshin-8",
-  "anaisfr",
-  "camimurg",
-  "GuidoCaldara",
-  "enitschorn",
-  "rayhanw",
-  "matoni109",
-  "Tom-Tee",
-  "cdrmr18",
-  "jarrydanthony",
-  "10035",
-  "lucieroland",
-  "anLpk",
-  "diego-mogollon",
-  "maksimumeffort",
-  "lunarness",
-  "Escapewithcode",
-  "santanu0013",
-  "DraganGasic",
-  "cheenaelise",
+  # "Pierre-L99",
+  # "Nooshin-8",
+  # "anaisfr",
+  # "camimurg",
+  # "GuidoCaldara",
+  # "enitschorn",
+  # "rayhanw",
+  # "matoni109",
+  # "Tom-Tee",
+  # "cdrmr18",
+  # "jarrydanthony",
+  # "10035",
+  # "lucieroland",
+  # "anLpk",
+  # "diego-mogollon",
+  # "maksimumeffort",
+  # "lunarness",
+  # "Escapewithcode",
+  # "santanu0013",
+  # "DraganGasic",
+  # "cheenaelise",
   "joshwbarnes",
   "rbalendra",
   "appu4ever"
@@ -72,10 +72,9 @@ def get_git_info(git_name)
   first_name = user["name"].present? ? user["name"].split.first.capitalize : user["login"].capitalize
   last_name = user["name"].present? ? user["name"].split[1]&.capitalize : ""
   bio = user["bio"].present? ? user["bio"] : Faker::Quote.matz
-  location = user["location"].present? ? user["location"] : %w[Perth Sydney Hobart].sample
+  location = %w[Sydney Melbourne].sample # user["location"].present? ? user["location"] :
   email = user["email"].nil? ? Faker::Internet.email : user["email"]
-  interests = %w[arts music outdoors tech photography learning food family health wellness sports fitness writing language LGBTQ film sci-fi games books dance animals pets crafts fashion beauty business environment
-                 dogs cats wildlife education]
+  interests = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
 
   make_me = User.create( # change to create! later
     first_name: first_name.to_s,
@@ -200,7 +199,16 @@ puts "--- Charities Done :) " ###
 puts "---"
 puts "---"
 puts "--- Spooling up events ---"
-meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "food" }))
+meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "tech" }))
+interests_melb = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
+# interests_melb.each do |element|
+#   meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: element }))
+# end
+# # syd = 33.8861° S, 151.2111° E
+# interests_syd = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
+# interests_syd.each do |element|
+#   meetup_event_spooler(meetup_events_finder({ latitude: "-33.8861", longitude: "151.2111", category: element }))
+# end
 puts "--- Events Over ---"
 puts "---"
 puts "---"
