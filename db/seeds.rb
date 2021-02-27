@@ -10,8 +10,8 @@ require_relative "seeds_api"
 #
 batch_466 = [
   "glenntippett",
-  # "mrchvs",
-  # "melwers",
+  "mrchvs",
+  "melwers",
   # "avrilpryce",
   # "Michiel-DK",
   # "PatriciaZB",
@@ -25,32 +25,32 @@ batch_466 = [
   # "cassy-dodd",
   # "petia182",
   # "Botlike31",
-  # "nkhape",
-  # "AlvaroPata",
-  # "may-moff",
-  # "vdelgadobenito",
-  # "tristanmahe",
-  # "Pierre-L99",
-  # "Nooshin-8",
-  # "anaisfr",
-  # "camimurg",
-  # "GuidoCaldara",
-  # "enitschorn",
-  # "rayhanw",
-  # "matoni109",
-  # "Tom-Tee",
-  # "cdrmr18",
-  # "jarrydanthony",
-  # "10035",
-  # "lucieroland",
-  # "anLpk",
-  # "diego-mogollon",
-  # "maksimumeffort",
-  # "lunarness",
-  # "Escapewithcode",
-  # "santanu0013",
-  # "DraganGasic",
-  # "cheenaelise",
+  "nkhape",
+  "AlvaroPata",
+  "may-moff",
+  "vdelgadobenito",
+  "tristanmahe",
+  "Pierre-L99",
+  "Nooshin-8",
+  "anaisfr",
+  "camimurg",
+  "GuidoCaldara",
+  "enitschorn",
+  "rayhanw",
+  "matoni109",
+  "Tom-Tee",
+  "cdrmr18",
+  "jarrydanthony",
+  "10035",
+  "lucieroland",
+  "anLpk",
+  "diego-mogollon",
+  "maksimumeffort",
+  "lunarness",
+  "Escapewithcode",
+  "santanu0013",
+  "DraganGasic",
+  "cheenaelise",
   "joshwbarnes",
   "rbalendra",
   "appu4ever"
@@ -95,7 +95,6 @@ def get_git_info(git_name)
   user_image = URI.parse(user["avatar_url"]).open
   make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
   puts "made #{make_me.first_name} #{make_me.last_name}"
-  sleep 1
 end
 
 puts "--- GAME  START ---"
@@ -106,7 +105,7 @@ User.destroy_all
 Wishlist.destroy_all
 Item.destroy_all
 Event.destroy_all
-# Friendship.destroy_all
+# Friendable.destroy_all
 Charity.destroy_all
 Favorite.destroy_all
 Event.destroy_all
@@ -161,23 +160,52 @@ split_arr = user_arr.in_groups(3, false)
 group_1 = split_arr[0]
 group_2 = split_arr[1]
 group_3 = split_arr[2]
-binding.pry
+
 # find users
 group_1.each do |user|
-  friends = group_2
-  friends.each do |friends_find|
+  friends = group_2 # .concat(group_3)
+  # binding.pry
+  friends.take(rand(1..friends.count)).each do |friends_find|
+    # binding.pry
     user1 = User.find_by(id: user)
     friend = User.find_by(id: friends_find)
-    # binding.pry
     user1.friend_request(friend)
     friend.accept_request(user1)
-    p user1.id
-    p user1.friends.ids
+    # binding.pry
+    friend_found = User.find_by(id: user1.friends.ids.last)
+    puts " #{user1.git_name} is friends with #{friend_found.first_name}"
   end
 end
 
-# request each other
-# rand #er of requests
+group_3.each do |user|
+  friends = group_1 # .concat(group_3)
+  # binding.pry
+  friends.take(rand(1..friends.count)).each do |friends_find|
+    # binding.pry
+    user1 = User.find_by(id: user)
+    friend = User.find_by(id: friends_find)
+    user1.friend_request(friend)
+    friend.accept_request(user1)
+    # binding.pry
+    friend_found = User.find_by(id: user1.friends.ids.last)
+    puts " #{user1.git_name} is friends with #{friend_found.first_name}"
+  end
+end
+
+group_2.each do |user|
+  friends = group_3 # .concat(group_3)
+  # binding.pry
+  friends.take(rand(1..friends.count)).each do |friends_find|
+    # binding.pry
+    user1 = User.find_by(id: user)
+    friend = User.find_by(id: friends_find)
+    user1.friend_request(friend)
+    friend.accept_request(user1)
+    # binding.pry
+    friend_found = User.find_by(id: user1.friends.ids.last)
+    puts " #{user1.git_name} is friends with #{friend_found.first_name}"
+  end
+end
 
 puts "--- Friendships Generator Ended!"
 
