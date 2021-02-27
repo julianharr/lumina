@@ -14,12 +14,7 @@
       <% @users.each do |user| %>
       <div class="card-for-feed mb-2">
         <%= user.first_name %> <%= user.last_name %> <br>
-        <%#= link_to 'Chat', chatrooms_path(user_two: user), method: :post, class:"btn btn-primary my-2" %>
-        <%= simple_form_for [ @message ] do |f| %>
-        <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
-        <%= f.submit "Send message", class: "btn btn-primary my-2" %>
-        <% end %>
-        <%#= render "messages/message" %>
+        <%= link_to 'Chat', chatrooms_path(user_two_id: user), method: :post, class:"btn btn-primary my-2" %>
       </div>
       <% end %>
 

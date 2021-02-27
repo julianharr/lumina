@@ -1,7 +1,7 @@
 <div class="container m-5 d-flex">
   <div class="list-group w-200px bg-white br-light m-5">
     <% @chatrooms.each do |chatroom| %>
-      <%= link_to "View", chatroom_path(chatroom), class: "list-group-item #{'active' if chatroom == @chatroom}" %>
+      <%= link_to 'View', chatroom_path(chatroom), class: "list-group-item #{'active' if chatroom == @chatroom}" %>
     <% end %>
   </div>
 
@@ -19,4 +19,5 @@
     <%= f.input :content, label: false, placeholder: "Type your message" %>
   <% end %>
   </div>
+</div>
 </div>
