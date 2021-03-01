@@ -1,42 +1,59 @@
 <div class="side-bar d-flex indigo-100">
   <div class="container-sm m-3 p-3 d-flex flex-column justify-content-around">
     <div class='d-flex flex-grow-0 top-one p-2 m-3'>
-     <i class="far fa-square p-2 square "></i><h3 class="title">Lum<span style="color:#C5B5B6">ina</h3>
-    </div>
-
-    <!-- #USER -->
-    <div class="bar-links">
-      <div class="p-2 m-3 link">
-        <h4><i class="far fa-newspaper"></i> <%= link_to "Feed", feed_path  %> </h4>
+      <i class="far fa-square p-2 square "></i>
+      <h3 class="title">Lum<span style="color:#C5B5B6">ina</h3>
       </div>
-      <div class="p-2 m-3 link">
-        <h4><i class="fas fa-user-friends"></i> <%= link_to "Dashboard", dashboard_path  %> </h4>
-      </div>
-
-      <!-- #WISHLIST IN SIDEBAR OR IN DASHBOARD? -->
-   <!--    <div class="p-2">
+      <!-- #USER -->
+      <div class="bar-links">
+        <div class="p-2 m-3 link">
+          <h4><i class="far fa-newspaper"></i> <%= link_to "Feed", feed_path  %> </h4>
+        </div>
+        <div class="p-2 m-3 link">
+          <h4><i class="fas fa-user-friends"></i> <%= link_to "Dashboard", dashboard_path  %> </h4>
+        </div>
+        <!-- #WISHLIST IN SIDEBAR OR IN DASHBOARD? -->
+        <!--    <div class="p-2">
         < % = link_to "My Wishlist", wishlist_path(@wishlist), class:"display-6" %>
       </div>
    -->
-      <!-- #EVENTS -->
-      <div class="p-2 m-3 link">
-       <h4> <i class="fas fa-calendar-day"></i> <%= link_to "Discover", events_path  %> </h4>
+        <!-- #EVENTS -->
+        <div class="p-2 m-3 link">
+          <h4> <i class="fas fa-calendar-day"></i> <%= link_to "Events", events_path  %> </h4>
+        </div>
+        <!-- #MESSAGES -->
+        <div class="p-2 m-3 link">
+          <h4> <i class="far fa-comments"></i> <%= link_to "Conversations", chatrooms_path %> </h4>
+        </div>
+        <!-- #CHARITIES -->
+        <div class="p-2 m-3 link">
+          <h4> <i class="fas fa-hand-holding-heart"></i> <%= link_to "Donate", charities_path %> </h4>
+        </div>
+        <!-- Friend Requests -->
+        <div class="p-2 m-3 link">
+          <h4> <i class="fas fa-hand-holding-heart"></i> <%= link_to "Friendships ", charities_path %><%= link_to "4", charities_path, class:" badge badge-secondary", remote: true, "data-toggle" => "modal", "data-target" => "#exampleModal"%></h4>
+        </div>
       </div>
-
-      <!-- #MESSAGES -->
-      <div class="p-2 m-3 link">
-       <h4> <i class="far fa-comments"></i> <%= link_to "Messages", chatrooms_path %> </h4>
+      <div class="flex-grow-0">
       </div>
-      <!-- #CHARITIES -->
-      <div class="p-2 m-3 link">
-       <h4> <i class="fas fa-hand-holding-heart"></i> <%= link_to "Donate", charities_path %> </h4>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Lumina Frinds </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= render 'shared/friends_modal' %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
-
     </div>
-    <div class="flex-grow-0">
-
-    </div>
-
   </div>
-
-</div>
