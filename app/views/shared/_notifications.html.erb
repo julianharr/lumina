@@ -1,0 +1,28 @@
+<div class="modal-body">
+  <% object.each do |n|%>
+    <!-- If Notification type is a Friend Request -->
+    <% if n.notice_type == "friendRequest"%>
+      <% user = notification_find(n, 'friendRequest')%>
+      <%= "Friend Request sent from #{user.full_name}" %>
+    <% end %>
+    <!-- If Notification type is a comment -->
+    <% if n.notice_type == "comment"%>
+      <%= link_to post_path(notification_find(n, 'comment')) do %>
+        Someone commented on your post
+      <% end %>
+    <% end %>
+    <!-- If Notification type is a liked post -->
+    <% if n.notice_type == "like-post"%>
+      <%= link_to post_path(notification_find(n, 'like-post')) do %>
+        Someone liked your post
+      <% end %>
+    <% end %>
+    <!-- If Notification type is a liked comment -->
+    <% if n.notice_type == "like-comment"%>
+      <%= link_to post_path(notification_find(n, 'like-comment')) do %>
+        Someone liked your comment under this post
+      <% end %>
+    <% end %>
+    <br>
+  <% end %>
+</div>
