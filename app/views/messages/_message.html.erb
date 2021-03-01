@@ -1,5 +1,8 @@
 <div class="message-container" id="message-<%= message.id %>">
   <i class="author">
+    <%= cl_image_tag(message.user.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
+    <span style="color:lightgrey"><%= message.user.nickname %></span>
+    <small style="color:lightgrey"><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
   </i>
   <p style="color: white; font-weight: 350;"><%= message.content %></p>
 </div>

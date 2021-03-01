@@ -2,6 +2,7 @@ require "open-uri"
 require 'json'
 require "uri"
 require "net/http"
+# require 'dotenv'
 require 'date'
 
 puts "I've attached the API Seeds File !! "

@@ -1,4 +1,6 @@
+
 <div class="container m-5 d-flex">
+  <%= link_to 'Messages', chatrooms_path %>
   <div class="chatroom mb-3">
     <h1>Message with <%= @chatroom.user_two.first_name %></h1>
   <div>
@@ -15,27 +17,3 @@
   </div>
 </div>
 </div>
-
-<!-- Slack Clone  -->
-
-<!-- <div class="container mt-5">
-<h1>#<%#= @chatroom.name %></h1>
-
-<div class="bg-white p-4 mb-2">
-<div id="messages" data-chatroom-id="<%#= @chatroom.id %>">
-
-  <%# @chatroom.messages.each do |message| %>
-    <%#= render 'messages/message', message: message %>
-  <#% end %>
-
-</div>
-</div> -->
-<!-- <form action="/chatrooms/1/messages" method="post"></form> -->
-
-<%#= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-  <%#= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}"%>
-  <%#= f.submit "Send", class:"btn btn-primary" %>
-<%# end %>
-
-
-<!-- </div> -->

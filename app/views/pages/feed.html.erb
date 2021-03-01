@@ -6,7 +6,20 @@
 
   <div class="m-5">
     <h3>Feed</h3>
-    <p>See updates from friends, family and others you follow.</p>
+    <p class="pb-3">See updates from friends, family and others you follow.</p>
+      <div class="card-for-feed-charity mb-2 text-center">
+        <h4 class="pt-2">Charity</h4>
+         <i class="fas fa-ribbon ribbon m-1"></i>
+        <br>
+        <%= @charity.name %>
+        <p><%=  h truncate(@charity.description, :length => 200) %></p>
+        <p class="location"> <i class="fas fa-globe-africa m-2"></i> <%= @charity.location %> </p>
+        <i class="fas fa-wifi pr-3"></i><%= @charity.website %>
+        <a href=""><%= link_to "Donate", new_charity_donate_path(@charity), class:"btn btn-info donate-btn" %></a>
+      </div>
+
+
+
       <div class="card-for-feed mb-2 ">
         Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Animi libero explicabo, odio ipsum dolorem est nemo quis itaque sapiente nam laborum veritatis repellat.
 
@@ -14,7 +27,6 @@
       <% @users.each do |user| %>
       <div class="card-for-feed mb-2">
         <%= user.first_name %> <%= user.last_name %> <br>
-        <% message_creation = Time.now %>
         <%= link_to 'Chat', chatrooms_path(user_two_id: user), method: :post, class:"btn btn-primary my-2" %>
       </div>
       <% end %>
