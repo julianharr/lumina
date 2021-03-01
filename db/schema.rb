@@ -159,6 +159,13 @@ ActiveRecord::Schema.define(version: 2021_02_27_030904) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "chatroom_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
