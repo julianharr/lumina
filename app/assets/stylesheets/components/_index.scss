@@ -4,6 +4,8 @@
 @import "landing_page/container-banner";
 @import "landing_page/_container-landing-info";
 @import "landing_page/_container-landing-bottom";
+@import "landing_page/_landing_navbar";
+@import "landing_page/_about";
 @import "side_bar";
 @import "feed_card";
 @import "map";
@@ -17,4 +19,4 @@
 @import "interests_page/_interests_cards";
 
 // Signup & Login Page
-@import "signup_page/_signup"
+@import "signup_page/_signup";

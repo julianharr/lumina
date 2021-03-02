@@ -1,0 +1,101 @@
+.container-about {
+  height: 500px;
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  position: relative;
+  h1 {
+    font-size: 62px;
+  }
+  span {
+    color: #9381FF;
+  }
+}
+
+#img-team-1,
+#img-team-2,
+#img-team-3,
+#img-team-4 {
+  position: absolute;
+}
+
+#img-team-1 {
+  left: 130px;
+  top: 400px;
+}
+
+#img-team-2 {
+  left: 350px;
+  top: 400px;
+}
+
+#img-team-3 {
+  left: 570px;
+  top: 400px;
+}
+
+#img-team-4 {
+  left: 790px;
+  top: 400px;
+}
+
+// Team Profile Section
+
+.card-team {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 450px;
+  background-color: #151823;
+  box-shadow: 0px 0px 20px 0.75px #49416D;
+  padding-bottom: 30px;
+  margin: 40px 0;
+  border-radius: 10px;
+}
+
+.card-team img {
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  margin: 0;
+}
+
+.card-team h1 {
+  text-align: left;
+  font-weight: 760;
+  padding: 10px 10px 0px 20px;
+  color: $white;
+}
+
+.card-team p {
+  padding: 25px 20px;
+  text-align: left;
+  color: $light-gray;
+  font-size: 18px;
+}
+
+// Individual Team Members
+.lumina-team {
+  position: relative;
+}
+
+#julian {
+  position: absolute;
+  left: 200px;
+  top: 400px;
+}
+
+#thomas {
+  position: absolute;
+  left: 800px;
+  top: 600px;
+}
+
+#chris {
+  position: absolute;
+  left: 200px;
+  top: 1200px;
+}
+
+#san {
+  position: absolute;
+  left: 800px;
+  top: 1400px;
+}

@@ -2,6 +2,7 @@
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
+
 /*image gallery*/
 .image-checkbox {
   cursor: pointer;
@@ -12,17 +13,19 @@
   margin-bottom: 0;
   outline: 0;
 }
+
 .image-checkbox input[type="checkbox"] {
   display: none;
 }
 
 .image-checkbox-checked {
-  border-color: #4783B0;
+  border-color: $white;
+  border-radius: 5px;
 }
+
 .image-checkbox .fa {
   position: absolute;
-  color: #4A79A3;
-  background-color: #fff;
+  background-color: $white;
   padding: 10px;
   top: 0;
   right: 0;
@@ -47,8 +50,6 @@
     ". . . .";
 }
 
-
-
 .card-category {
   background-size: cover;
   background-position: center;
@@ -56,7 +57,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: $white;
   font-size: 24px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
