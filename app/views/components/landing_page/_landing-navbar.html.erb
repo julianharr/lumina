@@ -1,8 +1,15 @@
-<div class="container mb-5 mt-2 d-flex justify-content-end">
+<div class="container-fluid mb-5 mt-3 pl-5 pr-5 d-flex justify-content-between">
 
-  <%= link_to "About", '#', class:"btn btn-info ml-3 "%>
-  <%= link_to "Sign in", new_user_session_path, class:"btn btn-light ml-3" %>
-  <% if @current_user == @user %>
-    <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-danger ml-3" %>
-  <% end %>
+  <div class="ml-5">
+    <%= link_to "About", '#', style:"color: white; margin:5px; font-weight: 500;" %>
+  </div>
+
+  <div class="mr-5">
+    <% if current_user == nil %>
+      <%= link_to "Sign in", new_user_session_path, style:"color: white; margin-right:15px; font-weight: 500;" %>
+    <% end %>
+
+    <%= link_to "Log out", destroy_user_session_path, method: :delete, style:"color: red; font-weight: 500;" %>
+  </div>
+
 </div>
