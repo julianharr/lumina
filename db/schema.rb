@@ -97,8 +97,6 @@ ActiveRecord::Schema.define(version: 2021_03_02_080307) do
     t.string "category"
     t.string "meetup_link"
     t.string "venue_name"
-    t.string "event_time"
-    t.integer "utc_offset"
     t.bigint "meetup_update"
     t.string "meetup_event_id"
     t.index ["user_id"], name: "index_events_on_user_id"
