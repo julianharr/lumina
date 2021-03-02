@@ -18,14 +18,8 @@
         <a href=""><%= link_to "Donate", new_charity_donate_path(@charity), class:"btn btn-info donate-btn" %></a>
       </div>
 
-
-
-      <div class="card-for-feed mb-2 ">
-        Lorem ipsum dolor sit, amet consectetur adipisicing, elit. Animi libero explicabo, odio ipsum dolorem est nemo quis itaque sapiente nam laborum veritatis repellat.
-
-      </div>
       <% @users.each do |user| %>
-      <div class="card-for-feed mb-2">
+      <div class="card-for-feed mb-2 p-3" style="color:white">
         <%= user.first_name %> <%= user.last_name %> <br>
         <%= link_to 'Chat', chatrooms_path(user_two_id: user), method: :post, class:"btn btn-primary my-2" %>
       </div>

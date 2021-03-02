@@ -1,27 +1,25 @@
-<div class="container text-center">
-  <div class="row justify-content-center p-3 m-5 mt-5">
-    <div class="col-6">
-      <h2>Log in</h2>
+<div class="container d-flex flex-column flex-lg-row align-items-center signup-container">
+  <div class="col-lg-6 col-md-12 col-sm-12 m-5">
+    <h1>Sign in to Lumina</h1>
 
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="form-inputs">
-          <%= f.input :email,
-                      required: false,
-                      autofocus: true,
-                      input_html: { autocomplete: "email" } %>
-          <%= f.input :password,
-                      required: false,
-                      input_html: { autocomplete: "current-password" } %>
-          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-        </div>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs pb-0", style="color:white;">
+        <%= f.input :email,
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    required: false,
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Log in" %>
-        </div>
-      <% end %>
 
-      <%= render "devise/shared/links" %>
-    </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Log in", class:"btn btn-primary" %>
+        <%= render "devise/shared/links" %>
+      </div>
+    <% end %>
   </div>
+    <%= image_tag 'Saly-18.png', class: "img-fluid col-lg-6 col-md-12", id:"img-dog" %>
 </div>
-
