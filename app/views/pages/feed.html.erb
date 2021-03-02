@@ -7,7 +7,7 @@
   <div class="m-5">
     <h3>Feed</h3>
     <p class="pb-3">See updates from friends, family and others you follow.</p>
-      <div class="card-for-feed-charity mb-2 text-center">
+      <div class="card-for-feed-charity mb-2 text-center", style="border-radius: 12px;">
         <h4 class="pt-2">Charity</h4>
          <i class="fas fa-ribbon ribbon m-1"></i>
         <br>
@@ -18,7 +18,7 @@
         <a href=""><%= link_to "Donate", new_charity_donate_path(@charity), class:"btn btn-info donate-btn" %></a>
       </div>
 
-      <% @users.each do |user| %>
+      <% @users.take(3).each do |user| %>
       <div class="card-for-feed mb-2 p-3 d-flex justify-content-start" style="color:white; border-radius: 12px;">
         <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :style=>"height: 150px; width: 150px; border-radius: 12px;") %>
         <div class="d-flex flex-column w-25 ml-3 justify-content-center">
@@ -28,12 +28,39 @@
       </div>
       <% end %>
 
-  </div>
-  <div class="m-5">
-    <br>
-    <br>
-  <p>Notifications</p>
+       <div class="card-for-feed-charity mb-2 text-center", style="border-radius: 12px;">
+        <h4 class="pt-2">Charity</h4>
+         <i class="fas fa-ribbon ribbon m-1"></i>
+        <br>
+        <%= @charity.name %>
+        <p><%=  h truncate(@charity.description, :length => 100) %></p>
+        <p class="location"> <i class="fas fa-globe-asia m-2"></i> <%= @charity.location %> </p>
+        <i class="fas fa-wifi pr-3"></i><%= @charity.website %>
+        <a href=""><%= link_to "Donate", new_charity_donate_path(@charity), class:"btn btn-info donate-btn" %></a>
+      </div>
 
+  </div>
+  <div class="mt-5">
+    <br>
+    <br>
+  <p class="mt-2">Updates </p>
+  <div class="card-notification-lg d-flex justify-content-between flex-wrap p-3" style="color:white; border-radius: 12px;">
+    <% @users.take(6).each do |user| %>
+      <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :style=>"height: 120px; width: 120px; border-radius: 12px; margin: 32px;") %>
+    <% end %>
+  </div>
+
+  <% @events.take(2).each do |event| %>
+  <div class="card-notification-md mt-2 d-flex justify-content-between p-3" style="color:white; border-radius: 12px;">
+
+    <img src="https://source.unsplash.com/random/300x300", style="border-radius:12px;" class="mr-3">
+    <div class="d-flex flex-wrap">
+        <%= event.name %> <br><br>
+        <%= event.address %>
+        <p>Attendees: </p> <%= event.attendees %>
+    </div>
+  </div>
+      <% end %>
   </div>
 
 </div>
