@@ -30,13 +30,13 @@ batch_466 = [
   # "may-moff",
   # "vdelgadobenito",
   # "tristanmahe",
-  # "Pierre-L99",
-  # "Nooshin-8",
-  # "anaisfr",
-  # "camimurg",
-  # "GuidoCaldara",
-  # "enitschorn",
-  # "rayhanw",
+  "Pierre-L99",
+  "Nooshin-8",
+  "anaisfr",
+  "camimurg",
+  "GuidoCaldara",
+  "enitschorn",
+  "rayhanw",
   "matoni109",
   "Tom-Tee",
   "cdrmr18",
@@ -89,11 +89,11 @@ def get_git_info(git_name)
     password: "123456"
   )
 
-  3.times { make_me.interest_list.add(interests.sample) }
-  make_me.save!
-  p make_me.interest_list
-  user_image = URI.parse(user["avatar_url"]).open
-  make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
+  # 3.times { make_me.interest_list.add(interests.sample) }
+  # make_me.save!
+  # p make_me.interest_list
+  # user_image = URI.parse(user["avatar_url"]).open
+  # make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
   puts "made #{make_me.first_name} #{make_me.last_name}"
 end
 
@@ -163,14 +163,14 @@ group_3 = split_arr[2]
 # find users
 group_1.each do |user|
   friends = group_2 # .concat(group_3)
-  # binding.pry
+
   friends.take(rand(1..friends.count)).each do |friends_find|
-    # binding.pry
     user1 = User.find_by(id: user)
     friend = User.find_by(id: friends_find)
     user1.friend_request(friend)
     num = rand(1..3)
     if num < 2
+
       friend.accept_request(user1)
       friend_found = User.find_by(id: user1.friends.ids.last)
       puts " #{user1.git_name} got a friend"
@@ -180,7 +180,6 @@ group_1.each do |user|
     else
       puts " #{user1.git_name} has been left hangin.."
     end
-    # binding.pry
   end
 end
 
