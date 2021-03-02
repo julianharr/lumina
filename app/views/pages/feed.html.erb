@@ -19,7 +19,7 @@
       </div>
 
       <% @users.each do |user| %>
-      <div class="card-for-feed mb-2 p-3 d-flex justify-content-start" style="color:white; border-radius: 8px;">
+      <div class="card-for-feed mb-2 p-3 d-flex justify-content-start" style="color:white; border-radius: 12px;">
         <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :style=>"height: 150px; width: 150px; border-radius: 12px;") %>
         <div class="d-flex flex-column w-25 ml-3 justify-content-center">
           <h5><%= user.first_name %> <%= user.last_name %></h5>
