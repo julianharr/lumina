@@ -101,6 +101,8 @@ puts "--- GAME  START ---"
 puts "---"
 puts "---"
 puts "cleaning house :)"
+Message.destroy_all
+Chatroom.destroy_all
 User.destroy_all
 Wishlist.destroy_all
 Item.destroy_all
