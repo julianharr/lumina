@@ -11,25 +11,25 @@ require_relative "seeds_api"
 batch_466 = [
   "glenntippett",
   "mrchvs",
-  "melwers",
-  "avrilpryce",
-  "Michiel-DK",
-  "PatriciaZB",
-  "theHem-code",
-  "Linda8875",
-  "juliends",
-  "ThierryMR",
-  "Micheledebruyn",
-  "Inbal-Gordon",
-  "ilia-ber",
-  "cassy-dodd",
-  "petia182",
-  "Botlike31",
-  "nkhape",
-  "AlvaroPata",
-  "may-moff",
-  "vdelgadobenito",
-  "tristanmahe",
+  # "melwers",
+  # "avrilpryce",
+  # "Michiel-DK",
+  # "PatriciaZB",
+  # "theHem-code",
+  # "Linda8875",
+  # "juliends",
+  # "ThierryMR",
+  # "Micheledebruyn",
+  # "Inbal-Gordon",
+  # "ilia-ber",
+  # "cassy-dodd",
+  # "petia182",
+  # "Botlike31",
+  # "nkhape",
+  # "AlvaroPata",
+  # "may-moff",
+  # "vdelgadobenito",
+  # "tristanmahe",
   "Pierre-L99",
   "Nooshin-8",
   "anaisfr",
@@ -120,6 +120,10 @@ puts "done cleaning house.."
 
 puts "-- Making Humans"
 
+# Make the Plebs ##
+batch_466.each do |element|
+  get_git_info(element)
+end
 # User Master OverLoad # HOLD GME !! ##
 url = "https://api.github.com/users/julianharr"
 git_back = open(url).read
@@ -147,11 +151,6 @@ end
 
 make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
 puts "made #{make_me.first_name} #{make_me.last_name}"
-
-# Make the Plebs ##
-batch_466.each do |element|
-  get_git_info(element)
-end
 puts "--- Making Humans Ended !"
 puts "--- Making Humans Friendships !"
 
@@ -166,7 +165,7 @@ group_3 = split_arr[2]
 # find users
 group_1.each do |user|
   friends = group_2 # .concat(group_3)
-  # binding.pry
+  binding.pry
   friends.take(rand(1..friends.count)).each do |friends_find|
     # binding.pry
     user1 = User.find_by(id: user)
