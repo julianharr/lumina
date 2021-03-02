@@ -11,14 +11,14 @@ require_relative "seeds_api"
 batch_466 = [
   "glenntippett",
   "mrchvs",
-  # "melwers",
-  # "avrilpryce",
-  # "Michiel-DK",
-  # "PatriciaZB",
-  # "theHem-code",
-  # "Linda8875",
-  # "juliends",
-  # "ThierryMR",
+  "melwers",
+  "avrilpryce",
+  "Michiel-DK",
+  "PatriciaZB",
+  "theHem-code",
+  "Linda8875",
+  "juliends",
+  "ThierryMR",
   # "Micheledebruyn",
   # "Inbal-Gordon",
   # "ilia-ber",
@@ -30,26 +30,26 @@ batch_466 = [
   # "may-moff",
   # "vdelgadobenito",
   # "tristanmahe",
-  # "Pierre-L99",
-  # "Nooshin-8",
-  # "anaisfr",
-  # "camimurg",
-  # "GuidoCaldara",
-  # "enitschorn",
-  # "rayhanw",
-  # "matoni109",
-  # "Tom-Tee",
-  # "cdrmr18",
-  # "jarrydanthony",
-  # "10035",
-  # "lucieroland",
-  # "anLpk",
-  # "diego-mogollon",
-  # "maksimumeffort",
-  # "lunarness",
-  # "Escapewithcode",
-  # "santanu0013",
-  # "DraganGasic",
+  "Pierre-L99",
+  "Nooshin-8",
+  "anaisfr",
+  "camimurg",
+  "GuidoCaldara",
+  "enitschorn",
+  "rayhanw",
+  "matoni109",
+  "Tom-Tee",
+  "cdrmr18",
+  "jarrydanthony",
+  "10035",
+  "lucieroland",
+  "anLpk",
+  "diego-mogollon",
+  "maksimumeffort",
+  "lunarness",
+  "Escapewithcode",
+  "santanu0013",
+  "DraganGasic",
   "cheenaelise",
   "joshwbarnes",
   "rbalendra",
@@ -89,11 +89,11 @@ def get_git_info(git_name)
     password: "123456"
   )
 
-  3.times { make_me.interest_list.add(interests.sample) }
-  make_me.save!
-  p make_me.interest_list
-  user_image = URI.parse(user["avatar_url"]).open
-  make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
+  # 3.times { make_me.interest_list.add(interests.sample) }
+  # make_me.save!
+  # p make_me.interest_list
+  # user_image = URI.parse(user["avatar_url"]).open
+  # make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
   puts "made #{make_me.first_name} #{make_me.last_name}"
 end
 
@@ -155,82 +155,81 @@ puts "--- Making Humans Ended !"
 puts "--- Making Humans Friendships !"
 
 ## TODO: get all the users
-# user_arr = User.all.ids
-# # slice in parts
-# split_arr = user_arr.in_groups(3, false)
-# group_1 = split_arr[0]
-# group_2 = split_arr[1]
-# group_3 = split_arr[2]
+user_arr = User.all.ids
+# slice in parts
+split_arr = user_arr.in_groups(3, false)
+group_1 = split_arr[0]
+group_2 = split_arr[1]
+group_3 = split_arr[2]
 
-# # find users
-# group_1.each do |user|
-#   friends = group_2 # .concat(group_3)
-#   binding.pry
-#   friends.take(rand(1..friends.count)).each do |friends_find|
-#     # binding.pry
-#     user1 = User.find_by(id: user)
-#     friend = User.find_by(id: friends_find)
-#     user1.friend_request(friend)
-#     num = rand(1..3)
-#     if num < 2
-#       friend.accept_request(user1)
-#       friend_found = User.find_by(id: user1.friends.ids.last)
-#       puts " #{user1.git_name} is friends with #{friend_found.first_name}"
-#     elsif num == 2
-#       friend.decline_request(user1)
-#       puts " #{user1.git_name} got ReJected!!"
-#     else
-#       puts " #{user1.git_name} has been left hangin.."
-#     end
-#     # binding.pry
-#   end
-# end
+# find users
+group_1.each do |user|
+  friends = group_2 # .concat(group_3)
 
-# group_3.each do |user|
-#   friends = group_1 # .concat(group_3)
-#   # binding.pry
-#   friends.take(rand(1..friends.count)).each do |friends_find|
-#     # binding.pry
-#     user1 = User.find_by(id: user)
-#     friend = User.find_by(id: friends_find)
-#     user1.friend_request(friend)
-#     num = rand(1..3)
-#     if num < 2
-#       friend.accept_request(user1)
-#       friend_found = User.find_by(id: user1.friends.ids.last)
-#       puts " #{user1.git_name} is friends with #{friend_found.first_name}"
-#     elsif num == 2
-#       friend.decline_request(user1)
-#       puts " #{user1.git_name} got ReJected!!"
-#     else
-#       puts " #{user1.git_name} has been left hangin.."
-#     end
-#     # binding.pry
-#   end
-# end
+  friends.take(rand(1..friends.count)).each do |friends_find|
+    user1 = User.find_by(id: user)
+    friend = User.find_by(id: friends_find)
+    user1.friend_request(friend)
+    num = rand(1..3)
+    if num < 2
 
-# group_2.each do |user|
-#   friends = group_3 # .concat(group_3)
-#   # binding.pry
-#   friends.take(rand(1..friends.count)).each do |friends_find|
-#     # binding.pry
-#     user1 = User.find_by(id: user)
-#     friend = User.find_by(id: friends_find)
-#     user1.friend_request(friend)
-#     num = rand(1..3)
-#     if num < 2
-#       friend.accept_request(user1)
-#       friend_found = User.find_by(id: user1.friends.ids.last)
-#       puts " #{user1.git_name} is friends with #{friend_found.first_name}"
-#     elsif num == 2
-#       friend.decline_request(user1)
-#       puts " #{user1.git_name} got ReJected!!"
-#     else
-#       puts " #{user1.git_name} has been left hangin.."
-#     end
-#     # binding.pry
-#   end
-# end
+      friend.accept_request(user1)
+      friend_found = User.find_by(id: user1.friends.ids.last)
+      puts " #{user1.git_name} got a friend"
+    elsif num == 2
+      friend.decline_request(user1)
+      puts " #{user1.git_name} got ReJected!!"
+    else
+      puts " #{user1.git_name} has been left hangin.."
+    end
+  end
+end
+
+group_3.each do |user|
+  friends = group_1 # .concat(group_3)
+  # binding.pry
+  friends.take(rand(1..friends.count)).each do |friends_find|
+    # binding.pry
+    user1 = User.find_by(id: user)
+    friend = User.find_by(id: friends_find)
+    user1.friend_request(friend)
+    num = rand(1..3)
+    if num < 2
+      friend.accept_request(user1)
+      friend_found = User.find_by(id: user1.friends.ids.last)
+      puts " #{user1.git_name} got a friend"
+    elsif num == 2
+      friend.decline_request(user1)
+      puts " #{user1.git_name} got ReJected!!"
+    else
+      puts " #{user1.git_name} has been left hangin.."
+    end
+    # binding.pry
+  end
+end
+
+group_2.each do |user|
+  friends = group_3 # .concat(group_3)
+  # binding.pry
+  friends.take(rand(1..friends.count)).each do |friends_find|
+    # binding.pry
+    user1 = User.find_by(id: user)
+    friend = User.find_by(id: friends_find)
+    user1.friend_request(friend)
+    num = rand(1..3)
+    if num < 2
+      friend.accept_request(user1)
+      friend_found = User.find_by(id: user1.friends.ids.last)
+      puts " #{user1.git_name} got a friend"
+    elsif num == 2
+      friend.decline_request(user1)
+      puts " #{user1.git_name} got ReJected!!"
+    else
+      puts " #{user1.git_name} has been left hangin.."
+    end
+    # binding.pry
+  end
+end
 
 puts "--- Friendships Generator Ended!"
 
