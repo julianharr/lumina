@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   # For Redis and ActionCable
-  mount ActionCable.server, at: '/cable'
+  mount ActionCable.server => '/cable'
 
   get '/feed', to: 'pages#feed'
   get '/interests', to: 'pages#interests'
