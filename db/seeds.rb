@@ -89,11 +89,11 @@ def get_git_info(git_name)
     password: "123456"
   )
 
-  # 3.times { make_me.interest_list.add(interests.sample) }
-  # make_me.save!
-  # p make_me.interest_list
-  # user_image = URI.parse(user["avatar_url"]).open
-  # make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
+  3.times { make_me.interest_list.add(interests.sample) }
+  make_me.save!
+  p make_me.interest_list
+  user_image = URI.parse(user["avatar_url"]).open
+  make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
   puts "made #{make_me.first_name} #{make_me.last_name}"
 end
 
@@ -147,6 +147,17 @@ if make_me.save
   puts "---"
 else
   puts "user creation failed"
+end
+## get friends for Overlord
+puts "--- Making Overlord Friends !"
+user_arr = User.all.ids
+# slice in parts
+split_arr = user_arr.in_groups(3, false)
+group_1 = split_arr[0]
+
+group_1.each do |friends_find|
+  friend = User.find_by(id: friends_find)
+  friend.friend_request(make_me)
 end
 
 make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
