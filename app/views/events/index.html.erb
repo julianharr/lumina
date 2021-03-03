@@ -1,17 +1,41 @@
 <div class="container-fluid m-0 p-0">
-  <div class="d-flex">
-    <div>
+  <!--   start row  -->
+  <div class="row p-0 m-0">
+    <div class="col-lg-2 col-md-2 col-sm-12 p-0 m-0 ">
       <%= render 'components/side_bar/side_bar_final' %>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 p-0 m-0 ">
+    <div class="col-lg-5 col-md-5 col-sm-12 p-0 m-0 ">
+      <!-- Map on the left -->
       <div class="container-map">
+        <!-- Need to put map in here -->
         <div id="map"
-             style="width: 100%; height: 600px;"
+             style="width: 100%; height: 100vh;"
              data-markers="<%= @markers.to_json %>"
-             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+             data-mapbox-api-key="<%= ENV["MAPBOX_API_KEY"] %>">
+        </div>
+      </div>
+    </div>
+    <!-- Events on the right column -->
+    <div class="col-lg-5 col-md-5 col-sm-12 p-2 ">
+      <div class="container-bikes">
+        <div class="row m-0">
+          <% @event.each do |event| %>
+            <div class="col-md-6 border p-2 ">
+              <div class="card card-bikes">
+                <%= cloudinary_imgs(event.image.key,event) %>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= event.name %>
+                  </h5>
+                  <p class="card-text text-muted">
+                  </p>
+                  <%= link_to "More Info", event_path(event) , class: "btn btn-secondary" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
-

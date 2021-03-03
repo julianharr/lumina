@@ -20,16 +20,15 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
-
+// CSS
+import 'mapbox-gl/dist/mapbox-gl.css';
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
 // For chatrooms
 import { initChatroomCable } from '../channels/chatroom_channel';
+import { initMapbox } from '../plugins/init_mapbox';
 
-document.addEventListener('turbolinks:load', () => {
-  initChatroomCable();
-});
 
 // *********************************************************************************************
 
@@ -103,11 +102,11 @@ if (images) {
 }
 
 
-// MAPBOX
 
-import { initMapbox } from '../plugins/init_mapbox';
-
+// TURBO DOWN HERE !!!
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
+  // createPost();
+  initChatroomCable();
 })
 

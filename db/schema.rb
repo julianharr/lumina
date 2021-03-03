@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_02_092214) do
+ActiveRecord::Schema.define(version: 2021_03_03_033659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,8 +92,8 @@ ActiveRecord::Schema.define(version: 2021_03_02_092214) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "longitude"
-    t.float "latitude"
+    t.decimal "longitude", precision: 10, scale: 6
+    t.decimal "latitude", precision: 10, scale: 6
     t.string "category"
     t.string "meetup_link"
     t.string "venue_name"
