@@ -1,6 +1,21 @@
-<div class="d-flex bd-highlight mb-3 border-bottom pb-2">
-  <div class="p-2 bd-highlight my-auto"><img src="https://orig00.deviantart.net/d7b0/f/2011/166/d/4/avatar_100x100_by_demonfox_zephz-d3iyw6a.png" class="rounded-circle" style="width: 50px; height: 50px;"></div>
-  <div class="p-2 bd-highlight my-auto">FirstName LastName</div>
-  <div class="ml-auto p-2 bd-highlight my-auto">  <input type="button" class="btn btn-primary btn-sm my-auto" value="Accept">
-    <input type="button" class="btn btn-default btn-sm my-auto" value="Reject"></div>
-</div>
+<% pending_friendship(current_user).each do |user| %>
+  <div class="d-flex bd-highlight mb-3 border-bottom pb-2">
+    <div class="p-2 bd-highlight my-auto">
+      <%= cloudinary_avatar_nav(user.avatar.key) %></div>
+    <div class="p-2 bd-highlight my-auto"><%= " #{user.first_name} " %><%="#{user.last_name}" %> </div>
+    <div class="ml-auto p-2 bd-highlight my-auto">
+      <input
+      type="button"
+      class="btn btn-primary btn-sm my-auto"
+      value="Accept"
+      id="<%= user.id %>-Accept"
+    />
+        <input
+      type="button"
+      class="btn btn-default btn-sm my-auto"
+      value="Reject"
+      id="<%= user.id %>-Reject"
+    />
+        </div>
+      </div>
+    <% end %>
