@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
+  # User redirected to feed page upon sign in
+  get '/user' => "pages#feed", :as => :user_root
+
   root to: 'pages#home'
   get '/about', to: 'pages#about'
 

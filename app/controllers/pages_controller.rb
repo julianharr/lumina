@@ -10,6 +10,7 @@ class PagesController < ApplicationController
   def feed
     @user = current_user
     @users = User.all
+    @events = Event.all
 
     # @chatroom = Chatroom.new
 
