@@ -22,7 +22,6 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-
 # #bootstrap 5?
 # gem 'bootstrap', '~> 5.0.0.beta2'
 
@@ -46,6 +45,7 @@ gem 'pg_search', '~> 2.3.0'
 gem 'simple_form'
 gem 'turbolinks_render'
 gem 'pry-byebug'
+gem 'dotenv-rails'
 group :development, :test do
   gem 'pry-rails'
   gem 'dotenv-rails'

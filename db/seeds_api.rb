@@ -139,12 +139,22 @@ def meetup_event_spooler(options = {})
       meetup_update: value["updated"]
     )
     if value["venue"]&.present?
+
       make_me.update(
         venue_name: value["venue"]["name"],
         longitude: value["venue"]["lon"],
-        latitude: value["venue"]["lat"],
-        address: value["venue"]["address_1"]
+        latitude: value["venue"]["lat"]
+        # address: value["venue"]["address_1"]
       )
+      puts "event venue Loc @ # #{make_me.longitude} and #{make_me.latitude}"
+    else
+      value["group"]&.present?
+      make_me.update(
+        longitude: value["group"]["lon"],
+        latitude: value["group"]["lat"]
+      )
+      puts "event group Loc @ # #{make_me.longitude} and #{make_me.latitude}"
+
     end
     # add image
     next unless make_me.valid?
