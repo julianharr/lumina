@@ -89,11 +89,11 @@ def get_git_info(git_name)
     password: "123456"
   )
 
-  # 3.times { make_me.interest_list.add(interests.sample) }
-  # make_me.save!
-  # p make_me.interest_list
-  # user_image = URI.parse(user["avatar_url"]).open
-  # make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
+  3.times { make_me.interest_list.add(interests.sample) }
+  make_me.save!
+  p make_me.interest_list
+  user_image = URI.parse(user["avatar_url"]).open
+  make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
   puts "made #{make_me.first_name} #{make_me.last_name}"
 end
 

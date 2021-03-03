@@ -9,16 +9,17 @@ class PagesController < ApplicationController
 
   def feed
     @user = current_user
-    @users = User.all
-    @events = Event.all
+    @users = User.all.sample(10)
+    @user = User.all
+    @events = Event.all.sample(10)
 
     # @chatroom = Chatroom.new
 
     @chatroom = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
     @message = Message.create
     # @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
-    @charities = Charity.all
-    @charity = Charity.all.sample
+    @charity = Charity.all.sample(10)
+    # @charity = Charity.all.sample
   end
 
   def dashboard
@@ -29,5 +30,7 @@ class PagesController < ApplicationController
   def interests
     @user = current_user
   end
+
+  private
 
 end
