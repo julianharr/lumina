@@ -25,4 +25,25 @@ class User < ApplicationRecord
   INTERESTS = %w[arts music outdoors tech photography learning food family health wellness sports fitness writing language LGBTQ film sci-fi games books dance animals pets crafts fashion beauty business environment
                  dogs cats wildlife education]
 
+  # friendship_stuff
+  def strangers
+    users = []
+    User.all.each do |user|
+      users << user if friends_with?(user) != true && self != user && friends.include?(user) != true && pending_friends.include?(user) != true && requested_friends.include?(user) != true
+    end
+    users
+  end
+
+  def users_friends
+    friends
+  end
+
+  # def friend_request(user)
+  #   FriendRequest.create(requester: self, requested: user)
+  # end
+
+  # def accept_request(user)
+  #   FriendRequest.find_by(requester: self, requested: user).destroy
+  #   Friendship.create(friender: self, friended: user)
+  # end
 end

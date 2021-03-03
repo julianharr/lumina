@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def cloudinary_avatar_nav(key)
-    cl_image_tag(key, height: 50, width: 50, fetch_format: :auto, crop: "fill", class: "rounded-circle")
+    cl_image_tag(key, height: 50, width: 50, fetch_format: :auto, crop: "fill", class: "avatar rounded-circle")
   end
 
   ## has_friendship Helpers
