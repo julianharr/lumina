@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @event = Event.all
+    @event = Event.includes(:user)
 
     # the `geocoded` scope filters only flats with coordinates (latitude & longitude)
     @markers = @event.geocoded.map do |flat|
