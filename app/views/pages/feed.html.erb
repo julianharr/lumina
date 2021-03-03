@@ -1,3 +1,5 @@
+
+
 <!-- # LINKS FOR SIDE BAR -->
 <div class="d-flex">
   <div>
@@ -7,60 +9,102 @@
   <div class="m-5">
     <h3>Feed</h3>
     <p class="pb-3">See updates from friends, family and others you follow.</p>
+    <!-- CHARITY CARD -->
+    <% charity_card = render 'components/feed_page/charity_card' %>
+    <% event_card = render 'components/feed_page/event_card' %>
+    <% user_in_common = render 'components/feed_page/user_in_common' %>
+    <% randomised_array =[charity_card, event_card, user_in_common] %>
+
+    <!-- ALGORITHM LOGIC -->
+    <% array = [] %>
+    <% 30.times do %>
+      <% array << 'charity_card' %>
+    <% end %>
+    <% 30.times do %>
+      <% array << 'event_card' %>
+    <% end %>
+    <% 30.times do %>
+      <% array << 'user_in_common' %>
+    <% end %>
+    <% array.shuffle! %>
+    <% charity_array = [] %>
+    <% event_array = [] %>
+    <% @charity.each do |charity| %>
+    <% charity_array << charity %>
+    <% end %>
+    <% @events.each do |event| %>
+    <% event_array << event %>
+    <% end %>
+    <% array.take(10) %>
+
+
+    <!-- INTERESTS LOGIC -->
+
+
+    <% n = 0 %>
+    <% array.first(10).each do |selection| %>
+    <% if selection == 'charity_card' %>
       <div class="card-for-feed-charity mb-2 text-center", style="border-radius: 12px;">
         <h4 class="pt-2">Charity</h4>
          <i class="fas fa-ribbon ribbon m-1"></i>
         <br>
-        <%= @charity.name %>
-        <p><%=  h truncate(@charity.description, :length => 100) %></p>
-        <p class="location"> <i class="fas fa-globe-asia m-2"></i> <%= @charity.location %> </p>
-        <i class="fas fa-wifi pr-3"></i><%= @charity.website %>
-        <a href=""><%= link_to "Donate", new_charity_donate_path(@charity), class:"btn btn-info donate-btn" %></a>
+        <%= @charity[n].name %>
+        <p><%=  h truncate(@charity[n].description, :length => 100) %></p>
+        <p class="location"> <i class="fas fa-globe-asia m-2"></i> <%= @charity[n].location %> </p>
+        <i class="fas fa-wifi pr-3"></i><%= @charity[n].website %>
+        <a href=""><%= link_to "Donate", new_charity_donate_path(@charity[n]), class:"btn btn-info donate-btn" %></a>
+        <% n+= 1%>
       </div>
 
-      <% @users.take(3).each do |user| %>
-      <div class="card-for-feed mb-2 p-3 d-flex justify-content-start" style="color:white; border-radius: 12px;">
-        <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :style=>"height: 150px; width: 150px; border-radius: 12px;") %>
-        <div class="d-flex flex-column w-25 ml-3 justify-content-center">
-          <h5><%= user.first_name %> <%= user.last_name %></h5>
-          <%= link_to 'Chat', chatrooms_path(user_two_id: user), method: :post, class:"btn btn-primary my-2" %>
+    <% elsif selection == 'event_card' %>
+
+      <div class="card-notification-md mb-2 mt-2 d-flex justify-content-between p-3" style="color:white; border-radius: 12px;">
+        <img src="https://source.unsplash.com/random/300x300", style="border-radius:12px;" class="mr-3">
+        <div class="d-flex flex-wrap text-center">
+          <%= event_array[n].name %> <br><br>
+          <%= event_array[n].address %>
+          <p class="">Attendees: </p> <%= event_array[n].attendees %>
         </div>
+         <% n+= 1%>
       </div>
-      <% end %>
 
-       <div class="card-for-feed-charity mb-2 text-center", style="border-radius: 12px;">
-        <h4 class="pt-2">Charity</h4>
-         <i class="fas fa-ribbon ribbon m-1"></i>
-        <br>
-        <%= @charity.name %>
-        <p><%=  h truncate(@charity.description, :length => 100) %></p>
-        <p class="location"> <i class="fas fa-globe-asia m-2"></i> <%= @charity.location %> </p>
-        <i class="fas fa-wifi pr-3"></i><%= @charity.website %>
-        <a href=""><%= link_to "Donate", new_charity_donate_path(@charity), class:"btn btn-info donate-btn" %></a>
+      <% else %>
+
+      <div class="card-notification-sm mb-2 p-3 mt-2">
+        <h5>Have you seen <%= @users[n].first_name %>? </h5>
+        <h5>They have the same interests as you!</h5>
+        <div class="btn btn-primary">Add now!</div>
+         <% n+= 1%>
       </div>
+
+    <% end %>
+  <% end %>
+
 
   </div>
+
+
+  <br>
   <div class="mt-5">
-    <br>
-    <br>
-  <p class="mt-2">Updates </p>
+  <p class="m-3 pb-4">Updates </p>
+
+  <% @user.take(3).each do |user| %>
+  <div class="card-for-feed mb-2 p-3 d-flex justify-content-start" style="color:white; border-radius: 12px;">
+    <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :style=>"height: 150px; width: 150px; border-radius: 12px;") %>
+    <div class="d-flex flex-column w-25 ml-3 justify-content-center">
+      <h5><%= user.first_name %> <%= user.last_name %></h5>
+      <%= link_to 'Chat', chatrooms_path(user_two_id: user), method: :post, class:"btn btn-primary my-2" %>
+    </div>
+  </div>
+<% end %>
+
   <div class="card-notification-lg d-flex justify-content-between flex-wrap p-3" style="color:white; border-radius: 12px;">
     <% @users.take(6).each do |user| %>
       <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :style=>"height: 120px; width: 120px; border-radius: 12px; margin: 32px;") %>
     <% end %>
   </div>
 
-  <% @events.take(2).each do |event| %>
-  <div class="card-notification-md mt-2 d-flex justify-content-between p-3" style="color:white; border-radius: 12px;">
 
-    <img src="https://source.unsplash.com/random/300x300", style="border-radius:12px;" class="mr-3">
-    <div class="d-flex flex-wrap">
-        <%= event.name %> <br><br>
-        <%= event.address %>
-        <p>Attendees: </p> <%= event.attendees %>
-    </div>
-  </div>
-      <% end %>
   </div>
 
 </div>
