@@ -1,0 +1,9 @@
+<div class="container">
+  <h3>
+    <%= event.name %>
+  </h3>
+  <p>
+    <%= event.address %>
+  </p>
+  <%= link_to cloudinary_imgs(event.image.key,event), event_path(event) %>
+</div>
