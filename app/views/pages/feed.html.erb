@@ -45,15 +45,22 @@
     <% n = 0 %>
     <% array.first(10).each do |selection| %>
     <% if selection == 'charity_card' %>
-      <div class="card-for-feed-charity mb-2 text-center", style="border-radius: 12px;">
-        <h4 class="pt-2">Charity</h4>
-         <i class="fas fa-ribbon ribbon m-1"></i>
-        <br>
-        <%= @charity[n].name %>
-        <p><%=  h truncate(@charity[n].description, :length => 100) %></p>
-        <p class="location"> <i class="fas fa-globe-asia m-2"></i> <%= @charity[n].location %> </p>
-        <i class="fas fa-wifi pr-3"></i><%= @charity[n].website %>
-        <a href=""><%= link_to "Donate", new_charity_donate_path(@charity[n]), class:"btn btn-info donate-btn" %></a>
+      <div class="card-for-feed-charity mb-2 d-flex align-items-center", style="border-radius: 12px;">
+        <% images = ['Saly-3.png', 'Saly-22.png', 'Saly-16.png'] %>
+        <%= image_tag "#{images.sample}", style:"width: 300px; padding:16px;" %>
+
+        <div class="d-flex flex-column justify-content-around p-3">
+          <h5 class="pt-2">Charity <i class="fas fa-ribbon ribbon m-1"></i> </h5>
+          <!--  <i class="fas fa-ribbon ribbon m-1"></i> -->
+          <h6><%= @charity[n].name %></h6>
+          <p style="font-weight: 400;"> <i class="fas fa-globe-asia m-2"></i> <%= @charity[n].location %> </p>
+          <p style="font-weight: 400;"><%=  h truncate(@charity[n].description, :length => 100) %></p>
+
+          <!-- Need to fix from <a> tag to link_to -->
+
+          <a href="<%= @charity[n].website %>", target="_blank">Website</a>
+          <%= link_to "Donate", new_charity_donate_path(@charity[n]), class:"btn btn-info donate-btn w-25" %>
+        </div>
         <% n+= 1%>
       </div>
 
@@ -62,7 +69,7 @@
       <!-- Event Card -->
 
       <div class="card-notification-md mb-2 mt-2 d-flex p-3" style="color:white; border-radius: 12px;">
-        <img src="https://source.unsplash.com/random/400x300", style="border-radius:12px;">
+        <img src="https://source.unsplash.com/random/450x300", style="border-radius:12px;">
         <div class="d-flex flex-column align-items-start justify-content-around">
           <h5 class="ml-3 p-2"><%= event_array[n].name %></h5>
           <%#= event_array[n].address %>
@@ -70,13 +77,15 @@
 
           <div class="d-flex align-items-center">
             <%= cl_image_tag(@user.sample.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 50px; width:50px; margin-left:24px; margin-right: 8px;") %>
-            <%= @user.name %>
+            Organised by <%= @user.name %>
           </div>
         </div>
          <% n+= 1%>
       </div>
 
       <% else %>
+
+      <!-- Have you seen User card -->
 
       <div class="card-notification-sm mb-2 p-3 mt-2 d-flex">
         <%= image_tag 'Saly-18.png', style:"width: 300px;" %>

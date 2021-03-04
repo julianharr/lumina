@@ -39,10 +39,9 @@ p {
 }
 
 .card-for-feed-charity {
-  height: 240px;
   width: 770px;
   background-color:#2A1F3D;
-  border-radius: 4px;
+  border-radius: 12px;
   color:white;
   position:relative;
 }
@@ -52,18 +51,6 @@ p {
 }
 
 .ribbon {
-  font-size: 50px;
   color:#6060d0;
 }
 
-.location {
-  position:absolute;
-  top: 0;
-  margin: 50px;
-}
-
-.donate-btn {
-  position:absolute;
-  top: 0;
-  margin: 50px;
-}
