@@ -4,18 +4,8 @@
       <%= cloudinary_avatar_nav(user.avatar.key) %></div>
     <div class="p-2 bd-highlight my-auto"><%= " #{user.first_name} " %><%="#{user.last_name}" %> </div>
     <div class="ml-auto p-2 bd-highlight my-auto">
-      <input
-      type="button"
-      class="btn btn-primary btn-sm my-auto"
-      value="Accept"
-      id="<%= user.id %>-Accept"
-    />
-        <input
-      type="button"
-      class="btn btn-default btn-sm my-auto"
-      value="Reject"
-      id="<%= user.id %>-Reject"
-    />
-        </div>
-      </div>
-    <% end %>
+      <%= link_to "Accept", friends_add_path(user), controller: "friends", action: 'add', method: 'post', class: "btn btn-primary btn-sm my-auto", id: user.id  %>
+      <%= link_to "Remove", friends_remove_path(user), controller: "friends", action: 'remove', method: 'post', class: "btn btn-dark btn-sm my-auto", id: user.id %>
+    </div>
+  </div>
+<% end %>

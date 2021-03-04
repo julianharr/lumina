@@ -47,7 +47,7 @@ class FriendsController < ApplicationController
   private
 
   def find_by_user
-    User.find_by(id: params[:id])
+    User.find_by(id: params[:format])
   end
 
   def c_user
