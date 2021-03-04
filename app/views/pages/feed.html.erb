@@ -121,9 +121,27 @@
 
     </div>
 
-    <div class="card-notification-lg d-flex justify-content-between flex-wrap p-3" style="color:white; border-radius: 12px;">
-      <% @users.take(6).each do |user| %>
-        <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :style=>"height: 120px; width: 120px; border-radius: 12px; margin: 32px;") %>
-      <% end %>
+    <div class="card-notification-lg d-flex flex-column" style="color:white; border-radius: 12px;">
+      <h6 class="ml-4 pt-3", style="color: white;">Popular Event Categories</h6>
+
+      <div class="card-info-event d-flex flex-wrap justify-content-between mb-5 ml-4 mt-4">
+        <h6>Technology</h6> <small>1,245 members</small><br>
+        <div class="progress info rounded w-75 h-25"></div>
+      </div>
+
+      <div class="card-info-event d-flex flex-wrap justify-content-between mb-5 ml-4">
+        <h6>Food</h6> <small>980 members</small><br>
+        <div class="progress rounded w-75 h-25"></div>
+      </div>
+
+      <div class="card-info-event d-flex flex-wrap justify-content-between mb-5 ml-4">
+        <h6>Photography</h6> <small>860 members</small><br>
+        <div class="progress rounded w-75 h-25"></div>
+      </div>
+
+      <div class="card-info-event d-flex flex-wrap justify-content-between mb-5 ml-4">
+        <h6>Animals</h6> <small>790 members</small><br>
+        <div class="progress rounded w-75 h-25"></div>
+      </div>
     </div>
   </div>

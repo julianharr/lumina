@@ -30,6 +30,7 @@ p {
 }
 
 .card-notification-lg {
+  height: 500px;
   width: 320px;
   background-color:#192734;
   border: 0.05rem solid #3a3b3c;
@@ -57,5 +58,9 @@ p {
 
 .ribbon {
   color:#6060d0;
+}
+
+.progress {
+  background-color: $purple;
 }
 
