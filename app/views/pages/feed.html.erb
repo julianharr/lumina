@@ -51,15 +51,13 @@
 
         <div class="d-flex flex-column justify-content-around p-3">
           <h5 class="pt-2">Charity <i class="fas fa-ribbon ribbon m-1"></i> </h5>
-          <!--  <i class="fas fa-ribbon ribbon m-1"></i> -->
-          <h6><%= @charity[n].name %></h6>
-          <p style="font-weight: 400;"> <i class="fas fa-globe-asia m-2"></i> <%= @charity[n].location %> </p>
+          <h6><%= @charity[n].name %> <i class="fas fa-globe-asia m-2"></i> <%= @charity[n].location %> </h6>
           <p style="font-weight: 400;"><%=  h truncate(@charity[n].description, :length => 100) %></p>
 
           <!-- Need to fix from <a> tag to link_to -->
 
           <a href="<%= @charity[n].website %>", target="_blank">Website</a>
-          <%= link_to "Donate", new_charity_donate_path(@charity[n]), class:"btn btn-info donate-btn w-25" %>
+          <%= link_to "Donate", new_charity_donate_path(@charity[n]), class:"btn btn-info donate-btn w-25 mt-2", style:"border-radius: 24px;" %>
         </div>
         <% n+= 1%>
       </div>
@@ -76,7 +74,7 @@
           <p class="ml-3 p-2", style="color:white; font-weight: 400;"><%= event_array[n].attendees %> going</p>
 
           <div class="d-flex align-items-center">
-            <%= cl_image_tag(@user.sample.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 50px; width:50px; margin-left:24px; margin-right: 8px;") %>
+            <%= cl_image_tag(@user.sample.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 30px; width:30px; margin-left:24px; margin-right: 8px;") %>
             Organised by <%= @user.name %>
           </div>
         </div>
@@ -92,7 +90,7 @@
         <div class="d-flex flex-column justify-content-center">
           <h5 style="color:white;">Have you seen <%= @users[n].first_name %>? </h5>
           <h6 style="color:white;">They have the same interests as you!</h6>
-          <div class="btn btn-primary">Add now!</div>
+          <div class="btn btn-info w-50 mt-2" style="border-radius: 24px;">Add now!</div>
            <% n+= 1%>
         </div>
       </div>
