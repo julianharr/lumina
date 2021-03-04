@@ -78,11 +78,14 @@
 
       <% else %>
 
-      <div class="card-notification-sm mb-2 p-3 mt-2">
-        <h5>Have you seen <%= @users[n].first_name %>? </h5>
-        <h5>They have the same interests as you!</h5>
-        <div class="btn btn-primary">Add now!</div>
-         <% n+= 1%>
+      <div class="card-notification-sm mb-2 p-3 mt-2 d-flex">
+        <%= image_tag 'Saly-18.png', style:"width: 300px;" %>
+        <div class="d-flex flex-column justify-content-center">
+          <h5 style="color:white;">Have you seen <%= @users[n].first_name %>? </h5>
+          <h6 style="color:white;">They have the same interests as you!</h6>
+          <div class="btn btn-primary">Add now!</div>
+           <% n+= 1%>
+        </div>
       </div>
 
     <% end %>
