@@ -1,0 +1,56 @@
+<div class="container-fluid m-0 p-0">
+  <!--   start row  -->
+  <div class="row p-0 m-0">
+    <div class="col-lg-3 col-md-3 col-sm-12 p-0 m-0 ">
+      <%= render 'components/side_bar/side_bar_final' %>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 p-0 m-0">
+      <!-- Map on the left -->
+      <div class="container-map">
+        <!-- Need to put map in here -->
+        <div class="row  m-1">
+          <div class="h2 mx-auto text-center py-2"> <%= current_user.first_name %> Friends Page </div>
+          <% current_user.friends.each do |friend| %>
+            <div class="col-md-6 border p-2 ">
+              <div class="card card-bikes">
+                <%= cloudinary_imgs(friend.avatar.key,friend) %>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= friend.first_name %>
+                  </h5>
+                  <p class="card-text text-muted">
+                  </p>
+                  <%= link_to "Block", friends_block_path(friend), controller: "friends", action: 'block', method: 'post', class: "btn btn-secondary btn-sm my-auto", id: friend.id  %>
+                  <%= link_to "Delete", friends_delete_path(friend), controller: "friends", action: 'remove', method: 'post', class: "btn btn-danger btn-sm my-auto", id: friend.id  %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- Events on the right column -->
+    <div class="col-lg-3 col-md-3 col-sm-12 p-2 ">
+      <div class="container-bikes">
+        <div class="row m-1">
+          <div class="h2 mx-auto text-center py-2">Lumina Users </div>
+          <% current_user.strangers.each do |stranger| %>
+            <div class="col-md-6 border p-2 ">
+              <div class="card card-bikes">
+                <%= cloudinary_imgs(stranger.avatar.key,stranger) %>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= stranger.first_name %>
+                  </h5>
+                  <p class="card-text text-muted">
+                  </p>
+                  <%= link_to "Request", friends_path(stranger), controller: "friends", action: 'create', method: 'post', class: "btn btn-primary btn-sm my-auto", id: stranger.id  %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
