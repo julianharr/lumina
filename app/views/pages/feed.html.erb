@@ -6,6 +6,9 @@
     <%= render 'components/side_bar/side_bar_final' %>
   </div>
 
+  <!-- Sign out button should be fixed to top right of feed -->
+  <!-- <div class="h-25" style="text-align:right;"> <%#= link_to 'Sign Out', destroy_user_session_path %></div> -->
+
   <div class="ml-5 mt-5 mr-2">
     <h3>Feed</h3>
 
@@ -55,9 +58,10 @@
           <p style="font-weight: 400;"><%=  h truncate(@charity[n].description, :length => 100) %></p>
 
           <!-- Need to fix from <a> tag to link_to -->
+          <!-- new_charity_donate_path(@charity[n]) taken out of the link_to below as temp fix -->
 
           <a href="<%= @charity[n].website %>", target="_blank">Website</a>
-          <%= link_to "Donate", new_charity_donate_path(@charity[n]), class:"btn btn-info donate-btn w-25 mt-2", style:"border-radius: 24px;" %>
+          <%= link_to "More Info", charities_path, class:"btn btn-info donate-btn w-25 mt-2", style:"border-radius: 24px;" %>
         </div>
         <% n+= 1%>
       </div>

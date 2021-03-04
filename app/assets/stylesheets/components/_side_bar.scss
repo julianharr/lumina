@@ -2,7 +2,6 @@
   font-family: Helvetica;
   height: 100vh;
   width: 300px;
-  // background: linear-gradient(256.08deg, rgba(41, 39, 85, 0.4) 6.65%, rgba(41, 39, 84, 0.8) 68.75%, rgba(27, 24, 66, 0.35) 117.94%), linear-gradient(180deg, rgba(52, 20, 84, 0.65) 0%, #241130 100%);
   background: #192734;
   border-right: 0.05rem solid #3a3b3c;
   position: sticky;
@@ -40,9 +39,5 @@ a:link{
 }
 
 .link a:hover {
-  color: #53B9EB;
-}
-
-.square {
   color: #53B9EB;
 }
