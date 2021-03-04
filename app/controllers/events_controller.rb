@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :find_event, only: [:show]
+
   def index
     @event = Event.all
 
@@ -9,5 +11,14 @@ class EventsController < ApplicationController
         lng: flat.longitude
       }
     end
+  end
+
+  def show
+  end
+
+  private
+
+  def find_event
+    @event = Event.find(params[:id])
   end
 end
