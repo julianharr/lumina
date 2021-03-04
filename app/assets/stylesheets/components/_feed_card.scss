@@ -9,6 +9,7 @@ p {
   margin:0;
 }
 
+// Entire right column for feed
 .column-right {
   margin-top: 97px;
 }
@@ -20,9 +21,11 @@ p {
 
 
 .card-notification-sm {
-  width: 750px;
+  width: 770px;
   background-color:#2A1F3D;
-  text-align:center;
+  text-align: left;
+  border: 2px solid green;
+  border-radius: 12px;
 }
 
 .card-notification-lg {
@@ -31,14 +34,14 @@ p {
 }
 
 .card-notification-md {
-  height: 250px;
-  width: 750px;
+  height: 240px;
+  width: 770px;
   background-color:#2A1F3D;
 }
 
 .card-for-feed-charity {
-  height: 220px;
-  width: 750px;
+  height: 240px;
+  width: 770px;
   background-color:#2A1F3D;
   border-radius: 4px;
   color:white;

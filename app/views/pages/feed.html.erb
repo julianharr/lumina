@@ -59,12 +59,19 @@
 
     <% elsif selection == 'event_card' %>
 
-      <div class="card-notification-md mb-2 mt-2 d-flex justify-content-between p-3" style="color:white; border-radius: 12px;">
-        <img src="https://source.unsplash.com/random/300x300", style="border-radius:12px;" class="mr-3">
-        <div class="d-flex flex-wrap text-center">
-          <%= event_array[n].name %> <br><br>
-          <%= event_array[n].address %>
-          <p class="">Attendees: </p> <%= event_array[n].attendees %>
+      <!-- Event Card -->
+
+      <div class="card-notification-md mb-2 mt-2 d-flex p-3" style="color:white; border-radius: 12px;">
+        <img src="https://source.unsplash.com/random/400x300", style="border-radius:12px;">
+        <div class="d-flex flex-column align-items-start justify-content-around">
+          <h5 class="ml-3 p-2"><%= event_array[n].name %></h5>
+          <%#= event_array[n].address %>
+          <p class="ml-3 p-2", style="color:white; font-weight: 400;"><%= event_array[n].attendees %> going</p>
+
+          <div class="d-flex align-items-center">
+            <%= cl_image_tag(@user.sample.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 50px; width:50px; margin-left:24px; margin-right: 8px;") %>
+            <%= @user.name %>
+          </div>
         </div>
          <% n+= 1%>
       </div>
