@@ -161,11 +161,14 @@ def meetup_event_spooler(options = {})
 
     make_me.save
     puts "made event # #{make_me.name}"
-    # binding.pry
-    next unless value["featured_photo"]&.present? # ["photo_link"].instance_of?(String)
-
-    event_image = URI.parse(value["featured_photo"]["photo_link"]).open
-    make_me.image.attach(io: event_image, filename: "#{make_me.name}.jpg", content_type: 'image/jpg')
-    make_me.image.attached? ? puts("Event Image In") : puts("didn't work out")
+    if value["featured_photo"]&.present? # ["photo_link"].instance_of?(String)
+      event_image = URI.parse(value["featured_photo"]["photo_link"]).open
+      make_me.image.attach(io: event_image, filename: "#{make_me.name}.jpg", content_type: 'image/jpg')
+      make_me.image.attached? ? puts("Event Image In") : puts("didn't work out")
+    else
+      event_image = File.open("app/assets/images/event-placeholder-image.jpeg")
+      make_me.image.attach(io: event_image, filename: "#{make_me.name}.jpg", content_type: 'image/jpg')
+      make_me.image.attached? ? puts("Event Image In") : puts("didn't work out")
+    end
   end
 end
