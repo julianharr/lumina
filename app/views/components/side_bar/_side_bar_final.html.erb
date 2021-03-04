@@ -26,12 +26,12 @@
         </div>
         <!-- Friend Requests -->
         <div class="p-2 m-3 link">
-          <h6> <i class="fas fa-hand-holding-heart mr-3"></i> <%= link_to "Friends ", charities_path %><%= link_to "4", charities_path, class:"badge badge-info", remote: true, "data-toggle" => "modal", "data-target" => "#exampleModal"%></h6>
+          <% count = current_user.requested_friend_ids.count %>
+          <h6> <i class="fas fa-hand-holding-heart mr-3"></i> <%= link_to "Friends ", friends_path %><%= link_to "#{count}", friends_path, class:"badge badge-info", remote: true, "data-toggle" => "modal", "data-target" => "#exampleModal"%></h6>
         </div>
       </div>
       <div class="flex-grow-0">
       </div>
-
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">

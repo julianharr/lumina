@@ -30,11 +30,18 @@ class FriendsController < ApplicationController
     redirect_to friends_path, notice: "You ignored the request from #{friend.first_name}"
   end
 
+  def block
+    c_user
+    friend = find_by_user
+    @user.block_friend(friend)
+    redirect_to friends_path, notice: "You have Blocked #{friend.first_name}"
+  end
+
   def delete
     c_user
     friend = find_by_user
     @user.remove_friend(friend)
-    redirect_to user_path(friend), notice: "You and #{friend.first_name} are no longer friends"
+    redirect_to friends_path, notice: "You and #{friend.first_name} are no longer friends"
   end
 
   def search
