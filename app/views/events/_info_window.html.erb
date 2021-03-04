@@ -1,9 +1,7 @@
 <div class="container">
-  <h3>
-    <%= event.name %>
-  </h3>
-  <p>
-    <%= event.address %>
-  </p>
+  <h5>
+    <%= h truncate(event.name, :length => 19) %>
+  </h5>
+  <h6><%= h truncate(event.venue_name, :length => 25)  %></h6>
   <%= link_to cloudinary_imgs(event.image.key,event), event_path(event) %>
 </div>
