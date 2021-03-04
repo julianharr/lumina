@@ -1,19 +1,26 @@
-
-<div class="container m-5 d-flex">
-  <%= link_to 'Messages', chatrooms_path %>
-  <div class="chatroom mb-3">
+<div class="d-flex">
+<%= render 'components/side_bar/side_bar_final' %>
+  <%= link_to 'Conversations', chatrooms_path %>
+<div class="container m-5 d-flex flex-column">
+  <div class="chatroom mb-3 w-100">
     <h1>Message with <%= @chatroom.user_two.first_name %></h1>
-  <div>
+    <p style="font-weight: 400;">Last active <%= @chatroom.user_two.created_at.strftime("%-l:%M%P") %> </p>
+    <hr style="color: white">
+  </div>
 
-  <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+  <div id="messages" class="d-flex flex-column h-75 w-50" data-chatroom-id="<%= @chatroom.id %>">
     <% @chatroom.messages.each do |message| %>
       <%= render "messages/message", message: message %>
     <% end %>
   </div>
 
+  <hr style="color: white">
+
+  <div class="w-25">
   <%= simple_form_for [ @chatroom, @message ], html: { autocomplete: 'off' } do |f| %>
     <%= f.input :content, label: false, placeholder: "Type your message" %>
   <% end %>
+  </div>
   </div>
 </div>
 </div>
