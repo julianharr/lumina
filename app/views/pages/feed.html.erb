@@ -6,14 +6,15 @@
     <%= render 'components/side_bar/side_bar_final' %>
   </div>
 
-  <div class="m-5">
+  <div class="ml-5 mt-5 mr-2">
     <h3>Feed</h3>
-    <p class="pb-3">See updates from friends, family and others you follow.</p>
+
     <!-- CHARITY CARD -->
     <% charity_card = render 'components/feed_page/charity_card' %>
     <% event_card = render 'components/feed_page/event_card' %>
     <% user_in_common = render 'components/feed_page/user_in_common' %>
     <% randomised_array =[charity_card, event_card, user_in_common] %>
+
 
     <!-- ALGORITHM LOGIC -->
     <% array = [] %>
@@ -44,67 +45,103 @@
     <% n = 0 %>
     <% array.first(10).each do |selection| %>
     <% if selection == 'charity_card' %>
-      <div class="card-for-feed-charity mb-2 text-center", style="border-radius: 12px;">
-        <h4 class="pt-2">Charity</h4>
-         <i class="fas fa-ribbon ribbon m-1"></i>
-        <br>
-        <%= @charity[n].name %>
-        <p><%=  h truncate(@charity[n].description, :length => 100) %></p>
-        <p class="location"> <i class="fas fa-globe-asia m-2"></i> <%= @charity[n].location %> </p>
-        <i class="fas fa-wifi pr-3"></i><%= @charity[n].website %>
-        <a href=""><%= link_to "Donate", new_charity_donate_path(@charity[n]), class:"btn btn-info donate-btn" %></a>
+      <div class="card-for-feed-charity mb-2 d-flex align-items-center", style="border-radius: 12px;">
+        <% images = ['Saly-3.png', 'Saly-22.png', 'Saly-16.png'] %>
+        <%= image_tag "#{images.sample}", style:"width: 300px; padding:16px;" %>
+
+        <div class="d-flex flex-column justify-content-around p-3">
+          <h5 class="pt-2">Charity <i class="fas fa-ribbon ribbon m-1"></i> </h5>
+          <h6><%= @charity[n].name %> <i class="fas fa-globe-asia m-2"></i> <%= @charity[n].location %> </h6>
+          <p style="font-weight: 400;"><%=  h truncate(@charity[n].description, :length => 100) %></p>
+
+          <!-- Need to fix from <a> tag to link_to -->
+
+          <a href="<%= @charity[n].website %>", target="_blank">Website</a>
+          <%= link_to "Donate", new_charity_donate_path(@charity[n]), class:"btn btn-info donate-btn w-25 mt-2", style:"border-radius: 24px;" %>
+        </div>
         <% n+= 1%>
       </div>
 
     <% elsif selection == 'event_card' %>
 
-      <div class="card-notification-md mb-2 mt-2 d-flex justify-content-between p-3" style="color:white; border-radius: 12px;">
-        <img src="https://source.unsplash.com/random/300x300", style="border-radius:12px;" class="mr-3">
-        <div class="d-flex flex-wrap text-center">
-          <%= event_array[n].name %> <br><br>
-          <%= event_array[n].address %>
-          <p class="">Attendees: </p> <%= event_array[n].attendees %>
+      <!-- Event Card -->
+
+      <div class="card-notification-md mb-2 mt-2 d-flex p-3" style="color:white; border-radius: 12px;">
+        <img src="https://source.unsplash.com/random/450x300", style="border-radius:12px;">
+        <div class="d-flex flex-column align-items-start justify-content-around">
+          <h5 class="ml-3 p-2"><%= event_array[n].name %></h5>
+          <%#= event_array[n].address %>
+          <p class="ml-3 p-2", style="color:white; font-weight: 400;"><%= event_array[n].attendees %> going</p>
+
+          <div class="d-flex align-items-center">
+            <%= cl_image_tag(@user.sample.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 30px; width:30px; margin-left:24px; margin-right: 8px;") %>
+            Organised by <%= @user.name %>
+          </div>
         </div>
          <% n+= 1%>
       </div>
 
       <% else %>
 
-      <div class="card-notification-sm mb-2 p-3 mt-2">
-        <h5>Have you seen <%= @users[n].first_name %>? </h5>
-        <h5>They have the same interests as you!</h5>
-        <div class="btn btn-primary">Add now!</div>
-         <% n+= 1%>
+      <!-- Have you seen User card -->
+
+      <div class="card-notification-sm mb-2 p-3 mt-2 d-flex">
+        <%= image_tag 'Saly-18.png', style:"width: 300px;" %>
+        <div class="d-flex flex-column justify-content-center">
+          <h5 style="color:white;">Have you seen <%= @users[n].first_name %>? </h5>
+          <h6 style="color:white;">They have the same interests as you!</h6>
+          <div class="btn btn-info w-50 mt-2" style="border-radius: 24px;">Add now!</div>
+           <% n+= 1%>
+        </div>
       </div>
 
     <% end %>
   <% end %>
-
-
   </div>
-
-
   <br>
-  <div class="mt-5">
-  <p class="m-3 pb-4">Updates </p>
 
-  <% @user.take(3).each do |user| %>
-  <div class="card-for-feed mb-2 p-3 d-flex justify-content-start" style="color:white; border-radius: 12px;">
-    <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :style=>"height: 150px; width: 150px; border-radius: 12px;") %>
-    <div class="d-flex flex-column w-25 ml-3 justify-content-center">
-      <h5><%= user.first_name %> <%= user.last_name %></h5>
-      <%= link_to 'Chat', chatrooms_path(user_two_id: user), method: :post, class:"btn btn-primary my-2" %>
+  <!-- Right Column -->
+
+  <div class="container d-flex flex-column align-items-end mr-3 column-right">
+
+    <div class="card-sm-users mb-2", style="border-radius: 12px;">
+      <h6 class="ml-4 pt-3", style="color: white;">Connect with Friends</h6>
+
+      <div class="card-user p-3 d-flex flex-wrap justify-content-around align-items-center">
+
+        <% @user.take(6).each do |user| %>
+          <%= link_to chatrooms_path(user_two_id: user), method: :post do %>
+          <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 75px; width:75px; margin-bottom:8px;") %>
+           <p style="color:grey; font-weight: 400; font-size:14px; text-align:center;"><%= user.first_name %></p>
+           <br>
+          <% end %>
+        <% end %>
+
+      </div>
+
+    </div>
+
+    <div class="card-notification-lg d-flex flex-column" style="color:white; border-radius: 12px;">
+      <h6 class="ml-4 pt-3", style="color: white;">Popular Event Categories</h6>
+
+      <div class="card-info-event d-flex flex-wrap justify-content-between mb-5 ml-4 mt-4">
+        <h6>Technology</h6> <small>1,245 members</small><br>
+        <div class="progress info rounded w-75 h-25"></div>
+      </div>
+
+      <div class="card-info-event d-flex flex-wrap justify-content-between mb-5 ml-4">
+        <h6>Food</h6> <small>980 members</small><br>
+        <div class="progress rounded w-75 h-25"></div>
+      </div>
+
+      <div class="card-info-event d-flex flex-wrap justify-content-between mb-5 ml-4">
+        <h6>Photography</h6> <small>860 members</small><br>
+        <div class="progress rounded w-75 h-25"></div>
+      </div>
+
+      <div class="card-info-event d-flex flex-wrap justify-content-between mb-5 ml-4">
+        <h6>Animals</h6> <small>790 members</small><br>
+        <div class="progress rounded w-75 h-25"></div>
+      </div>
     </div>
   </div>
-<% end %>
-
-  <div class="card-notification-lg d-flex justify-content-between flex-wrap p-3" style="color:white; border-radius: 12px;">
-    <% @users.take(6).each do |user| %>
-      <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :style=>"height: 120px; width: 120px; border-radius: 12px; margin: 32px;") %>
-    <% end %>
-  </div>
-
-
-  </div>
-
-</div>

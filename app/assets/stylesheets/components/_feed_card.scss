@@ -9,36 +9,45 @@ p {
   margin:0;
 }
 
-.card-for-feed {
-  height: 180px;
-  width: 644px;
-  background-color:#2A1F3D;
+// Entire right column for feed
+.column-right {
+  margin-top: 97px;
 }
 
+.card-sm-users {
+  width: 320px;
+  background-color:#192734;
+  border: 0.05rem solid #3a3b3c;
+}
+
+
 .card-notification-sm {
-  // height: 205px;
-  width: 644px;
-  background-color:#2A1F3D;
-  text-align:center;
+  width: 770px;
+  background-color:#192734;
+  text-align: left;
+  border-radius: 12px;
+  border: 0.05rem solid #3a3b3c;
 }
 
 .card-notification-lg {
-  height: 410px;
-  width: 644px;
-  background-color:#2A1F3D;
+  height: 500px;
+  width: 320px;
+  background-color:#192734;
+  border: 0.05rem solid #3a3b3c;
 }
 
 .card-notification-md {
-  height: 250px;
-  width: 644px;
-  background-color:#2A1F3D;
+  height: 240px;
+  width: 770px;
+  background-color:#192734;
+  border: 0.05rem solid #3a3b3c;
 }
 
 .card-for-feed-charity {
-  height: 220px;
-  width: 644px;
-  background-color:#2A1F3D;
-  border-radius: 4px;
+  width: 770px;
+  background-color:#192734;
+  border: 0.05rem solid #3a3b3c;
+  border-radius: 12px;
   color:white;
   position:relative;
 }
@@ -48,18 +57,10 @@ p {
 }
 
 .ribbon {
-  font-size: 50px;
   color:#6060d0;
 }
 
-.location {
-  position:absolute;
-  top: 0;
-  margin: 50px;
+.progress {
+  background-color: $purple;
 }
 
-.donate-btn {
-  position:absolute;
-  top: 0;
-  margin: 50px;
-}
