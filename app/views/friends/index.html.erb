@@ -9,10 +9,10 @@
       <div class="container-map">
         <!-- Need to put map in here -->
         <div class="row  m-1">
-          <div class="h2 mx-auto text-center py-2"> <%= current_user.first_name %> Friends Page </div>
+          <div class="h2 mx-auto text-center py-2" style="color:white"> <%= current_user.first_name %>'s Friends </div>
           <% current_user.friends.each do |friend| %>
-            <div class="col-md-6 border p-2 ">
-              <div class="card card-bikes">
+            <div class="col-md-6 p-2 ">
+              <div class="card">
                 <%= cloudinary_imgs(friend.avatar.key,friend) %>
                 <div class="card-body">
                   <h5 class="card-title">
@@ -29,14 +29,14 @@
         </div>
       </div>
     </div>
-    <!-- Events on the right column -->
+
     <div class="col-lg-3 col-md-3 col-sm-12 p-2 ">
       <div class="container-bikes">
         <div class="row m-1">
-          <div class="h2 mx-auto text-center py-2">Lumina Users </div>
+          <div class="h2 mx-auto text-center py-2" style="color:white">Lumina Users </div>
           <% current_user.strangers.each do |stranger| %>
-            <div class="col-md-6 border p-2 ">
-              <div class="card card-bikes">
+            <div class="col-md-6 p-2 ">
+              <div class="card">
                 <%= cloudinary_imgs(stranger.avatar.key,stranger) %>
                 <div class="card-body">
                   <h5 class="card-title">
