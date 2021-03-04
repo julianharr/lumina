@@ -34,9 +34,9 @@ class User < ApplicationRecord
     users
   end
 
-  def users_friends
-    friends
-  end
+  # def users_friends
+  #   friends
+  # end
 
   # def friend_request(user)
   #   FriendRequest.create(requester: self, requested: user)

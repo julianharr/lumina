@@ -53,7 +53,8 @@ batch_466 = [
   "cheenaelise",
   "joshwbarnes",
   "rbalendra",
-  "appu4ever"
+  "appu4ever",
+  "julianharr"
 ]
 
 def get_git_info(git_name)
@@ -124,44 +125,7 @@ puts "-- Making Humans"
 batch_466.each do |element|
   get_git_info(element)
 end
-# User Master OverLoad # HOLD GME !! ##
-url = "https://api.github.com/users/julianharr"
-git_back = open(url).read
-user = JSON.parse(git_back)
-user_image = URI.parse(user["avatar_url"]).open
 
-make_me = User.create!( # change to create! later
-  first_name: user["name"].split.first,
-  last_name: user["name"].split[1],
-  git_name: user["login"],
-  bio: user["bio"],
-  location: user["location"],
-  nickname: user["login"],
-  birthday: Faker::Date.birthday(min_age: 18, max_age: 33),
-  email: "spin@gmail.com",
-  admin: true,
-  password: "123456"
-)
-make_me.interest_list.add("outdoors")
-if make_me.save
-  puts "---"
-else
-  puts "user creation failed"
-end
-## get friends for Overlord
-puts "--- Making Overlord Friends !"
-user_arr = User.all.ids
-# slice in parts
-split_arr = user_arr.in_groups(3, false)
-group_1 = split_arr[0]
-
-group_1.each do |friends_find|
-  friend = User.find_by(id: friends_find)
-  friend.friend_request(make_me)
-end
-
-make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
-puts "made #{make_me.first_name} #{make_me.last_name}"
 puts "--- Making Humans Ended !"
 puts "--- Making Humans Friendships !"
 
@@ -181,17 +145,17 @@ group_1.each do |user|
     user1 = User.find_by(id: user)
     friend = User.find_by(id: friends_find)
     user1.friend_request(friend)
-    num = rand(1..3)
-    if num < 2
+    num = rand(1..5)
+    if num < 4
 
       friend.accept_request(user1)
       friend_found = User.find_by(id: user1.friends.ids.last)
-      puts " #{user1.git_name} got a friend"
-    elsif num == 2
+      puts " #{user1.first_name} is friends with #{friend_found.first_name}"
+    elsif num == 4
       friend.decline_request(user1)
-      puts " #{user1.git_name} got ReJected!!"
+      puts " #{user1.first_name} got ReJected!!"
     else
-      puts " #{user1.git_name} has been left hangin.."
+      puts " #{user1.first_name} has been left hangin.."
     end
   end
 end
@@ -204,16 +168,16 @@ group_3.each do |user|
     user1 = User.find_by(id: user)
     friend = User.find_by(id: friends_find)
     user1.friend_request(friend)
-    num = rand(1..3)
-    if num < 2
+    num = rand(1..5)
+    if num < 4
       friend.accept_request(user1)
       friend_found = User.find_by(id: user1.friends.ids.last)
-      puts " #{user1.git_name} got a friend"
-    elsif num == 2
+      puts " #{user1.first_name} is friends with #{friend_found.first_name}"
+    elsif num == 4
       friend.decline_request(user1)
-      puts " #{user1.git_name} got ReJected!!"
+      puts " #{user1.first_name} got ReJected!!"
     else
-      puts " #{user1.git_name} has been left hangin.."
+      puts " #{user1.first_name} has been left hangin.."
     end
     # binding.pry
   end
@@ -227,22 +191,41 @@ group_2.each do |user|
     user1 = User.find_by(id: user)
     friend = User.find_by(id: friends_find)
     user1.friend_request(friend)
-    num = rand(1..3)
-    if num < 2
+    num = rand(1..5)
+    if num < 4
       friend.accept_request(user1)
       friend_found = User.find_by(id: user1.friends.ids.last)
-      puts " #{user1.git_name} got a friend"
-    elsif num == 2
+      puts " #{user1.first_name} is friends with #{friend_found.first_name}"
+    elsif num == 4
       friend.decline_request(user1)
-      puts " #{user1.git_name} got ReJected!!"
+      puts " #{user1.first_name} got ReJected!!"
     else
-      puts " #{user1.git_name} has been left hangin.."
+      puts " #{user1.first_name} has been left hangin.."
     end
     # binding.pry
   end
 end
-
 puts "--- Friendships Generator Ended!"
+puts "--- Making Overlord Julian !"
+# User Master OverLoad # HOLD GME !! ##
+make_admin = User.find_by(git_name: "julianharr")
+make_admin.update( # change to create! later
+  email: "spin@gmail.com",
+  admin: true,
+  password: "123456"
+)
+## get friends for Overlord
+puts "--- Making Overlord Friend Requests !"
+user_arr = User.all.ids
+# slice in parts
+split_arr = user_arr.in_groups(3, false)
+group_1 = split_arr[0]
+
+group_1.each do |friends_find|
+  friend = User.find_by(id: friends_find)
+  friend.friend_request(make_admin)
+end
+puts "--- Overlord OVER !"
 
 puts "--- Making Wish Lists !!"
 list_users = User.pluck(:id)
@@ -296,6 +279,7 @@ puts "--- Spooling up events ---"
 # Local meetup API tester below first
 #
 meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "tech" }))
+meetup_event_spooler(meetup_events_finder({ latitude: "-37.784", longitude: "144.986", category: "food" }))
 #
 #
 # Big Daddy Events Scraper Below !!! Caution !!!

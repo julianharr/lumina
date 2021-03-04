@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'friends/index'
+  get 'friends/show'
   devise_for :users, :controllers => {:registrations => "registrations"}
   # User redirected to feed page upon sign in
   get '/user' => "pages#feed", :as => :user_root
@@ -31,6 +33,13 @@ Rails.application.routes.draw do
   resources :interests, only: [:create]
   resources :items, except: [:new, :create]
   resources :messages, except: [:destroy]
+  resources :friends, only: %i[index create]
+
+  post '/friends/add' => 'friends/add'
+  post '/friends/reject' => 'friends/reject'
+  post '/friends/remove' => 'friends/remove'
+  # get '/friends/search' => 'friends/search'
+  # post '/friends/search' => 'friends/search'
   #DONATE THROUGH USER??
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
