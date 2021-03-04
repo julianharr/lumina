@@ -71,7 +71,8 @@
       <!-- Event Card -->
 
       <div class="card-notification-md mb-2 mt-2 d-flex p-3" style="color:white; border-radius: 12px;">
-        <img src="https://source.unsplash.com/random/450x300", style="border-radius:12px;">
+        <!-- <img src="https://source.unsplash.com/random/450x300", style="border-radius:12px;"> -->
+        <%= cl_image_tag(event_array[n].image.key, height: 450, width: 300, fetch_format: :auto, crop: "scale", class: "card-i.namg-top img-fluid mx-auto rounded", alt: "") %>
         <div class="d-flex flex-column align-items-start justify-content-around">
           <h5 class="ml-3 p-2"><%= event_array[n].name %></h5>
           <%#= event_array[n].address %>
