@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   post '/friends/add' => 'friends/add'
   post '/friends/reject' => 'friends/reject'
   post '/friends/remove' => 'friends/remove'
+  post '/friends/delete' => 'friends/delete'
   post '/friends/block' => 'friends/block'
   # get '/friends/search' => 'friends/search'
   # post '/friends/search' => 'friends/search'

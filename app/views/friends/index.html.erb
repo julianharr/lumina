@@ -21,7 +21,7 @@
                   <p class="card-text text-muted">
                   </p>
                   <%= link_to "Block", friends_block_path(friend), controller: "friends", action: 'block', method: 'post', class: "btn btn-secondary btn-sm my-auto", id: friend.id  %>
-                  <%= link_to "Remove", friends_remove_path(friend), controller: "friends", action: 'remove', method: 'post', class: "btn btn-danger btn-sm my-auto", id: friend.id  %>
+                  <%= link_to "Delete", friends_delete_path(friend), controller: "friends", action: 'remove', method: 'post', class: "btn btn-danger btn-sm my-auto", id: friend.id  %>
                 </div>
               </div>
             </div>
