@@ -9,34 +9,36 @@ p {
   margin:0;
 }
 
-.card-for-feed {
-  height: 180px;
-  width: 644px;
+.column-right {
+  margin-top: 97px;
+}
+
+.card-sm-users {
+  width: 320px;
   background-color:#2A1F3D;
 }
 
+
 .card-notification-sm {
-  // height: 205px;
-  width: 644px;
+  width: 750px;
   background-color:#2A1F3D;
   text-align:center;
 }
 
 .card-notification-lg {
-  height: 410px;
-  width: 644px;
+  width: 320px;
   background-color:#2A1F3D;
 }
 
 .card-notification-md {
   height: 250px;
-  width: 644px;
+  width: 750px;
   background-color:#2A1F3D;
 }
 
 .card-for-feed-charity {
   height: 220px;
-  width: 644px;
+  width: 750px;
   background-color:#2A1F3D;
   border-radius: 4px;
   color:white;

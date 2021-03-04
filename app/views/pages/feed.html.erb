@@ -6,14 +6,15 @@
     <%= render 'components/side_bar/side_bar_final' %>
   </div>
 
-  <div class="m-5">
+  <div class="ml-5 mt-5 mr-2">
     <h3>Feed</h3>
-    <p class="pb-3">See updates from friends, family and others you follow.</p>
+
     <!-- CHARITY CARD -->
     <% charity_card = render 'components/feed_page/charity_card' %>
     <% event_card = render 'components/feed_page/event_card' %>
     <% user_in_common = render 'components/feed_page/user_in_common' %>
     <% randomised_array =[charity_card, event_card, user_in_common] %>
+
 
     <!-- ALGORITHM LOGIC -->
     <% array = [] %>
@@ -79,32 +80,33 @@
 
     <% end %>
   <% end %>
-
-
   </div>
-
-
   <br>
-  <div class="mt-5">
-  <p class="m-3 pb-4">Updates </p>
 
-  <% @user.take(3).each do |user| %>
-  <div class="card-for-feed mb-2 p-3 d-flex justify-content-start" style="color:white; border-radius: 12px;">
-    <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :style=>"height: 150px; width: 150px; border-radius: 12px;") %>
-    <div class="d-flex flex-column w-25 ml-3 justify-content-center">
-      <h5><%= user.first_name %> <%= user.last_name %></h5>
-      <%= link_to 'Chat', chatrooms_path(user_two_id: user), method: :post, class:"btn btn-primary my-2" %>
+  <!-- Right Column -->
+
+  <div class="container d-flex flex-column align-items-end mr-3 column-right">
+
+    <div class="card-sm-users mb-2", style="border-radius: 12px;">
+      <h6 class="ml-4 pt-3", style="color: white;">Connect with Friends</h6>
+
+      <div class="card-user p-3 d-flex flex-wrap justify-content-around align-items-center">
+
+        <% @user.take(6).each do |user| %>
+          <%= link_to chatrooms_path(user_two_id: user), method: :post do %>
+          <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 75px; width:75px; margin-bottom:8px;") %>
+           <p style="color:grey; font-weight: 400; font-size:14px; text-align:center;"><%= user.first_name %></p>
+           <br>
+          <% end %>
+        <% end %>
+
+      </div>
+
+    </div>
+
+    <div class="card-notification-lg d-flex justify-content-between flex-wrap p-3" style="color:white; border-radius: 12px;">
+      <% @users.take(6).each do |user| %>
+        <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :style=>"height: 120px; width: 120px; border-radius: 12px; margin: 32px;") %>
+      <% end %>
     </div>
   </div>
-<% end %>
-
-  <div class="card-notification-lg d-flex justify-content-between flex-wrap p-3" style="color:white; border-radius: 12px;">
-    <% @users.take(6).each do |user| %>
-      <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :style=>"height: 120px; width: 120px; border-radius: 12px; margin: 32px;") %>
-    <% end %>
-  </div>
-
-
-  </div>
-
-</div>
