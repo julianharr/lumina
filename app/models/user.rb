@@ -34,6 +34,25 @@ class User < ApplicationRecord
     users
   end
 
+  def current_user_events
+    # get user
+    event_ids = []
+    interests_arr = ["food"]
+    interests.each { |element| interests_arr << element.name }
+    # get events with user interests
+    interests_arr.each do |element|
+      sql_query = " \
+        events.name ILIKE :query \
+        OR events.category ILIKE :query \
+        OR events.description ILIKE :query \
+      "
+      @events = Event.where(sql_query, query: "%#{element}%")
+      event_ids << @events.ids
+    end
+    # ids of users events
+    event = event_ids.flatten
+    return @events = Event.where(id: event)
+  end
   # def users_friends
   #   friends
   # end
