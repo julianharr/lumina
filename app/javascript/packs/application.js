@@ -27,7 +27,6 @@ import "bootstrap";
 // For chatrooms
 import { initChatroomCable } from "../channels/chatroom_channel";
 import { initMapbox } from "../plugins/init_mapbox";
-import { initChatroom } from "../dom/chatroom";
 
 // *********************************************************************************************
 
@@ -102,5 +101,4 @@ document.addEventListener("turbolinks:load", () => {
   initMapbox();
   // createPost();
   initChatroomCable();
-  initChatroom();
 });

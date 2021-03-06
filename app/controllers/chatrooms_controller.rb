@@ -14,7 +14,6 @@ class ChatroomsController < ApplicationController
   end
 
   def create
-    # @chatroom = Chatroom.new(chatroom_params)
     @chatroom = Chatroom.find_or_create_by(chatroom_params)
     @user_two = User.find(params[:user_two_id])
 
