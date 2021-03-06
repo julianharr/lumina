@@ -19,7 +19,7 @@
       <% end %>
     </h4>
 
-
+   <% if Status.all.count.positive? %>
     <div id="status">
       <div class="card-notification-sm p-5">
         <p id="status-<%= @user_status %>">
@@ -29,7 +29,7 @@
         </p>
       </div>
     </div>
-
+<% end %>
 
     <!-- CHARITY CARD -->
 
