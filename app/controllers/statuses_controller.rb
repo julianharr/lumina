@@ -4,7 +4,7 @@ class StatusesController < ApplicationController
     @status = Status.new(find_params)
     @status.user = @user
     if @status.save
-      redirect_to feed_path(@user, anchor: "review-#{@status.id}")
+      redirect_to feed_path(@user, anchor: "status-#{@status.id}")
     else
       render '/feed'
     end
