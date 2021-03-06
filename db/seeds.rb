@@ -70,8 +70,8 @@ def get_git_info(git_name)
   response = https.request(request)
   user = JSON.parse(response.read_body)
   # binding.pry
-  first_name = user["name"].present? ? user["name"].split.first.capitalize : user["login"].capitalize
-  last_name = user["name"].present? ? user["name"].split[1]&.capitalize : ""
+  first_name = Faker::Name.unique.first_name
+  last_name = Faker::Name.unique.last_name
   bio = user["bio"].present? ? user["bio"] : Faker::Quote.matz
   location = %w[Sydney Melbourne].sample # user["location"].present? ? user["location"] :
   email = user["email"].nil? ? Faker::Internet.email : user["email"]

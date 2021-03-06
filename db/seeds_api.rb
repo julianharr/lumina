@@ -87,7 +87,7 @@ def meetup_events_finder(options = {})
   # radius smart or kms
   # order best or time
 
-  p url = URI("https://api.meetup.com/find/upcoming_events?lon=#{lon}&page=20&radius=smart&lat=#{lat}&order=best&text=#{cat}&fields=featured_photo")
+  p url = URI("https://api.meetup.com/find/upcoming_events?lon=#{lon}&page=20&radius=smart&lat=#{lat}&order=best&text=#{cat}&fields=featured_photo,event_hosts")
   # original below
   # p url = URI("https://api.meetup.com/find/upcoming_events?lon=145&page=20&radius=10&lat=#{lat}")
 
@@ -138,6 +138,15 @@ def meetup_event_spooler(options = {})
       meetup_event_id: value["id"],
       meetup_update: value["updated"]
     )
+    if value["event_hosts"]&.present? && value["event_hosts"][0]&.present?
+
+      make_me.update(
+        host_name: value["event_hosts"][0]["name"],
+        host_link: value["event_hosts"][0]["photo"]["thumb_link"]
+      )
+      puts "event run by #{make_me.host_name}"
+    end
+
     if value["venue"]&.present?
 
       make_me.update(
