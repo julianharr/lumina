@@ -12,12 +12,32 @@
   <div class="ml-5 mt-5 mr-2">
     <h3>Feed</h3>
 
-    <!-- CHARITY CARD -->
+
+
+  <!-- STATUS UPDATES -->
+    <h4 class="card-notification-sm">
+      <%= simple_form_for([ @status ], remote: true) do |f| %>
+        <%= f.input :content %>
+        <%= f.button :submit %>
+      <% end %>
+    </h4>
+
+
+    <div id="status">
+      <div class="card-notification-sm p-5">
+        <p id="status-<%= @user_status %>">
+          <%= @user_for_status[0].first_name %>
+          <%= @user_for_status[0].last_name %>
+          <%= @current_user_status.content %>
+        </p>
+      </div>
+    </div>
+
+
     <% charity_card = render 'components/feed_page/charity_card' %>
     <% event_card = render 'components/feed_page/event_card' %>
     <% user_in_common = render 'components/feed_page/user_in_common' %>
     <% randomised_array =[charity_card, event_card, user_in_common] %>
-
 
     <!-- ALGORITHM LOGIC -->
     <% array = [] %>
@@ -43,7 +63,6 @@
 
 
     <!-- INTERESTS LOGIC -->
-
 
     <% n = 0 %>
     <% array.first(10).each do |selection| %>
