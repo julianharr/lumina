@@ -3,6 +3,8 @@ class ChatroomsController < ApplicationController
   def index
     @chatrooms = Chatroom.where(user: current_user)
     @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
+    @current_chatroom = params[:chatroom].present? ? Chatroom.find(params[:chatroom]) : @chatrooms.last
+    @messages = @current_chatroom.messages if @current_chatroom
   end
 
   def show
@@ -12,7 +14,6 @@ class ChatroomsController < ApplicationController
   end
 
   def create
-    # @chatroom = Chatroom.new(chatroom_params)
     @chatroom = Chatroom.find_or_create_by(chatroom_params)
     @user_two = User.find(params[:user_two_id])
 
@@ -25,7 +26,6 @@ class ChatroomsController < ApplicationController
   def destroy
     # Can a user delete a chat with another user or just end the session?
   end
-
 
   private
 

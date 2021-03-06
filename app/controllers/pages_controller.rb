@@ -23,6 +23,9 @@ class PagesController < ApplicationController
     # @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
     @charity = Charity.all.sample(10)
     # @charity = Charity.all.sample
+    @chatrooms = Chatroom.where(user: current_user)
+    @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
+
   end
 
   def dashboard
