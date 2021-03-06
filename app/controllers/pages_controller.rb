@@ -26,7 +26,7 @@ class PagesController < ApplicationController
     # stautus stuff
     @status = Status.new
     @current_user_status = Status.where(:user_id == @user.id).last if Status.present?
-    @user_for_status = User.where(id: @current_user_status.user_id)
+    @user_for_status = User.where(id: @current_user_status.user_id) if Status.present?
 
     @chatrooms = Chatroom.where(user: current_user)
     @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
