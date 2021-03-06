@@ -29,11 +29,14 @@ Rails.application.routes.draw do
     resources :messages, only: [:show, :create]
 
   end
+
   resources :user_interests, only: [:create, :destroy]
   resources :interests, only: [:create]
   resources :items, except: [:new, :create]
   resources :messages, except: [:destroy]
   resources :friends, only: %i[index create]
+  resources :statuses, only: :create
+
 
   post '/friends/add' => 'friends/add'
   post '/friends/reject' => 'friends/reject'
