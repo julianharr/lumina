@@ -138,7 +138,7 @@ def meetup_event_spooler(options = {})
       meetup_event_id: value["id"],
       meetup_update: value["updated"]
     )
-    if value["event_hosts"]&.present? && value["event_hosts"][0]&.present?
+    if value["event_hosts"]&.present? && !value["event_hosts"][0]["photo"].nil?
 
       make_me.update(
         host_name: value["event_hosts"][0]["name"],
