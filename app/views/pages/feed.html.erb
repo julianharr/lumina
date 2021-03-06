@@ -82,22 +82,22 @@
         <!-- Event Card -->
         <div class="card-notification-md mb-2 mt-2 d-flex p-3" style="color:white; border-radius: 12px;">
           <!-- <img src="https://source.unsplash.com/random/450x300", style="border-radius:12px;"> -->
-          <%= cl_image_tag(event_array[n].image.key, height: 450, width: 300, fetch_format: :auto, crop: "scale", class: "card-i.namg-top img-fluid mx-auto rounded", alt: "") %>
+          <%= cl_image_tag(event_array[n].image.key, height: 450, width: 300, fetch_format: :auto, crop: "scale", class: "float-left card-i.namg-top img-fluid mx-auto rounded", alt: "") %>
           <div class="d-flex flex-column align-items-start justify-content-around">
-            <h5 class="ml-3 p-2"><%= event_array[n].name.capitalize %></h5>
+            <h5 class="ml-3 p-2 text-left"><%= event_array[n].name.capitalize %></h5>
             <%#= event_array[n].address %>
             <div class="d-flex">
               <% if event_array[n].host_link.present? %>
-                <img src="<%= event_array[n].host_link  %>"  alt="test" class="avatar">
-                <h6 class="pr-5 m-2">
+                <img src="<%= event_array[n].host_link  %>"  style="height: 50px; width:50px; margin-bottom:8px;" class="avatar mx-1 my-auto"">
+                <h6 class="pr-5 m-2 my-auto">
                   Organised by <%= event_array[n].host_name  %>
                 <% end %>
               </h6>
-              <p class="ml-3 p-2", style="color:white; font-weight: 400;"><%= event_array[n].attendees %> going</p>
             </div>
-            <!--           <div class="d-flex "> -->
-            <%= link_to "See Event", event_path(event_array[n]), class: "btn btn-info m-3", style: "border-radius: 24px;" %>
-            <!-- </div> -->
+            <div class="d-flex justify-content-between ">
+              <%= link_to "See Event", event_path(event_array[n]), class: "btn btn-info m-3", style: "border-radius: 24px;" %>
+              <p class="ml-3 p-2 my-auto", style="color:white; font-weight: 400;"><%= event_array[n].attendees %> going</p>
+            </div>
           </div>
           <% n+= 1%>
         </div>
