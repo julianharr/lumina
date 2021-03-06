@@ -31,7 +31,7 @@
         </div>
         <!-- Sign Out (Temporary) -->
         <div class="p-2 m-3 link">
-          <h6> <i class="fas fa-sign-out-alt mr-3"></i> <%= link_to 'Sign Out', destroy_user_session_path %></h6>
+          <h6> <i class="fas fa-sign-out-alt mr-3"></i> <%= link_to "Sign out", destroy_user_session_path, method: :delete %> </h6>
         </div>
 
       </div>
