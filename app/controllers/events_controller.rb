@@ -8,7 +8,8 @@ class EventsController < ApplicationController
     @markers = @event.geocoded.map do |flat|
       {
         lat: flat.latitude,
-        lng: flat.longitude
+        lng: flat.longitude,
+        infoWindow: render_to_string(partial: 'info_window', locals: { event: flat })
       }
     end
   end
@@ -20,5 +21,8 @@ class EventsController < ApplicationController
 
   def find_event
     @event = Event.find(params[:id])
+  end
+
+  def current_user_events
   end
 end

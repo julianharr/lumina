@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_010905) do
+
+ActiveRecord::Schema.define(version: 2021_03_06_032422) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +102,8 @@ ActiveRecord::Schema.define(version: 2021_03_06_010905) do
     t.bigint "meetup_update"
     t.string "meetup_event_id"
     t.string "event_time"
+    t.string "host_name"
+    t.string "host_link"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
