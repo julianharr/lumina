@@ -1,12 +1,10 @@
 class StatusesController < ApplicationController
-
-
   def create
     @user = current_user
     @status = Status.new(find_params)
     @status.user = @user
     if @status.save
-      redirect_to feed_path('/feed', anchor: "review-#{@status.id}")
+      redirect_to feed_path(@user, anchor: "review-#{@status.id}")
     else
       render '/feed'
     end
