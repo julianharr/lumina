@@ -10,6 +10,8 @@ class PagesController < ApplicationController
   def feed
     @user = current_user
     @users = User.all.sample(10)
+    @status = Status.new
+    @current_user_status = Status.all.where(:user_id == current_user.id).last
 
     if @user.current_user_events.count.positive? && @user.current_user_events.count > 4
       @events = @user.current_user_events.sample(10)
@@ -23,6 +25,11 @@ class PagesController < ApplicationController
     # @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
     @charity = Charity.all.sample(10)
     # @charity = Charity.all.sample
+    @user_for_status = User.where(id: @current_user_status.user_id)
+
+    @chatrooms = Chatroom.where(user: current_user)
+    @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
+
   end
 
   def dashboard
@@ -33,4 +40,10 @@ class PagesController < ApplicationController
   def interests
     @user = current_user
   end
+
+  private
+
+  # def get_status_params
+  #   params.require(:status).permit(:content)
+  # end
 end
