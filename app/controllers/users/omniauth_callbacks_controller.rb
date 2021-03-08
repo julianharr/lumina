@@ -12,7 +12,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     handle_auth "Twitter"
   end
 
-  def github
+  def meetup
     handle_auth "Meetup"
   end
 
