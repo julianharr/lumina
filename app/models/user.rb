@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :timeoutable, :trackable, :omniauthable
   # associations
   has_one :wishlist, dependent: :destroy
   has_many :items, through: :wishlist, dependent: :destroy
@@ -9,6 +10,7 @@ class User < ApplicationRecord
   has_many :chatrooms, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :status, dependent: :destroy
+  has_many :services, dependent: :destroy
 
   # Frienship Gem
   has_friendship
@@ -16,9 +18,6 @@ class User < ApplicationRecord
   # Taggable Gem
   acts_as_taggable_on :tags
   acts_as_taggable_on :skills, :interests # You can also configure multiple tag types per mod
-
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
 
   ## active storage
   has_one_attached :avatar

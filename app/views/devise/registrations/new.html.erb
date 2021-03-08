@@ -1,39 +1,41 @@
 <div class="container d-flex flex-column flex-lg-row align-items-center signup-container">
   <div class="col-lg-6 col-md-12 col-sm-12 m-5">
-      <h1>Sign up to Lumina</h1>
-      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= f.error_notification %>
-        <div class="form-inputs", style="color:white;">
-          <%= f.input :email,
+    <h1>Sign up to Lumina</h1>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs", style="color:white;">
+        <%= f.input :email,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "Email" }%>
-          <%= f.input :first_name,
+        <%= f.input :first_name,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "First Name" }%>
-          <%= f.input :last_name,
+        <%= f.input :last_name,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "Last Name" }%>
-          <%= f.input :birthday, as: :date, start_year: Time.now.year - 90, end_year: Time.now.year - 1,
+        <%= f.input :birthday, as: :date, start_year: Time.now.year - 90, end_year: Time.now.year - 1,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "Birthday" }%>
-          <%= f.input :password,
+        <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
-          <%= f.input :password_confirmation,
+        <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-          <%= f.input :photo, as: :file %>
-        </div>
-        <div class="form-actions">
-          <%= f.button :submit, "Sign up", class:"btn btn-primary"%>
-          <%= render "devise/shared/links" %>
-        </div>
-      <% end %>
-    </div>
-    <%= image_tag 'Saly-14.png', class: "img-fluid col-lg-6 col-md-12", id:"img-dog" %>
+        <%= f.input :photo, as: :file %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Sign up", class:"btn btn-primary my-2"%>
+        <%# <%= render "devise/shared/links" %>
+      </div>
+    <% end %>
+    <%= link_to "Login MEETUP TEST", user_meetup_omniauth_authorize_path, class: "btn btn-success", method: :post  %>
+    <%= link_to "Sign UP with Facebook TEST", user_facebook_omniauth_authorize_path, class: "btn btn-danger", method: :post  %>
+  </div>
+  <%= image_tag 'Saly-14.png', class: "img-fluid col-lg-6 col-md-12", id:"img-dog" %>
 </div>
