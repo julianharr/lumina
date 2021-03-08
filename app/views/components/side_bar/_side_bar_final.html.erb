@@ -5,10 +5,10 @@
       <h3 class="title">Lumina</h3>
     </div>
     <!-- #USER -->
-    <div class="d-flex flex-column justify-content-between h-50 p-2 ml-4">
+    <div class="sidebar d-flex flex-column justify-content-between h-50 p-2 ml-4">
 
       <!-- Feed -->
-      <div class="d-flex nav-links">
+      <div class="nav-links d-flex">
         <i class="fas fa-newspaper w-25 mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
         <div class="d-flex justify-content-start w-100">
           <%= link_to "Feed", feed_path, class:"sidebar-link", style:"color:white"; %>
@@ -16,15 +16,15 @@
       </div>
 
       <!-- Dashboard -->
-      <div class=" d-flex nav-links">
+      <div class="nav-links d-flex">
         <i class="fas fa-user-friends w-25 mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
-        <div class="d-flex justify-content-start  w-100">
-          <%= link_to "Dashboard", dashboard_path, class:"sidebar-link", style:"color:white"; %>
+        <div class="d-flex justify-content-start w-100">
+          <%= link_to "Dashboard", dashboard_path, class:"sidebar-link active", style:"color:white"; %>
         </div>
       </div>
 
       <!-- Events -->
-      <div class=" d-flex nav-links">
+      <div class=" nav-links d-flex">
         <i class="fas fa-handshake w-25 mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
         <div class="d-flex justify-content-start  w-100">
           <%= link_to "Events", events_path, class:"sidebar-link", style:"color:white";  %>
@@ -32,7 +32,7 @@
       </div>
 
       <!-- Messages -->
-      <div class="  d-flex nav-links">
+      <div class="  nav-links d-flex">
         <i class="fas fa-comments w-25 mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
         <div class="d-flex justify-content-start w-100">
           <%= link_to "Conversations", chatrooms_path, class:"sidebar-link", style:"color:white"; %>
@@ -40,7 +40,7 @@
       </div>
 
       <!-- Charities -->
-      <div class="d-flex nav-links">
+      <div class="nav-links d-flex">
         <i class="fas fa-hand-holding-heart w-25 mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
         <div class="d-flex justify-content-start w-100">
           <%= link_to "Give Back", charities_path, class:"sidebar-link", style:"color:white"; %>
@@ -48,7 +48,7 @@
       </div>
 
       <!-- Friend Requests -->
-      <div class="d-flex nav-links">
+      <div class="nav-links d-flex">
         <% count = current_user.requested_friend_ids.count %>
         <i class="fas fa-smile w-25  mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
         <div class="d-flex justify-content-start align-items-center  w-100">
@@ -63,14 +63,12 @@
       </div>
 
       <!-- Sign Out -->
-      <div class="d-flex nav-links">
+      <div class="nav-links d-flex">
         <i class="fas fa-sign-out-alt w-25 mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
         <div class="d-flex justify-content-start w-100">
           <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"sidebar-link", style:"color:white"; %>
         </div>
       </div>
-
-
     </div>
     <div class="flex-grow-0">
     </div>
