@@ -30,11 +30,11 @@
         <%= f.input :photo, as: :file %>
       </div>
       <div class="form-actions">
-        <%= f.button :submit, "Sign up", class:"btn btn-primary"%>
-        <%= render "devise/shared/links" %>
+        <%= f.button :submit, "Sign up", class:"btn btn-primary my-2"%>
+        <%# <%= render "devise/shared/links" %>
       </div>
     <% end %>
-    <%= link_to "Sign in with Facebook TEST", user_facebook_omniauth_authorize_path, class: "btn btn-danger", method: :post  %>
+    <%= link_to "Sign UP with Facebook TEST", user_facebook_omniauth_authorize_path, class: "btn btn-danger", method: :post  %>
   </div>
   <%= image_tag 'Saly-14.png', class: "img-fluid col-lg-6 col-md-12", id:"img-dog" %>
 </div>

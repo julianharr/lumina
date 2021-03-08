@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :chatrooms, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :status, dependent: :destroy
+  has_many :services, dependent: :destroy
 
   # Frienship Gem
   has_friendship
