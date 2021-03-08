@@ -20,12 +20,15 @@
       <% end %>
 
     <!-- Strangers -->
+    <div class="d-flex flex-wrap border">
     <% current_user.strangers.each do |stranger| %>
-        <div class="container d-flex">
+        <div class="test">
           <%= cl_image_tag(stranger.avatar.key, style:"width: 200px; border-radius: 24px;") %>
           <%= stranger.first_name %>
           <%= link_to "Request", friends_path(stranger), controller: "friends", action: 'create', method: 'post', class: "btn btn-primary btn-sm my-auto", id: stranger.id  %>
         </div>
       <% end %>
+    </div>
+
   </div>
 </div>
