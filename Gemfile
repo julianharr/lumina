@@ -33,12 +33,15 @@ gem 'acts-as-taggable-on', '~> 7.0' # https://github.com/mbleigh/acts-as-taggabl
 gem 'autoprefixer-rails'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cloudinary', '~> 1.16.0'
-gem 'devise'
+gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'faker'
 gem 'font-awesome-sass'
 gem 'geocoder'
 gem 'has_friendship', github: 'sungwoncho/has_friendship' # https://github.com/sungwoncho/has_friendship
 gem 'httparty'
+gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
+gem 'koala'
 gem 'pretender'
 gem 'pundit'
 gem 'pg_search', '~> 2.3.0'
@@ -48,7 +51,6 @@ gem 'pry-byebug'
 gem 'dotenv-rails'
 group :development, :test do
   gem 'pry-rails'
-  gem 'dotenv-rails'
   gem 'rubocop'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

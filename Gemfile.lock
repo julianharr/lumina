@@ -1,4 +1,16 @@
 GIT
+  remote: https://github.com/heartcombo/devise.git
+  revision: e16d60d0fedc5f5e6f541b2b9e901a2d53f8ceda
+  branch: ca-omniauth-2
+  specs:
+    devise (4.7.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+
+GIT
   remote: https://github.com/sungwoncho/has_friendship.git
   revision: 7d9e44bb00578bb2b5d4e3221388450d9365fec6
   specs:
@@ -101,12 +113,6 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
-    devise (4.7.3)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
@@ -117,12 +123,18 @@ GEM
     execjs (2.7.0)
     faker (2.16.0)
       i18n (>= 1.6, < 2)
+    faraday (1.3.0)
+      faraday-net_http (~> 1.0)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords
+    faraday-net_http (1.0.1)
     ffi (1.14.2)
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
     geocoder (1.6.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hashie (4.1.0)
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -133,6 +145,12 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
+    json (2.5.1)
+    jwt (2.2.2)
+    koala (3.0.0)
+      addressable
+      faraday
+      json (>= 1.8)
     listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -150,14 +168,34 @@ GEM
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.5.0)
-    minitest (5.14.3)
+    minitest (5.14.4)
     msgpack (1.4.2)
+    multi_json (1.15.0)
     multi_xml (0.6.0)
+    multipart-post (2.1.1)
     netrc (0.11.0)
     nio4r (2.5.5)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    oauth2 (1.4.4)
+      faraday (>= 0.8, < 2.0)
+      jwt (>= 1.0, < 3.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
+    omniauth (2.0.3)
+      hashie (>= 3.4.6)
+      rack (>= 1.6.2, < 3)
+      rack-protection
+    omniauth-facebook (8.0.0)
+      omniauth-oauth2 (~> 1.2)
+    omniauth-oauth2 (1.7.1)
+      oauth2 (~> 1.4)
+      omniauth (>= 1.9, < 3)
+    omniauth-rails_csrf_protection (1.0.0)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     orm_adapter (0.5.0)
     parallel (1.20.1)
     parser (3.0.0.0)
@@ -185,6 +223,8 @@ GEM
     rack (2.2.3)
     rack-mini-profiler (2.3.1)
       rack (>= 1.2.0)
+    rack-protection (2.1.0)
+      rack
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -243,6 +283,7 @@ GEM
     rubocop-ast (1.4.1)
       parser (>= 2.7.1.5)
     ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.4)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -318,7 +359,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   cloudinary (~> 1.16.0)
-  devise
+  devise!
   dotenv-rails
   faker
   font-awesome-sass
@@ -326,7 +367,10 @@ DEPENDENCIES
   has_friendship!
   httparty
   jbuilder (~> 2.7)
+  koala
   listen (~> 3.3)
+  omniauth-facebook
+  omniauth-rails_csrf_protection
   pg (~> 1.1)
   pg_search (~> 2.3.0)
   pretender

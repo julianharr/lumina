@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'friends/index'
   get 'friends/show'
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  #
+  devise_for :users, controllers: { registrations: "registrations", omniauth_callbacks: "users/omniauth_callbacks"}
   # User redirected to feed page upon sign in
   get '/user' => "pages#feed", :as => :user_root
 
