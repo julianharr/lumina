@@ -41,6 +41,7 @@ gem 'has_friendship', github: 'sungwoncho/has_friendship' # https://github.com/s
 gem 'httparty'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-meetup'
 gem 'koala'
 gem 'pretender'
 gem 'pundit'

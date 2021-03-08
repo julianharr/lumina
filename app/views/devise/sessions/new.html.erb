@@ -1,7 +1,6 @@
 <div class="container d-flex flex-column flex-lg-row align-items-center signup-container">
   <div class="col-lg-6 col-md-12 col-sm-12 m-5">
     <h1>Sign in to Lumina</h1>
-
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs pb-0", style="color:white;">
         <%= f.input :email,
@@ -13,13 +12,11 @@
                     input_html: { autocomplete: "current-password" } %>
         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       </div>
-
-
       <div class="form-actions">
         <%= f.button :submit, "Log in", class:"btn btn-primary" %>
-        <%= render "devise/shared/links" %>
+        <%= link_to "Sign UP with Facebook TEST", user_facebook_omniauth_authorize_path, class: "btn btn-danger", method: :post  %>
       </div>
     <% end %>
   </div>
-    <%= image_tag 'Saly-18.png', class: "img-fluid col-lg-6 col-md-12", id:"img-dog" %>
+  <%= image_tag 'Saly-18.png', class: "img-fluid col-lg-6 col-md-12", id:"img-dog" %>
 </div>

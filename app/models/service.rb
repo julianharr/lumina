@@ -1,7 +1,7 @@
 class Service < ApplicationRecord
   belongs_to :user
 
-  %w[facebook twitter].each do |provider|
+  %w[facebook twitter meetup].each do |provider|
     scope provider, -> { where(provider: provider) }
   end
 
@@ -17,6 +17,9 @@ class Service < ApplicationRecord
     send("#{provider}_refresh_token!", super) if expired?
     super
   end
+  ### Meetup Client
+
+  ### FACIE CLient
 
   def facebook_client
     Koala::Facebook::API.new(access_token)
@@ -27,6 +30,7 @@ class Service < ApplicationRecord
     update(access_token: new_token_info["access_token"], expires_at: Time.zone.now + new_token_info["expires_in"])
   end
 
+  ### TWITTER
   def twitter_client
     Twitter::REST::Client.new do |config|
       config.consumer_key        = Rails.application.secrets.twitter_app_id

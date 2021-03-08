@@ -13,7 +13,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def github
-    handle_auth "Github"
+    handle_auth "Meetup"
   end
 
   private
@@ -68,6 +68,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def create_user
+    ## check that name exist ?
+
     first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user["login"].capitalize
     last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ""
 

@@ -274,7 +274,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"], scope: 'email,user_posts'
-  # ==> Warden configuration
+config.omniauth :meetup, ENV['MEETUP_KEY'], ENV['MEETUP_SECRET'], callback_url: 'https://b35509abd3a2.ngrok.io/'
+# ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #

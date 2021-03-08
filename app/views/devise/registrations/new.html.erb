@@ -34,6 +34,7 @@
         <%# <%= render "devise/shared/links" %>
       </div>
     <% end %>
+    <%= link_to "Login MEETUP TEST", user_meetup_omniauth_authorize_path, class: "btn btn-success", method: :post  %>
     <%= link_to "Sign UP with Facebook TEST", user_facebook_omniauth_authorize_path, class: "btn btn-danger", method: :post  %>
   </div>
   <%= image_tag 'Saly-14.png', class: "img-fluid col-lg-6 col-md-12", id:"img-dog" %>
