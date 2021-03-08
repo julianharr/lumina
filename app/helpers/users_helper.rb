@@ -10,4 +10,8 @@ module UsersHelper
   def signupdate(user)
     user.created_at if user && current_user.created_at.present?
   end
+
+  def user_has_status?(user)
+    user.status.present?
+  end
 end
