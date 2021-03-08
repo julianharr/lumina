@@ -1,26 +1,54 @@
 <!-- Modal Wishlist-->
+
 <div class="modal fade" id="wishlistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content modal-body-wishlist">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Wishlist Items</h5>
+        <h5 class="modal-title" style="color:#a8a8ac; " id="exampleModalLongTitle"><%= @user.first_name %>'s Wishlist Items</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body modal-body-wishlist">
-        <% @current_user.wishlist.items.each do |item| %>
-          <div class="container container-wishlist-items d-flex m-2 p-4">
+        <% @user.wishlist.items.each do |item| %>
+          <div class="container container-wishlist-items d-flex mb-4 p-4">
             <%= cl_image_tag(item.images[0].key, style:"width: 250px; border-radius:24px;") %>
-            <div class="d-flex flex-column justify-content-center p-3">
+            <div class="wishlist-item d-flex flex-column justify-content-center p-3">
               <h6 class="pr-2", style="color:#a8a8ac;"> <%= item.name %> </h6>
               <h6 class="pr-2", style="color:#a8a8ac;">Price - $<%= item.price %> </h6>
               <h6 class="pr-2", style="color:#a8a8ac;"> <%= item.description %> </h6>
+              <%= link_to "Gift this to #{@user.first_name}", item.link, class:"btn btn-info btn-gift w-50", target: "_blank" %>
 
-              <!-- Donate Begin -->
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-              <!-- Donate End -->
+<!-- Events Modal -->
 
+<div class="modal fade" id="eventsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-body-wishlist">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Events</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-body-event">
+        <h6 class="pr-2", style="color:#a8a8ac;"><%= @user.first_name %>'s Event History</h6>
+        <% @user.events.each do |event| %>
+          <div class="container container-wishlist-items d-flex m-2 p-4">
+            <div class="d-flex flex-column justify-content-center p-3">
+              <h6 class="pr-2", style="color:#a8a8ac;"> Name: <%= event.name %> </h6>
+              <h6 class="pr-2", style="color:#a8a8ac;"> Attendees: <%= event.attendees %> </h6>
+              <h6 class="pr-2", style="color:#a8a8ac;"> Organiser: <%= event.organiser %> </h6>
             </div>
           </div>
         <% end %>
