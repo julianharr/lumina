@@ -2,7 +2,7 @@
   <%= render 'components/side_bar/side_bar_final' %>
 
   <!-- Main Dashboard container -->
-  <div class="container dashboard-main d-flex flex-wrap">
+  <div class="container dashboard-main d-flex flex-wrap pb-4 mb-5">
 
     <div class="d-flex flex-column dashboard-left-column">
 
@@ -28,6 +28,11 @@
       </div>
     </div>
 
+    <div class="container d-flex p-3 justify-content-center flex-wrap container-dash-large">
+      <h5 class="mt-4 w-100" style="color:white;"> Discover <%= @current_user.first_name %>'s Wishlist</h5>
+      <%= image_tag 'Saly-19.png', class: "img-fluid", style:"width: 500px;" %>
+    </div>
+
     </div>
 
 
@@ -35,7 +40,10 @@
 
       <!-- Container w/ friends and modal pop-up -->
       <div class="container container-friends p-3">
-        <h5 style="color:white;">Friends</h5>
+        <div class="d-flex justify-content-between">
+          <h5 style="color:white;">Friends</h5>
+          <h6> <%= link_to "See all", class:"badge badge-info", remote: true, "data-toggle" => "modal", "data-target" => "#exampleModal"%></h6>
+          </div>
         <div class="container-friends-images pl-2">
           <% @current_user.friends.take(8).each do |friend| %>
             <%= cl_image_tag(friend.avatar.key) %>
@@ -51,11 +59,24 @@
         </div>
       </div>
 
+      <!-- Event Container -->
+      <div class="container d-flex p-3 justify-content-center flex-wrap container-dash-large">
+        <h5 class="mt-4 w-100" style="color:white;"> Discover <%= @current_user.first_name %>'s Event History</h5>
+        <%= image_tag 'Saly-3.png', class: "img-fluid", style:"width: 500px;" %>
+      </div>
     </div>
-
-    <div class="container d-flex container-dash-events">
-      <%= image_tag 'Saly-19.png', class: "img-fluid", style:"width: 500px;" %>
-    </div>
-
-  </div>
 </div>
+
+      <!-- Modal Info -->
+      <!-- <div class="d-flex flex-wrap">
+      <% @current_user.wishlist.items.each do |item| %>
+      <div class="container container-wishlist-items d-flex w-25 flex-column justify-content-between m-2">
+        <h6 class="pr-2", style="color:#a8a8ac;"> <%= item.name %> </h6>
+        <h6 class="pr-2", style="color:#a8a8ac;">Price - $<%= item.price %> </h6>
+        <h6 class="pr-2", style="color:#a8a8ac;"> <%= item.description %> </h6>
+        <%= cl_image_tag(item.images[0].key, style:"width: 250px; border-radius:24px;") %>
+      </div>
+      <% end %>
+      </div>
+
+    </div> -->
