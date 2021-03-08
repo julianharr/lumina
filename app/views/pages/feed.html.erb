@@ -19,7 +19,7 @@
       <% end %>
     </h4>
 
-  <% if Status.all.count.positive? %>
+  <% if user_has_status?(@user) %>
     <div id="status">
       <div class="card-notification-sm p-5">
         <p id="status-<%= @current_user_status.id %>">

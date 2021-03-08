@@ -25,9 +25,8 @@ class PagesController < ApplicationController
     # @charity = Charity.all.sample
     # stautus stuff
     @status = Status.new
-    @current_user_status = Status.where(:user_id == @user.id).last if Status.present?
-    @user_for_status = User.where(id: @current_user_status.user_id) if Status.present?
-
+    @current_user_status = Status.where(:user_id == @user.id).last if @user.status.count > (0)
+    @user_for_status = User.where(id: @current_user_status.user_id) if @user.status.count > (0)
     @chatrooms = Chatroom.where(user: current_user)
     @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
   end
