@@ -7,8 +7,8 @@
     <div class="d-flex flex-column dashboard-left-column">
 
       <!-- Container w/ avatar and basic details -->
-      <div class="container container-user d-flex h-25">
-        <%= cl_image_tag(@current_user.avatar.key) %>
+      <div class="container container-user d-flex" style="min-width: 350px;">
+        <%= cl_image_tag(@current_user.avatar.key, style:"min-width:250px; height: 255px") %>
         <div class="container-user-info d-flex flex-column justify-content-around p-3">
           <h5 style="color:white;"><%= @current_user.first_name %> <%= @current_user.last_name %></h5>
           <p>@<%= @current_user.nickname %></p>
@@ -32,8 +32,9 @@
 
 
     <div class="d-flex flex-column dashboard-right-column">
+
       <!-- Container w/ friends and modal pop-up -->
-      <div class="container container-friends h-25 p-3">
+      <div class="container container-friends p-3">
         <h5 style="color:white;">Friends</h5>
         <div class="container-friends-images pl-2">
           <% @current_user.friends.take(8).each do |friend| %>
@@ -41,6 +42,19 @@
           <% end %>
         </div>
       </div>
+
+      <div class="container container-location d-flex">
+        <%= image_tag 'Saly-21.png', class: "img-fluid", style:"width: 250px;" %>
+        <div class="d-flex flex-column flex-wrap justify-content-center">
+          <h5 style="color:white;">Location </h5>
+            <h6 class="pr-2", style="color:#a8a8ac;"> <%= @current_user.location %></h6>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container d-flex container-dash-events">
+      <%= image_tag 'Saly-19.png', class: "img-fluid", style:"width: 500px;" %>
     </div>
 
   </div>
