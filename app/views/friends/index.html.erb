@@ -5,7 +5,7 @@
   <div class="container dashboard-main d-flex justify-content-center flex-wrap pb-4 mb-5">
     <% current_user.friends.each do |friend| %>
       <!-- Friends Card -->
-      <div class="container d-flex border">
+      <div class="container border d-flex">
         <%= cl_image_tag(friend.avatar.key, style:"width: 200px; border-radius: 24px") %>
         <!-- Friend Info -->
         <div class="d-flex flex-column justify-content-between">
@@ -19,14 +19,30 @@
       </div>
       <% end %>
 
-    <!-- Strangers -->
+    <!-- Strangers You Might Like -->
     <div class="d-flex flex-wrap border">
     <% current_user.strangers.each do |stranger| %>
-        <div class="test">
+      <% if current_user.interests.any? { |interest| stranger.interests.include?(interest)} %>
+        <div class="test-container">
+
           <%= cl_image_tag(stranger.avatar.key, style:"width: 200px; border-radius: 24px;") %>
-          <%= stranger.first_name %>
+          <h5 style="color: white;"><%= stranger.first_name %> <%= stranger.last_name %></h5>
+
+          <% current_user.interests.each do |interest| %>
+            <% if (stranger.interests.include?(interest)) %>
+            <h5>You both love <%= interest %> </h5>
+            <% end %>
+          <% end %>
+
+          <p><%= stranger.first_name %> is interested in
+            <% stranger.interests.each do |interest| %>
+              <%= interest %>
+            <% end  %>
+
+          </p>
           <%= link_to "Request", friends_path(stranger), controller: "friends", action: 'create', method: 'post', class: "btn btn-primary btn-sm my-auto", id: stranger.id  %>
         </div>
+        <% end %>
       <% end %>
     </div>
 
