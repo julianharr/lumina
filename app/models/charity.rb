@@ -1,4 +1,5 @@
 class Charity < ApplicationRecord
+  # Search functionality
   include PgSearch::Model
   pg_search_scope :search_by_title_and_synopsis,
     against: [ :name, :description ],
