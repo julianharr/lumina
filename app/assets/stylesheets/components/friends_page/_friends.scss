@@ -1,3 +1,19 @@
-.test-container {
-  border: 2px solid red;
+.friend-container {
+  border-radius: 24px;
+  border: 0.05rem solid #3a3b3c;
+  background-color: #142535;
+  width: 48%;
+  box-shadow:  41px 41px 82px #111f2e,
+             -41px -41px 82px #172b3e;
+}
+
+.friend-container:hover {
+  box-shadow:  23px 23px 33px #0e1a26,
+             -23px -23px 33px #1a3046;
+}
+
+.btn-request,
+.btn-message {
+  border-radius: 24px;
+  width: 150px;
 }
