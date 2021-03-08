@@ -1,0 +1,33 @@
+<!-- Modal Wishlist-->
+<div class="modal fade" id="wishlistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-body-wishlist">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Wishlist Items</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-body-wishlist">
+        <% @current_user.wishlist.items.each do |item| %>
+          <div class="container container-wishlist-items d-flex m-2 p-4">
+            <%= cl_image_tag(item.images[0].key, style:"width: 250px; border-radius:24px;") %>
+            <div class="d-flex flex-column justify-content-center p-3">
+              <h6 class="pr-2", style="color:#a8a8ac;"> <%= item.name %> </h6>
+              <h6 class="pr-2", style="color:#a8a8ac;">Price - $<%= item.price %> </h6>
+              <h6 class="pr-2", style="color:#a8a8ac;"> <%= item.description %> </h6>
+
+              <!-- Donate Begin -->
+
+              <!-- Donate End -->
+
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

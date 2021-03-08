@@ -1,0 +1,68 @@
+.dashboard-main {
+  border-radius: 24px;
+  background-color: #182835;
+  margin-top: 80px;
+  padding: 16px;
+}
+
+.container-user,
+.container-friends,
+.container-user-interests,
+.container-location,
+.container-dash-large {
+  margin-top: 8px;
+  border-radius: 24px;
+  border: 0.05rem solid #3a3b3c;
+  padding: 0;
+  background-color: #142535;
+}
+
+// Left column within the main dashboard container
+
+.dashboard-left-column {
+  width: 50%;
+}
+
+// User info container
+
+.container-user {
+  width: 100%;
+}
+
+.container-user img {
+  border-radius: 24px 0px 0px 24px;
+}
+
+// Interest Container
+
+.container-user-interests {
+  width: 100%;
+}
+
+
+// Right column within the main dashboard container
+
+.dashboard-right-column {
+  width: 45%;
+  margin-left: 8px;
+}
+
+
+// Friends container
+
+.container-friends {
+  width: 100%;
+}
+
+.container-friends-images img {
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  margin: 8px;
+}
+
+
+.container-wishlist-items {
+  border-radius: 24px;
+  border: 0.05rem solid #3a3b3c;
+}
