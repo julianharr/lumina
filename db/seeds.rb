@@ -249,13 +249,11 @@ puts "--- HEY it's time to make Status Updates CMON !"
 
 
 
-batch_466.length.times do
-  counter = 1
-  make_status = Status.new(
+user_arr.each do |id|
+  make_status = Status.create(
     content: Faker::Quote.yoda,
-    user_id: counter
+    user_id: id
   )
-  counter +=1
 
   if make_status.valid?
     make_status.save!
