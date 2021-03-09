@@ -51,7 +51,7 @@
       <div class="container container-friends p-3">
         <div class="d-flex justify-content-between">
           <h5 style="color:white;">Friends</h5>
-          <h6> <%= link_to "See all", remote: true, "data-toggle" => "modal", "data-target" => "#exampleModal"%></h6>
+          <button type="button", data-toggle="modal", data-target="#friendsModal", class="btn-sm btn-primary", style="border-radius:24px; border:none;">See All</button>
           </div>
         <div class="container-friends-images pl-2">
           <% @user.friends.take(8).each do |friend| %>

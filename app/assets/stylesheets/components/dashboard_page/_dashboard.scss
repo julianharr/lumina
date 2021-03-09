@@ -15,6 +15,11 @@
   border: 0.05rem solid #3a3b3c;
   padding: 0;
   background-color: #142535;
+  transition: all 0.5s ease-in-out;
+    &:hover {
+      box-shadow:  7px 7px 6px #101e2b,
+             -7px -7px 6px #182c3f;
+    }
 }
 
 // Left column within the main dashboard container

@@ -13,7 +13,7 @@
           <%= cloudinary_imgs(event.image.key,event) %>
             <p class="p-3" style="font-weight:400;">
               <%= event.name %></p>
-              <%= link_to "More Info", event_path(event), class: "btn btn-info ml-3 mb-3 w-50" %>
+              <%= link_to "More Info", event_path(event), class: "btn btn-info ml-3 mb-3 w-50", style:"border-radius: 24px;" %>
         </div>
     <% end %>
   </div>

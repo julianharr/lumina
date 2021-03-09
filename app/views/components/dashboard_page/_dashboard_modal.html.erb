@@ -59,3 +59,35 @@
     </div>
   </div>
 </div>
+
+
+<!-- Friends Modal -->
+
+<div class="modal fade" id="friendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-body-friends">
+      <div class="modal-header">
+        <h6 class="pr-2", style="color:#a8a8ac;"><%= @user.first_name %>'s Friends</h6>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body d-flex flex-wrap justify-content-around", style="width: 800px;">
+        <% @user.friends.each do |friend| %>
+          <!-- Friends Card -->
+          <%= link_to profile_path(friend) do %>
+            <div class="friend-container-modal d-flex mb-3">
+              <%= cl_image_tag(friend.avatar.key, style:"width: 100px; border-radius: 24px 0px 0px 24px; margin-right: 16px;") %>
+              <div class="d-flex flex-column justify-content-center p-2">
+                <h5 style="color:white;"><%= friend.first_name %> <%= friend.last_name %></h5>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
