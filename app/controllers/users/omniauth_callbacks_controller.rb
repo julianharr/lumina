@@ -69,12 +69,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def create_user
     ## check that name exist ?
-
+    email = auth.info.email.present? ? auth.info.email : "no_email@gmail.com"
     first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user["login"].capitalize
     last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ""
 
-    User.create(
-      email: auth.info.email,
+    User.create!(
+      email: email,
       first_name: first_name,
       last_name: last_name,
       password: Devise.friendly_token[0, 20]

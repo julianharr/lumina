@@ -17,8 +17,10 @@ class Service < ApplicationRecord
     send("#{provider}_refresh_token!", super) if expired?
     super
   end
-  ### Meetup Client
 
+  ### Meetup Client
+  def meetup_client
+  end
   ### FACIE CLient
 
   def facebook_client

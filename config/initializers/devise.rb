@@ -270,11 +270,11 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
   # ==> OmniAuth
-  # Add a new OmniAuth provider. Check the wiki for more information on setting
+  # Add a new OmniAuth provider. Check the wiki for more information on settinghttps://eaf98daa3b14.ngrok.io/users/auth/facebook/callback
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"], scope: 'email,user_posts'
-config.omniauth :meetup, ENV['MEETUP_KEY'], ENV['MEETUP_SECRET'] #callback_url: 'https://www.love-lumina.me/'
+config.omniauth :meetup, ENV['MEETUP_KEY'], ENV['MEETUP_SECRET'], callback_url: 'https://d665e500e9d5.ngrok.io/users/auth/meetup/callback'
 # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
