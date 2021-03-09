@@ -15,18 +15,27 @@
       <% end %>
     </h4>
 
-    <!-- If Status exists, put on Feed -->
-    <% if user_has_status?(@user) %>
-      <div id="status">
-        <div class="card-notification-sm">
-          <p id="status-<%= @current_user_status.id %>">
-            <%= @user_for_status[0].first_name %>
-            <%= @user_for_status[0].last_name %>
-            <%= @current_user_status.content %>
+   <!-- If Status exists, put on Feed -->
+  <% if user_has_status?(@user) %>
+    <div id="status">
+      <div id="status-<%= @current_user_status.id %>">
+        <div class="card-notification-sm p-5 d-flex mb-2s">
+          <div class = "ml-3 mr-3">
+            <%= cl_image_tag(@user_for_status[0].avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 75px; width:75px; margin-bottom:8px; margin-left: 20px;") %>
+            <p>
+              <%= @user_for_status[0].first_name %>
+              <%= @user_for_status[0].last_name %>
+          </div>
+          <div class="ml-5 align-items-center mx-auto my-auto status-box text-center">
+            <p class="my-auto"> <%= @current_user_status.content %> </p>
+          </div>
           </p>
         </div>
       </div>
-    <% end %>
+    </div>
+  <% end %>
+
+    <!-- CHARITY CARD -->
 
     <!-- Charity Card -->
     <% charity_card = render 'components/feed_page/charity_card' %>

@@ -126,6 +126,7 @@ batch_466.each do |element|
   get_git_info(element)
 end
 
+
 puts "--- Making Humans Ended !"
 puts "--- Making Humans Friendships !"
 
@@ -244,6 +245,29 @@ end
 
 puts "--- Making Wish Lists Ended !"
 
+puts "--- HEY it's time to make Status Updates CMON !"
+
+
+
+user_arr.each do |id|
+  make_status = Status.create(
+    content: Faker::Quote.yoda,
+    user_id: id
+  )
+
+  if make_status.valid?
+    make_status.save!
+    puts "made Status"
+  else
+    puts "Status didn't work out ..."
+  end
+end
+
+# batch_466.length.times do
+#   make_status
+#   puts "made Status"
+# end
+
 puts "--- Making Items Bro !!"
 make_items
 puts "--- Making Items ENDED !!"
@@ -282,6 +306,8 @@ meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.
 meetup_event_spooler(meetup_events_finder({ latitude: "-37.784", longitude: "144.986", category: "food" }))
 #
 #
+
+
 # Big Daddy Events Scraper Below !!! Caution !!!
 #
 # interests_melb = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
