@@ -70,7 +70,7 @@ config.hosts << "d665e500e9d5.ngrok.io"
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
-
+  config.web_console.whiny_requests = false
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
