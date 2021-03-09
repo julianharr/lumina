@@ -21,6 +21,9 @@ class Service < ApplicationRecord
   ### Meetup Client
   def meetup_client
   end
+
+  def meetup_refresh_token!(token); end
+
   ### FACIE CLient
 
   def facebook_client
