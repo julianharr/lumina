@@ -80,7 +80,7 @@ $('button').on('click', function(){
                   animation: bang 1000ms ease-out forwards;\
                   opacity: 0';
 
-    var e = document.createElement("i");
+    var e = document.createElement("c");
     e.style.cssText = styles.toString();
     c.appendChild(e);
 }
