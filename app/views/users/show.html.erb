@@ -9,11 +9,10 @@
       <!-- Container w/ avatar and basic details -->
       <div class="container container-user d-flex" style="min-width: 350px;">
         <%= cl_image_tag(@user.avatar.key, style:"min-width:250px; height: 255px") %>
-        <div class="container-user-info d-flex flex-column justify-content-around p-3">
+        <div class="container-user-info d-flex flex-column justify-content-between p-3">
           <h5 style="color:white;"><%= @user.first_name %> <%= @user.last_name %></h5>
           <p>@<%= @user.nickname %></p>
-          <hr style="color:#3a3b3c">
-          <p style="color:#a8a8ac;"><%= @user.bio %></p>
+          <p style="color:#a8a8ac;"><%= @user.bio.truncate(100) %></p>
         </div>
       </div>
 
@@ -30,11 +29,16 @@
 
     <div class="container d-flex p-3 justify-content-left flex-wrap container-dash-large">
       <h5 class="mt-4 w-100" style="color:white;"> Discover <%= @user.first_name %>'s Wishlist</h5>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#wishlistModal">
-        View Wishlist
-      </button>
-
+      <!-- Button trigger modal (only viewable if they are friends) -->
+      <% if current_user.friends.include?(@user) %>
+        <button type="button" class="btn btn-info", style="border-radius: 24px;", data-toggle="modal" data-target="#wishlistModal">
+          View Wishlist
+        </button>
+      <% else %>
+        <button type="button" class="btn btn-info disabled", style="border-radius: 24px;", data-toggle="modal" data-target="#wishlistModal">
+          Add <%= @user.first_name %> to view
+        </button>
+      <% end %>
       <%= image_tag 'Saly-19.png', class: "img-fluid", style:"width: 500px;" %>
     </div>
 
@@ -51,7 +55,9 @@
           </div>
         <div class="container-friends-images pl-2">
           <% @user.friends.take(8).each do |friend| %>
-            <%= cl_image_tag(friend.avatar.key) %>
+            <%= link_to profile_path(friend) do %>
+              <%= cl_image_tag(friend.avatar.key) %>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -67,9 +73,15 @@
       <!-- Event Container -->
       <div class="container d-flex p-3 justify-content-left flex-wrap container-dash-large">
         <h5 class="mt-4 w-100" style="color:white;"> Discover <%= @user.first_name %>'s Event History</h5>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#eventsModal">
-        View Events
-      </button>
+        <% if current_user.friends.include?(@user) %>
+          <button type="button" class="btn btn-info", style="border-radius: 24px;" data-toggle="modal" data-target="#eventsModal">
+          View Events
+          </button>
+        <% else %>
+          <button type="button" class="btn btn-info disabled", style="border-radius: 24px;" data-toggle="modal" data-target="#eventsModal">
+          Add <%= @user.first_name %> to view
+          </button>
+        <% end %>
         <%= image_tag 'Saly-3.png', class: "img-fluid", style:"width: 500px;" %>
       </div>
     </div>
