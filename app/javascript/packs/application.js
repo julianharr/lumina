@@ -39,6 +39,35 @@ import { initMapbox } from "../plugins/init_mapbox";
 // Selecting The Container
 const container = document.querySelector(".container-infinite");
 
+// Need to separate these...
+
+
+// Confetti Button Function
+// Credit: https://codepen.io/xxrobot/pen/KZvegB
+// Modified by Julian
+
+const button = document.querySelectorAll(".confettiButton");
+
+$('button').on('click', function(){
+  function random(max){
+      return Math.random() * (max - 0) + 0;
+  }
+
+  var c = document.createDocumentFragment();
+  for (var i=0; i<100; i++) {
+    var styles = 'transform: translate3d(' + (random(500) - 250) + 'px, ' + (random(200) - 150) + 'px, 0) rotate(' + random(360) + 'deg);\
+                  background: hsla('+random(360)+',100%,50%,1);\
+                  animation: bang 1000ms ease-out forwards;\
+                  opacity: 0';
+
+    var e = document.createElement("c");
+    e.style.cssText = styles.toString();
+    c.appendChild(e);
+}
+  $(this).append(c);
+})
+
+// End Confetti Function
 
 function arrayRemove(arr, value) {
   return arr.filter(function (ele) {

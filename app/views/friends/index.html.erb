@@ -1,58 +1,11 @@
 <div class="d-flex">
   <%= render 'components/side_bar/side_bar_final' %>
-
   <!-- Friends Container-->
   <div class="container dashboard-main d-flex justify-content-center flex-wrap pb-4 mb-5">
     <h3 class="w-100 mt-2 ml-3">Your Friends</h3>
-    <% current_user.friends.each do |friend| %>
-      <!-- Friends Card -->
-      <div class="friend-container d-flex mb-5 mr-3 mt-5">
-        <%= cl_image_tag(friend.avatar.key, style:"width: 200px; border-radius: 24px 0px 0px 24px; margin-right: 16px;") %>
-
-        <!-- Friend Info -->
-        <div class="d-flex flex-column justify-content-center p-2">
-          <h5 style="color:white"><%= friend.first_name %> <%= friend.last_name %></h5>
-          <%= link_to 'Message', chatrooms_path(user_two_id: friend), method: :post, class:"btn btn-message btn-info" %>
-
-          <!-- TODO: Add Wishlist to Current Friend Card -->
-
-          <div class="d-flex justify-content-start ml-1 mt-5">
-          <%= link_to "Block", friends_block_path(friend), controller: "friends", action: 'block', method: 'post', id: friend.id, class:"mr-2" %>
-          <%= link_to "Remove", friends_delete_path(friend), controller: "friends", action: 'remove', method: 'post', id: friend.id  %>
-          </div>
-        </div>
-      </div>
-      <% end %>
-
-    <!-- Strangers You Might Like -->
-    <div class="d-flex flex-wrap">
-    <h3 class="w-100 mt-5 ml-3">Meet Someone New</h3>
-    <% current_user.strangers.each do |stranger| %>
-      <% if current_user.interests.any? { |interest| stranger.interests.include?(interest)} %>
-        <div class="friend-container d-flex mb-5 mr-3 mt-5">
-
-          <%= cl_image_tag(stranger.avatar.key, class:"img-fluid", style:"width: 200px;  border-radius: 24px 0px 0px 24px; margin-right: 16px;") %>
-
-          <div class="d-flex flex-column justify-content-center p-2">
-            <h5 style="color: white;"><%= stranger.first_name %> <%= stranger.last_name %></h5>
-
-            <% current_user.interests.each do |interest| %>
-              <% if (stranger.interests.include?(interest)) %>
-              <h6 style="color:grey;">You both love <span class="span-interest"><%= interest %><span> </h6>
-              <% end %>
-            <% end %>
-
-            <%#= stranger.first_name %>
-              <%# stranger.interests.each do |interest| %>
-                <%#= interest %>
-              <%# end  %>
-
-            <%= link_to "Request", friends_path(stranger), controller: "friends", action: 'create', method: 'post', class: "btn btn-info btn-request mt-2", id: stranger.id  %>
-          </div>
-        </div>
-        <% end %>
-      <% end %>
-    </div>
-
+    <!-- Friend Cards -->
+    <%= render 'components/friends_page/friend_card' %>
+    <!-- Stranger Cards -->
+    <%= render 'components/friends_page/stranger_card' %>
   </div>
 </div>

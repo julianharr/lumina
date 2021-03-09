@@ -7,6 +7,7 @@
   padding: 0;
   margin: 40px 0;
   border-radius: 10px;
+  border: 0.05rem solid #3a3b3c;
 }
 
 .card-charity img {
@@ -23,8 +24,29 @@
 }
 
 .card-charity p {
-  padding: 10px 20px;
   text-align: left;
   color: $light-gray;
   font-size: 18px;
+}
+
+@keyframes bang {
+  from {
+    transform: translate3d(0,0,0);
+    opacity: 1;
+  }
+}
+
+.confettiButton {
+  position: relative;
+}
+
+c {
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 0;
+  width: 3px;
+  height: 8px;
+  background: red;
+  opacity: 0;
 }
