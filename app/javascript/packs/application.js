@@ -39,26 +39,6 @@ import { initMapbox } from "../plugins/init_mapbox";
 // Selecting The Container
 const container = document.querySelector(".container-infinite");
 
-// The Scroll Event
-window.addEventListener("scroll", () => {
-  const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
-  if (scrollTop + clientHeight > scrollHeight - 5) {
-    setTimeout(createPost, 2000);
-  }
-});
-// The createPost function creates The HTML for the charity post
-// Appends to the bottom of the container
-function createPost() {
-  const post = document.createElement("div");
-  post.className = "card-charity";
-  post.innerHTML = `<img src="https://source.unsplash.com/random/600x400" alt=""><h1>Lorem ipsum dolor sit amet</h1>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
-     tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
-     voluptatibus obcaecati sint dignissimos quas.</p>`;
-  //   Appending the post to the container.
-  container.appendChild(post);
-}
-
 // Need to separate these...
 
 
@@ -89,23 +69,15 @@ $('button').on('click', function(){
 
 // End Confetti Function
 
-// This is JAVASCRIPT for the INTERESTS SELECTOR
-// image gallery
-// // init the state from the input
-// $(".image-checkbox").each(function () {
-//   if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
-//     $(this).addClass('image-checkbox-checked');
-//   }
-//   else {
-//     $(this).removeClass('image-checkbox-checked');
-//   }
-// });
 function arrayRemove(arr, value) {
   return arr.filter(function (ele) {
     return ele != value;
   });
 }
 
+
+
+// FOR THE INTERESTS SELECTION TO ARRAY
 window.interests = [];
 
 const images = document.querySelectorAll(".image-checkbox");
@@ -132,3 +104,25 @@ document.addEventListener("turbolinks:load", () => {
   // createPost();
   initChatroomCable();
 });
+
+
+
+const feedCards = document.querySelector('.feed_cards');
+// The Scroll Event.
+window.addEventListener('scroll',()=>{
+  const {scrollHeight,scrollTop,clientHeight} = document.documentElement;
+  if(scrollTop + clientHeight > scrollHeight - 5){
+    setTimeout(createDiv,2000);
+  }
+});
+
+// The createPost function creates The HTML for the blog post.
+// It append it to the container.
+function createDiv(){
+  const post = document.createElement('div');
+  post.className = 'text';
+  post.innerHTML = <%= render "components/feed_page/feed_randomising" %>
+//   Appending the post to the container.
+  feedCards.appendChild(post);
+}
+
