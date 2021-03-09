@@ -25,10 +25,11 @@ class PagesController < ApplicationController
     # @charity = Charity.all.sample
     # stautus stuff
     @status = Status.new
-    #
     @current_user_status = Status.where(:user_id == @user.id).last if @user.status.count > (0)
     #THE CURRENT USER WHO JUST POSTED STATUS
     @user_for_status = User.where(id: @current_user_status.user_id) if @user.status.count > (0)
+    #SELECT RANDOM FRIEND
+    @friend_status = current_user.friends
 
     @chatrooms = Chatroom.where(user: current_user)
     @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
