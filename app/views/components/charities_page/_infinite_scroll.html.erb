@@ -1,14 +1,49 @@
-<div class="container-charities">
+<div class="container-charities mx-auto">
   <div class="container container-infinite">
-    <h1>Charity List Infinite Scroll</h1>
+    <h1>Charities</h1>
+
+
+    <%= form_tag charities_path, method: :get do %>
+    <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+      placeholder: "Find a charity",
+      autocomplete: "off"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 offset-sm-2">
+          <div id="charities">
+            <% @charities.each do |charity| %>
+              <div class="card-charity">
+              <h4><%= charity.name %></h4>
+              <p><%= charity.description %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
   <!--    The First Div      -->
+  <%#= @charities.each do |charity| %>
     <div class="card-charity">
       <img src="https://source.unsplash.com/random/600x400">
-      <h1>Lorem ipsum dolor sit amet</h1>
+      <h2> <%#= charity.name %> </h2>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
          tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
          voluptatibus obcaecati sint dignissimos quas.</p>
     </div>
+  <%# end %>
   <!--    The Second Div      -->
     <div class="card-charity">
       <img src="https://source.unsplash.com/random/600x400">
@@ -31,6 +66,5 @@
     <div class="ball first"></div>
     <div class="ball second"></div>
     <div class="ball third"></div>
-    <a href="#top">Top</a>
   </div>
 </div>
