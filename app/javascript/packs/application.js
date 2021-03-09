@@ -59,6 +59,36 @@ function createPost() {
   container.appendChild(post);
 }
 
+// Need to separate these...
+
+
+// Confetti Button Function
+// Credit: https://codepen.io/xxrobot/pen/KZvegB
+// Modified by Julian
+
+const button = document.querySelectorAll(".confettiButton");
+
+$('button').on('click', function(){
+  function random(max){
+      return Math.random() * (max - 0) + 0;
+  }
+
+  var c = document.createDocumentFragment();
+  for (var i=0; i<100; i++) {
+    var styles = 'transform: translate3d(' + (random(500) - 250) + 'px, ' + (random(200) - 150) + 'px, 0) rotate(' + random(360) + 'deg);\
+                  background: hsla('+random(360)+',100%,50%,1);\
+                  animation: bang 1000ms ease-out forwards;\
+                  opacity: 0';
+
+    var e = document.createElement("i");
+    e.style.cssText = styles.toString();
+    c.appendChild(e);
+}
+  $(this).append(c);
+})
+
+// End Confetti Function
+
 // This is JAVASCRIPT for the INTERESTS SELECTOR
 // image gallery
 // // init the state from the input
