@@ -16,5 +16,14 @@
   color: #C5B5B6
 }
 
+.sidebar .active {
+  background-color: #9247cd;
+}
 
-
+.sidebar .nav-links:hover {
+  background-color: #666;
+  color: white;
+  a {
+    text-decoration: none;
+  }
+}
