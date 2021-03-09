@@ -1,9 +1,16 @@
 class Charity < ApplicationRecord
-  # ass
+  # Search functionality
+  include PgSearch::Model
+  pg_search_scope :search_by_title_and_synopsis,
+    against: [ :name, :description ],
+    using: {
+      tsearch: { prefix: true }
+    }
+  # associations
   has_many :donate
   has_many :users, through: :donate, dependent: :destroy
 
-  # vals
+  # validations
   validates :location, presence: true
   validates :website, presence: true
   # validates :category, presence: true

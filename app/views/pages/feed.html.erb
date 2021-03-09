@@ -3,22 +3,19 @@
   <div>
     <%= render 'components/side_bar/side_bar_final' %>
   </div>
-  <!-- Sign out button should be fixed to top right of feed -->
-  <!-- <div class="h-25" style="text-align:right;"> <%#= link_to 'Sign Out', destroy_user_session_path %></div> -->
+
   <div class="ml-5 mt-5 mr-2">
     <h3>Feed</h3>
 
-
-
-
-  <!-- STATUS UPDATES -->
-    <h4 class="card-notification-sm">
+    <!-- Status entry -->
+    <h4 class="card-notification-sm p-3">
       <%= simple_form_for([ @status ], remote: true) do |f| %>
-        <%= f.input :content %>
-        <%= f.button :submit %>
+        <%= f.input :content, placeholder: "Share something great with the world" %>
+        <%= f.button :submit, class:"btn btn-info", style:"border-radius: 24px;" %>
       <% end %>
     </h4>
 
+   <!-- If Status exists, put on Feed -->
   <% if user_has_status?(@user) %>
     <div id="status">
       <div id="status-<%= @current_user_status.id %>">
@@ -40,34 +37,42 @@
 
     <!-- CHARITY CARD -->
 
+    <!-- Charity Card -->
     <% charity_card = render 'components/feed_page/charity_card' %>
     <% event_card = render 'components/feed_page/event_card' %>
     <% user_in_common = render 'components/feed_page/user_in_common' %>
     <% randomised_array =[charity_card, event_card, user_in_common] %>
 
-    <!-- ALGORITHM LOGIC -->
+    <!-- ALGORITHM LOGIC (Can this go in a partial?) -->
     <% array = [] %>
+
     <% 30.times do %>
       <% array << 'charity_card' %>
     <% end %>
+
     <% 30.times do %>
       <% array << 'event_card' %>
     <% end %>
+
     <% 30.times do %>
       <% array << 'user_in_common' %>
     <% end %>
+
     <% array.shuffle! %>
     <% charity_array = [] %>
     <% event_array = [] %>
+
     <% @charity.each do |charity| %>
       <% charity_array << charity %>
     <% end %>
+
     <% @events.each do |event| %>
       <% event_array << event %>
     <% end %>
-    <% array.take(10) %>
-    <!-- INTERESTS LOGIC -->
 
+    <% array.take(10) %>
+
+    <!-- INTERESTS LOGIC (Can this go in a partial?) -->
     <% n = 0 %>
     <% array.first(10).each do |selection| %>
       <% if selection == 'charity_card' %>
@@ -78,41 +83,46 @@
             <h5 class="pt-2">Charity <i class="fas fa-ribbon ribbon m-1"></i> </h5>
             <h6><%= @charity[n].name %> <i class="fas fa-globe-asia m-2"></i> <%= @charity[n].location %> </h6>
             <p style="font-weight: 400;"><%=  h truncate(@charity[n].description, :length => 100) %></p>
-            <!-- Need to fix from <a> tag to link_to -->
-            <!-- new_charity_donate_path(@charity[n]) taken out of the link_to below as temp fix -->
             <a href="<%= @charity[n].website %>", target="_blank">Website</a>
             <%= link_to "More Info", charities_path, class:"btn btn-info donate-btn w-25 mt-2", style:"border-radius: 24px;" %>
           </div>
           <% n+= 1%>
         </div>
+
       <% elsif selection == 'event_card' %>
+
         <!-- Event Card -->
+
         <div class="card-notification-md mb-2 mt-2 d-flex p-3" style="color:white; border-radius: 12px;">
-          <!-- <img src="https://source.unsplash.com/random/450x300", style="border-radius:12px;"> -->
-          <%= cl_image_tag(event_array[n].image.key, height: 450, width: 300, fetch_format: :auto, crop: "scale", class: "float-left card-i.namg-top img-fluid mx-auto rounded", alt: "") %>
+          <%= cl_image_tag(event_array[n].image.key, width: 250, style:"border-radius:24px;") %>
           <div class="d-flex flex-column align-items-start justify-content-around">
             <h5 class="ml-3 p-2 text-left"><%= event_array[n].name.capitalize %></h5>
-            <%#= event_array[n].address %>
-            <div class="d-flex">
+            <div class="d-flex align-items-center ml-4">
               <% if event_array[n].host_link.present? %>
-                <img src="<%= event_array[n].host_link  %>"  style="height: 50px; width:50px; margin-bottom:8px;" class="avatar mx-1 my-auto"">
-                <h6 class="pr-5 m-2 my-auto">
+
+                <img src="<%= event_array[n].host_link %>" style="height: 50px; width:50px; margin-bottom:8px;" class="avatar mr-2">
+                <h6>
                   Organised by <%= event_array[n].host_name  %>
-                <% end %>
-              </h6>
+              <% end %>
+                </h6>
             </div>
-            <div class="d-flex justify-content-between ">
+            <div class="d-flex justify-content-around ">
               <%= link_to "See Event", event_path(event_array[n]), class: "btn btn-info m-3", style: "border-radius: 24px;" %>
-              <p class="ml-3 p-2 my-auto", style="color:white; font-weight: 400;"><%= event_array[n].attendees %> going</p>
+              <p class="ml-1 p-2 my-auto", style="color:white; font-weight: 400;"><%= event_array[n].attendees %> going</p>
             </div>
           </div>
           <% n+= 1%>
         </div>
+
+
       <% else %>
+
         <!-- Have you seen User card -->
         <div class="card-notification-sm mb-2 p-3 mt-2 d-flex">
           <%= image_tag 'Saly-18.png', style:"width: 300px;" %>
           <div class="d-flex flex-column justify-content-center">
+
+            <!-- Need to fix this so that 'Add Now' sends friend request to the targeted user -->
             <h5 style="color:white;">Have you seen <%= @users[n].first_name %>? </h5>
             <h6 style="color:white;">They have the same interests as you!</h6>
             <div class="btn btn-info w-50 mt-2" style="border-radius: 24px;">Add now!</div>
@@ -122,8 +132,11 @@
       <% end %>
     <% end %>
   </div>
+
   <br>
+
   <!-- Right Column -->
+
   <div class="container d-flex flex-column align-items-end mr-3 column-right">
     <div class="card-sm-users mb-2", style="border-radius: 12px;">
       <h6 class="ml-4 pt-3", style="color: white;">Connect with Friends</h6>
