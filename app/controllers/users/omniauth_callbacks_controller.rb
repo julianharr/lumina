@@ -58,12 +58,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def service_attrs
     expires_at = auth.credentials.expires_at.present? ? Time.at(auth.credentials.expires_at) : nil
+    refresh_token = auth.credentials.refresh_token.present? ? auth.credentials.refresh_token : nil
     {
       provider: auth.provider,
       uid: auth.uid,
       expires_at: expires_at,
       access_token: auth.credentials.token,
-      access_token_secret: auth.credentials.secret
+      access_token_secret: auth.credentials.secret,
+      refresh_token: refresh_token
     }
   end
 
