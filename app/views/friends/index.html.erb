@@ -11,7 +11,7 @@
 
         <!-- Friend Info -->
         <div class="d-flex flex-column justify-content-center p-2">
-          <h3><%= friend.first_name %> <%= friend.last_name %></h3>
+          <h5 style="color:white"><%= friend.first_name %> <%= friend.last_name %></h5>
           <%= link_to 'Message', chatrooms_path(user_two_id: friend), method: :post, class:"btn btn-message btn-info" %>
 
           <!-- TODO: Add Wishlist to Current Friend Card -->
@@ -31,14 +31,14 @@
       <% if current_user.interests.any? { |interest| stranger.interests.include?(interest)} %>
         <div class="friend-container d-flex mb-5 mr-3 mt-5">
 
-          <%= cl_image_tag(stranger.avatar.key, class:"img-fluid", style:"width: 280px;  border-radius: 24px 0px 0px 24px; margin-right: 16px;") %>
+          <%= cl_image_tag(stranger.avatar.key, class:"img-fluid", style:"width: 200px;  border-radius: 24px 0px 0px 24px; margin-right: 16px;") %>
 
           <div class="d-flex flex-column justify-content-center p-2">
-            <h3 style="color: white;"><%= stranger.first_name %> <%= stranger.last_name %></h3>
+            <h5 style="color: white;"><%= stranger.first_name %> <%= stranger.last_name %></h5>
 
             <% current_user.interests.each do |interest| %>
               <% if (stranger.interests.include?(interest)) %>
-              <h5 style="color:white;">You both love <%= interest %> </h5>
+              <h6 style="color:grey;">You both love <span class="span-interest"><%= interest %><span> </h6>
               <% end %>
             <% end %>
 
