@@ -1,33 +1,46 @@
-<div class="container-charities mx-auto">
-  <div class="container container-infinite">
-    <h1>Charities</h1>
-
-
-    <%= form_tag charities_path, method: :get do %>
-    <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-      placeholder: "Find a charity",
-      autocomplete: "off"
-    %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
-    <% end %>
-
-
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 offset-sm-2">
-          <div id="charities">
-            <% @charities.each do |charity| %>
-              <div class="card-charity">
-              <h4><%= charity.name %></h4>
-              <p><%= charity.description %></p>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
+<!-- Big giant container -->
+<div class="container d-flex flex-wrap">
+  <!-- Container to hold dog image and form -->
+  <div class="container d-flex ">
+    <!-- Container with dog image -->
+    <div class="container container-image-dog w-50">
+      <%= image_tag 'Sally-4.png', class:"img-fluid" %>
     </div>
+    <!-- Container with form -->
+    <div class="container d-flex flex-column w-50 my-auto">
+      <h2>Charities</h2>
+      <h5 style="color: lightgrey;" class="mb-4">At Lumina, we're proud to provide information and access
+        to charities from around the world. We're putting a spotlight
+        on organisations that genuinely make the world a better place.
+      </h5>
+      <%= form_tag charities_path, method: :get do %>
+        <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+          placeholder: "Find a charity",
+          autocomplete: "off"
+        %>
+        <%= submit_tag "Search for Charities", class: "btn btn-info mt-2", style:"border-radius: 24px;" %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="container d-flex flex-wrap justify-content-center">
+      <% @charities.each do |charity| %>
+        <div class="card-charity d-flex flex-column p-3 m-4">
+          <h4 style="color:white"><%= charity.name %></h4>
+          <p><%= charity.description %></p>
+          <%= link_to "Visit Website", charity.website, target: "_blank", style: "color:white; font-weight: 700; text-decoration: none; margin: 8px 0px;" %>
+          <button class="btn btn-info w-50 confettiButton" style="border-radius: 24px;">
+            <span>
+              Pledge Donation
+            </span>
+          </button>
+        </div>
+      <% end %>
+  </div>
+</div>
 
 
 
@@ -36,7 +49,7 @@
 
   <!--    The First Div      -->
   <%#= @charities.each do |charity| %>
-    <div class="card-charity">
+ <!--    <div class="card-charity">
       <img src="https://source.unsplash.com/random/600x400">
       <h2> <%#= charity.name %> </h2>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
@@ -45,7 +58,7 @@
     </div>
   <%# end %>
   <!--    The Second Div      -->
-    <div class="card-charity">
+    <!-- <div class="card-charity">
       <img src="https://source.unsplash.com/random/600x400">
       <h1>Lorem ipsum dolor sit amet</h1>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
@@ -53,18 +66,18 @@
          voluptatibus obcaecati sint dignissimos quas.</p>
     </div>
   <!--    The Third Div      -->
-    <div class="card-charity">
+    <!-- <div class="card-charity">
       <img src="https://source.unsplash.com/random/600x400">
       <h1>Lorem ipsum dolor sit amet</h1>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
          tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
          voluptatibus obcaecati sint dignissimos quas.</p>
     </div>
-  </div>
+  </div> -->
   <!--  The Loading Animation.    -->
-  <div class="loading">
+  <!-- <div class="loading">
     <div class="ball first"></div>
     <div class="ball second"></div>
     <div class="ball third"></div>
-  </div>
-</div>
+  </div> -->
+<!-- </div> -->
