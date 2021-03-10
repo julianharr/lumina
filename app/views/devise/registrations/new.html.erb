@@ -1,41 +1,66 @@
-<div class="container d-flex flex-column flex-lg-row align-items-center signup-container">
+<div class="container d-flex pl-5" style="position: absolute; top: 45px;">
+<h1>Sign up to Lumina</h1>
+</div>
+<div class="container d-flex flex-column flex-lg-row justify-content-center align-items-center signup-container">
   <div class="col-lg-6 col-md-12 col-sm-12 m-5">
-    <h1>Sign up to Lumina</h1>
+    <div class="d-flex align-items-center">
+    <h5 class="mr-2" style="color: lightgrey;">Sign up with Meetup</h5>
+      <!-- Sign up with Meetup -->
+      <%= link_to user_meetup_omniauth_authorize_path, class: "mr-2", method: :post  do %>
+        <i class="fab fa-meetup" style="font-size: 32px; color: #f64160;"></i>
+      <% end %>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <!-- Sign up with Facebook -->
+      <h5 class="mr-2" style="color: lightgrey;">Sign up with Facebook</h5>
+      <%= link_to user_facebook_omniauth_authorize_path, method: :post  do %>
+        <i class="fab fa-facebook-square" style="font-size: 32px; color: ##176ee5;"></i>
+      <% end %>
+    </div>
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
-      <div class="form-inputs", style="color:white;">
+      <div class="form-inputs", style="color:lightgrey; font-weight: 700">
         <%= f.input :email,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "Email" }%>
+                label: false,
+                placeholder: "Email address",
+                input_html: { autocomplete: "Email", style:"border-radius:8px; border: none; height: 48px; margin-top: 12px;" }%>
         <%= f.input :first_name,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "First Name" }%>
+                label: false,
+                placeholder: "First name",
+                input_html: { autocomplete: "First Name", style:"border-radius:8px; border: none; height: 48px;" }%>
         <%= f.input :last_name,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "Last Name" }%>
+                label: false,
+                placeholder: "Last name",
+                input_html: { autocomplete: "Last Name", style:"border-radius:8px; border: none; height: 48px;" }%>
         <%= f.input :birthday, as: :date, start_year: Time.now.year - 90, end_year: Time.now.year - 1,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "Birthday" }%>
+                input_html: { autocomplete: "Birthday", style: "border-radius:8px; border: none;" }%>
         <%= f.input :password,
                 required: true,
+                label: false,
+                placeholder: "Password",
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password", style:"border-radius:8px; border: none;" } %>
         <%= f.input :password_confirmation,
                 required: true,
-                input_html: { autocomplete: "new-password" } %>
-        <%= f.input :photo, as: :file %>
+                label: false,
+                placeholder: "Confirm password",
+                input_html: { autocomplete: "new-password", style:"border-radius:8px; border: none;" } %>
+        <%= f.input :photo, as: :file, input_html: { style: "border-radius:8px; width: 250px;" } %>
       </div>
       <div class="form-actions">
-        <%= f.button :submit, "Sign up", class:"btn btn-primary my-2"%>
+        <%= f.button :submit, "Sign up for Lumina", class:"btn btn-info w-50 my-2", style:"border-radius: 12px;"%>
         <%# <%= render "devise/shared/links" %>
       </div>
     <% end %>
-    <%= link_to "Login MEETUP TEST", user_meetup_omniauth_authorize_path, class: "btn btn-success", method: :post  %>
-    <%= link_to "Sign UP with Facebook TEST", user_facebook_omniauth_authorize_path, class: "btn btn-danger", method: :post  %>
   </div>
-  <%= image_tag 'Saly-14.png', class: "img-fluid col-lg-6 col-md-12", id:"img-dog" %>
+  <%= image_tag 'Saly-14.png', class: "img-fluid col-lg-6 col-md-12 mb-5", id:"img-dog" %>
 </div>
