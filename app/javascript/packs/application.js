@@ -118,6 +118,7 @@ window.addEventListener('scroll',()=>{
 
 // The createPost function creates The HTML for the blog post.
 // It append it to the container.
+
 // function createDiv(){
 //   const post = document.createElement('div');
 //   post.className = 'text';
