@@ -107,22 +107,22 @@ document.addEventListener("turbolinks:load", () => {
 
 
 
-const feedCards = document.querySelector('.feed_cards');
-// The Scroll Event.
-window.addEventListener('scroll',()=>{
-  const {scrollHeight,scrollTop,clientHeight} = document.documentElement;
-  if(scrollTop + clientHeight > scrollHeight - 5){
-    setTimeout(createDiv,2000);
-  }
-});
+// const feedCards = document.querySelector('.feed_cards');
+// // The Scroll Event.
+// window.addEventListener('scroll',()=>{
+//   const {scrollHeight,scrollTop,clientHeight} = document.documentElement;
+//   if(scrollTop + clientHeight > scrollHeight - 5){
+//     setTimeout(createDiv,2000);
+//   }
+// });
 
-// The createPost function creates The HTML for the blog post.
-// It append it to the container.
-function createDiv(){
-  const post = document.createElement('div');
-  post.className = 'text';
-  post.innerHTML = <%= render "components/feed_page/feed_randomising" %>
-//   Appending the post to the container.
-  feedCards.appendChild(post);
-}
+// // The createPost function creates The HTML for the blog post.
+// // It append it to the container.
+// function createDiv(){
+//   const post = document.createElement('div');
+//   post.className = 'text';
+//   post.innerHTML = <%= render "components/feed_page/feed_randomising" %>
+// //   Appending the post to the container.
+//   feedCards.appendChild(post);
+// }
 
