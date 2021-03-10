@@ -9,50 +9,50 @@
 
       <!-- Feed -->
       <div class="<%= 'active' if current_page?(feed_path) %> nav-links d-flex">
-        <i class="fas fa-newspaper w-25 mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
+        <i class="fas fa-newspaper w-25 mr-4" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start w-100">
-          <%= link_to "Feed", feed_path, class:"sidebar-link", style:"color:white"; %>
+          <%= link_to "Feed", feed_path, class:"sidebar-link" %>
         </div>
       </div>
 
       <!-- Dashboard -->
       <div class="<%= 'active' if current_page?(dashboard_path) %> nav-links d-flex">
-        <i class="fas fa-user-friends w-25 mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
+        <i class="fas fa-user-friends w-25 mr-4" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start w-100">
-          <%= link_to "Dashboard", dashboard_path, class:"sidebar-link", style:"color:white"; %>
+          <%= link_to "Dashboard", dashboard_path, class:"sidebar-link" %>
         </div>
       </div>
 
       <!-- Events -->
       <div class="<%= 'active' if current_page?(events_path) %> nav-links d-flex">
-        <i class="fas fa-handshake w-25 mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
+        <i class="fas fa-handshake w-25 mr-4" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start  w-100">
-          <%= link_to "Events", events_path, class:"sidebar-link", style:"color:white";  %>
+          <%= link_to "Events", events_path, class:"sidebar-link" %>
         </div>
       </div>
 
       <!-- Messages -->
       <div class="<%= 'active' if current_page?(chatrooms_path) %> nav-links d-flex">
-        <i class="fas fa-comments w-25 mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
+        <i class="fas fa-comments w-25 mr-4" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start w-100">
-          <%= link_to "Conversations", chatrooms_path, class:"sidebar-link", style:"color:white"; %>
+          <%= link_to "Conversations", chatrooms_path, class:"sidebar-link" %>
         </div>
       </div>
 
       <!-- Charities -->
       <div class="<%= 'active' if current_page?(charities_path) %> nav-links d-flex">
-        <i class="fas fa-hand-holding-heart w-25 mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
+        <i class="fas fa-hand-holding-heart w-25 mr-4" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start w-100">
-          <%= link_to "Give Back", charities_path, class:"sidebar-link", style:"color:white"; %>
+          <%= link_to "Give Back", charities_path, class:"sidebar-link" %>
         </div>
       </div>
 
       <!-- Friend Requests -->
       <div class="<%= 'active' if current_page?(friends_path) %> nav-links d-flex">
         <% count = current_user.requested_friend_ids.count %>
-        <i class="fas fa-smile w-25  mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
+        <i class="fas fa-smile w-25  mr-4" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start align-items-center  w-100">
-          <%= link_to "Friends ", friends_path, class:"sidebar-link", style:"color:white"; %>
+          <%= link_to "Friends ", friends_path, class:"sidebar-link" %>
 
           <% if current_user.requested_friend_ids.count >= 1 %>
 
@@ -64,9 +64,9 @@
 
       <!-- Sign Out -->
       <div class="nav-links d-flex">
-        <i class="fas fa-sign-out-alt w-25 mr-4" style="font-size: 24px; color:#a8a8ac;"></i>
+        <i class="fas fa-sign-out-alt w-25 mr-4" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start w-100">
-          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"sidebar-link", style:"color:white"; %>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"sidebar-link" %>
         </div>
       </div>
     </div>
