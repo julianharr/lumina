@@ -30,6 +30,8 @@
             <p class="my-auto"> <%= @current_user_status.content %> </p>
           </div>
           </p>
+          <% heart = rand(0..10) %>
+          <i class="far fa-heart mr-2" style="color:red"></i><%= heart %>
         </div>
       </div>
     </div>
