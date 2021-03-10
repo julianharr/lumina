@@ -121,7 +121,7 @@ window.addEventListener('scroll',()=>{
 function createDiv(){
   const post = document.createElement('div');
   post.className = 'text';
-  post.innerHTML = <%= render "components/feed_page/feed_randomising" %>
+  // post.innerHTML = <%= render "components/feed_page/feed_randomising" %>
 //   Appending the post to the container.
   feedCards.appendChild(post);
 }
