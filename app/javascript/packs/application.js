@@ -42,38 +42,38 @@ const container = document.querySelector(".container-infinite");
 // Need to separate these...
 
 
-// Confetti Button Function
+// Confetti Button Function (Not working properly)
 // Credit: https://codepen.io/xxrobot/pen/KZvegB
 // Modified by Julian
 
-const button = document.querySelectorAll(".confettiButton");
+// const confettiButton = document.querySelectorAll(".confettiButton");
 
-$('button').on('click', function(){
-  function random(max){
-      return Math.random() * (max - 0) + 0;
-  }
+// $("confettiButton").on('click', function(){
+//   function random(max){
+//       return Math.random() * (max - 0) + 0;
+//   }
 
-  var c = document.createDocumentFragment();
-  for (var i=0; i<100; i++) {
-    var styles = 'transform: translate3d(' + (random(500) - 250) + 'px, ' + (random(200) - 150) + 'px, 0) rotate(' + random(360) + 'deg);\
-                  background: hsla('+random(360)+',100%,50%,1);\
-                  animation: bang 1000ms ease-out forwards;\
-                  opacity: 0';
+//   let c = document.createDocumentFragment();
+//   for (let i=0; i<100; i++) {
+//     var styles = 'transform: translate3d(' + (random(500) - 250) + 'px, ' + (random(200) - 150) + 'px, 0) rotate(' + random(360) + 'deg);\
+//                   background: hsla('+random(360)+',100%,50%,1);\
+//                   animation: bang 1000ms ease-out forwards;\
+//                   opacity: 0';
 
-    var e = document.createElement("c");
-    e.style.cssText = styles.toString();
-    c.appendChild(e);
-}
-  $(this).append(c);
-})
+//     var e = document.createElement("c");
+//     e.style.cssText = styles.toString();
+//     c.appendChild(e);
+// }
+//   $(this).append(c);
+// })
 
-// End Confetti Function
+// // End Confetti Function
 
-function arrayRemove(arr, value) {
-  return arr.filter(function (ele) {
-    return ele != value;
-  });
-}
+// function arrayRemove(arr, value) {
+//   return arr.filter(function (ele) {
+//     return ele != value;
+//   });
+// }
 
 
 
@@ -118,11 +118,12 @@ window.addEventListener('scroll',()=>{
 
 // The createPost function creates The HTML for the blog post.
 // It append it to the container.
-function createDiv(){
-  const post = document.createElement('div');
-  post.className = 'text';
-  // post.innerHTML = <%= render "components/feed_page/feed_randomising" %>
-//   Appending the post to the container.
-  feedCards.appendChild(post);
-}
+
+// function createDiv(){
+//   const post = document.createElement('div');
+//   post.className = 'text';
+//   post.innerHTML = <%= render "components/feed_page/feed_randomising" %>
+// //   Appending the post to the container.
+//   feedCards.appendChild(post);
+// }
 
