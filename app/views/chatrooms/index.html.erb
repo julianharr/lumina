@@ -3,13 +3,13 @@
   <div class="container d-flex justify-content-between mt-5 ml-0 pl-0 chatrooms-container">
 
     <!-- Left Column (Chatrooms) -->
-    <div class="w-25 ml-0 mt-4">
+    <div class="d-flex flex-column align-items-center w-25 ml-0 mt-4">
       <% @chatrooms.each do |chatroom| %>
         <%= link_to chatrooms_path(chatroom: chatroom.id), class:"#{'active' if chatroom == @current_chatroom}" do %>
           <div class="conversation d-flex flex-column p-2 mb-1" data-chatroom-id="<%= chatroom.id %>">
             <div class="d-flex align-items-center">
               <% if chatroom == current_user %>
-                <%= cl_image_tag(chatroom.user.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
+                <%= cl_image_tag(chatroom.user.avatar.key, :fetch_format=>:auto, :class=>"avatar chatroom-avatar") %>
                 <%= chatroom.user_two.first_name %>
               <% else %>
                 <%= cl_image_tag(chatroom.user_two.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
@@ -31,4 +31,3 @@
 
   </div>
 </div>
-<!-- We want to show the individual message threads AND the messages all on one page -->
