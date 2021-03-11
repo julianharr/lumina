@@ -7,6 +7,7 @@ import Rails from "@rails/ujs";
 import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
+import "dom/donate";
 
 Rails.start();
 Turbolinks.start();
@@ -24,57 +25,11 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
-// For chatrooms
+// For Chatrooms
 import { initChatroomCable } from "../channels/chatroom_channel";
 import { initMapbox } from "../plugins/init_mapbox";
 
 // *********************************************************************************************
-
-// INFINITE SCROLLING 🚀
-// NEED TO ADD TO NEW FILE
-
-// Credit Mehdi Aoussiad
-// https://js.plainenglish.io/building-an-infinite-scroll-with-vanilla-javascript-32810bae9a8c
-
-// Selecting The Container
-const container = document.querySelector(".container-infinite");
-
-// Need to separate these...
-
-
-// Confetti Button Function (Not working properly)
-// Credit: https://codepen.io/xxrobot/pen/KZvegB
-// Modified by Julian
-
-// const confettiButton = document.querySelectorAll(".confettiButton");
-
-// $("confettiButton").on('click', function(){
-//   function random(max){
-//       return Math.random() * (max - 0) + 0;
-//   }
-
-//   let c = document.createDocumentFragment();
-//   for (let i=0; i<100; i++) {
-//     var styles = 'transform: translate3d(' + (random(500) - 250) + 'px, ' + (random(200) - 150) + 'px, 0) rotate(' + random(360) + 'deg);\
-//                   background: hsla('+random(360)+',100%,50%,1);\
-//                   animation: bang 1000ms ease-out forwards;\
-//                   opacity: 0';
-
-//     var e = document.createElement("c");
-//     e.style.cssText = styles.toString();
-//     c.appendChild(e);
-// }
-//   $(this).append(c);
-// })
-
-// // End Confetti Function
-
-// function arrayRemove(arr, value) {
-//   return arr.filter(function (ele) {
-//     return ele != value;
-//   });
-// }
-
 
 
 // FOR THE INTERESTS SELECTION TO ARRAY
