@@ -16,5 +16,27 @@
   color: #C5B5B6
 }
 
+.sidebar-link {
+  color: rgba(199, 196, 232, 0.3);
+  font-weight: 700;
+}
 
+i {
+  color: rgba(199, 196, 232, 0.3);
+}
 
+.active .sidebar-link {
+    color: $white;
+}
+
+.active i {
+  color: $white;
+}
+
+.sidebar .nav-links:hover {
+
+  a, i {
+    text-decoration: none;
+    color: $white;
+  }
+}

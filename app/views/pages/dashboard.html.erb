@@ -12,7 +12,7 @@
         <div class="container-user-info d-flex flex-column justify-content-around p-3">
           <h5 style="color:white;"><%= @user.first_name %> <%= @user.last_name %></h5>
           <p>@<%= @user.nickname %></p>
-          <p style="color:#a8a8ac;"><%= @user.bio.truncate(100) %></p>
+          <p style="color:#a8a8ac;"><%= @user.bio %></p>
         </div>
       </div>
 

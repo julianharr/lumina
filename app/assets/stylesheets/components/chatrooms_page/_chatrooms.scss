@@ -1,14 +1,9 @@
 .conversation {
-  background-color: #192834;
-  border-top: 0.05rem solid #3a3b3c;
-  border-bottom: 0.05rem solid #3a3b3c;
-  border-right: 0.05rem solid #3a3b3c;
 }
 
 
 .active {
   .conversation {
-    border-right: none;
-    background-color: #15202b;
+
   }
 }

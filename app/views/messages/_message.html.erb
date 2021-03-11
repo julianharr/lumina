@@ -1,8 +1,26 @@
-<div class="message-container" id="message-<%= message.id %>">
-  <i class="author">
-    <%= cl_image_tag(message.user.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
-    <span style="color:lightgrey; margin-left: 8px; "><%= message.user.nickname %></span>
-    <small style="color:lightgrey;"><%= message.created_at.strftime("%l:%M%p") %></small>
-  </i>
-  <p class="message-content d-flex flex-column mb-4 mt-2"; style="color: white; font-weight: 350;"><%= message.content %></p>
-</div>
+
+<!-- If current_user sent the message, keep on the left, else put on the right -->
+<% if message.user.nickname == current_user.nickname %>
+  <div class="message-container" id="message-<%= message.id %>">
+    <i class="author container">
+      <%= cl_image_tag(message.user.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
+      <span style="color:lightgrey; margin-left: 8px; "><%= message.user.nickname %></span>
+      <small style="color:lightgrey;"><%= message.created_at.strftime("%l:%M%p") %></small>
+    </i>
+    <div class="container d-flex w-100">
+      <p class="message-content d-flex flex-column mb-4 mt-2 pl-3"; style="color: white; font-weight: 350;"><%= message.content %></p>
+    </div>
+  </div>
+<% else %>
+  <div class="message-container" id="message-<%= message.id %>">
+    <i class="author container">
+      <%= cl_image_tag(message.user.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
+      <span style="color:lightgrey; margin-left: 8px; "><%= message.user.nickname %></span>
+      <small style="color:lightgrey;"><%= message.created_at.strftime("%l:%M%p") %></small>
+    </i>
+    <div class="container d-flex w-100">
+      <p class="message-content d-flex flex-column mb-4 mt-2 pl-3"; style="color: white; font-weight: 350;"><%= message.content %></p>
+    </div>
+  </div>
+<% end %>
+
