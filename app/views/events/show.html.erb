@@ -16,25 +16,23 @@
         <h5 style="color: lightgrey">You might be interested if you like <span style="color: #EC0B43"><%= @event.category %></span></h5>
       </div>
     </div>
-      <h5 class="ml-4" style="color: lightgrey">Send a message to your <span style="color: #9274FB;">friends</span> to invite them!</h5>
+    <h5 class="ml-4" style="color: lightgrey">Send a message to your <span style="color: #9274FB;">friends</span> to invite them!</h5>
     <div class="container d-flex flex-wrap p-2">
       <% current_user.friends.take(10).each do |friend| %>
-
-      <div class="d-flex ml-4">
-      <%= link_to chatrooms_path(user_two_id: friend), method: :post do %>
-        <div class="d-flex">
-        <%= cl_image_tag(friend.avatar.key, style:"width: 72px; border-radius: 50%;") %>
-        </div>
-      </div>
-      <% end %>
+        <div class="d-flex ml-4">
+          <%= link_to chatrooms_path(user_two_id: friend), method: :post do %>
+            <div class="d-flex">
+              <%= cl_image_tag(friend.avatar.key, style:"width: 72px; border-radius: 50%;") %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
       <div class="container p-4">
-      <p style="font-weight: 500; color: lightgrey;">
-        <%#= @event.description.truncate(500) %>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo id vero obcaecati, accusamus at ipsum, voluptatum possimus. Reprehenderit cum sapiente accusamus at incidunt minima quasi quod repudiandae, a nihil eaque.
-        Alias, eum ipsa? At et, sed quasi harum ratione quam, sapiente est assumenda exercitationem. Fugit at nisi a, omnis distinctio odio quis beatae expedita voluptate ipsam temporibus cumque adipisci aperiam.
-        Sed, distinctio labore, nesciunt est expedita id unde eligendi esse saepe, dignissimos, ipsum repellat commodi officia dicta. Neque exercitationem, illo adipisci totam, magnam perspiciatis! Impedit quia ducimus dolores molestiae ad.
-      </p>
+        <p style="font-weight: 500; color: lightgrey;">
+          <% if @event.description? %>
+            <%=  @event.description.truncate(1500).gsub(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/, '') %>
+          <% end %>
+        </p>
       </div>
     </div>
   </div>
