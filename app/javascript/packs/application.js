@@ -7,7 +7,7 @@ import Rails from "@rails/ujs";
 import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
-import "dom/donate";
+
 
 Rails.start();
 Turbolinks.start();
@@ -24,6 +24,7 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { donateAnimation } from "dom/donate";
 
 // For Chatrooms
 import { initChatroomCable } from "../channels/chatroom_channel";
@@ -56,7 +57,7 @@ if (images) {
 // TURBO DOWN HERE !!!
 document.addEventListener("turbolinks:load", () => {
   initMapbox();
-  // createPost();
+  donateAnimation();
   initChatroomCable();
 });
 
