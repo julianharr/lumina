@@ -23,9 +23,13 @@
 
     <!-- Right Column (Individual Chatroom Messages) -->
 
-    <div class="container w-75">
+    <div class="container w-75" style="height: 90vh;">
       <% if @current_chatroom %>
         <%= render 'show', current_chatroom: @current_chatroom, messages: @messages, message: Message.new %>
+      <% else %>
+        <div class="container h-100 d-flex align-items-center">
+          <h3>You haven't started a conversation with anyone!</h3>
+        </div>
       <% end %>
     </div>
 
