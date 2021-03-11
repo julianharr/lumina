@@ -18,6 +18,13 @@ class EventsController < ApplicationController
 
   end
 
+  def rsvp
+    # POST
+    # 276721744
+    #  Melbourne-Startup-Idea-to-IPO
+    #  https://secure.meetup.com/meetup_api/console/?path=/:urlname/events/:event_id/rsvps
+  end
+
   private
 
   def find_event

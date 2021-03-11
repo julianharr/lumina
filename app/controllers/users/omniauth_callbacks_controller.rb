@@ -83,3 +83,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     )
   end
 end
+
+## FACIE
+# <OmniAuth::AuthHash raw_info=#<OmniAuth::AuthHash email="chris@wadespace.net" id="10157692609587077" name="Chris Wade">> info=#<OmniAuth::AuthHash::InfoHash email="chris@wadespace.net" image="http://graph.facebook.com/v4.0/10157692609587077/picture?access_token=EAANEb8pz2O0BAD89uL2ccQDsdr04VxLePvP7S8huBGu3nVUR2Xd9r1w6I0VNxomwI59HEj9EoJin6kkn0fnU7jZBf1TftbmCmbjvo9LXdC1eO3LI7K0e5N6ULRUiZC0g5rlAXhAiNSwktOCvioPTMKYJTSCDiZCfYATpV67viyBhhKTehwA" name="Chris Wade"> provider="facebook" uid="10157692609587077">
