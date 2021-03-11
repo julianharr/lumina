@@ -1,6 +1,5 @@
 
-$coin-thickness: $coin-size / 11;
-
+$coin-size: 3.5rem;
 $bg: #f4f7ff;
 $bg-button: #031032;
 $font-color: #fff;
@@ -9,6 +8,7 @@ $c-m: #c2cadf;
 $c-d: #8590b3;
 $c-side: #737c99;
 $shine: #e9f4ff;
+$coin-thickness: $coin-size / 11;
 
 .tip-button {
   background: none;
