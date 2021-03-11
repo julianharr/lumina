@@ -43,12 +43,10 @@
       <% array << 'friend_status' %>
     <% end %>
     <% array.shuffle! %>
-    <% array.take(10) %>
-
 
  <div class="feed_cards">
       <% n = 0 %>
-      <% array.first(80).each do |selection| %>
+      <% array.take(80).each do |selection| %>
 
         <% if selection == 'charity_card' && n < charity_array.length %>
           <div class="card-for-feed-charity mb-2 d-flex align-items-center", style="border-radius: 12px;">
@@ -105,6 +103,8 @@
                 <p class="my-auto"> <%= friend_array[n].status[0].content %> </p>
               </div>
               </p>
+            <% heart = rand(0..10) %>
+          <i class="far fa-heart mr-2" style="color:red"></i><%= heart %>
           </div>
           <% n+= 1%>
         </div>
@@ -143,6 +143,10 @@
               <% n+= 1%>
             </div>
           </div>
+
+          <% else %>
+
+            <%  n=0  %>
         <% end %>
       <% end %>
     </div>
