@@ -32,52 +32,54 @@
           <h4 style="color:white"><%= charity.name %></h4>
           <p><%= charity.description %></p>
           <%= link_to "Visit Website", charity.website, target: "_blank", style: "color:white; font-weight: 700; text-decoration: none; margin: 8px 0px;" %>
-          <button class="btn btn-info w-50 confettiButton" style="border-radius: 24px;">
-            <span>
-              Pledge Donation
-            </span>
-          </button>
+          <button type="button" class="btn btn-info w-50", style="border-radius: 24px;", data-toggle="modal" data-target="#donateModal">Pledge to Donate</button>
         </div>
       <% end %>
   </div>
 </div>
 
 
+<!-- Donation Modal -->
 
+<div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-body-wishlist">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Pledge to Donate</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-body-event">
+        <div class="container pl-4 pr-4 pt-2">
+          <h5 style="color:lightgrey">Donating is voluntary and always your choice. Lumina will display your donation pledge to your friends to help celebrate your efforts.
+          <br><br>
+          If you have not donated to the charity of your choosing within two days, Lumina will send you a reminder to do so.
+          </h5>
+        </div>
+        <div class="container container-donation d-flex justify-content-around mt-4">
+          <button id="btn-5" class="btn btn-info btn-donation-amount">
+            Donate $5
+          </button>
 
+          <button id="btn-10" class="btn btn-info btn-donation-amount">
+            Donate $10
+          </button>
 
+          <button id="btn-25" class="btn btn-info btn-donation-amount">
+            Donate $25
+          </button>
 
-  <!--    The First Div      -->
-  <%#= @charities.each do |charity| %>
- <!--    <div class="card-charity">
-      <img src="https://source.unsplash.com/random/600x400">
-      <h2> <%#= charity.name %> </h2>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
-         tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
-         voluptatibus obcaecati sint dignissimos quas.</p>
+          <button id="btn-50" class="btn btn-info btn-donation-amount">
+            Donate $50
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
     </div>
-  <%# end %>
-  <!--    The Second Div      -->
-    <!-- <div class="card-charity">
-      <img src="https://source.unsplash.com/random/600x400">
-      <h1>Lorem ipsum dolor sit amet</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
-         tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
-         voluptatibus obcaecati sint dignissimos quas.</p>
-    </div>
-  <!--    The Third Div      -->
-    <!-- <div class="card-charity">
-      <img src="https://source.unsplash.com/random/600x400">
-      <h1>Lorem ipsum dolor sit amet</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
-         tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
-         voluptatibus obcaecati sint dignissimos quas.</p>
-    </div>
-  </div> -->
-  <!--  The Loading Animation.    -->
-  <!-- <div class="loading">
-    <div class="ball first"></div>
-    <div class="ball second"></div>
-    <div class="ball third"></div>
-  </div> -->
-<!-- </div> -->
+  </div>
+</div>
+
+
