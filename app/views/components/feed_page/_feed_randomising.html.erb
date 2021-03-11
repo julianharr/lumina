@@ -129,21 +129,6 @@
           <% n+= 1%>
         </div>
 
-        <% elsif selection == 'user_in_common' && n < friend_array.length %>
-
-          <!-- Have you seen User card -->
-          <div class="card-notification-sm mb-2 p-3 mt-2 d-flex">
-            <%= image_tag 'Saly-18.png', style:"width: 300px;" %>
-            <div class="d-flex flex-column justify-content-center">
-
-              <!-- Need to fix this so that 'Add Now' sends friend request to the targeted user -->
-              <h5 style="color:white;">Have you seen <%= @users[n].first_name %>? </h5>
-              <h6 style="color:white;">They have the same interests as you!</h6>
-              <div class="btn btn-info w-50 mt-2" style="border-radius: 24px;">Add now!</div>
-              <% n+= 1%>
-            </div>
-          </div>
-
           <% else %>
 
             <%  n=0  %>
