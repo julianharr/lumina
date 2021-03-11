@@ -29,7 +29,9 @@
       <% end %>
       <div class="container p-4">
         <p style="font-weight: 500; color: lightgrey;">
-          <%= @event.description.truncate(500) %>
+          <% if @event.description? %>
+            <%=  @event.description.truncate(1500).gsub(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/, '') %>
+          <% end %>
         </p>
       </div>
     </div>
