@@ -1,18 +1,17 @@
-  <div class="container align-items-center">
-    <div class="d-flex flex-column mr-3 column-right">
-      <div class="card-sm-users mb-2", style="border-radius: 12px;">
-        <h6 class="ml-4 pt-3", style="color: white;">Connect with Friends</h6>
-        <div class="card-user p-3 d-flex flex-wrap justify-content-around align-items-center">
-          <% @users.take(6).each do |user| %>
-            <%= link_to chatrooms_path(user_two_id: user), method: :post do %>
-              <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 75px; width:75px; margin-bottom:8px;") %>
-              <p style="color:grey; font-weight: 400; font-size:14px; text-align:center;"><%= user.first_name %></p>
-              <br>
-            <% end %>
+  
+<div class="container align-items-center">
+  <div class="d-flex flex-column mr-3 column-right">
+    <div class="card-sm-users mb-2", style="border-radius: 12px;">
+      <h6 class="ml-4 pt-3", style="color: white;">Connect with Friends</h6>
+      <div class="card-user p-3 d-flex flex-wrap justify-content-around align-items-center">
+        <% @users.take(6).each do |user| %>
+          <%= link_to chatrooms_path(user_two_id: user), method: :post do %>
+            <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 75px; width:75px; margin-bottom:8px;") %>
+            <p style="color:grey; font-weight: 400; font-size:14px; text-align:center;"><%= user.first_name %></p>
+            <br>
           <% end %>
-        </div>
+        <% end %>
       </div>
-
         <!-- Whole Stranger Column -->
         <div class="d-flex flex-column">
           <!-- Title -->
@@ -41,7 +40,7 @@
 
                   <!-- Friend Request Button -->
                   <div class="d-flex flex-column justify-content-center p-2">
-                    <%= link_to feed_path(current_user), controller: "friends", action: 'create', method: 'post', id: stranger.id do %>
+                    <%= link_to friends_path(current_user), controller: "friends", action: 'create', method: 'post', id: stranger.id do %>
                         <i class="fas fa-user-plus" id="friendrequest-button"></i>
                     <% end %>
                   </div>
@@ -51,7 +50,3 @@
           <% end %>
         </div>
 <!--     </div> -->
-
-
-
-
