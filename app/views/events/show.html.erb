@@ -30,7 +30,7 @@
       <div class="container p-4">
         <p style="font-weight: 500; color: lightgrey;">
           <% if @event.description? %>
-            <%=  @event.description.truncate(1500).gsub(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/, '') %>
+            <%=  @event.description.truncate(1500).gsub(/http\S+|https\S+|<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/, '') %>
           <% end %>
         </p>
       </div>
