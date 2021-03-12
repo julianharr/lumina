@@ -36,7 +36,7 @@
   <% n = 0 %>
   <% array.take(80).each do |selection| %>
     <% if selection == 'charity_card' && n < charity_array.length %>
-      <div class="card-for-feed-charity mb-2 mt-2 d-flex align-items-center", style="border-radius: 12px;">
+      <div class="card-for-feed-charity mb-2 d-flex align-items-center", style="border-radius: 12px;">
         <% images = ['Saly-3.png', 'Saly-22.png', 'Saly-16.png'] %>
         <%= image_tag "#{images.sample}", style:"width: 300px; padding:16px;" %>
         <div class="d-flex flex-column justify-content-around p-3">
@@ -50,7 +50,7 @@
       </div>
     <% elsif selection == 'event_card' && n < event_array.length %>
       <!-- Event Card -->
-      <div class="card-notification-md mb-2 mt-2 d-flex p-3" style="color:white; border-radius: 12px;">
+      <div class="card-notification-md mb-2 d-flex p-3" style="color:white; border-radius: 12px;">
         <%= cl_image_tag(event_array[n].image.key, width: 250, style:"border-radius:24px;") %>
         <div class="d-flex flex-column align-items-start justify-content-around ml-4">
           <h5 class="ml-3 p-2 text-left"><%= event_array[n].name.capitalize %></h5>
@@ -73,7 +73,7 @@
 
 
       <div id="status">
-        <div class="card-notification-md d-flex p-3" style="border-radius: 12px;">
+        <div class="card-notification-md mb-2 d-flex p-3" style="border-radius: 12px;">
           <div class="crop" style="border-radius: 24px;">
             <%= cl_image_tag(friend_array[n].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
           </div>
@@ -110,7 +110,7 @@
 
       <% elsif selection == 'user_in_common' && n < friend_array.length %>
         <!-- Have you seen User card -->
-        <div class="card-notification-sm mb-2 p-3 mt-2 d-flex">
+        <div class="card-notification-sm mb-2 p-3 d-flex">
           <%= image_tag 'Saly-18.png', style:"width: 300px;" %>
           <div class="d-flex flex-column justify-content-center">
             <!-- Need to fix this so that 'Add Now' sends friend request to the targeted user -->
