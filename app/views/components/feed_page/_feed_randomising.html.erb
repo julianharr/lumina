@@ -50,9 +50,9 @@
       </div>
     <% elsif selection == 'event_card' && n < event_array.length %>
       <!-- Event Card -->
-      <div class="card-notification-md mb-2 mt-2 d-flex p-3" style="color:white; border-radius: 12px;">
+      <div class="card-notification-md mb-2 d-flex p-3" style="color:white; border-radius: 12px;">
         <%= cl_image_tag(event_array[n].image.key, width: 250, style:"border-radius:24px;") %>
-        <div class="d-flex flex-column align-items-start justify-content-around">
+        <div class="d-flex flex-column align-items-start justify-content-around ml-4">
           <h5 class="ml-3 p-2 text-left"><%= event_array[n].name.capitalize %></h5>
           <div class="d-flex align-items-center ml-4">
             <% if event_array[n].host_link.present? %>
@@ -70,45 +70,47 @@
         <% n+= 1%>
       </div>
     <% elsif selection == 'friend_status' && n < friend_array.length %>
-      <!-- Status from friends -->
+
+
       <div id="status">
-        <div class="card-notification-sm p-5 d-flex mb-2s">
-          <div class = "ml-3 mr-3">
-            <%= cl_image_tag(friend_array[n].avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 75px; width:75px; margin-bottom:8px; margin-left: 20px;") %>
-            <p>
-              <%= friend_array[n].first_name %>
-              <%= friend_array[n].last_name %>
-            </div>
-            <div class="ml-5 align-items-center mx-auto my-auto status-box text-center">
-              <p class="my-auto"> <%= friend_array[n].status[0].content %> </p>
-            </div>
+        <div class="card-notification-md mb-2 d-flex p-3" style="border-radius: 12px;">
+          <div class="crop" style="border-radius: 24px;">
+            <%= cl_image_tag(friend_array[n].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
+          </div>
+          <div class="d-flex flex-column justify-content-center w-100 ml-5">
+            <h6 style="color: lightgrey"><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
+            <h5 style="color:white"><span style="color: #EC0B43"><%= friend_array[n].first_name %> <%= friend_array[n].last_name %></span> posted an update</h5>
+            <h6 style="color: lightgrey"><%= friend_array[n].status[0].content %> </h6>
+          </div>
           </p>
           <% heart = rand(0..10) %>
-          <i class="far fa-heart mr-2" style="color:red"></i><%= heart %>
+          <div class="d-flex align-items-center h-25 ml-2">
+            <i class="fas fa-heart mr-2" style="color:red"></i><p><%= heart %></p>
+          </div>
         </div>
         <% n+= 1%>
       </div>
+
+
       <!-- Wishlist card from friends -->
     <% elsif selection == 'wishlist' && n < friend_array.length %>
-      <div class="card-notification-sm p-5 d-flex mb-2">
-        <div class = "ml-3 mr-3">
-          <%= cl_image_tag(friend_array[n].avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 75px; width:75px; margin-bottom:8px; margin-left: 20px;") %>
-          <p>
-            <%= friend_array[n].first_name %>
-            <%= friend_array[n].last_name %>
-          </div>
-          <div>
-            <p>Have you seen <%= friend_array[n].first_name %>'s wishlist?</p>
-          </div>
-          <div>
-            <%= link_to "Check it out!", wishlist_path(friend_array[n]), class: "btn btn-info m-3", style: "border-radius: 24px;" %>
-          </div>
-          <% n+= 1%>
+      <div class="card-notification-md d-flex mb-2 p-3" style="border-radius: 12px;">
+
+        <div class="crop" style="border-radius: 24px;">
+          <%= cl_image_tag(friend_array[n].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
         </div>
+
+        <div class="d-flex flex-column justify-content-center w-100 ml-5">
+          <h6 style="color: lightgrey"><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
+          <h5 style="color:white">Have you seen <span style="color: #EC0B43"><%= friend_array[n].first_name %> <%= friend_array[n].last_name %>'s wishlist?</span></h5>
+          <%= link_to "Check it out!", wishlist_path(friend_array[n]), class: "btn btn-info w-50 mt-2", style: "border-radius: 24px;" %>
+        </div>
+          <% n+= 1%>
+      </div>
 
       <% elsif selection == 'user_in_common' && n < friend_array.length %>
         <!-- Have you seen User card -->
-        <div class="card-notification-sm mb-2 p-3 mt-2 d-flex">
+        <div class="card-notification-sm mb-2 p-3 d-flex">
           <%= image_tag 'Saly-18.png', style:"width: 300px;" %>
           <div class="d-flex flex-column justify-content-center">
             <!-- Need to fix this so that 'Add Now' sends friend request to the targeted user -->

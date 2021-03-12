@@ -19,12 +19,12 @@
           <% current_user.strangers.each do |stranger| %>
               <% if current_user.interests.take(3).any? { |interest| stranger.interests.include?(interest)} %>
                 <!-- Each individual card -->
-                <div class="card-sm-users d-flex justify-content-around mt-5" style="border-radius: 12px;">
+                <div class="card-sm-users d-flex justify-content-around mt-4" style="border-radius: 12px;">
 
                   <!-- Photo -->
                   <div class="d-flex flex-column justify-content-center">
                     <%= link_to profile_path(stranger) do %>
-                      <%= cl_image_tag(stranger.avatar.key, class:"img-fluid", style:" width: 60px; border-radius: 50%; margin-right: 8px; margin-left: 8px;") %>
+                      <%= cl_image_tag(stranger.avatar.key, class:"img-fluid", style:" width: 50px; height: 50px; border-radius: 50%; margin-right: 8px; margin-left: 8px;") %>
                     <% end %>
                   </div>
 
