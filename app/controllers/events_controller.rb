@@ -15,10 +15,15 @@ class EventsController < ApplicationController
   end
 
   def show
-
   end
 
   def rsvp
+    c_user
+    # find group and join it
+    # https://www.meetup.com/meetup_api/docs/:urlname/members/#create
+    ## get user creds
+    # hit endpoint
+    #
     # POST
     # 276721744
     #  Melbourne-Startup-Idea-to-IPO
@@ -31,6 +36,32 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def current_user_events
+  def find_by_user
+    User.find_by(id: params[:format])
+  end
+
+  def c_user
+    @user = current_user
+  end
+
+  def c_user_meetup_token
+    c_user
+    @service = Service.where(provider: 'meetup', user_id: @user.id).first
+    @service.access_token
+  end
+
+  def c_user_has_meetup?
+    @user.services.each do |element|
+      return true if element.provider == 'meetup'
+    end
+  end
+
+  def join_meetup_group
+  end
+
+  def rsvp_to_event
+  end
+
+  def update_rsvp_count
   end
 end
