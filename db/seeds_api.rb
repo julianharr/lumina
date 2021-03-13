@@ -9,8 +9,8 @@ puts "I've attached the API Seeds File !! "
 ## get the first access token
 def get_initial_token
   client_id_key = ENV["MEETUP_KEY"].to_s
-
-  url = URI("https://secure.meetup.com/oauth2/authorize?client_id=#{client_id_key}&response_type=anonymous_code&redirect_uri=https://www.love-lumina.me/")
+  meetup_redirect_uri = ENV["MEETUP_URI"].to_s
+  url = URI("https://secure.meetup.com/oauth2/authorize?client_id=#{client_id_key}&response_type=anonymous_code&redirect_uri=https://#{meetup_redirect_uri}/")
 
   https = Net::HTTP.new(url.host, url.port)
   https.use_ssl = true
@@ -31,9 +31,11 @@ end
 ## add token to get outh token
 def request_access_token
   client_id_key = ENV["MEETUP_KEY"].to_s
+  meetup_redirect_uri = ENV["MEETUP_URI"].to_s
+  client_secret_m = ENV["MEETUP_SECRET"].to_s
   code = get_initial_token
 
-  url = URI("https://secure.meetup.com/oauth2/access?client_id=#{client_id_key}&client_secret=2t60t96pgsldve4b392q4lnavo&grant_type=anonymous_code&redirect_uri=https://www.love-lumina.me/&code=#{code}")
+  p url = URI("https://secure.meetup.com/oauth2/access?client_id=#{client_id_key}&client_secret=#{client_secret_m}&grant_type=anonymous_code&redirect_uri=https://#{meetup_redirect_uri}/&code=#{code}")
 
   https = Net::HTTP.new(url.host, url.port)
   https.use_ssl = true
@@ -181,3 +183,5 @@ def meetup_event_spooler(options = {})
     end
   end
 end
+
+# meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "tech" }))
