@@ -101,8 +101,8 @@
 
         <div class="d-flex flex-column justify-content-center w-100 ml-5">
           <h6 style="color: lightgrey"><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
-          <h5 style="color:white">Have you seen <span style="color: #EC0B43"><%= friend_array[n].first_name %> <%= friend_array[n].last_name %>'s wishlist?</span></h5>
-          <%= link_to "Check it out!", wishlist_path(friend_array[n]), class: "btn btn-info w-50 mt-2", style: "border-radius: 24px;" %>
+          <h5 style="color:white">Have you seen <span style="color: #EC0B43"><%= friend_array[n].first_name %> <%= friend_array[n].last_name %>'s profile?</span></h5>
+          <%= link_to "Check their wishlist!", profile_path(friend_array[n]), class: "btn btn-info w-50 mt-2", style: "border-radius: 24px;" %>
         </div>
 
         <% n+= 1%>
