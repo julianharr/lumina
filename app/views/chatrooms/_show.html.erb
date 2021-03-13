@@ -11,7 +11,7 @@
 
   <div id="messages" class="d-flex flex-column h-100 w-100" style="overflow-y:scroll;" data-chatroom-id="<%= current_chatroom.id %>">
     <% messages.each do |message| %>
-      <%= render "messages/message", message: message %>
+      <%= render "messages/message", message: message, user_is_messages_author: message.user == current_user %>
     <% end %>
   </div>
 

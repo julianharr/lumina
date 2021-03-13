@@ -1,6 +1,6 @@
 
-<!-- If current_user sent the message, keep on the left, else put on the right -->
-<% if message.user.nickname == current_user.nickname %>
+<!-- If user_is_messages_author sent the message, keep on the left, else put on the right -->
+<% if user_is_messages_author %>
 
   <div class="message-container d-flex justify-content-end" id="message-<%= message.id %>">
     <div>

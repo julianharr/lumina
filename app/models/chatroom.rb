@@ -12,4 +12,8 @@ class Chatroom < ApplicationRecord
   # vals
   # null
   # validates :name, optional: true
+
+  def users
+    [user, user_two, user_three, user_four, user_five].compact
+  end
 end

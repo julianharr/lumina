@@ -3,6 +3,7 @@
 
   <!-- Left Column (Chatrooms) -->
 
+
   <div class="d-flex flex-column align-items-start justify-content-start pr-5 pl-2 ml-0 pt-5" style="background-color: #172B3B;">
     <% @chatrooms.each do |chatroom| %>
       <%= link_to chatrooms_path(chatroom: chatroom.id), class:"#{'active' if chatroom == @current_chatroom}" do %>
