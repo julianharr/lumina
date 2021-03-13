@@ -81,10 +81,7 @@ const feedCards = document.querySelector('.feed_cards');
 window.addEventListener('scroll',()=>{
       console.log("yo")
   const {scrollHeight,scrollTop,clientHeight} = document.documentElement;
-  console.log(scrollTop + clientHeight)
-  console.log(scrollHeight - 5)
   if(scrollTop + clientHeight > scrollHeight - 5){
-    console.log("hello")
     setTimeout(createDiv,2000);
   }
 });
