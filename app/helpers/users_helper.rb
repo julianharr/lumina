@@ -20,4 +20,8 @@ module UsersHelper
       return true if element.provider == 'meetup'
     end
   end
+
+  def event_has_no_questions?(event)
+    return true if event.group_quest_required == false
+  end
 end

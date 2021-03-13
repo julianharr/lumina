@@ -13,7 +13,11 @@
         <h4 style="color:white"><%= @event.name %></h4>
         <h5 style="color: lightgrey">Hosted by <span style="color: #EC0B43"><%= @event.organiser %></span></h5>
         <h5 style="color: lightgrey">Happening on <span style="color: #EC0B43"><%= @event.date.strftime("%A %d %B") %></span></h5>
+        <h5 style="color: lightgrey">Attendees <span style="color: #EC0B43"><%= @event.attendees %></span></h5>
         <h5 style="color: lightgrey">You might be interested if you like <span style="color: #EC0B43"><%= @event.category %></span></h5>
+        <% if user_has_meetup?(current_user) && event_has_no_questions?(@event) %>
+          <%= link_to "RSVP", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id  %>
+        <% end %>
       </div>
     </div>
     <h5 class="ml-4" style="color: lightgrey">Send a message to your <span style="color: #9274FB;">friends</span> to invite them!</h5>
