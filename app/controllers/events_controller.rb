@@ -1,3 +1,9 @@
+require "open-uri"
+require 'json'
+require "uri"
+require "net/http"
+require 'date'
+
 class EventsController < ApplicationController
   before_action :find_event, only: [:show]
 
@@ -19,21 +25,23 @@ class EventsController < ApplicationController
 
   def rsvp
     c_user
-    # find group and join it
-    # https://www.meetup.com/meetup_api/docs/:urlname/members/#create
-    ## get user creds
-    # hit endpoint
-    #
-    # POST
-    # 276721744
-    #  Melbourne-Startup-Idea-to-IPO
-    #  https://secure.meetup.com/meetup_api/console/?path=/:urlname/events/:event_id/rsvps
+    find_event_rsvp
+    c_user_meetup_token
+    join_meetup_group(c_user_meetup_token, @event)
+    sleep(1)
+    puts "waiting" until rsvp_to_event(c_user_meetup_token, @event) == true
+    update_rsvp_count(@event)
+    redirect_to event_path(@event), notice: "You have RSVP to the #{@event.name} :)"
   end
 
   private
 
   def find_event
     @event = Event.find(params[:id])
+  end
+
+  def find_event_rsvp
+    @event = Event.find(params[:format])
   end
 
   def find_by_user
@@ -56,12 +64,47 @@ class EventsController < ApplicationController
     end
   end
 
-  def join_meetup_group
+  def join_meetup_group(token, event)
+    event_url = event.group_url
+    bearer = token
+
+    url = URI("https://api.meetup.com/#{event_url}/members")
+
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Post.new(url)
+    request["Accept"] = "application/json"
+    request["Authorization"] = "Bearer #{bearer}"
+    request["Cookie"] = "MEETUP_AFFIL=affil=meetup; MEETUP_BROWSER_ID=\"id=8f29c91f-3033-4eda-a298-190fc2071d55\"; MEETUP_CSRF=dbccdafc-8e61-4007-9a5a-4c92c81dbdc5; MEETUP_MEMBER=\"id=154567222&status=4&timestamp=1614293651&bs=0&tz=Australia%2FMelbourne&zip=meetup2&country=au&city=Melbourne&state=&lat=-37.81&lon=144.96&ql=false&s=802d872fc49dd2c821523298ccdec801cad92d53&scope=ALL\"; MEETUP_TRACK=id=5e0859a6-c334-4f2b-bd73-818934553be7&l=1&s=a7bf3696ab6fe266da7143de4cb39f9fc2698c45; SIFT_SESSION_ID=20670450-2624-4174-a947-cce0ab741e54"
+
+    response = https.request(request)
+    result = JSON.parse(response.body) # result has
   end
 
-  def rsvp_to_event
+  def rsvp_to_event(token, event)
+    event_url = event.group_url
+    event_num = event.meetup_event_id
+    bearer = token
+
+    url = URI("https://api.meetup.com/#{event_url}/events/#{event_num}/rsvps?response=yes")
+
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Post.new(url)
+    request["Accept"] = "application/json"
+    request["Authorization"] = "Bearer #{bearer}"
+    request["Cookie"] = "MEETUP_AFFIL=affil=meetup; MEETUP_BROWSER_ID=\"id=8f29c91f-3033-4eda-a298-190fc2071d55\"; MEETUP_CSRF=dbccdafc-8e61-4007-9a5a-4c92c81dbdc5; MEETUP_MEMBER=\"id=154567222&status=4&timestamp=1614293651&bs=0&tz=Australia%2FMelbourne&zip=meetup2&country=au&city=Melbourne&state=&lat=-37.81&lon=144.96&ql=false&s=802d872fc49dd2c821523298ccdec801cad92d53&scope=ALL\"; MEETUP_TRACK=id=5e0859a6-c334-4f2b-bd73-818934553be7&l=1&s=a7bf3696ab6fe266da7143de4cb39f9fc2698c45; SIFT_SESSION_ID=20670450-2624-4174-a947-cce0ab741e54"
+    response = https.request(request)
+
+    result = JSON.parse(response.body) # result has
+    result&.key?("response") && result&.value?("yes") ? true : false
   end
 
-  def update_rsvp_count
+  def update_rsvp_count(event)
+    attendees = event.attendees
+    attendees += 1
+    @event.update(attendees: attendees)
   end
 end
