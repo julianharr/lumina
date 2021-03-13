@@ -28,16 +28,16 @@
 
   <div class="container d-flex flex-wrap justify-content-center">
       <% @charities.each do |charity| %>
+      <%= render "components/charities_page/charities_modal", charity: charity %>
         <div class="card-charity d-flex flex-column p-3 m-4">
           <h4 style="color:white"><%= charity.name %></h4>
           <p><%= charity.description %></p>
           <%= link_to "Visit Website", charity.website, target: "_blank", style: "color:white; font-weight: 700; text-decoration: none; margin: 8px 0px;" %>
-          <button type="button" class="btn btn-info w-50", style="border-radius: 24px;", data-toggle="modal" data-target="#donateModal">Pledge to Donate</button>
+          <button type="button" class="btn btn-info w-50", style="border-radius: 24px;", data-toggle="modal" data-target="#donateModal-<%= charity.id %>">Pledge to Donate</button>
         </div>
       <% end %>
   </div>
 </div>
-
 
 <!-- Donation Modal -->
 
@@ -51,13 +51,7 @@
         </button>
       </div>
       <div class="modal-body modal-body-event">
-        <div class="container pl-4 pr-4 pt-2">
-          <h5 style="color:lightgrey">Donating is voluntary and always your choice. Lumina will display your donation pledge to your friends to help celebrate your efforts.
-          <br><br>
-          If you have not donated to the charity of your choosing within two days, Lumina will send you a reminder to do so.
-          </h5>
-        </div>
-        <div class="container container-donation d-flex justify-content-start mt-4 p-3">
+        <div class="container container-donation d-flex justify-content-start mt-1 mb-3 p-3">
 
           <!-- Donate $5 Button -->
           <button class="tip-button mr-2">
@@ -96,11 +90,17 @@
           </button>
         </div>
       </div>
+        <div class="container p-4">
+          <h6 style="color:grey">Donating is voluntary and always your choice. Lumina will display your donation pledge to your friends to help celebrate your efforts.
+          <br><br>
+          If you have not donated to the charity of your choosing within two days, Lumina will send you a reminder to do so.
+          </h6>
+        </div>
+
       <div class="modal-footer mt-3">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
-
 

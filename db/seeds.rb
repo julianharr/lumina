@@ -74,10 +74,10 @@ def get_git_info(git_name)
   last_name = user["name"].present? ? user["name"].split[1]&.capitalize : ""
   bio = user["bio"].present? ? user["bio"] : Faker::Quote.matz
   location = %w[Sydney Melbourne].sample # user["location"].present? ? user["location"] :
+
   email = "#{first_name.downcase}@gmail.com"
   # email = user["email"].nil? ? Faker::Internet.email : user["email"]
   interests = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
-
   make_me = User.create( # change to create! later
     first_name: first_name.to_s,
     last_name: last_name.to_s,

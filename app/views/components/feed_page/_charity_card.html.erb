@@ -1,12 +1,16 @@
-<% @charity.take(3).each do |charity| %>
-  <div class="card-for-feed-charity mb-2 text-center", style="border-radius: 12px;">
-    <h4 class="pt-2">Charity</h4>
-     <i class="fas fa-ribbon ribbon m-1"></i>
-    <br>
-    <%= charity.name %>
-    <p><%=  h truncate(charity.description, :length => 100) %></p>
-    <p class="location"> <i class="fas fa-globe-asia m-2"></i> <%= charity.location %> </p>
-    <i class="fas fa-wifi pr-3"></i><%= charity.website %>
-    <a href=""><%= link_to "Donate", new_charity_donate_path(charity), class:"btn btn-info donate-btn" %></a>
-  </div>
-<% end %>
+
+<div class="meet-someone">
+  <% @charity.take(3).each do |charity| %>
+    <div class="card-for-feed-charity mb-2 text-center", style="border-radius: 12px;">
+      <h4 class="pt-2">Charity</h4>
+       <i class="fas fa-ribbon ribbon m-1"></i>
+      <br>
+      <%= charity.name %>
+      <p><%=  h truncate(charity.description, :length => 100) %></p>
+      <p class="location"> <i class="fas fa-globe-asia m-2"></i> <%= charity.location %> </p>
+      <i class="fas fa-wifi pr-3"></i><%= charity.website %>
+      <a href=""><%= link_to "Donate", new_charity_donate_path(charity), class:"btn btn-info donate-btn" %></a>
+    </div>
+  <% end %>
+
+</div>

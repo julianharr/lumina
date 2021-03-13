@@ -4,9 +4,8 @@
     <%= render 'components/side_bar/side_bar_final' %>
   </div>
 
-  <div class="ml-5 mt-5 mr-2 feed-insert">
+  <div class="ml-3 mt-5 mr-2">
     <h3>Feed</h3>
-
     <!-- Status entry -->
     <h4 class="card-notification-sm p-3">
       <%= simple_form_for([ @status ], remote: true) do |f| %>
@@ -40,9 +39,13 @@
   <% end %>
 
   <!-- FEED LOGIC & CARDS -->
+  <div class="feed_cards">
+
+    <%= render "components/feed_page/feed_randomising" %>
+
+  </div>
 
 
-  <%= render "components/feed_page/feed_randomising" %>
 
   <br>
 

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # For Redis and ActionCable
   mount ActionCable.server => '/cable'
-
+  get '/feed_partial', to: 'pages#ajax'
   get '/feed', to: 'pages#feed'
   get '/interests', to: 'pages#interests'
   get '/dashboard', to: 'pages#dashboard'
