@@ -1,29 +1,33 @@
 <div class="d-flex">
   <%= render 'components/side_bar/side_bar_final' %>
+
+  <!-- Left Column (Chatrooms) -->
+
+
+  <div class="d-flex flex-column align-items-start justify-content-start pr-5 pl-2 ml-0 pt-5" style="background-color: #172B3B;">
+    <% @chatrooms.each do |chatroom| %>
+      <%= link_to chatrooms_path(chatroom: chatroom.id), class:"#{'active' if chatroom == @current_chatroom}" do %>
+        <div class="conversation d-flex flex-column mb-1" data-chatroom-id="<%= chatroom.id %>">
+          <div class="d-flex justify-content-center align-items-center p-2">
+            <% if chatroom == current_user %>
+              <%= cl_image_tag(chatroom.user.avatar.key, :fetch_format=>:auto, :class=>"avatar chatroom-avatar") %>
+              <%= chatroom.user_two.first_name %>
+            <% else %>
+              <%= cl_image_tag(chatroom.user_two.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
+              <p class="ml-3" style="font-weight: 400;"><%= chatroom.user_two.first_name %></p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="container d-flex justify-content-between mt-5 ml-0 pl-0 chatrooms-container">
 
-    <!-- Left Column (Chatrooms) -->
-    <div class="d-flex flex-column align-items-center w-25 ml-0 mt-4">
-      <% @chatrooms.each do |chatroom| %>
-        <%= link_to chatrooms_path(chatroom: chatroom.id), class:"#{'active' if chatroom == @current_chatroom}" do %>
-          <div class="conversation d-flex flex-column p-2 mb-1" data-chatroom-id="<%= chatroom.id %>">
-            <div class="d-flex align-items-center">
-              <% if chatroom == current_user %>
-                <%= cl_image_tag(chatroom.user.avatar.key, :fetch_format=>:auto, :class=>"avatar chatroom-avatar") %>
-                <%= chatroom.user_two.first_name %>
-              <% else %>
-                <%= cl_image_tag(chatroom.user_two.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
-                <p class="ml-3" style="font-weight: 400;"><%= chatroom.user_two.first_name %></p>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
 
     <!-- Right Column (Individual Chatroom Messages) -->
 
-    <div class="container w-75" style="height: 90vh;">
+    <div class="container w-100" style="height: 90vh;">
       <% if @current_chatroom %>
         <%= render 'show', current_chatroom: @current_chatroom, messages: @messages, message: Message.new %>
       <% else %>
