@@ -95,9 +95,16 @@
     <% elsif selection == 'wishlist' && n < friend_array.length %>
       <div class="card-notification-md d-flex mb-2 p-3" style="border-radius: 12px;">
 
-        <div class="crop" style="border-radius: 24px;">
-          <%= cl_image_tag(friend_array[n].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
-        </div>
+              <!-- Need to fix this so that 'Add Now' sends friend request to the targeted user -->
+              <h5 style="color:white;">Have you seen <%= @users[n].first_name %>? </h5>
+              <h6 style="color:white;">They have the same interests as you!</h6>
+              <%= link_to "Add now!", friends_path(@users[n]), controller: "friends", action: 'create', method: 'post', class: "btn btn-info w-50 mt-2 rounded", id: @users[n].id  %>
+              <% n+= 1%>
+            </div>
+          </div>
+
+          <% else %>
+
 
         <div class="d-flex flex-column justify-content-center w-100 ml-5">
           <h6 style="color: lightgrey"><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
