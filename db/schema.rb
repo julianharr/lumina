@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_051845) do
+ActiveRecord::Schema.define(version: 2021_03_13_045000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 2021_03_12_051845) do
     t.string "event_time"
     t.string "host_name"
     t.string "host_link"
+    t.boolean "attending"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
