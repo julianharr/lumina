@@ -11,37 +11,39 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Whole Stranger Column -->
-      <div class="d-flex flex-column">
-        <!-- Title -->
-        <h4 class="mt-5 ml-3" style="color:white;">Meet Someone New</h4>
-        <% current_user.strangers.each do |stranger| %>
-          <% if current_user.interests.take(3).any? { |interest| stranger.interests.include?(interest)} %>
-            <!-- Each individual card -->
-            <div class="card-sm-users d-flex justify-content-around mt-4" style="border-radius: 12px;">
-              <!-- Photo -->
-              <div class="d-flex flex-column justify-content-center">
-                <%= link_to profile_path(stranger) do %>
-                  <%= cl_image_tag(stranger.avatar.key, class:"img-fluid", style:" width: 50px; height: 50px; border-radius: 50%; margin-right: 8px; margin-left: 8px;") %>
-                <% end %>
-              </div>
-              <!-- Name and Interests -->
-              <div class="d-flex flex-column justify-content-center p-2">
-                <p style="color: white;"><%= stranger.first_name %> <%= stranger.last_name %></p>
-                <% current_user.interests.each do |interest| %>
-                  <% if (stranger.interests.include?(interest)) %>
-                    <p style="color:lightgrey;">You both love <span class="span-interest"><%= interest %></span> </p>
-                  <% end %>
-                <% end %>
-              </div>
-              <!-- Friend Request Button -->
-              <div class="d-flex flex-column justify-content-center p-2">
-                <%= link_to friends_path(stranger), controller: "friends", action: 'create', method: 'post', id: stranger.id do %>
-                  <i class="fas fa-user-plus" id="friendrequest-button"></i>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-      <!--     </div> -->
+  </div>
+</div>
+  <!-- Whole Stranger Column -->
+  <div class="d-flex flex-column">
+    <!-- Title -->
+    <h4 class="mt-5 ml-3" style="color:white;">Meet Someone New</h4>
+    <% current_user.strangers.each do |stranger| %>
+      <% if current_user.interests.take(3).any? { |interest| stranger.interests.include?(interest)} %>
+
+        <!-- Each individual card -->
+        <div class="card-sm-users d-flex justify-content-around mt-4" style="border-radius: 12px;">
+          <!-- Photo -->
+          <div class="d-flex flex-column justify-content-center">
+            <%= link_to profile_path(stranger) do %>
+              <%= cl_image_tag(stranger.avatar.key, class:"img-fluid", style:" width: 50px; height: 50px; border-radius: 50%; margin-right: 8px; margin-left: 8px;") %>
+            <% end %>
+          </div>
+          <!-- Name and Interests -->
+          <div class="d-flex flex-column justify-content-center p-2">
+            <p style="color: white;"><%= stranger.first_name %> <%= stranger.last_name %></p>
+            <% current_user.interests.each do |interest| %>
+              <% if (stranger.interests.include?(interest)) %>
+                <p style="color:lightgrey;">You both love <span class="span-interest"><%= interest %></span> </p>
+              <% end %>
+            <% end %>
+          </div>
+          <!-- Friend Request Button -->
+          <div class="d-flex flex-column justify-content-center p-2">
+            <%= link_to friends_path(stranger), controller: "friends", action: 'create', method: 'post', id: stranger.id do %>
+              <i class="fas fa-user-plus" id="friendrequest-button"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
