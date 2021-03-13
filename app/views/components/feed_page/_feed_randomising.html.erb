@@ -33,7 +33,6 @@
 <% end %>
 <% array.shuffle! %>
 <% array.insert(0,'donate') if @donates_current_user.present? %>
-
   <% n = 0 %>
   <% array.take(15).each do |selection| %>
     <% if selection == 'charity_card' && n < charity_array.length %>
@@ -71,8 +70,6 @@
         <% n+= 1%>
       </div>
     <% elsif selection == 'friend_status' && n < friend_array.length %>
-
-
       <div id="status">
         <div class="card-notification-md mb-2 d-flex p-3" style="border-radius: 12px;">
           <div class="crop" style="border-radius: 24px;">
@@ -91,23 +88,12 @@
         </div>
         <% n+= 1%>
       </div>
-
-
       <!-- Wishlist card from friends -->
     <% elsif selection == 'wishlist' && n < friend_array.length %>
       <div class="card-notification-md d-flex mb-2 p-3" style="border-radius: 12px;">
-
-              <!-- Need to fix this so that 'Add Now' sends friend request to the targeted user -->
-              <h5 style="color:white;">Have you seen <%= @users[n].first_name %>? </h5>
-              <h6 style="color:white;">They have the same interests as you!</h6>
-              <%= link_to "Add now!", friends_path(@users[n]), controller: "friends", action: 'create', method: 'post', class: "btn btn-info w-50 mt-2 rounded", id: @users[n].id  %>
-              <% n+= 1%>
-            </div>
-          </div>
-
-          <% else %>
-
-
+        <div class="crop" style="border-radius: 24px;">
+          <%= cl_image_tag(friend_array[n].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
+        </div>
         <div class="d-flex flex-column justify-content-center w-100 ml-5">
           <h6 style="color: lightgrey"><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
           <h5 style="color:white">Have you seen <span style="color: #EC0B43"><%= friend_array[n].first_name %> <%= friend_array[n].last_name %>'s wishlist?</span></h5>
@@ -115,9 +101,7 @@
         </div>
           <% n+= 1%>
       </div>
-
         <% elsif selection == "donate" %>
-
         <div class="card-notification-donate d-flex mb-2 p-3" style="border-radius: 12px;">
           <div class="crop" style="border-radius: 24px;">
             <%= cl_image_tag(@find_user[0].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
@@ -132,10 +116,8 @@
           </div>
             <% n+= 1%>
         </div>
-
       <% end %>
       <div class="ajax-call">
-
       </div>
   <% end %>
 </div>
