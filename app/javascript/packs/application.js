@@ -7,7 +7,7 @@ import Rails from "@rails/ujs";
 import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
-import "dom/donate";
+
 
 Rails.start();
 Turbolinks.start();
@@ -24,6 +24,7 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { donateAnimation } from "dom/donate";
 
 // For Chatrooms
 import { initChatroomCable } from "../channels/chatroom_channel";
@@ -56,7 +57,7 @@ if (images) {
 // TURBO DOWN HERE !!!
 document.addEventListener("turbolinks:load", () => {
   initMapbox();
-  // createPost();
+  donateAnimation();
   initChatroomCable();
 });
 
@@ -78,8 +79,12 @@ document.addEventListener("turbolinks:load", () => {
 const feedCards = document.querySelector('.feed_cards');
 // The Scroll Event.
 window.addEventListener('scroll',()=>{
+      console.log("yo")
   const {scrollHeight,scrollTop,clientHeight} = document.documentElement;
+  console.log(scrollTop + clientHeight)
+  console.log(scrollHeight - 5)
   if(scrollTop + clientHeight > scrollHeight - 5){
+    console.log("hello")
     setTimeout(createDiv,2000);
   }
 });
@@ -87,11 +92,33 @@ window.addEventListener('scroll',()=>{
 // The createPost function creates The HTML for the blog post.
 // It append it to the container.
 
-// function createDiv(){
-//   const post = document.createElement('div');
-//   post.className = 'text';
-//   post.innerHTML = <%= render "components/feed_page/feed_randomising" %>
-// //   Appending the post to the container.
-//   feedCards.appendChild(post);
-// }
+function createDiv(){
+  const theRealPartial =
+  fetch("/feed_partial")
+    .then((data) => data.text())
+    .then((html) => {
+      const results = document.querySelector(".feed_cards");
+      results.insertAdjacentHTML("beforeend", html);
+    });
+}
+
+
+// DONATE BUTTON REROUTE!
+
+
+
+
+
+// const feedInsert = document.querySelector("feed-insert")
+// const buttonFive = document.querySelector("#btn-5")
+// buttonFive.addEventListener("click", () => {
+//   console.log(feedInsert)
+//   feedInsert.innerHTML = "<h1>DONATED SOME SWEET COIN</h1>"
+// });
+// const buttonTen = document.getElementById("btn-10").addEventListener("click", addForDonate);
+// const buttonTwentyFive = document.getElementById("btn-25").addEventListener("click", addForDonate);
+// console.log(buttonFive)
+
+
+
 

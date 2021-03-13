@@ -9,16 +9,17 @@ require_relative "seeds_api"
 # https://github.com/rka97/Unive/tree/master/app
 #
 batch_466 = [
-  "glenntippett",
-  "mrchvs",
+  # commented out peeps with no full name
+  # "glenntippett",
+  # "mrchvs",
   "melwers",
   "avrilpryce",
-  "Michiel-DK",
+  # "Michiel-DK",
   "PatriciaZB",
   "theHem-code",
   "Linda8875",
   "juliends",
-  "ThierryMR",
+  # "ThierryMR",
   "Micheledebruyn",
   "Inbal-Gordon",
   "ilia-ber",
@@ -29,8 +30,8 @@ batch_466 = [
   "AlvaroPata",
   "may-moff",
   "vdelgadobenito",
-  "tristanmahe",
-  "Pierre-L99",
+  # "tristanmahe",
+  # "Pierre-L99",
   "Nooshin-8",
   "anaisfr",
   "camimurg",
@@ -40,16 +41,16 @@ batch_466 = [
   "matoni109",
   "Tom-Tee",
   "cdrmr18",
-  "jarrydanthony",
+  # "jarrydanthony",
   "10035",
-  "lucieroland",
+  # "lucieroland",
   "anLpk",
-  "diego-mogollon",
+  # "diego-mogollon",
   "maksimumeffort",
   "lunarness",
   "Escapewithcode",
   "santanu0013",
-  "DraganGasic",
+  # "DraganGasic",
   "cheenaelise",
   "joshwbarnes",
   "rbalendra",
@@ -69,14 +70,14 @@ def get_git_info(git_name)
 
   response = https.request(request)
   user = JSON.parse(response.read_body)
-  # binding.pry
-  first_name = Faker::Name.unique.first_name
-  last_name = Faker::Name.unique.last_name
+  first_name = user["name"].present? ? user["name"].split.first.capitalize : user["login"].capitalize
+  last_name = user["name"].present? ? user["name"].split[1]&.capitalize : ""
   bio = user["bio"].present? ? user["bio"] : Faker::Quote.matz
   location = %w[Sydney Melbourne].sample # user["location"].present? ? user["location"] :
-  email = user["email"].nil? ? Faker::Internet.email : user["email"]
-  interests = %w[Arts Music Outdoors Tech Photography Food Family Fitness Sports Writing Language LGBTQ Film Sci-fi Games Book-clubs Dance Pets Crafts Fashion Beauty Business Environment]
 
+  email = "#{first_name.downcase}@gmail.com"
+  # email = user["email"].nil? ? Faker::Internet.email : user["email"]
+  interests = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
   make_me = User.create( # change to create! later
     first_name: first_name.to_s,
     last_name: last_name.to_s,
@@ -125,7 +126,6 @@ puts "-- Making Humans"
 batch_466.each do |element|
   get_git_info(element)
 end
-
 
 puts "--- Making Humans Ended !"
 puts "--- Making Humans Friendships !"
@@ -247,8 +247,6 @@ puts "--- Making Wish Lists Ended !"
 
 puts "--- HEY it's time to make Status Updates CMON !"
 
-
-
 user_arr.each do |id|
   make_status = Status.create(
     content: Faker::Quote.yoda,
@@ -304,9 +302,6 @@ puts "--- Spooling up events ---"
 #
 meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "tech" }))
 meetup_event_spooler(meetup_events_finder({ latitude: "-37.784", longitude: "144.986", category: "food" }))
-#
-#
-
 
 # Big Daddy Events Scraper Below !!! Caution !!!
 #

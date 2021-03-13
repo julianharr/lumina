@@ -36,10 +36,22 @@ p {
 }
 
 .card-notification-md {
-  height: 240px;
   width: 770px;
   background-color:#192734;
   border: 0.05rem solid #3a3b3c;
+}
+
+.crop {
+  width: 250px;
+  min-width: 250px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.crop-avatar {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
 }
 
 .card-for-feed-charity {
