@@ -32,9 +32,8 @@
   <% array << 'friend_status' %>
 <% end %>
 <% array.shuffle! %>
-<div class="feed_cards">
   <% n = 0 %>
-  <% array.take(80).each do |selection| %>
+  <% array.take(10).each do |selection| %>
     <% if selection == 'charity_card' && n < charity_array.length %>
       <div class="card-for-feed-charity mb-2 d-flex align-items-center", style="border-radius: 12px;">
         <% images = ['Saly-3.png', 'Saly-22.png', 'Saly-16.png'] %>
@@ -124,6 +123,8 @@
       <% else %>
         <%  n=0  %>
       <% end %>
+      <div class="ajax-call">
+
+      </div>
   <% end %>
-  </div>
 </div>
