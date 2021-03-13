@@ -33,6 +33,11 @@ class PagesController < ApplicationController
 
     @chatrooms = Chatroom.where(user: current_user)
     @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
+
+    # DONATES STUFF
+    @donates_current_user = Donate.all.where(user_id: current_user.id)
+    @find_charity = Charity.where(id: @donates_current_user[0].charity_id) if @donates_current_user.exists?
+    @find_user = User.where(id: @donates_current_user[0].user_id) if @donates_current_user.exists?
   end
 
   def dashboard
