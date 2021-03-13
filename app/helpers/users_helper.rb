@@ -24,4 +24,8 @@ module UsersHelper
   def event_has_no_questions?(event)
     return true if event.group_quest_required == false
   end
+
+  def event_questions(event)
+    event.group_questions.each { |question| question }
+  end
 end

@@ -17,6 +17,8 @@
         <h5 style="color: lightgrey">You might be interested if you like <span style="color: #EC0B43"><%= @event.category %></span></h5>
         <% if user_has_meetup?(current_user) && event_has_no_questions?(@event) %>
           <%= link_to "RSVP", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id  %>
+        <% elsif user_has_meetup?(current_user) && !event_has_no_questions?(@event)%>
+          <%= link_to "RSVP w questions", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id  %>
         <% end %>
       </div>
     </div>
