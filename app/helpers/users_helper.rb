@@ -14,4 +14,10 @@ module UsersHelper
   def user_has_status?(user)
     user.status.present?
   end
+
+  def user_has_meetup?(user)
+    user.services.each do |element|
+      return true if element.provider == 'meetup'
+    end
+  end
 end
