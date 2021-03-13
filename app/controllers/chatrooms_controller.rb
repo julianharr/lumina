@@ -1,9 +1,19 @@
 class ChatroomsController < ApplicationController
 
+
   def index
+    @user = current_user
     @chatrooms = Chatroom.where(user: current_user)
     @chatrooms = Chatroom.where(user: current_user).or(Chatroom.where(user_two: current_user))
     @current_chatroom = params[:chatroom].present? ? Chatroom.find(params[:chatroom]) : @chatrooms.last
+
+    if @current_chatroom != nil
+      unless @current_chatroom.users.include? current_user
+        flash[:alert] = "You don't have access to this page!"
+        redirect_to feed_path
+      end
+    end
+
     @messages = @current_chatroom.messages if @current_chatroom
   end
 

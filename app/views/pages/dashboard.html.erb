@@ -22,7 +22,7 @@
       <div class="ml-4 d-flex flex-column flex-wrap">
         <h5 style="color:white;"> <%= @user.first_name %>'s Interests </h5>
         <% @user.interests.each do |interest| %>
-          <h6 class="pr-2", style="color:#a8a8ac;"> <%= interest %> </h6>
+          <h6 class="pr-2", style="color:#a8a8ac;"> <STRONG><%= interest %> </STRONG></h6>
         <% end %>
       </div>
     </div>

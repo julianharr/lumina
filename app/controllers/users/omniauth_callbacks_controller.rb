@@ -1,3 +1,7 @@
+require "open-uri"
+require 'json'
+require "uri"
+require "net/http"
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   before_action :set_service
   before_action :set_user
@@ -70,19 +74,58 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def create_user
-    ## check that name exist ?
-    email = auth.info.email.present? ? auth.info.email : "no_email@gmail.com"
-    first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user["login"].capitalize
-    last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ""
+    if auth.provider == "meetup"
+      first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user["login"].capitalize
+      last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ""
+      email = auth.info.email.present? ? auth.info.email : "no_email@gmail.com"
 
-    User.create!(
-      email: email,
-      first_name: first_name,
-      last_name: last_name,
-      password: Devise.friendly_token[0, 20]
-    )
+      make_me = User.create!(
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
+        password: Devise.friendly_token[0, 20]
+      )
+
+      user_image = URI.parse(auth.info["photo_url"]).open
+      make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
+
+      return make_me
+    elsif auth.provider == "facebook"
+      # binding.pry
+      first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user["login"].capitalize
+      last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ""
+      email = auth.info.email.present? ? auth.info.email : "no_email@gmail.com"
+
+      user = Koala::Facebook::API.new(auth.credentials["token"])
+      image = user.get_picture("me", { type: 'large' })
+
+      make_me = User.create!(
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
+        password: Devise.friendly_token[0, 20]
+      )
+
+      user_image = URI.parse(image).open
+      make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
+
+      return make_me
+    else
+      first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user["login"].capitalize
+      last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ""
+
+      User.create!(
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
+        password: Devise.friendly_token[0, 20]
+      )
+
+    end
   end
 end
 
 ## FACIE
 # <OmniAuth::AuthHash raw_info=#<OmniAuth::AuthHash email="chris@wadespace.net" id="10157692609587077" name="Chris Wade">> info=#<OmniAuth::AuthHash::InfoHash email="chris@wadespace.net" image="http://graph.facebook.com/v4.0/10157692609587077/picture?access_token=EAANEb8pz2O0BAD89uL2ccQDsdr04VxLePvP7S8huBGu3nVUR2Xd9r1w6I0VNxomwI59HEj9EoJin6kkn0fnU7jZBf1TftbmCmbjvo9LXdC1eO3LI7K0e5N6ULRUiZC0g5rlAXhAiNSwktOCvioPTMKYJTSCDiZCfYATpV67viyBhhKTehwA" name="Chris Wade"> provider="facebook" uid="10157692609587077">
+## Meetup
+# <OmniAuth::AuthHash expires=true expires_at=1688176605 refresh_token="1db3ecb3a40dddc7b2a125e1c146d9fd" token="95128e57d11c6d550a46cd55e2457f17"> extra=#<OmniAuth::AuthHash raw_info=#<OmniAuth::AuthHash city="Melbourne" country="au" hometown="Santa Barbara, California" id=154567222 joined=1404391594000 lang="en_US" lat=-37.810001373291016 link="http://www.meetup.com/members/154567222" lon=144.9600067138672 name="Julian" other_services=#<OmniAuth::AuthHash> photo=#<OmniAuth::AuthHash base_url="https://secure.meetupstatic.com" highres_link="https://secure.meetupstatic.com/photos/member/a/0/8/8/highres_303641096.jpeg" photo_id=303641096 photo_link="https://secure.meetupstatic.com/photos/member/a/0/8/8/member_303641096.jpeg" thumb_link="https://secure.meetupstatic.com/photos/member/a/0/8/8/thumb_303641096.jpeg" type="member"> self=#<OmniAuth::AuthHash common=#<OmniAuth::AuthHash>> status="active" topics=#<Hashie::Array [#<OmniAuth::AuthHash id=7029 name="JavaScript" urlkey="javascript">, #<OmniAuth::AuthHash id=3833 name="Software Development" urlkey="softwaredev">
