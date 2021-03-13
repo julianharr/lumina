@@ -75,7 +75,7 @@ def get_git_info(git_name)
   bio = user["bio"].present? ? user["bio"] : Faker::Quote.matz
   location = %w[Sydney Melbourne].sample # user["location"].present? ? user["location"] :
   email = user["email"].nil? ? Faker::Internet.email : user["email"]
-  interests = %w[arts music outdoors tech photography food family fitness sports writing language LGBTQ film sci-fi games book-clubs dance pets crafts fashion beauty business environment]
+  interests = %w[Arts Music Outdoors Tech Photography Food Family Fitness Sports Writing Language LGBTQ Film Sci-fi Games Book-clubs Dance Pets Crafts Fashion Beauty Business Environment]
 
   make_me = User.create( # change to create! later
     first_name: first_name.to_s,
