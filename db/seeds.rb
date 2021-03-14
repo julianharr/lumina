@@ -103,19 +103,17 @@ puts "--- GAME  START ---"
 puts "---"
 puts "---"
 puts "cleaning house :)"
+
 Message.destroy_all
 Chatroom.destroy_all
-User.destroy_all
 Wishlist.destroy_all
 Item.destroy_all
 Event.destroy_all
-# Friendable.destroy_all
+Attendevent.destroy_all
 Charity.destroy_all
 Favorite.destroy_all
-Event.destroy_all
 Message.destroy_all
-Chatroom.destroy_all
-
+User.destroy_all
 # Kills all Active storage items ##
 ActiveStorage::Attachment.all.each { |attachment| attachment.purge }
 puts "done cleaning house.."
@@ -314,6 +312,12 @@ meetup_event_spooler(meetup_events_finder({ latitude: "-37.784", longitude: "144
 # interests_syd.each do |element|
 #   meetup_event_spooler(meetup_events_finder({ latitude: "-33.8861", longitude: "151.2111", category: element }))
 # end
+150.times do
+  Attendevent.create!(
+    user_id: User.ids.sample,
+    event_id: Event.ids.sample
+  )
+end
 puts "--- Events Over ---"
 puts "---"
 puts "---"

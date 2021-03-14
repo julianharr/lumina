@@ -107,4 +107,8 @@ class EventsController < ApplicationController
     attendees += 1
     @event.update(attendees: attendees)
   end
+
+  def event_questions(event)
+    event.group_questions.each { |question| question }
+  end
 end
