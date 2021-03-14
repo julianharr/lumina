@@ -13,7 +13,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # NGROK SETUP
-config.hosts << "a0484bf12fa4.ngrok.io"
+config.hosts << "18fbe73f3fca.ngrok.io"
   # Show full error reports.
   config.consider_all_requests_local = true
 

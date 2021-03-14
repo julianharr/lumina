@@ -2,7 +2,6 @@ require "open-uri"
 require 'json'
 require "uri"
 require "net/http"
-# require 'dotenv'
 require 'date'
 
 puts "I've attached the API Seeds File !! "
@@ -89,7 +88,7 @@ def meetup_events_finder(options = {})
   # radius smart or kms
   # order best or time
 
-  p url = URI("https://api.meetup.com/find/upcoming_events?lon=#{lon}&page=20&radius=smart&lat=#{lat}&order=best&text=#{cat}&fields=featured_photo,event_hosts")
+  p url = URI("https://api.meetup.com/find/upcoming_events?lon=#{lon}&page=20&radius=smart&lat=#{lat}&order=best&text=#{cat}&fields=featured_photo,event_hosts,group_join_info")
   # original below
   # p url = URI("https://api.meetup.com/find/upcoming_events?lon=145&page=20&radius=10&lat=#{lat}")
 
@@ -124,10 +123,16 @@ def meetup_event_spooler(options = {})
   category = options["meetup_cat"]
   # options comes in from meetup_events_finder
   # binding.pry
+
   options["events"].each do |value|
+    questions_arr = []
+    my_var = value["group"]["join_info"]["questions"]
+    my_var.each { |object| questions_arr << object } if !my_var.nil? && !my_var.empty?
     make_me = Event.new( # change to create! later
-      # add category to event
-      # user.update(name: 'Dave')
+      group_url: value["group"]["urlname"], # string
+      group_id: value["group"]["id"], # integer
+      group_quest_required: value["group"]["join_info"]["questions_req"], # bool
+      group_questions: questions_arr,
       name: value["name"],
       date: value["local_date"],
       event_time: value["event_time"],
@@ -140,6 +145,8 @@ def meetup_event_spooler(options = {})
       meetup_event_id: value["id"],
       meetup_update: value["updated"]
     )
+
+    # binding.pry if value["group"]["join_info"]["questions_req"] == true
     if value["event_hosts"]&.present? && !value["event_hosts"][0]["photo"].nil?
 
       make_me.update(

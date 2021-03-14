@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  # hash questions from events api
+  serialize :group_questions
   # ass
   belongs_to :user
   has_many :chatrooms, dependent: :destroy
