@@ -22,7 +22,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    # raise
+
   end
 
   def rsvp
@@ -59,6 +59,7 @@ class EventsController < ApplicationController
     @service = Service.where(provider: 'meetup', user_id: @user.id).first
     @service.access_token
   end
+
 
   def join_meetup_group(token, event)
     event_url = event.group_url
@@ -98,7 +99,7 @@ class EventsController < ApplicationController
     result&.key?("response") && result&.value?("yes") ? true : false
   end
 
-  def update_rsvp_count(event)
+   def update_rsvp_count(event)
     attendees = event.attendees
     attendees += 1
     event.update(attendees: attendees)

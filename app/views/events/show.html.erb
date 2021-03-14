@@ -15,7 +15,7 @@
         <h5 style="color: lightgrey">Happening on <span style="color: #EC0B43"><%= @event.date.strftime("%A %d %B") %></span></h5>
         <h5 style="color: lightgrey">Attendees <span style="color: #EC0B43"><%= @event.attendees %></span></h5>
         <h5 style="color: lightgrey">You might be interested if you like <span style="color: #EC0B43"><%= @event.category %></span></h5>
-        <!-- Event Meetup Logic with form -->
+
         <% if user_has_meetup?(@user) %>
           <%= link_to "login with meetup to rsvp", user_meetup_omniauth_authorize_path, method: 'post', class: "btn btn-info btn-request mt-2" %>
         <% elsif user_going_to_event?(@user, @event)&& !user_has_meetup?(@user) %>
@@ -26,6 +26,7 @@
           <%#= link_to "RSVP w questions", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id %> %>
         <% end %>
         <!-- Event Meetup Logic END -->
+
       </div>
     </div>
     <h5 class="ml-4" style="color: lightgrey">Send a message to your <span style="color: #9274FB;">friends</span> to invite them!</h5>
