@@ -6,6 +6,7 @@ require 'date'
 
 class EventsController < ApplicationController
   before_action :find_event, only: [:show]
+  before_action :c_user, only: [:show]
 
   def index
     @event = Event.all
@@ -21,6 +22,7 @@ class EventsController < ApplicationController
   end
 
   def show
+
   end
 
   def rsvp
@@ -58,11 +60,6 @@ class EventsController < ApplicationController
     @service.access_token
   end
 
-  def c_user_has_meetup?
-    @user.services.each do |element|
-      return true if element.provider == 'meetup'
-    end
-  end
 
   def join_meetup_group(token, event)
     event_url = event.group_url
@@ -102,9 +99,17 @@ class EventsController < ApplicationController
     result&.key?("response") && result&.value?("yes") ? true : false
   end
 
-  def update_rsvp_count(event)
+   def update_rsvp_count(event)
     attendees = event.attendees
     attendees += 1
-    @event.update(attendees: attendees)
+    event.update(attendees: attendees)
+    Attendevent.create!(
+      user_id: @user.id,
+      event_id: event.id
+    )
+  end
+
+  def event_questions(event)
+    event.group_questions.each { |question| question }
   end
 end

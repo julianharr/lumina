@@ -77,9 +77,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if auth.provider == "meetup"
       first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user["login"].capitalize
       last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ""
-      email = auth.info.email.present? ? auth.info.email : "no_email@gmail.com"
+      email = auth.info.email.present? ? auth.info.email : Faker::Internet.email
 
-      make_me = User.create!(
+      make_me = User.create(
         email: email,
         first_name: first_name,
         last_name: last_name,

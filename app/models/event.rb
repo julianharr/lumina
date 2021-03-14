@@ -2,10 +2,10 @@ class Event < ApplicationRecord
   # hash questions from events api
   serialize :group_questions
   # ass
-  belongs_to :user
+  has_many :attendevents, dependent: :destroy
+  has_many :users, through: :attendevents
   has_many :chatrooms, dependent: :destroy
   geocoded_by :address
-
   # has_many :messages, through: :chatrooms, dependent: :destroy
   # vals
   validates :name, presence: true

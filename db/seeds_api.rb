@@ -140,7 +140,7 @@ def meetup_event_spooler(options = {})
       meetup_link: value["link"],
       organiser: value["group"]["name"],
       attendees: value["yes_rsvp_count"],
-      user_id: User.where(admin: false).first.id,
+      # user_id: User.where(admin: false).first.id,
       category: category,
       meetup_event_id: value["id"],
       meetup_update: value["updated"]

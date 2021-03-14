@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_13_060921) do
+ActiveRecord::Schema.define(version: 2021_03_14_011452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(version: 2021_03_13_060921) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "attendevents", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_attendevents_on_event_id"
+    t.index ["user_id"], name: "index_attendevents_on_user_id"
   end
 
   create_table "charities", force: :cascade do |t|
@@ -89,7 +98,6 @@ ActiveRecord::Schema.define(version: 2021_03_13_060921) do
     t.string "description"
     t.string "organiser"
     t.integer "attendees"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "longitude", precision: 10, scale: 6
@@ -106,7 +114,7 @@ ActiveRecord::Schema.define(version: 2021_03_13_060921) do
     t.string "group_url"
     t.integer "group_id"
     t.boolean "group_quest_required", default: false
-    t.index ["user_id"], name: "index_events_on_user_id"
+
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -259,6 +267,8 @@ ActiveRecord::Schema.define(version: 2021_03_13_060921) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "attendevents", "events"
+  add_foreign_key "attendevents", "users"
   add_foreign_key "chatrooms", "events"
   add_foreign_key "chatrooms", "users"
   add_foreign_key "chatrooms", "users", column: "user_five_id"
@@ -267,7 +277,6 @@ ActiveRecord::Schema.define(version: 2021_03_13_060921) do
   add_foreign_key "chatrooms", "users", column: "user_two_id"
   add_foreign_key "donates", "charities"
   add_foreign_key "donates", "users"
-  add_foreign_key "events", "users"
   add_foreign_key "items", "wishlists"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
