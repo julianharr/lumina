@@ -16,9 +16,12 @@ module UsersHelper
   end
 
   def user_has_meetup?(user)
-    user.services.each do |element|
-      return true if element.provider == 'meetup'
-    end
+    service = Service.where(provider: 'meetup', user_id: user.id)
+    service.empty?
+  end
+
+  def user_going_to_event?(user, event)
+    user.events.ids.include?(event.id)
   end
 
   def event_has_no_questions?(event)
