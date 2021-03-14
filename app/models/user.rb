@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :timeoutable, :trackable, :omniauthable
   # associations
   has_many :attendevents, dependent: :destroy
-  has_many :events, through: :attendevents
+  has_many :events, through: :attendevents, dependent: :destroy
   has_one :wishlist, dependent: :destroy
   has_many :items, through: :wishlist, dependent: :destroy
   # has_many :events, dependent: :destroy
