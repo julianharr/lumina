@@ -18,7 +18,7 @@
 
   <div class="w-25">
   <%= simple_form_for [ @chatroom, @message ], html: { autocomplete: 'off' } do |f| %>
-    <%= f.input :content, label: false, placeholder: "Type your message" %>
+    <%= f.input :content, label: false, placeholder: "Type your message" input_html: { style: width:'350px'; } %>
   <% end %>
   </div>
   </div>
