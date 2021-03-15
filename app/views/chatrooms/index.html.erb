@@ -13,7 +13,7 @@
             <% if chatroom == current_user %>
 
               <%= cl_image_tag(chatroom.user.avatar.key, :fetch_format=>:auto, :class=>"avatar chatroom-avatar") %>
-              <%= chatroom.current_user.first_name %>
+              <%= chatroom.user_two.first_name %>
 
             <% else %>
 
@@ -34,7 +34,7 @@
 
     <div class="container w-100" style="height: 90vh;">
       <% if @current_chatroom %>
-        <%= render 'show', current_chatroom: @current_chatroom, remote: true, messages: @messages, message: Message.new %>
+        <%= render 'show_new', current_chatroom: @current_chatroom, remote: true, messages: @messages, message: Message.new %>
       <% else %>
         <div class="container h-100 d-flex align-items-center pl-5">
           <h3>You haven't started a conversation with anyone!</h3>
