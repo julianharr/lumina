@@ -1,6 +1,41 @@
 .message-content {
-  padding: 8px;
-  max-width: 350px;
+  padding: 8px 12px;
+  width: fit-content;
   border-radius: 24px;
   background: linear-gradient(90deg, rgba(141, 119, 204, 0.74) 8.46%, rgba(121, 78, 241, 0.629) 106.8%), rgba(137, 119, 186, 0.74);
+}
+
+
+.message-content-usertwo {
+  padding: 8px 12px;
+  width: fit-content;
+  border-radius: 24px;
+  background: #1488CC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #2B32B2, #1488CC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #2B32B2, #1488CC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+.chatroom-container {
+  width: 500px;
+  border: none;
+  input, select, textarea {
+    color: white;
+  }
+  textarea:focus, input:focus {
+    color: white;
+    font-weight: 700;
+  }
+}
+
+.message-input {
+  padding: 18px;
+  color: white;
+  border-radius: 24px;
+  border: 0.05rem solid #3a3b3c;
+  background-color:#192734;
+   &:focus {
+    background-color:#192734;
+    border: 0.05rem solid #3a3b3c;
+   }
 }

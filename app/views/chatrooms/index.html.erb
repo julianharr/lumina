@@ -4,17 +4,23 @@
   <!-- Left Column (Chatrooms) -->
 
 
-  <div class="d-flex flex-column align-items-start justify-content-start pr-5 pl-2 ml-0 pt-5" style="background-color: #172B3B; width: 350px; height: 100vh; overflow-y: scroll;">
+  <div class="d-flex flex-column align-items-start justify-content-start pr-5 pl-2 ml-0 pt-5" style="background-color: #172B3B; width: 250px; height: 100vh; overflow-y: scroll;">
     <% @chatrooms.each do |chatroom| %>
       <%= link_to chatrooms_path(chatroom: chatroom.id), class:"#{'active' if chatroom == @current_chatroom}" do %>
         <div class="conversation d-flex flex-column mb-1" data-chatroom-id="<%= chatroom.id %>">
           <div class="d-flex justify-content-center align-items-center p-2">
+
             <% if chatroom == current_user %>
+
               <%= cl_image_tag(chatroom.user.avatar.key, :fetch_format=>:auto, :class=>"avatar chatroom-avatar") %>
               <%= chatroom.user_two.first_name %>
+
             <% else %>
+
               <%= cl_image_tag(chatroom.user_two.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"width: 50px; height:50px;") %>
+
               <p class="ml-3" style="font-weight: 400;"><%= chatroom.user_two.first_name %></p>
+
             <% end %>
           </div>
         </div>
@@ -22,16 +28,16 @@
     <% end %>
   </div>
 
-  <div class="container d-flex justify-content-between mt-5 ml-0 pl-0 chatrooms-container">
+  <div class="container d-flex justify-content-start mt-5 ml-0 pl-0 chatrooms-container" style="width: 650px;">
 
 
     <!-- Right Column (Individual Chatroom Messages) -->
 
     <div class="container w-100" style="height: 90vh;">
       <% if @current_chatroom %>
-        <%= render 'show_new', current_chatroom: @current_chatroom, messages: @messages, message: Message.new %>
+        <%= render 'show_new', current_chatroom: @current_chatroom, remote: true, messages: @messages, message: Message.new %>
       <% else %>
-        <div class="container h-100 d-flex align-items-center">
+        <div class="container h-100 d-flex align-items-center pl-5">
           <h3>You haven't started a conversation with anyone!</h3>
         </div>
       <% end %>
