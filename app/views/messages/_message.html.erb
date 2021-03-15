@@ -1,30 +1,32 @@
 
 <!-- If user_is_messages_author sent the message, keep on the left, else put on the right -->
-<% if user_is_messages_author %>
+<%# if user_is_messages_author %>
 
-  <div class="message-container d-flex justify-content-end" id="message-<%= message.id %>">
-    <div>
-      <i class="author container d-flex justify-content-end align-items-center">
-        <small style="color:lightgrey;"><%= message.created_at.strftime("%l:%M%p") %></small>
+  <div>
+    <div class="message-container d-flex flex-column w-50 mb-2 mt-2" id="message-<%= message.id %>">
+      <i class="author container d-flex align-items-center">
+        <%= cl_image_tag(message.user.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"width: 30px; height: 30px;") %>
         <span style="color:lightgrey; margin-left: 8px; margin-right: 8px; "><%= message.user.nickname %></span>
-        <%= cl_image_tag(message.user.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
+        <small style="color:lightgrey;"><%= message.created_at.strftime("%l:%M%p") %></small>
       </i>
-        <p class="message-content d-flex flex-column align-items-center mb-4 mt-2 pl-3"; style="color: white; font-weight: 350;"><%= message.content %></p>
+    </div>
+    <div class="message-content">
+      <p style="color: white; font-weight: 350;"><%= message.content %></p>
     </div>
   </div>
 
-<% else %>
+<%# else %>
 
-  <div class="message-container" id="message-<%= message.id %>">
-    <i class="author container ">
-      <%= cl_image_tag(message.user.avatar.key, :fetch_format=>:auto, :class=>"avatar", style:"width: 40px; height: 40px;") %>
-      <span style="color:lightgrey; margin-left: 8px; "><%= message.user.nickname %></span>
-      <small style="color:lightgrey;"><%= message.created_at.strftime("%l:%M%p") %></small>
+  <!-- <div class="message-container" id="message-<%= message.id %>">
+    <i class="author container "> -->
+      <%#= cl_image_tag(message.user.avatar.key, :fetch_format=>:auto, :class=>"avatar", style:"width: 40px; height: 40px;") %>
+    <!--   <span style="color:lightgrey; margin-left: 8px; "><%#= message.user.nickname %></span> -->
+    <!--   <small style="color:lightgrey;"><%#= message.created_at.strftime("%l:%M%p") %></small>
     </i>
     <div class="container d-flex w-100">
-      <p class="message-content d-flex flex-column align-items-center mb-4 mt-2 pl-3"; style="color: white; font-weight: 350;" data-remote=”true”><%= message.content %></p>
+      <p class="message-content d-flex flex-column align-items-center mb-4 mt-2 pl-3"; style="color: white; font-weight: 350;" data-remote=”true”><%#= message.content %></p>
     </div>
   </div>
 
-<% end %>
+<%# end %> -->
 
