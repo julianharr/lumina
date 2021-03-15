@@ -10,8 +10,19 @@
       <div class="container container-user d-flex" style="min-width: 350px;">
         <%= cl_image_tag(@user.avatar.key, style:"min-width:250px; height: 255px") %>
         <div class="container-user-info d-flex flex-column justify-content-between p-3">
-          <h5 style="color:white;"><%= @user.first_name %> <%= @user.last_name %></h5>
+
+          <div class="d-flex justify-content-start">
+            <h5 style="color:white;"><%= @user.first_name %> <%= @user.last_name %></h5>
+             <!-- Friend Request Button -->
+            <% if current_user.friends.exclude?(@user) %>
+                <%= link_to friends_path(@user), controller: "friends", action: 'create', method: 'post', id: @user.id do %>
+                  <i class="fas fa-user-plus ml-2" id="friendrequest-button"></i>
+                <% end %>
+            <% end  %>
+          </div>
+
           <p>@<%= @user.nickname %></p>
+
           <% if current_user.friends.include? @user %>
             <%= link_to 'Message', chatrooms_path(user_two_id: @user), method: :post, class:"btn btn-message btn-info w-50" %>
           <% end %>
