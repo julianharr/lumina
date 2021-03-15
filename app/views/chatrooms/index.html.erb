@@ -9,12 +9,17 @@
       <%= link_to chatrooms_path(chatroom: chatroom.id), class:"#{'active' if chatroom == @current_chatroom}" do %>
         <div class="conversation d-flex flex-column mb-1" data-chatroom-id="<%= chatroom.id %>">
           <div class="d-flex justify-content-center align-items-center p-2">
+
             <% if chatroom == current_user %>
+
               <%= cl_image_tag(chatroom.user.avatar.key, :fetch_format=>:auto, :class=>"avatar chatroom-avatar") %>
-              <%= chatroom.user_two.first_name %>
+              <%= chatroom.current_user.first_name %>
+
             <% else %>
+
               <%= cl_image_tag(chatroom.user_two.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
               <p class="ml-3" style="font-weight: 400;"><%= chatroom.user_two.first_name %></p>
+
             <% end %>
           </div>
         </div>

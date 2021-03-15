@@ -17,9 +17,9 @@
 
   <hr style="color: white">
 
-  <div class="w-25">
-    <%= simple_form_for [ current_chatroom, message ], html: { autocomplete: 'off' } do |f| %>
-      <%= f.input :content, label: false, placeholder: "Type your message" %>
+  <div class="w-25" style="color: white;">
+    <%= simple_form_for [ current_chatroom, message ], html: { autocomplete: 'off', class: "chatroom-container" } do |f| %>
+      <%= f.input :content, label: false, outline: "none", :input_html => { :class => 'message-input' }, placeholder: "Type your message" %>
     <% end %>
   </div>
 </div>
