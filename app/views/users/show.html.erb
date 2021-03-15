@@ -22,10 +22,7 @@
           </div>
 
           <p>@<%= @user.nickname %></p>
-
-          <% if current_user.friends.include? @user %>
-            <%= link_to 'Message', chatrooms_path(user_two_id: @user), method: :post, class:"btn btn-message btn-info w-50" %>
-          <% end %>
+          <%= link_to 'Message', chatrooms_path(user_two_id: @user), method: :post, class:"btn btn-message btn-info w-50" %>
           <p style="color:#a8a8ac;"><%= @user.bio.truncate(100) %></p>
         </div>
       </div>

@@ -13,7 +13,15 @@
                   <h6 style="color:lightgrey;">You both love <span class="span-interest"><%= interest %><span> </h6>
                 <% end %>
               <% end %>
-              <%= link_to "Request", friends_path(stranger), controller: "friends", action: 'create', method: 'post', class: "btn btn-info btn-request mt-2", id: stranger.id  %>
+
+              <div class="d-flex">
+                <%= link_to friends_path(stranger), controller: "friends", action: 'create', method: 'post', class: "btn btn-info btn-request mt-2", id: stranger.id, style:"width: 48px;" do %>
+                   <i class="fas fa-user-plus" style="color:white;"></i>
+                <% end %>
+                  <%= link_to chatrooms_path(user_two_id: stranger), method: :post, class:"btn btn-primary btn-request mt-2 ml-2", style:"width: 48px;" do %>
+                    <i class="fas fa-comment-dots" style="color:white;"></i>
+                  <% end %>
+              </div>
             </div>
         </div>
     <% end %>

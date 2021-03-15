@@ -7,7 +7,7 @@
       <!-- Friend Info -->
       <div class="d-flex flex-column justify-content-center p-2">
         <h5 style="color:white"><%= friend.first_name %> <%= friend.last_name %></h5>
-        <%= link_to 'Message', chatrooms_path(user_two_id: friend), method: :post, class:"btn btn-message btn-info" %>
+        <%= link_to 'Message', chatrooms_path(user_two_id: friend), method: :post, class:"btn btn-message btn-info", style:"width: 100px;" %>
 
         <div class="d-flex justify-content-start ml-1 mt-5">
           <%= link_to "Block", friends_block_path(friend), controller: "friends", action: 'block', method: 'post', id: friend.id, class:"mr-2" %>
