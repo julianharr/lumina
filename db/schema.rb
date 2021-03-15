@@ -114,7 +114,6 @@ ActiveRecord::Schema.define(version: 2021_03_14_011452) do
     t.string "group_url"
     t.integer "group_id"
     t.boolean "group_quest_required", default: false
-
   end
 
   create_table "favorites", force: :cascade do |t|

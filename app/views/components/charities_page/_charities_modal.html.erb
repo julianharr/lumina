@@ -11,84 +11,51 @@
         </button>
       </div>
       <div class="modal-body modal-body-event">
-        <div class="container pl-4 pr-4 pt-2">
-          <h5 style="color:lightgrey">Donating is voluntary and always your choice. Lumina will display your donation pledge to your friends to help celebrate your efforts.
-          <br><br>
-          If you have not donated to the charity of your choosing within two days, Lumina will send you a reminder to do so.
-          </h5>
-        </div>
-        <div class="container container-donation d-flex justify-content-start mt-4 p-3">
-
-          <!-- Donate $5 Button -->
-<!--           <button class="tip-button mr-2">
-            <span class="tip-button__text" id="btn-5">Donate $5</span>
-            <div class="coin-wrapper">
-              <div class="coin">
-                <div class="coin__middle"></div>
-                <div class="coin__back"></div>
-                <div class="coin__front"></div>
-              </div>
-            </div>
-          </button> -->
-
+        <div class="container container-donation d-flex justify-content-center">
 
           <%= link_to  charity_donates_path(charity, amount: 5), class:"tip-button mr-2", method: :post, remote: true do %>
-          <span class="tip-button__text" id="btn-10">Donate $5</span>
-            <div class="coin-wrapper">
-              <div class="coin">
-                <div class="coin__middle"></div>
-                <div class="coin__back"></div>
-                <div class="coin__front"></div>
+            <span class="tip-button__text" id="btn-10" style="top: 25%; left: 25%;">Donate $5</span>
+              <div class="coin-wrapper">
+                <div class="coin">
+                  <div class="coin__middle"></div>
+                  <div class="coin__back"></div>
+                  <div class="coin__front"></div>
+                </div>
               </div>
-            </div>
+
           <% end %>
 
-          <!-- Donate $10 Button -->
-           <!-- <button class="tip-button mr-2"> -->
-<!--             <span class="tip-button__text" id="btn-10">Donate $10</span> -->
-<!--             <div class="coin-wrapper"> -->
-<!--               <div class="coin">
-                <div class="coin__middle"></div>
-                <div class="coin__back"></div>
-                <div class="coin__front"></div>
-              </div>
-            </div> -->
-          <!-- </button> -->
           <%= link_to  charity_donates_path(charity, amount: 10), class:"tip-button mr-2", method: :post, remote: true do %>
-          <span class="tip-button__text" id="btn-10">Donate $10</span>
-            <div class="coin-wrapper">
-              <div class="coin">
-                <div class="coin__middle"></div>
-                <div class="coin__back"></div>
-                <div class="coin__front"></div>
+            <span class="tip-button__text" id="btn-10" style="top: 25%; left: 20%;">Donate $10</span>
+              <div class="coin-wrapper">
+                <div class="coin">
+                  <div class="coin__middle"></div>
+                  <div class="coin__back"></div>
+                  <div class="coin__front"></div>
+                </div>
               </div>
-            </div>
-          <% end %>
 
-          <!-- Donate $25 Button -->
-<!--            <button class="tip-button">
-            <span class="tip-button__text" id="btn-25">Donate $25</span>
-            <div class="coin-wrapper">
-              <div class="coin">
-                <div class="coin__middle"></div>
-                <div class="coin__back"></div>
-                <div class="coin__front"></div>
-              </div>
-            </div>
-          </button> -->
+          <% end %>
 
           <%= link_to  charity_donates_path(charity, amount: 25), class:"tip-button mr-2", method: :post, remote: true do %>
-          <span class="tip-button__text" id="btn-10">Donate $25</span>
-            <div class="coin-wrapper">
-              <div class="coin">
-                <div class="coin__middle"></div>
-                <div class="coin__back"></div>
-                <div class="coin__front"></div>
+            <span class="tip-button__text" id="btn-10" style="top: 25%; left: 25%;">Donate $25</span>
+              <div class="coin-wrapper">
+                <div class="coin">
+                  <div class="coin__middle"></div>
+                  <div class="coin__back"></div>
+                  <div class="coin__front"></div>
+                </div>
               </div>
-            </div>
           <% end %>
 
         </div>
+      </div>
+
+      <div class="container pt-5 pl-5 pr-5">
+        <h6 style="color:grey">Donating is voluntary and always your choice. Lumina will display your donation pledge to your friends to help celebrate your efforts.
+        <br><br>
+        If you have not donated to the charity of your choosing within two days, Lumina will send you a reminder to do so.
+        </h6>
       </div>
       <div class="modal-footer mt-3">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

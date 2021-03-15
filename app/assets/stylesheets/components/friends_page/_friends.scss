@@ -3,13 +3,11 @@
   border: 0.05rem solid #3a3b3c;
   background-color: #142535;
   width: 48%;
-  box-shadow:  41px 41px 82px #111f2e,
-             -41px -41px 82px #172b3e;
+  transition: 0.5s all;
 }
 
 .friend-container:hover {
-  box-shadow:  23px 23px 33px #0e1a26,
-             -23px -23px 33px #1a3046;
+  border: 0.05rem solid grey;
 }
 
 
