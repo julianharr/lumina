@@ -4,6 +4,11 @@
   text-align: left;
   border-radius: 12px;
   border: 0.05rem solid #3a3b3c;
+  transition: 0.5s ease-in-out;
+}
+
+.card-event:hover {
+  border: 0.05rem solid grey;
 }
 
 .container-event-show {

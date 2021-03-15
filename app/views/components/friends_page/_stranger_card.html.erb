@@ -2,7 +2,7 @@
   <h3 class="w-100 mt-5 ml-3">Meet Someone New</h3>
   <% current_user.strangers.each do |stranger| %>
       <% if current_user.interests.any? { |interest| stranger.interests.include?(interest)} %>
-        <div class="friend-container d-flex mb-5 mr-3 mt-5">
+        <div class="friend-container d-flex mb-2 mr-3 mt-2">
           <%= link_to profile_path(stranger) do %>
             <%= cl_image_tag(stranger.avatar.key, class:"img-fluid", style:"width: 200px;  border-radius: 24px 0px 0px 24px; margin-right: 16px;") %>
             <div class="d-flex flex-column justify-content-center p-2">
@@ -13,7 +13,15 @@
                   <h6 style="color:lightgrey;">You both love <span class="span-interest"><%= interest %><span> </h6>
                 <% end %>
               <% end %>
-              <%= link_to "Request", friends_path(stranger), controller: "friends", action: 'create', method: 'post', class: "btn btn-info btn-request mt-2", id: stranger.id  %>
+
+              <div class="d-flex">
+                <%= link_to friends_path(stranger), controller: "friends", action: 'create', method: 'post', class: "btn btn-info btn-request mt-2", id: stranger.id, style:"width: 48px;" do %>
+                   <i class="fas fa-user-plus" style="color:white;"></i>
+                <% end %>
+                  <%= link_to chatrooms_path(user_two_id: stranger), method: :post, class:"btn btn-primary btn-request mt-2 ml-2", style:"width: 48px;" do %>
+                    <i class="fas fa-comment-dots" style="color:white;"></i>
+                  <% end %>
+              </div>
             </div>
         </div>
     <% end %>

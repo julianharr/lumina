@@ -73,7 +73,9 @@
       <div id="status">
         <div class="card-notification-md mb-2 d-flex p-3" style="border-radius: 12px;">
           <div class="crop" style="border-radius: 24px;">
-            <%= cl_image_tag(friend_array[n].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
+            <%= link_to profile_path(friend_array[n]) do %>
+              <%= cl_image_tag(friend_array[n].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
+            <% end %>
           </div>
           <div class="d-flex flex-column justify-content-center w-100 ml-5">
             <h6 style="color: lightgrey"><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
@@ -96,7 +98,9 @@
       <div class="card-notification-md d-flex mb-2 p-3" style="border-radius: 12px;">
 
         <div class="crop" style="border-radius: 24px;">
-          <%= cl_image_tag(friend_array[n].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
+          <%= link_to profile_path(friend_array[n]) do %>
+            <%= cl_image_tag(friend_array[n].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
+          <% end %>
         </div>
 
         <div class="d-flex flex-column justify-content-center w-100 ml-5">
@@ -113,7 +117,9 @@
         <div class="card-notification-donate top bottom left right d-flex mb-2 p-3" style="border-radius: 12px;">
           <!-- Image -->
           <div class="crop" style="border-radius: 24px;">
-            <%= cl_image_tag(@find_user[0].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
+            <%= link_to profile_path(@find_user[0]) do %>
+              <%= cl_image_tag(@find_user[0].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
+            <% end %>
           </div>
 
           <!-- Donation Text -->
