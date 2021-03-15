@@ -11,15 +11,15 @@ AllCops:
     - "db/schema.rb"
 
 Style/ConditionalAssignment:
-  Enabled: false
+  Enabled: true
 Style/StringLiterals:
-  Enabled: false
+  Enabled: true
 Style/RedundantReturn:
-  Enabled: false
+  Enabled: true
 Style/Documentation:
-  Enabled: false
+  Enabled: true
 Style/WordArray:
-  Enabled: false
+  Enabled: true
 Metrics/AbcSize:
   Enabled: false
 Style/MutableConstant:
@@ -35,7 +35,7 @@ Lint/MissingSuper:
 Style/FrozenStringLiteralComment:
   Enabled: false
 Layout/LineLength:
-  Max: 1000
+  Max: 2000
 Style/EmptyMethod:
   Enabled: false
 Bundler/OrderedGems:
