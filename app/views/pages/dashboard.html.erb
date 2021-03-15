@@ -20,7 +20,7 @@
     <div class="container container-user-interests p-3 d-flex align-items-center">
       <%= image_tag 'Saly-16.png', class: "img-fluid", style:"width: 250px;"  %>
       <div class="ml-4 d-flex flex-column flex-wrap">
-        <h5 style="color:white;"> <%= @user.first_name %>'s Interests </h5>
+        <h5 style="color:white;"> Your Interests </h5>
         <% @user.interests.each do |interest| %>
           <h6 class="pr-2", style="color:#a8a8ac;"> <STRONG><%= interest %> </STRONG></h6>
         <% end %>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="container d-flex p-3 justify-content-left flex-wrap container-dash-large">
-      <h5 class="mt-4 w-100" style="color:white;"> Discover <%= @user.first_name %>'s Wishlist</h5>
+      <h5 class="mt-4 w-100" style="color:white;"> Discover your Wishlist</h5>
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-info", style="border-radius: 24px;", data-toggle="modal" data-target="#wishlistModal">
         View Wishlist
@@ -67,7 +67,7 @@
 
       <!-- Event Container -->
       <div class="container d-flex p-3 justify-content-left flex-wrap container-dash-large">
-        <h5 class="mt-4 w-100" style="color:white;"> Discover <%= @user.first_name %>'s Event History</h5>
+        <h5 class="mt-4 w-100" style="color:white;"> Discover your Event History</h5>
         <button type="button" class="btn btn-info", style="border-radius: 24px;", data-toggle="modal" data-target="#eventsModal">
         View Events
       </button>
