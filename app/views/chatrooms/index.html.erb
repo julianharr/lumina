@@ -13,7 +13,7 @@
               <%= cl_image_tag(chatroom.user.avatar.key, :fetch_format=>:auto, :class=>"avatar chatroom-avatar") %>
               <%= chatroom.user_two.first_name %>
             <% else %>
-              <%= cl_image_tag(chatroom.user_two.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
+              <%= cl_image_tag(chatroom.user_two.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"width: 50px; height:50px;") %>
               <p class="ml-3" style="font-weight: 400;"><%= chatroom.user_two.first_name %></p>
             <% end %>
           </div>
@@ -29,7 +29,7 @@
 
     <div class="container w-100" style="height: 90vh;">
       <% if @current_chatroom %>
-        <%= render 'show', current_chatroom: @current_chatroom, messages: @messages, message: Message.new %>
+        <%= render 'show_new', current_chatroom: @current_chatroom, messages: @messages, message: Message.new %>
       <% else %>
         <div class="container h-100 d-flex align-items-center">
           <h3>You haven't started a conversation with anyone!</h3>
