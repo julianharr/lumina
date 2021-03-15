@@ -9,7 +9,7 @@
         <span style="color:lightgrey; margin-left: 8px; margin-right: 8px; "><%= message.user.nickname %></span>
         <%= cl_image_tag(message.user.avatar.key, :fetch_format=>:auto, :class=>"avatar") %>
       </i>
-        <p class="message-content d-flex flex-column mb-4 mt-2 pl-3"; style="color: white; font-weight: 350;"><%= message.content %></p>
+        <p class="message-content d-flex flex-column align-items-center mb-4 mt-2 pl-3"; style="color: white; font-weight: 350;"><%= message.content %></p>
     </div>
   </div>
 
@@ -22,7 +22,7 @@
       <small style="color:lightgrey;"><%= message.created_at.strftime("%l:%M%p") %></small>
     </i>
     <div class="container d-flex w-100">
-      <p class="message-content d-flex flex-column mb-4 mt-2 pl-3"; style="color: white; font-weight: 350;" data-remote=”true”><%= message.content %></p>
+      <p class="message-content d-flex flex-column align-items-center mb-4 mt-2 pl-3"; style="color: white; font-weight: 350;" data-remote=”true”><%= message.content %></p>
     </div>
   </div>
 
