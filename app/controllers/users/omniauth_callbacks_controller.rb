@@ -1,7 +1,7 @@
-require "open-uri"
+require 'open-uri'
 require 'json'
-require "uri"
-require "net/http"
+require 'uri'
+require 'net/http'
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   before_action :set_service
   before_action :set_user
@@ -9,15 +9,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   attr_reader :service, :user
 
   def facebook
-    handle_auth "Facebook"
+    handle_auth 'Facebook'
   end
 
   def twitter
-    handle_auth "Twitter"
+    handle_auth 'Twitter'
   end
 
   def meetup
-    handle_auth "Meetup"
+    handle_auth 'Meetup'
   end
 
   private
@@ -74,9 +74,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def create_user
-    if auth.provider == "meetup"
-      first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user["login"].capitalize
-      last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ""
+    if auth.provider == 'meetup'
+      first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user['login'].capitalize
+      last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ''
       email = auth.info.email.present? ? auth.info.email : Faker::Internet.email
 
       make_me = User.create(
@@ -86,18 +86,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         password: Devise.friendly_token[0, 20]
       )
 
-      user_image = URI.parse(auth.info["photo_url"]).open
+      user_image = URI.parse(auth.info['photo_url']).open
       make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
 
-      return make_me
-    elsif auth.provider == "facebook"
+      make_me
+    elsif auth.provider == 'facebook'
       # binding.pry
-      first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user["login"].capitalize
-      last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ""
-      email = auth.info.email.present? ? auth.info.email : "no_email@gmail.com"
+      first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user['login'].capitalize
+      last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ''
+      email = auth.info.email.present? ? auth.info.email : 'no_email@gmail.com'
 
-      user = Koala::Facebook::API.new(auth.credentials["token"])
-      image = user.get_picture("me", { type: 'large' })
+      user = Koala::Facebook::API.new(auth.credentials['token'])
+      image = user.get_picture('me', { type: 'large' })
 
       make_me = User.create!(
         email: email,
@@ -109,10 +109,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user_image = URI.parse(image).open
       make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
 
-      return make_me
+      make_me
     else
-      first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user["login"].capitalize
-      last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ""
+      first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user['login'].capitalize
+      last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ''
 
       User.create!(
         email: email,
