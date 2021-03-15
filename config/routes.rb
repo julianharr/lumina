@@ -45,8 +45,8 @@ Rails.application.routes.draw do
   post '/friends/delete' => 'friends/delete'
   post '/friends/block' => 'friends/block'
   # events routes
- post '/events/rsvp' => '/events/rsvp'
-
+  post '/events/rsvp' => '/events/rsvp'
+  post '/events/remove_rsvp' => '/events/remove_rsvp'
   #DONATE THROUGH USER??
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

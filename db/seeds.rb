@@ -312,12 +312,14 @@ meetup_event_spooler(meetup_events_finder({ latitude: "-37.784", longitude: "144
 # interests_syd.each do |element|
 #   meetup_event_spooler(meetup_events_finder({ latitude: "-33.8861", longitude: "151.2111", category: element }))
 # end
+
 # 150.times do
 #   Attendevent.create!(
 #     user_id: User.ids.sample,
 #     event_id: Event.ids.sample
 #   )
 # end
+
 puts "--- Events Over ---"
 puts "---"
 puts "---"

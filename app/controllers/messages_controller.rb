@@ -12,7 +12,8 @@ class MessagesController < ApplicationController
 
     if @message.save
 
-      redirect_to chatrooms_path
+      redirect_to chatrooms_path(chatroom: @chatroom.id, anchor: "message-#{@message.id}")
+      # redirect_to chatrooms_path
     else
       render "chatrooms/show"
     end
