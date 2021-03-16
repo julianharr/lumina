@@ -5,13 +5,8 @@ class ApplicationController < ActionController::Base
   # before the location can be stored.
   before_action :authenticate_user!
 
-  private
-
-  # Its important that the location is NOT stored if:
-  # - The request method is not GET (non idempotent)
-  # - The request is handled by a Devisge controller such as Devise::SessionsController as that could cause an
-  #    infinite redirect loop.
-  # - The request is an Ajax request as this can lead to very unexpected behaviour.
+  # Redirect back to current page after sign in
+  # ref: https://github.com/heartcombo/devise/wiki/How-To:-Redirect-back-to-current-page-after-sign-in,-sign-out,-sign-up,-update
   def storable_location?
     request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
   end
@@ -20,4 +15,12 @@ class ApplicationController < ActionController::Base
     # :user is the scope we are authenticating
     store_location_for(:user, request.fullpath)
   end
+
+  def after_sign_in_path_for(_resource)
+    feed_path
+  end
+
+  # def after_sign_up_path_for(resource)
+  #   stored_location_for(resource) || feed_path
+  # end
 end

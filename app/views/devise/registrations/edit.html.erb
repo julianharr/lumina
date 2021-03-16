@@ -41,7 +41,7 @@
       <% if current_user.services.meetup.any? %>
         Connected
       <% else %>
-        <%= link_to "Connect", user_facebook_omniauth_authorize_path %>
+        <%= link_to "Connect", user_meetup_omniauth_authorize_path %>
       <% end %>
     </p>
     <hr>
