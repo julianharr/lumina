@@ -7,13 +7,32 @@
       <!-- Friend Info -->
       <div class="d-flex flex-column justify-content-center p-2">
         <h5 style="color:white"><%= friend.first_name %> <%= friend.last_name %></h5>
-        <%= link_to 'Message', chatrooms_path(user_two_id: friend), method: :post, class:"btn btn-message btn-info", style:"width: 100px;" %>
 
-        <div class="d-flex justify-content-start ml-1 mt-5">
-          <%= link_to "Block", friends_block_path(friend), controller: "friends", action: 'block', method: 'post', id: friend.id, class:"mr-2" %>
-          <%= link_to "Remove", friends_delete_path(friend), controller: "friends", action: 'remove', method: 'post', id: friend.id  %>
+        <!-- Visit Profile and Message Buttons -->
+        <div class="d-flex">
+          <%= link_to profile_path(friend), class: "btn btn-info btn-request mt-2", style:"width: 48px;" do %>
+            <i class="fas fa-user-circle" style="color:white;"></i>
+          <% end %>
+
+          <%= link_to chatrooms_path(user_two_id: friend), method: :post, class:"btn btn-primary btn-request mt-2 ml-2", style:"width: 48px;" do %>
+            <i class="fas fa-comment-dots" style="color:white;"></i>
+          <% end %>
         </div>
+        <!-- Block and Remove Buttons -->
+        <div class="d-flex justify-content-start mt-5 ml-2">
+          <div class="btn-group">
+            <h6 class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:lightgrey";>
+              <i class="fas fa-exclamation-circle" style="color:#EC0B43"></i>
+            </h6>
+            <div class="dropdown-menu" style="border-radius: 24px;">
+              <%= link_to "Block", friends_block_path(friend), controller: "friends", action: 'block', method: 'post', id: friend.id, class:"dropdown-item", style:"border-radius: 24px;" %>
+              <%= link_to "Delete", friends_delete_path(friend), controller: "friends", action: 'remove', method: 'post', id: friend.id, class:"dropdown-item", style:"border-radius: 24px;" %>
+            </div>
+          </div>
+        </div>
+
       </div>
+
     </div>
   <% end %>
 <% end %>

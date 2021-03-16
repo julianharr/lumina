@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'friends/show'
   #
   devise_for :users, controllers: { registrations: "registrations", omniauth_callbacks: "users/omniauth_callbacks"}
+
+
   # User redirected to feed page upon sign in
   get '/user' => "pages#feed", :as => :user_root
 
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
 
   # For Redis and ActionCable
   mount ActionCable.server => '/cable'
+
+  # This is causing issues upon logging in
   get '/feed_partial', to: 'pages#ajax'
   get '/feed', to: 'pages#feed'
   get '/interests', to: 'pages#interests'
