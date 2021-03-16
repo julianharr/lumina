@@ -247,7 +247,7 @@ puts "--- HEY it's time to make Status Updates CMON !"
 
 user_arr.each do |id|
   make_status = Status.create(
-    content: Faker::Quote.yoda,
+    content: Faker::Quote.famous_last_words,
     user_id: id
   )
 
@@ -299,7 +299,9 @@ puts "--- Spooling up events ---"
 # Local meetup API tester below first
 #
 meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "tech" }))
-meetup_event_spooler(meetup_events_finder({ latitude: "-37.784", longitude: "144.986", category: "food" }))
+meetup_event_spooler(meetup_events_finder({ latitude: "-37.784", longitude: "144.986", category: "pets" }))
+meetup_event_spooler(meetup_events_finder({ latitude: "-37.784", longitude: "144.986", category: "environment" }))
+
 
 # Big Daddy Events Scraper Below !!! Caution !!!
 #
