@@ -1,4 +1,4 @@
-<div class="container d-flex flex-column justify-content-between h-100 w-100" style="overflow-y: scroll;">
+<div class="container d-flex flex-column h-100" style="overflow-y: scroll;">
   <div class="chatroom mb-3 w-100">
     <% if current_user == current_chatroom.user_two %>
       <h1>Message with <%= current_chatroom.user.first_name %></h1>
@@ -17,9 +17,9 @@
 
   <hr style="color: white">
 
-  <div class="w-25">
-    <%= simple_form_for [ current_chatroom, message ], html: { autocomplete: 'off' } do |f| %>
-      <%= f.input :content, label: false, placeholder: "Type your message" %>
+  <div class="w-25" style="color: white;">
+    <%= simple_form_for [ current_chatroom, message ], html: { autocomplete: 'off', class: "chatroom-container" } do |f| %>
+      <%= f.input :content, label: false, :input_html => { :class => 'message-input' }, placeholder: "Type your message" %>
     <% end %>
   </div>
 </div>

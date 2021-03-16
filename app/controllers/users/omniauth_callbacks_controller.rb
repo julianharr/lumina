@@ -74,19 +74,23 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def create_user
-    if auth.provider == 'meetup'
-      first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user['login'].capitalize
-      last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ''
-      email = auth.info.email.present? ? auth.info.email : Faker::Internet.email
 
-      make_me = User.create(
-        email: email,
+    if auth.provider == "meetup"
+      first_name = auth.info.name.present? ? auth.info.name.split.first.capitalize : user["login"].capitalize
+      last_name = auth.info.name.present? ? auth.info.name.split[1]&.capitalize : ""
+      make_me = User.new(
+        # email: email,
         first_name: first_name,
         last_name: last_name,
         password: Devise.friendly_token[0, 20]
       )
 
-      user_image = URI.parse(auth.info['photo_url']).open
+      numb = rand(0..3000)
+      email = "#{first_name}-#{make_me}#{numb}@gmail.com"
+      make_me.update(email: email)
+      make_me.save
+      user_image = URI.parse(auth.info["photo_url"]).open
+
       make_me.avatar.attach(io: user_image, filename: "#{make_me.first_name}.jpeg", content_type: 'image/jpeg')
 
       make_me

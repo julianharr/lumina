@@ -1,5 +1,5 @@
 <div class="text-center mt-5">
-  <h1>Please select 3 interests that you have so we can connect you correctly...</h1>
+  <h2>I'm interested in...</h2>
 </div>
 
 <% interests = %w(Arts Music Outdoors Tech Photography Learning Food Family Health Wellness Sports Fitness Writing Language LGBTQ Film Sci-fi Games Books Dance Animals Pets Crafts Fashion Beauty Business Environment Dogs Cats Wildlife Education) %>
@@ -23,6 +23,6 @@
     </div>
   </div>
   <div class="text-center">
-    <%= link_to "Submit", interests_path, method: :post, id: "next-page", class:"btn btn-primary m-5" %>
+    <%= link_to "Submit", interests_path, method: :post, id: "next-page", class:"btn btn-info m-5" %>
   </div>
 </div>

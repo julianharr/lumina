@@ -1,16 +1,19 @@
 <div class="container-fluid mb-5 mt-0 pt-4 pl-5 pr-5 d-flex justify-content-between">
 
   <div class="ml-5">
-    <h4 class="hover-6"><%= link_to "About", about_path, style:"color: white; margin-right:5px; font-weight: 500;" %></h4>
+    <h6 class="hover-6"><%= link_to "About", about_path, style:"color: white; margin-right:5px;" %></h6>
   </div>
 
   <div class="mr-5">
     <% if current_user == nil %>
-      <h4 class="hover-6"><%= link_to "Sign in", new_user_session_path, style:"color: white; margin-right:15px; font-weight: 500;" %></h4>
+      <h6 class="hover-6"><%= link_to "Sign in", new_user_session_path, style:"color: white; margin-right:15px;" %></h6>
     <% end %>
 
     <% if current_user %>
-    <h4 class="hover-6"><%= link_to "Log out", destroy_user_session_path, method: :delete, style:"color: red; font-weight: 500;" %></h4>
+    <div class="d-flex">
+      <h6 class="hover-6 mr-3"><%= link_to "Home", feed_path, style:"color: white;" %></h6>
+      <h6><%= link_to "Log out", destroy_user_session_path, method: :delete, style:"color: red; border: 0.05rem solid red; border-radius: 24px; padding: 8px 12px; text-decoration: none;" %></h6>
+    </div>
     <% end %>
   </div>
 
