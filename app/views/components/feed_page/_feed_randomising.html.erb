@@ -43,16 +43,29 @@
           <h5 class="pt-2">Charity <i class="fas fa-ribbon ribbon m-1"></i> </h5>
           <h6><%= @charity[n].name %> <i class="fas fa-globe-asia m-2"></i> <%= @charity[n].location %> </h6>
           <p style="font-weight: 400;"><%=  h truncate(@charity[n].description, :length => 100) %></p>
-          <a href="<%= @charity[n].website %>", target="_blank">Website</a>
-          <%= link_to "More Info", charities_path, class:"btn btn-info donate-btn w-25 mt-2", style:"border-radius: 24px;" %>
+
+          <!-- Link to all charities and individual charity website -->
+          <div class="d-flex mt-2">
+            <%= link_to "View all charities", charities_path, class:"btn btn-info w-50 mr-2", style:"border-radius: 24px;" %>
+            <%= link_to @charity[n].website, target: "_blank", style: "border-radius: 24px; width: 150px; text-decoration: none;", class:"btn-website d-flex align-items-center justify-content-center" do %>
+              <div class="d-flex align-items-center justify-content-center">
+                <i class="fas fa-info-circle mr-2", style="color:white;"></i>
+                <p style="color: white;">Website</p>
+              </div>
+            <% end %>
+          </div>
+
         </div>
         <% n+= 1%>
       </div>
+
     <% elsif selection == 'event_card' && n < event_array.length %>
+
       <!-- Event Card -->
       <div class="card-notification-md mb-2 d-flex p-3" style="color:white; border-radius: 12px;">
         <%= cl_image_tag(event_array[n].image.key, width: 250, style:"border-radius:24px;") %>
-        <div class="d-flex flex-column align-items-start justify-content-around ml-4">
+        <div class="d-flex flex-column align-items-start ml-4">
+          <h6 class="ml-3 pl-2 text-left" style="color:lightgrey;"><%= event_array[n].date.strftime("%d %B") %> </h6>
           <h5 class="ml-3 p-2 text-left"><%= event_array[n].name.capitalize %></h5>
           <div class="d-flex align-items-center ml-4">
             <% if event_array[n].host_link.present? %>
@@ -69,6 +82,7 @@
         </div>
         <% n+= 1%>
       </div>
+
     <% elsif selection == 'friend_status' && n < friend_array.length %>
       <div id="status">
         <div class="card-notification-md mb-2 d-flex p-3" style="border-radius: 12px;">
@@ -105,8 +119,8 @@
 
         <div class="d-flex flex-column justify-content-center w-100 ml-5">
           <h6 style="color: lightgrey"><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
-          <h5 style="color:white">Have you seen <span style="color: #EC0B43"><%= friend_array[n].first_name %> <%= friend_array[n].last_name %>'s profile?</span></h5>
-          <%= link_to "Check their wishlist!", profile_path(friend_array[n]), class: "btn btn-info w-50 mt-2", style: "border-radius: 24px;" %>
+          <h5 style="color:white">Have you seen <span style="color: #EC0B43"><%= friend_array[n].first_name %> <%= friend_array[n].last_name%>'s</span> profile?</h5>
+          <%= link_to "View", profile_path(friend_array[n]), class: "btn btn-info w-25 mt-2", style: "border-radius: 24px;" %>
         </div>
 
         <% n+= 1%>
@@ -124,7 +138,7 @@
 
           <!-- Donation Text -->
           <div class="d-flex flex-column justify-content-center ml-5">
-            <h5 style="color:white"><span style="color: #EC0B43"><%= @find_user[0].first_name %> <%= @user_for_status[0].last_name %></span> pledges to donate $<%= @donates_current_user[0].amount.to_i %> to <%= @find_charity[0].name %>, give them some love!</h5>
+            <h5 style="color:white"><span><%= @find_user[0].first_name %> <%= @user_for_status[0].last_name %></span> pledges to donate $<%= @donates_current_user[0].amount.to_i %> to <%= @find_charity[0].name %>, give them some love!</h5>
           </div>
 
           <!-- Heart -->
