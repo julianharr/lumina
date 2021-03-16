@@ -78,14 +78,15 @@ document.addEventListener("turbolinks:load", () => {
 
 const feedCards = document.querySelector('.feed_cards');
 // The Scroll Event.
-window.addEventListener('scroll',()=>{
-      console.log("yo")
-  const {scrollHeight,scrollTop,clientHeight} = document.documentElement;
-  if(scrollTop + clientHeight > scrollHeight - 5){
-    setTimeout(createDiv,2000);
-  }
-});
-
+if(feedCards) {
+  window.addEventListener('scroll',()=>{
+        console.log("yo")
+    const {scrollHeight,scrollTop,clientHeight} = document.documentElement;
+    if(scrollTop + clientHeight > scrollHeight - 5){
+      setTimeout(createDiv,2000);
+    }
+  });
+}
 // The createPost function creates The HTML for the blog post.
 // It append it to the container.
 
