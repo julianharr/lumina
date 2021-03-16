@@ -9,7 +9,7 @@
 
       <!-- Feed -->
       <div class="<%= 'active' if current_page?(feed_path) %> nav-links d-flex">
-        <i class="fas fa-newspaper w-25 mr-4" style="font-size: 24px;"></i>
+        <i class="fas fa-newspaper w-25 mr-4 mb-2" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start w-100">
           <%= link_to "Feed", feed_path, class:"sidebar-link" %>
         </div>
@@ -17,7 +17,7 @@
 
       <!-- Events -->
       <div class="<%= 'active' if current_page?(events_path) %> nav-links d-flex">
-        <i class="fas fa-handshake w-25 mr-4" style="font-size: 24px;"></i>
+        <i class="fas fa-handshake w-25 mr-4 mb-2" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start  w-100">
           <%= link_to "Events", events_path, class:"sidebar-link" %>
         </div>
@@ -26,7 +26,7 @@
       <!-- Friends -->
       <div class="<%= 'active' if current_page?(friends_path) %> nav-links d-flex">
         <% count = current_user.requested_friend_ids.count %>
-        <i class="fas fa-smile w-25  mr-4" style="font-size: 24px;"></i>
+        <i class="fas fa-smile w-25  mr-4 mb-2" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start align-items-center  w-100">
           <%= link_to "Friends ", friends_path, class:"sidebar-link" %>
 
