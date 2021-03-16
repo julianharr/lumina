@@ -4,7 +4,13 @@
   <div class="container dashboard-main d-flex justify-content-center flex-wrap pb-4 mb-5">
     <h3 class="w-100 mt-2 ml-3">Your Friends</h3>
     <!-- Friend Cards -->
-    <%= render 'components/friends_page/friend_card' %>
+    <% if current_user.friends.count > 0 %>
+      <%= render 'components/friends_page/friend_card' %>
+    <% else %>
+      <div class="container d-flex align-items-center justify-content-center">
+        <h3>Start adding some friends!</h3>
+      </div>
+    <% end %>
     <!-- Stranger Cards -->
     <%= render 'components/friends_page/stranger_card' %>
   </div>
