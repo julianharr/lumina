@@ -56,16 +56,12 @@ class User < ApplicationRecord
     event = event_ids.flatten
     return @events = Event.where(id: event)
   end
-  # def users_friends
-  #   friends
-  # end
 
-  # def friend_request(user)
-  #   FriendRequest.create(requester: self, requested: user)
-  # end
-
-  # def accept_request(user)
-  #   FriendRequest.find_by(requester: self, requested: user).destroy
-  #   Friendship.create(friender: self, friended: user)
-  # end
+  # # Search for Users by first and last name
+  # include PgSearch::Model
+  # pg_search_scope :search_by_first_and_last_name,
+  #   against: [ :first_name, :last_name ],
+  #   using: {
+  #     tsearch: { prefix: true } # <-- now `superman batm` will return something!
+  #   }
 end

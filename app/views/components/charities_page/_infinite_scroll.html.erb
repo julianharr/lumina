@@ -13,6 +13,8 @@
         to charities from around the world. We're putting a spotlight
         on organisations that genuinely make the world a better place.
       </h5>
+
+      <!-- Charity Search Bar -->
       <%= form_tag charities_path, method: :get do %>
         <%= text_field_tag :query,
         params[:query],
@@ -22,6 +24,7 @@
         %>
         <%= submit_tag "Search for Charities", class: "btn btn-info mt-2", style:"border-radius: 24px;" %>
       <% end %>
+
     </div>
   </div>
 
