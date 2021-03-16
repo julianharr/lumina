@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   # hash questions from events api
-  serialize :group_questions
+  serialize :group_questions, Array
   # ass
   has_many :attendevents, dependent: :destroy
   has_many :users, through: :attendevents
@@ -11,7 +11,7 @@ class Event < ApplicationRecord
   validates :name, presence: true
   validates :date, presence: true
   validates :description,
-            length: { maximum: 10_000, too_long: "%{count} characters is the maximum allowed" }
+            length: { maximum: 10_000, too_long: '%{count} characters is the maximum allowed' }
   # validates :organiser, presence: true
   validates :attendees, numericality: { only_integer: true }
   # Mapbox

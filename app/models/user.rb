@@ -40,7 +40,7 @@ class User < ApplicationRecord
   def current_user_events
     # get user
     event_ids = []
-    interests_arr = ["food"]
+    interests_arr = interest_list # ["fitness", "pets", "tech"]
     interests.each { |element| interests_arr << element.name }
     # get events with user interests
     interests_arr.each do |element|
@@ -54,7 +54,7 @@ class User < ApplicationRecord
     end
     # ids of users events
     event = event_ids.flatten
-    return @events = Event.where(id: event)
+    @events = Event.where(id: event)
   end
 
   # # Search for Users by first and last name

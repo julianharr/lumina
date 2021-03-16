@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_14_011452) do
+ActiveRecord::Schema.define(version: 2021_03_16_090515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(version: 2021_03_14_011452) do
     t.string "group_url"
     t.integer "group_id"
     t.boolean "group_quest_required", default: false
+    t.boolean "group_rsvp_after", default: false
+    t.text "group_questions"
   end
 
   create_table "favorites", force: :cascade do |t|

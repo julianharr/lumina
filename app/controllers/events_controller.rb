@@ -9,7 +9,8 @@ class EventsController < ApplicationController
   before_action :c_user, only: [:show]
 
   def index
-    @event = Event.all
+    @event = Event.all # current_user.current_user_events
+    # if you want to just select events related to user
 
     # the `geocoded` scope filters only flats with coordinates (latitude & longitude)
     @markers = @event.geocoded.map do |flat|
@@ -74,7 +75,20 @@ class EventsController < ApplicationController
   end
 
   def join_meetup_group(token, event)
+    # https://www.meetup.com/meetup_api/docs/:urlname/members/#create
+    # https://api.meetup.com/melbournevegans/members?&answer_8668160=northern subs&answer_9297659=yes
     event_url = event.group_url
+    # Event.where(group_quest_required: true).first
+    event_quest = event.group_questions
+
+    if !event_quest.nil? && !event_quest.empty?
+      api_string = ''
+      event_quest.each do |question|
+        id = question['id'] #
+        answer = '' # answer from params
+      end
+
+    end
     bearer = token
 
     url = URI("https://api.meetup.com/#{event_url}/members")

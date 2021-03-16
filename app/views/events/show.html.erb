@@ -29,8 +29,12 @@
           </div>
         <% elsif !user_has_meetup?(@user) && event_has_no_questions?(@event) %>
           <%= link_to "RSVP Here", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id  %>
-          <%# <% elsif !user_has_meetup?(current_user) && !event_has_no_questions?(@event)%>
-          <%#= link_to "RSVP w questions", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id %>
+        <% elsif !user_has_meetup?(current_user) && !event_has_no_questions?(@event)%>
+          <%= link_to "RSVP w questions", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id %>
+          <%= simple_form_for(@event) do |f| %>
+            <%= f.input :group_questions %>
+            <%= f.submit %>
+          <% end %>
         <% end %>
         <!-- Event Meetup Logic END -->
       </div>
