@@ -1,42 +1,39 @@
-<div class="container d-flex pl-5" style="position: absolute; top: 45px;">
+<div class="container d-flex flex-column pl-5 mb-3" style="position: absolute; top: 45px; left: 170px;">
 <h1>Sign up to Lumina</h1>
+<div class="d-flex align-items-center">
+<h5 class="mr-2" style="color: lightgrey;">Sign up with Meetup</h5>
+  <!-- Sign up with Meetup -->
+  <%= link_to user_meetup_omniauth_authorize_path, class: "mr-2", method: :post  do %>
+    <i class="fab fa-meetup" style="font-size: 32px; color: #f64160;"></i>
+  <% end %>
+</div>
+
+<div class="d-flex align-items-center">
+  <!-- Sign up with Facebook -->
+  <h5 class="mr-2" style="color: lightgrey;">Sign up with Facebook</h5>
+  <%= link_to user_facebook_omniauth_authorize_path, method: :post  do %>
+    <i class="fab fa-facebook-square" style="font-size: 32px; color: ##176ee5;"></i>
+  <% end %>
+</div>
 </div>
 <div class="container d-flex flex-column flex-lg-row justify-content-center align-items-center signup-container">
   <div class="col-lg-6 col-md-12 col-sm-12 m-5">
-    <div class="d-flex align-items-center">
-    <h5 class="mr-2" style="color: lightgrey;">Sign up with Meetup</h5>
-      <!-- Sign up with Meetup -->
-      <%= link_to user_meetup_omniauth_authorize_path, class: "mr-2", method: :post  do %>
-        <i class="fab fa-meetup" style="font-size: 32px; color: #f64160;"></i>
-      <% end %>
-    </div>
-
-    <div class="d-flex align-items-center">
-      <!-- Sign up with Facebook -->
-      <h5 class="mr-2" style="color: lightgrey;">Sign up with Facebook</h5>
-      <%= link_to user_facebook_omniauth_authorize_path, method: :post  do %>
-        <i class="fab fa-facebook-square" style="font-size: 32px; color: ##176ee5;"></i>
-      <% end %>
-    </div>
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
       <div class="form-inputs", style="color:lightgrey; font-weight: 700">
         <%= f.input :email,
                 required: true,
                 autofocus: true,
-                label: false,
                 placeholder: "Email address",
                 input_html: { autocomplete: "Email", style:"border-radius:8px; border: none; height: 48px; margin-top: 12px;" }%>
         <%= f.input :first_name,
                 required: true,
                 autofocus: true,
-                label: false,
                 placeholder: "First name",
                 input_html: { autocomplete: "First Name", style:"border-radius:8px; border: none; height: 48px;" }%>
         <%= f.input :last_name,
                 required: true,
                 autofocus: true,
-                label: false,
                 placeholder: "Last name",
                 input_html: { autocomplete: "Last Name", style:"border-radius:8px; border: none; height: 48px;" }%>
         <%= f.input :birthday, as: :date, start_year: Time.now.year - 90, end_year: Time.now.year - 1,
@@ -45,7 +42,6 @@
                 input_html: { autocomplete: "Birthday", style: "border-radius:8px; border: none;" }%>
         <%= f.input :password,
                 required: true,
-                label: false,
                 placeholder: "Password",
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password", style:"border-radius:8px; border: none;" } %>
