@@ -11,19 +11,33 @@
         <%= cl_image_tag(@user.avatar.key, style:"min-width:250px; height: 255px") %>
         <div class="container-user-info d-flex flex-column justify-content-between p-3">
 
-          <div class="d-flex justify-content-start">
+          <div class="d-flex flex-column justify-content-start">
             <h5 style="color:white;"><%= @user.first_name %> <%= @user.last_name %></h5>
-             <!-- Friend Request Button -->
-            <% if current_user.friends.exclude?(@user) %>
-                <%= link_to friends_path(@user), controller: "friends", action: 'create', method: 'post', id: @user.id do %>
-                  <i class="fas fa-user-plus ml-2" id="friendrequest-button"></i>
-                <% end %>
-            <% end  %>
+             <div class="d-flex">
+              <% if current_user.friends.exclude?(@user) %>
+                <%= link_to friends_path(@user), controller: "friends", action: 'create', method: 'post', class: "btn btn-info btn-request mt-2", id: @user.id, style:"width: 48px;" do %>
+                   <i class="fas fa-user-plus" style="color:white;"></i>
+                  <% end %>
+              <% end %>
+              <%= link_to chatrooms_path(user_two_id: @user), method: :post, class:"btn btn-primary btn-request mt-2 ml-2", style:"width: 48px;" do %>
+                <i class="fas fa-comment-dots" style="color:white;"></i>
+              <% end %>
+            </div>
           </div>
 
-          <p>@<%= @user.nickname %></p>
-          <%= link_to 'Message', chatrooms_path(user_two_id: @user), method: :post, class:"btn btn-message btn-info w-50" %>
-          <p style="color:#a8a8ac;"><%= @user.bio.truncate(100) %></p>
+          <!-- If nickname is empty, fill with email -->
+          <% if @user.nickname == "" %>
+            <p><%= @user.email %></p>
+          <% else %>
+            <p>@<%= @user.nickname %></p>
+          <% end %>
+
+          <!-- If bio is empty, fill with birthday -->
+          <% if @user.bio == "" %>
+            <p style="color:#a8a8ac;"><%= @user.birthday %></p>
+          <% else %>
+            <p style="color:#a8a8ac;"><%= @user.bio.truncate(100) %></p>
+          <% end %>
         </div>
       </div>
 
