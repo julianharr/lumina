@@ -1,11 +1,6 @@
 puts "I've linked the seed items file ! "
 def make_items
   puts "I'm in the items seed file ! "
-  wishlist_id_array = []
-
-  User.all.each do |user|
-    wishlist_id_array << user.wishlist.id
-  end
 
   User.all.each do |user|
 
