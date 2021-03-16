@@ -300,7 +300,7 @@ puts "--- Spooling up events ---"
 #
 meetup_event_spooler(meetup_events_finder({ latitude: "-37.81", longitude: "144.96", category: "tech" }))
 meetup_event_spooler(meetup_events_finder({ latitude: "-37.784", longitude: "144.986", category: "pets" }))
-meetup_event_spooler(meetup_events_finder({ latitude: "-37.784", longitude: "144.986", category: "environment" }))
+meetup_event_spooler(meetup_events_finder({ latitude: "-37.784", longitude: "144.986", category: "fitness" }))
 
 
 # Big Daddy Events Scraper Below !!! Caution !!!

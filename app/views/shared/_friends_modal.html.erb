@@ -1,10 +1,12 @@
 <% pending_friendship(current_user).each do |user| %>
   <div class="d-flex bd-highlight mb-3 border-bottom pb-2">
     <div class="p-2 bd-highlight my-auto">
-      <%= cloudinary_avatar_nav(user.avatar.key) %></div>
-    <div class="p-2 bd-highlight my-auto"><%= " #{user.first_name} " %><%="#{user.last_name}" %> </div>
+      <%= link_to profile_path(user) do %>
+        <%= cloudinary_avatar_nav(user.avatar.key) %></div>
+      <% end %>
+    <div class="p-2 bd-highlight my-auto" style="color: grey;"><%= " #{user.first_name} " %><%="#{user.last_name}" %> </div>
     <div class="ml-auto p-2 bd-highlight my-auto">
-      <%= link_to "Accept", friends_add_path(user), controller: "friends", action: 'add', method: 'post', class: "btn btn-primary btn-sm my-auto", id: user.id  %>
+      <%= link_to "Accept", friends_add_path(user), controller: "friends", action: 'add', method: 'post', class: "btn btn-info btn-sm my-auto", id: user.id  %>
       <%= link_to "Remove", friends_remove_path(user), controller: "friends", action: 'remove', method: 'post', class: "btn btn-dark btn-sm my-auto", id: user.id %>
     </div>
   </div>
