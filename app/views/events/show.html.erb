@@ -1,7 +1,6 @@
 <div class="d-flex">
   <%= render 'components/side_bar/side_bar_final' %>
   <!-- Big giant container -->
-
   <div class="container container-event-show my-auto d-flex flex-wrap">
     <%= link_to "Back to Events", events_path, class:"btn btn-outline-info ml-4 mt-2" %>
     <div class="container d-flex align-items-center">
@@ -29,15 +28,14 @@
             </div>
           </div>
         <% elsif !user_has_meetup?(@user) && event_has_no_questions?(@event) %>
-          <%= link_to "I'm going!", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id  %>
+          <%= link_to "RSVP Here", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id  %>
           <%# <% elsif !user_has_meetup?(current_user) && !event_has_no_questions?(@event)%>
-          <%#= link_to "RSVP w questions", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id %> %>
+          <%#= link_to "RSVP w questions", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id %>
         <% end %>
         <!-- Event Meetup Logic END -->
       </div>
     </div>
     <% if current_user.friends.count == 0 %>
-
       <div class="d-flex flex-wrap">
         <h3 class="w-100 mt-5 ml-3">Invite someone new to this event</h3>
         <% current_user.strangers.each do |stranger| %>
@@ -45,48 +43,42 @@
             <div class="friend-container d-flex mb-2 mr-3 mt-2">
               <%= link_to profile_path(stranger) do %>
                 <%= cl_image_tag(stranger.avatar.key, class:"img-fluid", style:"width: 200px;  border-radius: 24px 0px 0px 24px; margin-right: 16px;") %>
-                  <div class="d-flex flex-column justify-content-center p-2">
-                    <h5 style="color: white;"><%= stranger.first_name %> <%= stranger.last_name %></h6>
-              <% end %>
-                    <% current_user.interests.each do |interest| %>
-                      <% if (stranger.interests.include?(interest)) %>
-                        <h6 style="color:lightgrey;">You both love <span class="span-interest"><%= interest %><span> </h6>
+                <div class="d-flex flex-column justify-content-center p-2">
+                  <h5 style="color: white;"><%= stranger.first_name %> <%= stranger.last_name %></h6>
+                <% end %>
+                <% current_user.interests.each do |interest| %>
+                  <% if (stranger.interests.include?(interest)) %>
+                    <h6 style="color:lightgrey;">You both love <span class="span-interest"><%= interest %><span> </h6>
                       <% end %>
                     <% end %>
-
-
                     <%= link_to friends_path(stranger), controller: "friends", action: 'create', method: 'post', class: "btn btn-info btn-request mt-2", id: stranger.id, style:"width: 48px;" do %>
                       <i class="fas fa-user-plus" style="color: white;"></i>
                     <% end %>
-
                   </div>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-
-    <% else %>
-
-
-    <h5 class="ml-4" style="color: lightgrey">Send a message to your <span style="color: #9274FB;">friends</span> to invite them!</h5>
-    <div class="container d-flex flex-wrap p-2">
-      <% current_user.friends.take(10).each do |friend| %>
-        <div class="d-flex ml-4">
-          <%= link_to chatrooms_path(user_two_id: friend), method: :post do %>
-            <div class="d-flex">
-              <%= cl_image_tag(friend.avatar.key, style:"width: 72px; border-radius: 50%;") %>
-            </div>
+                </div>
+              <% end %>
+            <% end %>
           </div>
-        <% end %>
-      <% end %>
-    <% end %>
-      <div class="container p-4">
-        <p style="font-weight: 500; color: lightgrey;">
-          <% if @event.description? %>
-            <%=  @event.description.truncate(1500).gsub(/http\S+|https\S+|<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/, '') %>
+        <% else %>
+          <h5 class="ml-4" style="color: lightgrey">Send a message to your <span style="color: #9274FB;">friends</span> to invite them!</h5>
+          <div class="container d-flex flex-wrap p-2">
+            <% current_user.friends.take(10).each do |friend| %>
+              <div class="d-flex ml-4">
+                <%= link_to chatrooms_path(user_two_id: friend), method: :post do %>
+                  <div class="d-flex">
+                    <%= cl_image_tag(friend.avatar.key, style:"width: 72px; border-radius: 50%;") %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           <% end %>
-        </p>
+          <div class="container p-4">
+            <p style="font-weight: 500; color: lightgrey;">
+              <% if @event.description? %>
+                <%=  @event.description.truncate(1500).gsub(/http\S+|https\S+|<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/, '') %>
+              <% end %>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
