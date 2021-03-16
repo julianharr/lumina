@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   # Its important that the location is NOT stored if:
   # - The request method is not GET (non idempotent)
-  # - The request is handled by a Devise controller such as Devise::SessionsController as that could cause an
+  # - The request is handled by a Devisge controller such as Devise::SessionsController as that could cause an
   #    infinite redirect loop.
   # - The request is an Ajax request as this can lead to very unexpected behaviour.
   def storable_location?
