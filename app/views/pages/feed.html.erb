@@ -29,9 +29,11 @@
             <h6 style="color: lightgrey"><%= @current_user_status.content %> </h6>
           </div>
           </p>
-          <% heart = rand(0..10) %>
-          <div class="d-flex align-items-center h-25 ml-5">
-            <i class="fas fa-heart mr-2" style="color:red"></i><p><%= heart %></p>
+          <div class="d-flex align-items-center">
+            <label class="like">
+              <input type="checkbox"/>
+              <div class="hearth"/></div>
+            </label>
           </div>
         </div>
     </div>

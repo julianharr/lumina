@@ -55,13 +55,19 @@ end
 # call get access token
 
 def request_oauth_token
-  user_email = ENV["MEETUP_EMAIL"]
-  user_pass = ENV["MEETUP_PASS"]
+  user_email = ENV['MEETUP_EMAIL']
+  user_pass = ENV['MEETUP_PASS']
   bearer = request_access_token["access_token"]
 
-  url = URI("https://api.meetup.com/sessions?&email=#{user_email}&password=#{user_pass}")
+ p url = "https://api.meetup.com/sessions?&email=#{user_email}&password=#{user_pass}"
 
-  https = Net::HTTP.new(url.host, url.port)
+begin
+  uri = URI.parse(url)
+rescue URI::InvalidURIError
+  uri = URI.parse(URI.escape(url))
+end
+
+  https = Net::HTTP.new(uri.host, uri.port)
   https.use_ssl = true
 
   request = Net::HTTP::Post.new(url)

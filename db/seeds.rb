@@ -1,9 +1,10 @@
-require "open-uri"
+require 'open-uri'
 require 'json'
-require "uri"
-require "net/http"
-require_relative "seed_items"
-require_relative "seeds_api"
+require 'uri'
+require 'net/http'
+require_relative 'seed_items'
+require_relative 'seeds_api'
+
 # https://github.com/pejotrich/flatmate
 # https://github.com/andrewbonas/rails_facebook
 # https://github.com/rka97/Unive/tree/master/app
@@ -59,17 +60,22 @@ batch_466 = [
 ]
 
 def get_git_info(git_name)
-  # url = "https://api.github.com/users/#{git_name}"
-  url = URI("https://api.github.com/users/#{git_name}")
+
+  ## fix for tom temple
+   url2 = "https://api.github.com/users/#{git_name}"
+  #url = URI("https://api.github.com/users/matoni109")
+  url = URI.parse url2
+
 
   https = Net::HTTP.new(url.host, url.port)
   https.use_ssl = true
 
   request = Net::HTTP::Get.new(url)
-  request["Authorization"] = ENV["GITHUB_TOKEN"]
+  request["Authorization"] = ENV['GITHUB_TOKEN']
 
   response = https.request(request)
   user = JSON.parse(response.read_body)
+
   first_name = user["name"].present? ? user["name"].split.first.capitalize : user["login"].capitalize
   last_name = user["name"].present? ? user["name"].split[1]&.capitalize : ""
   bio = user["bio"].present? ? user["bio"] : Faker::Quote.matz

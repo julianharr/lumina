@@ -28,7 +28,8 @@ import { donateAnimation } from "dom/donate";
 
 // For Chatrooms
 import { initChatroomCable } from "../channels/chatroom_channel";
-import { initMapbox } from "../plugins/init_mapbox";
+import { initMapbox, fitMapToMarkers } from "../plugins/init_mapbox";
+// import { fitMapToMarkers } from "../plugins/init_mapbox";
 
 // *********************************************************************************************
 
@@ -54,24 +55,9 @@ if (images) {
   });
 }
 
-// TURBO DOWN HERE !!!
-document.addEventListener("turbolinks:load", () => {
-  initMapbox();
-  donateAnimation();
-  initChatroomCable();
-});
 
 
 
-
-// const feedCards = document.querySelector('.feed_cards');
-// // The Scroll Event.
-// window.addEventListener('scroll',()=>{
-//   const {scrollHeight,scrollTop,clientHeight} = document.documentElement;
-//   if(scrollTop + clientHeight > scrollHeight - 5){
-//     setTimeout(createDiv,2000);
-//   }
-// });
 
 // // The createPost function creates The HTML for the blog post.
 // // It append it to the container.
@@ -100,23 +86,12 @@ function createDiv(){
     });
 }
 
-
-// DONATE BUTTON REROUTE!
-
-
-
-
-
-// const feedInsert = document.querySelector("feed-insert")
-// const buttonFive = document.querySelector("#btn-5")
-// buttonFive.addEventListener("click", () => {
-//   console.log(feedInsert)
-//   feedInsert.innerHTML = "<h1>DONATED SOME SWEET COIN</h1>"
-// });
-// const buttonTen = document.getElementById("btn-10").addEventListener("click", addForDonate);
-// const buttonTwentyFive = document.getElementById("btn-25").addEventListener("click", addForDonate);
-// console.log(buttonFive)
-
-
+// TURBO DOWN HERE !!!
+document.addEventListener("turbolinks:load", () => {
+  initMapbox();
+  donateAnimation();
+  initChatroomCable();
+  // fitMapToMarkers();
+});
 
 

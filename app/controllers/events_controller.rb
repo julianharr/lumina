@@ -9,16 +9,27 @@ class EventsController < ApplicationController
   before_action :c_user, only: [:show]
 
   def index
-    @event = Event.all
-
-    # the `geocoded` scope filters only flats with coordinates (latitude & longitude)
-    @markers = @event.geocoded.map do |flat|
-      {
-        lat: flat.latitude,
-        lng: flat.longitude,
-        infoWindow: render_to_string(partial: 'info_window', locals: { event: flat })
-      }
+    # For PG Search ------>
+    if params[:query].present?
+        @event = Event.where("name ILIKE ?", "%#{params[:query]}%")
+          @markers = @event.geocoded.map do |flat|
+        {
+          lat: flat.latitude,
+          lng: flat.longitude,
+          infoWindow: render_to_string(partial: 'info_window', locals: { event: flat })
+        }
+      end
+    else
+      @event = Event.all
+      @markers = @event.geocoded.map do |flat|
+        {
+          lat: flat.latitude,
+          lng: flat.longitude,
+          infoWindow: render_to_string(partial: 'info_window', locals: { event: flat })
+        }
+      end
     end
+    # the `geocoded` scope filters only flats with coordinates (latitude & longitude)
   end
 
   def show
