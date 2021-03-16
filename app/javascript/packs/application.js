@@ -100,22 +100,35 @@ function createDiv(){
 }
 
 
-// DONATE BUTTON REROUTE!
+var heartContainer = document.querySelector('.icon-wrapper');
 
+Object.keys(heartContainer).forEach(singleElement => {
 
+  heartContainer[singleElement].addEventListener('click', function(){
+    if(heartContainer[singleElement].classList.contains('liked')) {
+      heartContainer[singleElement].classList.add('unliked');
+      heartContainer[singleElement].classList.remove('liked');
+      setTimeout(unlikeRemover,250);
+    }
+    else {
+      heartContainer[singleElement].classList.add('liked');
+      heartContainer[singleElement].classList.remove('unliked');
+    }
 
+    function unlikeRemover() {
+      heartContainer[singleElement].classList.remove('unliked');
+    }
+  });
 
+});
 
-// const feedInsert = document.querySelector("feed-insert")
-// const buttonFive = document.querySelector("#btn-5")
-// buttonFive.addEventListener("click", () => {
-//   console.log(feedInsert)
-//   feedInsert.innerHTML = "<h1>DONATED SOME SWEET COIN</h1>"
-// });
-// const buttonTen = document.getElementById("btn-10").addEventListener("click", addForDonate);
-// const buttonTwentyFive = document.getElementById("btn-25").addEventListener("click", addForDonate);
-// console.log(buttonFive)
+/* when a user clicks, toggle the 'is-animating' class */
+$(".heart").on('click touchstart', function(){
+  $(this).toggleClass('is_animating');
+});
 
-
-
+/*when the animation is over, remove the class*/
+$(".heart").on('animationend', function(){
+  $(this).toggleClass('is_animating');
+});
 
