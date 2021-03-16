@@ -8,6 +8,19 @@
     </div>
   </div>
   <div class="container p-0 d-flex flex-wrap">
+    <!-- Search bar for Events -->
+    <div class="event-search m-5 w-100">
+      <%= form_tag events_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find an event near you",
+          remote: true
+        %>
+        <%= submit_tag "Search", class: "btn btn-info mt-3" %>
+      <% end %>
+    </div>
+    <!-- the list of movies -->
     <% @event.each do |event| %>
         <div class="card-event p-2 m-1 d-flex flex-column justify-content-between">
           <%= cloudinary_imgs(event.image.key,event) %>

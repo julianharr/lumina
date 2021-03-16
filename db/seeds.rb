@@ -60,10 +60,13 @@ batch_466 = [
 ]
 
 def get_git_info(git_name)
+
+  ## fix for tom temple
    url2 = "https://api.github.com/users/#{git_name}"
   #url = URI("https://api.github.com/users/matoni109")
+  url = URI.parse url2
 
-url = URI.parse url2
+
   https = Net::HTTP.new(url.host, url.port)
   https.use_ssl = true
 

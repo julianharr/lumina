@@ -28,7 +28,8 @@ import { donateAnimation } from "dom/donate";
 
 // For Chatrooms
 import { initChatroomCable } from "../channels/chatroom_channel";
-import { initMapbox } from "../plugins/init_mapbox";
+import { initMapbox, fitMapToMarkers } from "../plugins/init_mapbox";
+// import { fitMapToMarkers } from "../plugins/init_mapbox";
 
 // *********************************************************************************************
 
@@ -54,24 +55,9 @@ if (images) {
   });
 }
 
-// TURBO DOWN HERE !!!
-document.addEventListener("turbolinks:load", () => {
-  initMapbox();
-  donateAnimation();
-  initChatroomCable();
-});
 
 
 
-
-// const feedCards = document.querySelector('.feed_cards');
-// // The Scroll Event.
-// window.addEventListener('scroll',()=>{
-//   const {scrollHeight,scrollTop,clientHeight} = document.documentElement;
-//   if(scrollTop + clientHeight > scrollHeight - 5){
-//     setTimeout(createDiv,2000);
-//   }
-// });
 
 // // The createPost function creates The HTML for the blog post.
 // // It append it to the container.
@@ -99,36 +85,12 @@ function createDiv(){
     });
 }
 
-
-var heartContainer = document.querySelector('.icon-wrapper');
-
-Object.keys(heartContainer).forEach(singleElement => {
-
-  heartContainer[singleElement].addEventListener('click', function(){
-    if(heartContainer[singleElement].classList.contains('liked')) {
-      heartContainer[singleElement].classList.add('unliked');
-      heartContainer[singleElement].classList.remove('liked');
-      setTimeout(unlikeRemover,250);
-    }
-    else {
-      heartContainer[singleElement].classList.add('liked');
-      heartContainer[singleElement].classList.remove('unliked');
-    }
-
-    function unlikeRemover() {
-      heartContainer[singleElement].classList.remove('unliked');
-    }
-  });
-
+// TURBO DOWN HERE !!!
+document.addEventListener("turbolinks:load", () => {
+  initMapbox();
+  donateAnimation();
+  initChatroomCable();
+  // fitMapToMarkers();
 });
 
-/* when a user clicks, toggle the 'is-animating' class */
-$(".heart").on('click touchstart', function(){
-  $(this).toggleClass('is_animating');
-});
-
-/*when the animation is over, remove the class*/
-$(".heart").on('animationend', function(){
-  $(this).toggleClass('is_animating');
-});
 

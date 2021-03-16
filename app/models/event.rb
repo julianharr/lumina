@@ -1,4 +1,12 @@
 class Event < ApplicationRecord
+  # For Search
+  include PgSearch::Model
+  pg_search_scope :search_by_name_and_organiser,
+    against: [ :name, :organiser ],
+    using: {
+      tsearch: { prefix: true }
+    }
+
   # hash questions from events api
   serialize :group_questions
   # ass
