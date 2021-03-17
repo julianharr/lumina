@@ -29,7 +29,7 @@ class ChatroomsController < ApplicationController
     @chatroom.user = current_user
     @chatroom.user_two = @user_two
     @chatroom.save!
-    redirect_to chatrooms_path(@chatroom)
+    redirect_to chatrooms_path(chatroom: @chatroom.id)
   end
 
   def destroy

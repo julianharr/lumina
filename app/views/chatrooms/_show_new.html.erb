@@ -5,7 +5,7 @@
     <% else %>
       <h1>Message with <%= current_chatroom.user_two.first_name %></h1>
     <% end %>
-    <p style="font-weight: 400;">Last active <%= current_chatroom.user_two.created_at.strftime("%-l:%M%P") %> </p>
+    <p style="font-weight: 400;">Last active <%= current_chatroom.user_two.created_at.getlocal.strftime("%-l:%M%P") %> </p>
     <hr style="color: white">
   </div>
 
