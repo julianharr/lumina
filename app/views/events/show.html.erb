@@ -37,7 +37,7 @@
             <!-- Question -->
             <div class="search-form-control form-group">
               <% @event.group_questions.each do |events| %>
-                <%= f.input ":question_#{events["id"]}", id: events["id"], name: events["id"], label: events["question"] %>
+                <%= f.input "question_#{events["id"]}", id: events["id"], name: events["id"], label: events["question"] %>
               <% end %>
               <%= f.button :submit, value: 'RSVP with Questions',class: "btn btn-info btn-request mt-2 w-50", "data-disable-with" => "Submit.." %>
             </div>

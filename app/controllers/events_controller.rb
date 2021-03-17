@@ -41,8 +41,15 @@ class EventsController < ApplicationController
   def rsvp_with_questions
     c_user
     find_event_rsvp
+    quest = params['event_'].to_enum.to_h
+    api_string = ''
+    # answer_8668160=northern subs&answer_9297659=yes
+    quest.each do |key, value|
+      api_string.concat("#{key}=#{value}&")
+    end
+    # raise
     c_user_meetup_token
-    join_meetup_group_with_questions(c_user_meetup_token, @event)
+    join_meetup_group_with_questions(c_user_meetup_token, @event, api_string)
     if rsvp_to_event(c_user_meetup_token, @event, 'yes') == true
       update_rsvp_count(@event)
       redirect_to event_path(@event), notice: "You have RSVP to the #{@event.name} :)"
@@ -66,7 +73,11 @@ class EventsController < ApplicationController
   private
 
   def find_event
-    @event = Event.find(params[:id])
+    if params['id'] == 'rsvp'
+      find_event_rsvp
+    else
+      @event = Event.find(params[:id])
+    end
   end
 
   def find_event_rsvp
@@ -109,16 +120,15 @@ class EventsController < ApplicationController
     result = JSON.parse(response.body) # result has
   end
 
-  def join_meetup_group_with_questions(token, event)
+  def join_meetup_group_with_questions(token, event, string)
     # https://www.meetup.com/meetup_api/docs/:urlname/members/#create
     # https://api.meetup.com/melbournevegans/members?&answer_8668160=northern subs&answer_9297659=yes
     event_url = event.group_url
-    # Event.where(group_quest_required: true).first
-    event_quest = event.group_questions
+    api_string = string
 
     bearer = token
 
-    url = URI("https://api.meetup.com/#{event_url}/members")
+    url = URI("https://api.meetup.com/#{event_url}/members?#{api_string}")
 
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
@@ -129,7 +139,7 @@ class EventsController < ApplicationController
     request['Cookie'] = 'MEETUP_AFFIL=affil=meetup; MEETUP_BROWSER_ID="id=8f29c91f-3033-4eda-a298-190fc2071d55"; MEETUP_CSRF=dbccdafc-8e61-4007-9a5a-4c92c81dbdc5; MEETUP_MEMBER="id=154567222&status=4&timestamp=1614293651&bs=0&tz=Australia%2FMelbourne&zip=meetup2&country=au&city=Melbourne&state=&lat=-37.81&lon=144.96&ql=false&s=802d872fc49dd2c821523298ccdec801cad92d53&scope=ALL"; MEETUP_TRACK=id=5e0859a6-c334-4f2b-bd73-818934553be7&l=1&s=a7bf3696ab6fe266da7143de4cb39f9fc2698c45; SIFT_SESSION_ID=20670450-2624-4174-a947-cce0ab741e54'
 
     response = https.request(request)
-    result = JSON.parse(response.body) # result has
+    p result = JSON.parse(response.body)
   end
 
   def rsvp_to_event(token, event, answer)
@@ -151,6 +161,7 @@ class EventsController < ApplicationController
 
     result = JSON.parse(response.body) # result has
     p result&.key?('response') && result&.value?(answer) ? true : false
+    binding.pry
   end
 
   def update_rsvp_count(event)
@@ -175,4 +186,8 @@ class EventsController < ApplicationController
   def event_questions(event)
     event.group_questions.each { |question| question }
   end
+
+  # def event_params
+  #   params.require(:event).permit(:format, :id, :event_id)
+  # end
 end
