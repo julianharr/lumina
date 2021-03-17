@@ -4,23 +4,39 @@
   <!-- Left Column (Chatrooms) -->
 
 
-  <div class="d-flex flex-column align-items-start justify-content-start pr-5 pl-2 ml-0 pt-5" style="background-color: #172B3B; width: 250px; height: 100vh; overflow-y: scroll;">
+  <div class="d-flex flex-column align-items-start justify-content-start ml-0 convo-container-lg" style="background-color: #172B3B; width: 400px; height: 100vh; overflow-y: scroll;">
+    <div class="container block-messages w-100 p-3 mt-5">
+      <h4>Messages</h4>
+      <hr>
+    </div>
     <% @chatrooms.each do |chatroom| %>
       <%= link_to chatrooms_path(chatroom: chatroom.id), class:"#{'active' if chatroom == @current_chatroom}" do %>
-        <div class="conversation d-flex flex-column mb-1" data-chatroom-id="<%= chatroom.id %>">
-          <div class="d-flex justify-content-center align-items-center p-2">
+        <div class="d-flex flex-column mb-2 ml-2 w-100" data-chatroom-id="<%= chatroom.id %>">
+          <div class="conversation d-flex align-items-center p-2">
 
-            <% if chatroom == current_user %>
+            <% if chatroom.user_two_id == current_user.id %>
 
-              <%= cl_image_tag(chatroom.user.avatar.key, :fetch_format=>:auto, :class=>"avatar chatroom-avatar") %>
-              <%= chatroom.user_two.first_name %>
+                <div class="d-flex align-items-center">
+                  <%= cl_image_tag(chatroom.user.avatar.key, :fetch_format=>:auto, :class=>"avatar #{'active' if chatroom == @current_chatroom}", :style=>"width: 52px; height: 52px;") %>
+
+                  <div class="d-flex flex-column align-items-start ml-2">
+                    <p style="font-weight: 500;"><%= chatroom.user.first_name %></p>
+                    <small><%= chatroom.messages.last.content.to_s.truncate(50) %></small>
+                    <small id="last-active"><%= chatroom.updated_at.getlocal.strftime("%d %B, %-l:%M%P")%></small>
+                  </div>
+                </div>
 
             <% else %>
 
-              <%= cl_image_tag(chatroom.user_two.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"width: 50px; height:50px;") %>
+                <div class="d-flex align-items-center">
+                  <%= cl_image_tag(chatroom.user_two.avatar.key, :fetch_format=>:auto, :class=>"avatar #{'active' if chatroom == @current_chatroom}", :style=>"width: 52px; height: 52px;") %>
 
-              <p class="ml-3" style="font-weight: 400;"><%= chatroom.user_two.first_name %></p>
-
+                  <div class="d-flex flex-column align-items-start ml-2">
+                    <p style="font-weight: 500;"><%= chatroom.user_two.first_name %></p>
+                    <small><%= chatroom.messages.last.content.to_s.truncate(50) %></small>
+                    <small id="last-active"><%= chatroom.updated_at.getlocal.strftime("%d %B, %-l:%M%P") %></small>
+                  </div>
+                </div>
             <% end %>
           </div>
         </div>
@@ -28,11 +44,9 @@
     <% end %>
   </div>
 
-  <div class="container d-flex justify-content-start mt-5 ml-0 pl-0 chatrooms-container" style="width: 650px;">
+  <!-- Right Column (Individual Chatroom Messages) -->
 
-
-    <!-- Right Column (Individual Chatroom Messages) -->
-
+  <div class="container d-flex justify-content-start mt-2 ml-0 pl-0 pt-1 chatrooms-container" style="width: 650px;">
     <div class="container w-100" style="height: 90vh;">
       <% if @current_chatroom %>
         <%= render 'show_new', current_chatroom: @current_chatroom, remote: true, messages: @messages, message: Message.new %>
@@ -42,6 +56,5 @@
         </div>
       <% end %>
     </div>
-
   </div>
 </div>
