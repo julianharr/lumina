@@ -12,6 +12,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/lightmode";
 
 // Body styling
 
@@ -27,3 +28,4 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+

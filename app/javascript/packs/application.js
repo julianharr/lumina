@@ -31,6 +31,9 @@ import { initChatroomCable } from "../channels/chatroom_channel";
 import { initMapbox, fitMapToMarkers } from "../plugins/init_mapbox";
 // import { fitMapToMarkers } from "../plugins/init_mapbox";
 
+// Theme Switcher
+import { themeSwitcher } from "../dom/themeswitcher";
+
 // *********************************************************************************************
 
 
@@ -91,6 +94,7 @@ document.addEventListener("turbolinks:load", () => {
   initMapbox();
   donateAnimation();
   initChatroomCable();
+  themeSwitcher();
   // fitMapToMarkers();
 });
 

@@ -5,14 +5,17 @@
   </div>
 
   <div class="ml-3 mt-5 mr-2">
-    <h3>Feed</h3>
+    <div class="d-flex align-items-center justify-content-between w-100">
+      <h3>Feed</h3>
+      <button class="theme-button ml-4 mb-2"></button>
+    </div>
     <!-- Status entry -->
-    <h4 class="card-notification-sm p-3">
+    <div class="card-notification-sm p-3 mb-2">
       <%= simple_form_for([ @status ], remote: true) do |f| %>
         <%= f.input :content, label: false, placeholder: "Share something great with the world", input_html: { style: "border-radius: 12px;"} %>
         <%= f.button :submit, class:"btn btn-info", style:"border-radius: 24px;" %>
       <% end %>
-    </h4>
+    </div>
 
    <!-- If Status exists, put on Feed -->
 
@@ -23,10 +26,10 @@
           <div class="crop" style="border-radius: 24px;">
             <%= cl_image_tag(@user_for_status[0].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
           </div>
-          <div class="d-flex flex-column justify-content-center w-100 ml-5">
-            <h6 style="color: lightgrey"><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
-            <h5 style="color:white"><span style="color: #EC0B43"><%= @user_for_status[0].first_name %> <%= @user_for_status[0].last_name %></span> posted an update</h5>
-            <h6 style="color: lightgrey"><%= @current_user_status.content %> </h6>
+          <div class="d-flex flex-column justify-content-center w-100 ml-5 md-text">
+            <h6><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
+            <h5><span style="color: #EC0B43"><%= @user_for_status[0].first_name %> <%= @user_for_status[0].last_name %></span> posted an update</h5>
+            <h6><%= @current_user_status.content %> </h6>
           </div>
           </p>
           <div class="d-flex align-items-center">
@@ -51,9 +54,9 @@
 
   <br>
 
-  <!-- Right Column -->
+    <!-- Right Column -->
 
-
-  <%= render "components/feed_page/add_friends" %>
-
+    <div class="w-100">
+      <%= render "components/feed_page/add_friends" %>
+    </div>
   </div>

@@ -14,10 +14,27 @@ p {
   margin-top: 97px;
 }
 
+.stranger-column h4 {
+  color: white;
+}
+
+#stranger-text {
+  color: lightgrey;
+}
+
 .card-sm-users {
-  width: 320px;
   background-color:#192734;
   border: 0.05rem solid #3a3b3c;
+   h6 {
+    color: white;
+   }
+}
+
+.card-sm-strangers {
+  background-color:#192734;
+  border: 0.05rem solid #3a3b3c;
+  max-width: 300px;
+  min-width: 300px;
 }
 
 .card-notification-sm {
@@ -39,6 +56,12 @@ p {
   width: 770px;
   background-color:#192734;
   border: 0.05rem solid #3a3b3c;
+    h6 {
+      color: lightgrey;
+    }
+    .md-text h5 {
+      color: white;
+    }
 }
 
 .card-notification-donate {
@@ -53,6 +76,10 @@ p {
     border: 0.05rem solid #FFCF56;
     transition: 2s ease-in-out;
   }
+}
+
+.donate-text {
+  color: white;
 }
 
 .crop {

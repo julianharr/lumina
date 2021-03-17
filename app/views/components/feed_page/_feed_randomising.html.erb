@@ -91,10 +91,10 @@
               <%= cl_image_tag(friend_array[n].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
             <% end %>
           </div>
-          <div class="d-flex flex-column justify-content-center w-100 ml-5">
-            <h6 style="color: lightgrey"><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
-            <h5 style="color:white"><span style="color: #EC0B43"><%= friend_array[n].first_name %> <%= friend_array[n].last_name %></span> posted an update</h5>
-            <h6 style="color: lightgrey"><%= friend_array[n].status[0].content %> </h6>
+          <div class="d-flex flex-column justify-content-center w-100 ml-5 md-text">
+            <h6><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
+            <h5><span style="color: #EC0B43"><%= friend_array[n].first_name %> <%= friend_array[n].last_name %></span> posted an update</h5>
+            <h6><%= friend_array[n].status[0].content %> </h6>
           </div>
           </p>
           <div class="d-flex align-items-center">
@@ -119,9 +119,9 @@
           <% end %>
         </div>
 
-        <div class="d-flex flex-column justify-content-center w-100 ml-5">
-          <h6 style="color: lightgrey"><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
-          <h5 style="color:white">Have you seen <span style="color: #EC0B43"><%= friend_array[n].first_name %> <%= friend_array[n].last_name%>'s</span> profile?</h5>
+        <div class="d-flex flex-column justify-content-center w-100 ml-5 md-text">
+          <h6><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
+          <h5>Have you seen <span style="color: #EC0B43"><%= friend_array[n].first_name %> <%= friend_array[n].last_name%>'s</span> profile?</h5>
           <%= link_to "View", profile_path(friend_array[n]), class: "btn btn-info w-25 mt-2", style: "border-radius: 24px;" %>
         </div>
 
@@ -130,7 +130,7 @@
 
     <% elsif selection == "donate" %>
 
-        <div class="card-notification-donate top bottom left right d-flex mb-2 p-3" style="border-radius: 12px;">
+        <div class="card-notification-donate md-text top bottom left right d-flex mb-2 p-3" style="border-radius: 12px;">
           <!-- Image -->
           <div class="crop" style="border-radius: 24px;">
             <%= link_to profile_path(@find_user[0]) do %>
@@ -139,8 +139,8 @@
           </div>
 
           <!-- Donation Text -->
-          <div class="d-flex flex-column justify-content-center ml-5">
-            <h5 style="color:white"><span><%= @find_user[0].first_name %> <%= @user_for_status[0].last_name %></span> pledges to donate $<%= @donates_current_user[0].amount.to_i %> to <%= @find_charity[0].name %>, give them some love!</h5>
+          <div class="d-flex flex-column justify-content-center ml-5 donate-text">
+            <h5><span><%= @find_user[0].first_name %> <%= @user_for_status[0].last_name %></span> pledges to donate $<%= @donates_current_user[0].amount.to_i %> to <%= @find_charity[0].name %>, give them some love!</h5>
           </div>
 
           <!-- Heart -->
