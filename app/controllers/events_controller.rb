@@ -38,6 +38,19 @@ class EventsController < ApplicationController
     end
   end
 
+  def rsvp_with_questions
+    c_user
+    find_event_rsvp
+    c_user_meetup_token
+    join_meetup_group_with_questions(c_user_meetup_token, @event)
+    if rsvp_to_event(c_user_meetup_token, @event, 'yes') == true
+      update_rsvp_count(@event)
+      redirect_to event_path(@event), notice: "You have RSVP to the #{@event.name} :)"
+    else
+      flash[:alert] = "Could not RSVP to #{@event.name}"
+    end
+  end
+
   def remove_rsvp
     c_user
     find_event_rsvp
@@ -74,21 +87,35 @@ class EventsController < ApplicationController
     @service.access_token
   end
 
-  def join_meetup_group(token, event)
+  def join_meetup_group(token, _event)
+    # https://www.meetup.com/meetup_api/docs/:urlname/members/#create
+    # https://api.meetup.com/melbournevegans/members?&answer_8668160=northern subs&answer_9297659=yes
+    # Event.where(group_quest_required: true).first
+    # event_quest = event.group_questions
+    event_url = event.group_url
+    bearer = token
+
+    url = URI("https://api.meetup.com/#{event_url}/members")
+
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+
+    request = Net::HTTP::Post.new(url)
+    request['Accept'] = 'application/json'
+    request['Authorization'] = "Bearer #{bearer}"
+    request['Cookie'] = 'MEETUP_AFFIL=affil=meetup; MEETUP_BROWSER_ID="id=8f29c91f-3033-4eda-a298-190fc2071d55"; MEETUP_CSRF=dbccdafc-8e61-4007-9a5a-4c92c81dbdc5; MEETUP_MEMBER="id=154567222&status=4&timestamp=1614293651&bs=0&tz=Australia%2FMelbourne&zip=meetup2&country=au&city=Melbourne&state=&lat=-37.81&lon=144.96&ql=false&s=802d872fc49dd2c821523298ccdec801cad92d53&scope=ALL"; MEETUP_TRACK=id=5e0859a6-c334-4f2b-bd73-818934553be7&l=1&s=a7bf3696ab6fe266da7143de4cb39f9fc2698c45; SIFT_SESSION_ID=20670450-2624-4174-a947-cce0ab741e54'
+
+    response = https.request(request)
+    result = JSON.parse(response.body) # result has
+  end
+
+  def join_meetup_group_with_questions(token, event)
     # https://www.meetup.com/meetup_api/docs/:urlname/members/#create
     # https://api.meetup.com/melbournevegans/members?&answer_8668160=northern subs&answer_9297659=yes
     event_url = event.group_url
     # Event.where(group_quest_required: true).first
     event_quest = event.group_questions
 
-    if !event_quest.nil? && !event_quest.empty?
-      api_string = ''
-      event_quest.each do |question|
-        id = question['id'] #
-        answer = '' # answer from params
-      end
-
-    end
     bearer = token
 
     url = URI("https://api.meetup.com/#{event_url}/members")

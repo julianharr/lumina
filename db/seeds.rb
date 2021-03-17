@@ -42,7 +42,7 @@ batch_466 = [
   'Tom-Tee',
   'cdrmr18',
   # "jarrydanthony",
-  '10035',
+  # '10035',
   # "lucieroland",
   'anLpk',
   # "diego-mogollon",
@@ -214,7 +214,17 @@ make_admin.update( # change to create! later
   password: '123456'
 )
 ## get friends for Overlord
-make_admin.interest_list = %w[fitness pets tech]
+make_admin.interest_list = %w[fitness pets code]
+
+puts '--- Making Overlord Friend Requests !'
+puts '--- Updating Chris  !'
+# User Master OverLoad # HOLD GME !! ##
+make_admin = User.find_by(git_name: 'matoni109')
+make_admin.update( # change to create! later
+  admin: false
+)
+## get friends for Overlord
+make_admin.interest_list = %w[fitness pets code]
 
 puts '--- Making Overlord Friend Requests !'
 user_arr = User.all.ids
@@ -300,9 +310,10 @@ puts '--- Spooling up events ---'
 #
 # Local meetup API tester below first
 #
-meetup_event_spooler(meetup_events_finder({ latitude: '-37.81', longitude: '144.96', category: 'code' }))
+meetup_event_spooler(meetup_events_finder({ latitude: '-37.81', longitude: '144.96', category: 'food' }))
 meetup_event_spooler(meetup_events_finder({ latitude: '-37.784', longitude: '144.986', category: 'pets' }))
 meetup_event_spooler(meetup_events_finder({ latitude: '-37.784', longitude: '144.986', category: 'fitness' }))
+meetup_event_spooler(meetup_events_finder({ latitude: '-37.81', longitude: '144.96', category: 'le wagon' }))
 
 # Big Daddy Events Scraper Below !!! Caution !!!
 #

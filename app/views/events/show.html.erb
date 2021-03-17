@@ -29,11 +29,18 @@
           </div>
         <% elsif !user_has_meetup?(@user) && event_has_no_questions?(@event) %>
           <%= link_to "RSVP Here", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id  %>
+          <!-- Event Meetup With Questions -->
         <% elsif !user_has_meetup?(current_user) && !event_has_no_questions?(@event)%>
-          <%= link_to "RSVP w questions", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id %>
-          <%= simple_form_for(@event) do |f| %>
-            <%= f.input :group_questions %>
-            <%= f.submit %>
+          <%# <%= link_to "RSVP w questions", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id %>
+          <!-- Render form with question ID question && answer input -->
+          <%= simple_form_for :event_, url: events_rsvp_with_questions_path(@event), method: :post do |f| %>
+            <!-- Question -->
+            <div class="search-form-control form-group">
+              <% @event.group_questions.each do |events| %>
+                <%= f.input ":question_#{events["id"]}", id: events["id"], name: events["id"], label: events["question"] %>
+              <% end %>
+              <%= f.button :submit, value: 'RSVP with Questions',class: "btn btn-info btn-request mt-2 w-50", "data-disable-with" => "Submit.." %>
+            </div>
           <% end %>
         <% end %>
         <!-- Event Meetup Logic END -->

@@ -199,4 +199,4 @@ def meetup_event_spooler(options = {})
   end
 end
 
-# meetup_event_spooler(meetup_events_finder({ latitude: '-37.81', longitude: '144.96', category: 'code' }))
+# meetup_event_spooler(meetup_events_finder({ latitude: '-37.81', longitude: '144.96', category: 'wagon' }))
