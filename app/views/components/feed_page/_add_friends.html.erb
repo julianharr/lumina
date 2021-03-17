@@ -1,7 +1,7 @@
 <div class="container align-items-center">
   <div class="d-flex flex-column mr-3 column-right">
     <div class="card-sm-users mb-2", style="border-radius: 12px;">
-      <h6 class="ml-4 pt-3", style="color: white;">Connect with Others</h6>
+      <h6 class="ml-4 pt-3">Connect with Others</h6>
       <div class="card-user p-3 d-flex flex-wrap justify-content-around align-items-center">
         <% @users.take(6).each do |user| %>
           <%= link_to profile_path(user), style:"text-decoration: none;" do %>
@@ -15,9 +15,9 @@
 </div>
 
   <!-- Whole Stranger Column -->
-  <div class="d-flex flex-wrap">
+  <div class="d-flex flex-wrap stranger-column">
     <!-- Title -->
-    <h4 class="mt-5 ml-3 w-100" style="color:white;">Meet Someone New</h4>
+    <h4 class="mt-5 ml-3 w-100">Meet Someone New</h4>
     <% current_user.strangers.each do |stranger| %>
       <% if current_user.interests.take(3).any? { |interest| stranger.interests.include?(interest)} %>
 
@@ -30,11 +30,11 @@
             <% end %>
           </div>
           <!-- Name and Interests -->
-          <div class="d-flex flex-column justify-content-center p-2">
-            <p style="color: white;"><%= stranger.first_name %> <%= stranger.last_name %></p>
+          <div class="d-flex flex-column justify-content-center p-2 stranger-column">
+            <p><%= stranger.first_name %> <%= stranger.last_name %></p>
             <% current_user.interests.each do |interest| %>
               <% if (stranger.interests.include?(interest)) %>
-                <p style="color:lightgrey;">You both love <span class="span-interest"><%= interest %></span> </p>
+                <p id="stranger-text">You both love <span class="span-interest"><%= interest %></span> </p>
               <% end %>
             <% end %>
           </div>

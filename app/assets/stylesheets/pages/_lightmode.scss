@@ -1,0 +1,82 @@
+// Light Mode!
+
+body.light-theme {
+  h1, h2, h3, h4, h5, h6 {
+    color: #313E50;
+  }
+
+  a, i {
+    color: #313E50;
+  }
+
+  .badge {
+    color: white;
+  }
+  background: #ffffff;
+  .card-sm-users,
+  .card-sm-strangers,
+  .card-notification-sm,
+  .card-notification-lg,
+  .card-notification-md,
+  .card-notification-donate,
+  .card-for-feed-charity,
+  .side-bar {
+     background: #ffffff;
+     box-shadow:  8px 8px 16px #e6e6e6,
+             -8px -8px 16px #ffffff;
+     border: none;
+      p, h2, h3, h4, h5, h6 {
+        color: #313E50;
+      }
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        box-shadow:  29px 29px 34px #dedede,
+             -29px -29px 34px #ffffff;
+      }
+    }
+  .card-notification-md {
+    h6 {
+      color: #313E50;
+    }
+  .card-sm-users h6 {
+    color: #313E50;
+    }
+  }
+  #stranger-text {
+    color: #3E4E65;
+  }
+
+  .active .sidebar-link {
+    color: #5448C8;
+  }
+
+  .active i {
+  color: #5448C8;
+  }
+
+  .sidebar .nav-links:hover {
+  a, i {
+    text-decoration: none;
+    color: #5448C8;
+    }
+  }
+
+  .theme-button {
+    background-color: #3E4E65;
+  }
+
+  .btn-info, .btn-dark {
+    color: white;
+  }
+}
+
+.theme-button {
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  border: none;
+  &:active {
+    height: 10px;
+    width: 10px;
+  }
+}
