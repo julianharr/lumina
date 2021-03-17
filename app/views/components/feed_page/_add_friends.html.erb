@@ -4,7 +4,7 @@
       <h6 class="ml-4 pt-3", style="color: white;">Connect with Others</h6>
       <div class="card-user p-3 d-flex flex-wrap justify-content-around align-items-center">
         <% @users.take(6).each do |user| %>
-          <%= link_to profile_path(user) do %>
+          <%= link_to profile_path(user), style:"text-decoration: none;" do %>
             <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 75px; width:75px; margin-bottom:8px;") %>
             <p style="color:grey; font-weight: 400; font-size:14px; text-align:center;"><%= user.first_name %></p>
             <br>
@@ -13,15 +13,16 @@
       </div>
   </div>
 </div>
+
   <!-- Whole Stranger Column -->
-  <div class="d-flex flex-column">
+  <div class="d-flex flex-wrap">
     <!-- Title -->
-    <h4 class="mt-5 ml-3" style="color:white;">Meet Someone New</h4>
+    <h4 class="mt-5 ml-3 w-100" style="color:white;">Meet Someone New</h4>
     <% current_user.strangers.each do |stranger| %>
       <% if current_user.interests.take(3).any? { |interest| stranger.interests.include?(interest)} %>
 
         <!-- Each individual card -->
-        <div class="card-sm-users d-flex justify-content-around mt-4" style="border-radius: 12px;">
+        <div class="card-sm-strangers d-flex justify-content-around mt-4 mr-2" style="border-radius: 12px;">
           <!-- Photo -->
           <div class="d-flex flex-column justify-content-center">
             <%= link_to profile_path(stranger) do %>
