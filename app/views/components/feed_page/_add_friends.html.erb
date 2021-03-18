@@ -1,9 +1,9 @@
-<div class="container align-items-center">
+<div class="container align-items-center w-75 ml-5">
   <div class="d-flex flex-column mr-3 column-right">
-    <div class="card-sm-users mb-2", style="border-radius: 12px;">
+    <div class="card-sm-users mb-2 w-75", style="border-radius: 12px;">
       <h6 class="ml-4 pt-3">Connect with Others</h6>
-      <div class="card-user p-3 d-flex flex-wrap justify-content-around align-items-center">
-        <% @users.take(6).each do |user| %>
+      <div class="card-user p-4 d-flex flex-wrap justify-content-around align-items-center">
+        <% @users.take(9).each do |user| %>
           <%= link_to profile_path(user), style:"text-decoration: none;" do %>
             <%= cl_image_tag(user.avatar.key, :fetch_format=>:auto, :class=>"avatar", :style=>"height: 75px; width:75px; margin-bottom:8px;") %>
             <p style="color:grey; font-weight: 400; font-size:14px; text-align:center;"><%= user.first_name %></p>

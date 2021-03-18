@@ -5,7 +5,7 @@
 
 
   <div class="d-flex flex-column align-items-start justify-content-start ml-0 convo-container-lg" style="background-color: #172B3B; width: 400px; height: 100vh; overflow-y: scroll;">
-    <div class="container block-messages w-100 p-3 mt-5">
+    <div class="container block-messages w-100 p-3 pt-5 mt-5">
       <h4>Messages</h4>
       <hr>
     </div>
@@ -21,8 +21,12 @@
 
                   <div class="d-flex flex-column align-items-start ml-2">
                     <p style="font-weight: 500;"><%= chatroom.user.first_name %></p>
-                    <small><%= chatroom.messages.last.content.to_s.truncate(50) %></small>
-                    <small id="last-active"><%= chatroom.updated_at.getlocal.strftime("%d %B, %-l:%M%P")%></small>
+
+                    <% if chatroom.messages.count > 0 %>
+                      <small><%= chatroom.messages.last.content.to_s.truncate(50) %></small>
+                      <small id="last-active"><%= chatroom.updated_at.getlocal.strftime("%d %B, %-l:%M%P")%></small>
+                    <% end %>
+
                   </div>
                 </div>
 
@@ -33,8 +37,12 @@
 
                   <div class="d-flex flex-column align-items-start ml-2">
                     <p style="font-weight: 500;"><%= chatroom.user_two.first_name %></p>
-                    <small><%= chatroom.messages.last.content.to_s.truncate(50) %></small>
-                    <small id="last-active"><%= chatroom.updated_at.getlocal.strftime("%d %B, %-l:%M%P") %></small>
+
+                    <% if chatroom.messages.count > 0 %>
+                      <small><%= chatroom.messages.last.content.to_s.truncate(50) %></small>
+                      <small id="last-active"><%= chatroom.updated_at.getlocal.strftime("%d %B, %-l:%M%P") %></small>
+                    <% end %>
+
                   </div>
                 </div>
             <% end %>
@@ -46,7 +54,7 @@
 
   <!-- Right Column (Individual Chatroom Messages) -->
 
-  <div class="container d-flex justify-content-start mt-2 ml-0 pl-0 pt-1 chatrooms-container" style="width: 650px;">
+  <div class="container d-flex justify-content-start mt-4 ml-0 pl-0 pt-1 chatrooms-container" style="width: 650px;">
     <div class="container w-100" style="height: 90vh;">
       <% if @current_chatroom %>
         <%= render 'show_new', current_chatroom: @current_chatroom, remote: true, messages: @messages, message: Message.new %>

@@ -1,10 +1,12 @@
-<div class="container d-flex flex-column h-100" style="overflow-y: scroll;">
+<div class="container d-flex flex-column h-100 ml-4" style="overflow-y: scroll;">
   <div class="chatroom mb-3 w-100">
-    <% if current_user == current_chatroom.user_two %>
-      <h1>Message with <%= current_chatroom.user.first_name %></h1>
-    <% else %>
-      <h1>Message with <%= current_chatroom.user_two.first_name %></h1>
-    <% end %>
+    <div class="d-flex mt-3">
+      <% if current_user == current_chatroom.user_two %>
+        <h1>Message with <%= current_chatroom.user.first_name %></h1>
+      <% else %>
+        <h1>Message with <%= current_chatroom.user_two.first_name %></h1>
+      <% end %>
+    </div>
     <p style="font-weight: 400;">Last active <%= current_chatroom.user_two.created_at.getlocal.strftime("%-l:%M%P") %> </p>
     <hr style="color: white">
   </div>
