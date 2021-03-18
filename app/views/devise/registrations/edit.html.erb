@@ -1,51 +1,63 @@
-<div class="container d-flex flex-column flex-lg-row align-items-center signup-container">
-  <div class="col-lg-6 col-md-12 col-sm-12 m-5">
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= f.error_notification %>
-      <div class="form-inputs">
-        <%= f.input :email, required: true, autofocus: true %>
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-        <% end %>
-        <%= f.input :avatar, as: :file%>
-        <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
+<div class="d-flex w-100">
+  <div class="container d-flex flex-column align-items-center mt-3 p-4">
+    <div class="col-lg-6 col-md-12 col-sm-12 m-2">
+      <h2>Edit Profile</h2>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs", style="color:white;">
+          <%= f.input :email,
+        required: true,
+        autofocus: true,
+        input_html: { autocomplete: "Email", style:"border-radius:8px; border: none; height: 48px;" }
+         %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+          <%= f.input :avatar, as: :file%>
+          <%= f.input :password,
+        hint: "Leave it blank if you don't want to change it",
+        required: false,
+        label: "New Password",
+        input_html: { autocomplete: "new-password", style:"border-radius:8px; border: none; height: 48px;" }
+        %>
+          <%= f.input :password_confirmation,
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
-        <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-        <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
+                label: "New Password Confirmation",
+                input_html: { autocomplete: "new-password", style:"border-radius:8px; border: none; height: 48px;" } %>
+          <%= f.input :current_password,
+                hint: "Lumina needs your current password to confirm your changes",
                 required: true,
-                input_html: { autocomplete: "current-password" } %>
-      </div>
-      <div class="form-actions">
-        <%= f.button :submit, "Update" %>
-      </div>
-    <% end %>
-    <hr>
-    <p>
-      <strong>Facebook:</strong>
-      <% if current_user.services.facebook.any? %>
-        Connected
-      <% else %>
-        <%= link_to "Connect", user_facebook_omniauth_authorize_path, method: 'post' %>
+                input_html: { autocomplete: "current-password", style:"border-radius:8px; border: none; height: 48px;" } %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Update", class:"btn btn-success" %>
+        </div>
       <% end %>
-    </p>
-    <hr>
-    <p>
-      <strong>Meetup:</strong>
-      <% #binding.pry %>
-      <% if current_user.services.meetup.any? %>
-        Connected
-      <% else %>
-        <%= link_to "Connect", user_meetup_omniauth_authorize_path, method: 'post' %>
-      <% end %>
-    </p>
-    <hr>
-    <h3>Cancel my account</h3>
-    <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-    <%= link_to "Back", :back %>
+      <hr style="color:lightgrey">
+      <p>
+        <strong>Facebook</strong>
+        <% if current_user.services.facebook.any? %>
+          <i class="fas fa-check-square" style="color:green;"></i>
+        <% else %>
+          <%= link_to "Connect", user_facebook_omniauth_authorize_path, method: 'post', class:"btn-sm btn-info", style:"text-decoration: none;" %>
+        <% end %>
+      </p>
+      <hr style="color:lightgrey">
+      <p>
+        <strong>Meetup</strong>
+        <% if current_user.services.meetup.any? %>
+          <i class="fas fa-check-square" style="color:green;"></i>
+        <% else %>
+          <%= link_to "Connect", user_meetup_omniauth_authorize_path, method: 'post', class:"btn-sm btn-info", style:"text-decoration: none;" %>
+        <% end %>
+      </p>
+    </div>
   </div>
+  <div class="d-flex flex-column justify-content-center align-items-center text-left col-lg-4">
+    <div class="pl-5 pr-5 pt-3 pb-3 mr-5", style="border: 0.05rem solid lightgrey; border-radius:24px;">
+      <h3>Cancel my account</h3>
+      <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-danger w-75 mt-2" %>
+      <%= link_to "Back", :back, class:"btn btn-outline-info w-50 mt-2" %>
+    </div>
+  </div>
+</div>
