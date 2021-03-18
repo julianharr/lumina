@@ -12,8 +12,10 @@ class EventsController < ApplicationController
     if params[:query].present?
       @results = Geocoder.search(params[:query]).first.coordinates
       # @bikes is now ready to parse =>
-      @event = Event.near(@results, 8)
+      @event = Event.near(@results, 10)
       ## @event = Event.where('name ILIKE ?', "%#{params[:query]}%")
+
+      @event = Event.near(@results, 50) if @event.length < 3
       @markers = @event.geocoded.map do |flat|
         {
           lat: flat.latitude,
