@@ -41,8 +41,7 @@
       <% if current_user.services.meetup.any? %>
         Connected
       <% else %>
-        <%= link_to "Connect", user_meetup_omniauth_authorize_path, method: 'post' %>
-        <%= link_to "Login with Meetup to RSVP", user_meetup_omniauth_authorize_path, method: 'post', class: "btn btn-info btn-request mt-2 w-50" %>
+        <%= link_to "Connect", user_meetup_omniauth_authorize_path %>
       <% end %>
     </p>
     <hr>

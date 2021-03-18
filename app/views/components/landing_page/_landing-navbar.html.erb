@@ -6,7 +6,10 @@
 
   <div class="mr-5">
     <% if current_user == nil %>
-      <h6 class="hover-6"><%= link_to "Sign in", new_user_session_path, style:"color: white; margin-right:15px;" %></h6>
+      <div class="d-flex">
+        <h6 class="hover-6"><%= link_to "Sign in", new_user_session_path, style:"color: white; margin-right:15px;" %></h6>
+        <h6><%= link_to "Sign up", new_user_registration_path, style:"color: white; border: 0.05rem solid white; border-radius: 24px; padding: 8px 12px; text-decoration: none;" %></h6>
+      </div>
     <% end %>
 
     <% if current_user %>
