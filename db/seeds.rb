@@ -229,7 +229,7 @@ make_admin2.interest_list = 'fitness, pets, tech'
 make_admin2.save
 
 ## get friends for Overlord
-puts '--- Making Overlord Friend Requests !'
+puts '--- Making Overlord Friend Requests !!!!'
 user_arr = User.all.ids
 # slice in parts
 split_arr = user_arr.in_groups(3, false)
