@@ -9,10 +9,12 @@ class EventsController < ApplicationController
   before_action :c_user, only: [:show]
 
   def index
-    # For PG Search ------>
     if params[:query].present?
-        @event = Event.where("name ILIKE ?", "%#{params[:query]}%")
-          @markers = @event.geocoded.map do |flat|
+      @results = Geocoder.search(params[:query]).first.coordinates
+      # @bikes is now ready to parse =>
+      @event = Event.near(@results, 8)
+      ## @event = Event.where('name ILIKE ?', "%#{params[:query]}%")
+      @markers = @event.geocoded.map do |flat|
         {
           lat: flat.latitude,
           lng: flat.longitude,

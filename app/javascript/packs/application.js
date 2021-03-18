@@ -8,7 +8,6 @@ import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 
-
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
@@ -33,9 +32,9 @@ import { initMapbox, fitMapToMarkers } from "../plugins/init_mapbox";
 
 // Theme Switcher
 import { themeSwitcher } from "../dom/themeswitcher";
-
+// Event Seach Autocomp
+import { initAutocomplete } from "../plugins/init_autocomplete";
 // *********************************************************************************************
-
 
 // FOR THE INTERESTS SELECTION TO ARRAY
 window.interests = [];
@@ -58,30 +57,25 @@ if (images) {
   });
 }
 
-
-
-
-
 // // The createPost function creates The HTML for the blog post.
 // // It append it to the container.
 
-const feedCards = document.querySelector('.feed_cards');
+const feedCards = document.querySelector(".feed_cards");
 // The Scroll Event.
-if(feedCards) {
-  window.addEventListener('scroll',()=>{
-        console.log("yo")
-    const {scrollHeight,scrollTop,clientHeight} = document.documentElement;
-    if(scrollTop + clientHeight > scrollHeight - 5){
-      setTimeout(createDiv,2000);
+if (feedCards) {
+  window.addEventListener("scroll", () => {
+    console.log("yo");
+    const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight > scrollHeight - 5) {
+      setTimeout(createDiv, 2000);
     }
   });
 }
 // The createPost function creates The HTML for the blog post.
 // It append it to the container.
 
-function createDiv(){
-  const theRealPartial =
-  fetch("/feed_partial")
+function createDiv() {
+  const theRealPartial = fetch("/feed_partial")
     .then((data) => data.text())
     .then((html) => {
       const results = document.querySelector(".feed_cards");
@@ -95,7 +89,6 @@ document.addEventListener("turbolinks:load", () => {
   donateAnimation();
   initChatroomCable();
   themeSwitcher();
+  initAutocomplete();
   // fitMapToMarkers();
 });
-
-
