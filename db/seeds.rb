@@ -217,14 +217,16 @@ make_admin.update( # change to create! later
   admin: true,
   password: '123456'
 )
-make_admin.interest_list = %w[fitness pets tech]
+make_admin.interest_list = 'fitness, pets, tech'
+make_admin.save
 
 make_admin2 = User.find_by(git_name: 'matoni109')
 make_admin2.update( # change to create! later
   admin: false
 )
 ## get friends for Overlord
-make_admin2.interest_list = %w[fitness pets tech]
+make_admin2.interest_list = 'fitness, pets, tech'
+make_admin2.save
 
 ## get friends for Overlord
 puts '--- Making Overlord Friend Requests !'
