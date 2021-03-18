@@ -8,30 +8,30 @@
     </div>
   </div>
   <div class="container p-0 d-flex flex-wrap">
-
     <!-- Search bar for Events -->
     <div class="event-search m-4 w-100">
       <%= form_tag events_path, method: :get do %>
         <div class="d-flex">
-        <%= text_field_tag :query,
+          <%= text_field_tag :query,
           params[:query],
           class: "form-control",
+          id: "search_query",
           placeholder: "Find an event near you",
           autocomplete: "off",
           remote: true
         %>
-        <%= submit_tag "Search", class: "btn btn-info ml-3" %>
+          <%= submit_tag "Search", class: "btn btn-info ml-3" %>
         </div>
       <% end %>
     </div>
     <!-- List of events -->
     <% @event.each do |event| %>
-        <div class="card-event p-2 m-1 d-flex flex-column justify-content-between">
-          <%= cloudinary_imgs(event.image.key,event) %>
-            <p class="p-3" style="font-weight:400;">
-              <%= event.name %></p>
-              <%= link_to "More Info", event_path(event), class: "btn btn-info ml-3 mb-3 w-50", style:"border-radius: 24px;" %>
-        </div>
+      <div class="card-event p-2 m-1 d-flex flex-column justify-content-between">
+        <%= cloudinary_imgs(event.image.key,event) %>
+        <p class="p-3" style="font-weight:400;">
+          <%= event.name %></p>
+        <%= link_to "More Info", event_path(event), class: "btn btn-info ml-3 mb-3 w-50", style:"border-radius: 24px;" %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -3,11 +3,10 @@
   <div class="mr-4">
     <%= render 'components/side_bar/side_bar_final' %>
   </div>
-
   <div class="ml-5 mt-5 mr-0">
     <div class="d-flex align-items-center justify-content-between w-100">
       <h3>Feed</h3>
-      <button class="theme-button ml-4 mb-2"></button>
+      <button id="lightTheme" class="theme-button ml-4 mb-2"></button>
     </div>
     <!-- Status entry -->
     <div class="card-notification-sm p-3 mb-2">
@@ -16,47 +15,37 @@
         <%= f.button :submit, class:"btn btn-info", style:"border-radius: 24px;" %>
       <% end %>
     </div>
-
-   <!-- If Status exists, put on Feed -->
-
-  <% if user_has_status?(@user) %>
-    <div id="status">
-      <div id="status-<%= @current_user_status.id %>" class="d-flex justify-content-center">
-        <div class="card-notification-md d-flex mb-2 p-3" style="border-radius: 12px;">
-          <div class="crop" style="border-radius: 24px;">
-            <%= cl_image_tag(@user_for_status[0].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
-          </div>
-          <div class="d-flex flex-column justify-content-center w-100 ml-5 md-text">
-            <h6><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
-            <h5><span style="color: #EC0B43"><%= @user_for_status[0].first_name %> <%= @user_for_status[0].last_name %></span> posted an update</h5>
-            <h6><%= @current_user_status.content %> </h6>
-          </div>
+    <!-- If Status exists, put on Feed -->
+    <% if user_has_status?(@user) %>
+      <div id="status">
+        <div id="status-<%= @current_user_status.id %>" class="d-flex justify-content-center">
+          <div class="card-notification-md d-flex mb-2 p-3" style="border-radius: 12px;">
+            <div class="crop" style="border-radius: 24px;">
+              <%= cl_image_tag(@user_for_status[0].avatar.key, :style=>"width:100%; border-radius: 24px;") %>
+            </div>
+            <div class="d-flex flex-column justify-content-center w-100 ml-5 md-text">
+              <h6><%= @current_user_status.updated_at.localtime.strftime("%d %b, %-l:%M%P") %> </h6>
+              <h5><span style="color: #EC0B43"><%= @user_for_status[0].first_name %> <%= @user_for_status[0].last_name %></span> posted an update</h5>
+              <h6><%= @current_user_status.content %> </h6>
+            </div>
           </p>
           <div class="d-flex align-items-center">
             <label class="like">
               <input type="checkbox"/>
               <div class="hearth"/></div>
-            </label>
-          </div>
+          </label>
         </div>
+      </div>
     </div>
   </div>
-  <% end %>
-
-  <!-- FEED LOGIC & CARDS -->
-  <div class="feed_cards">
-
-    <%= render "components/feed_page/feed_randomising" %>
-
-  </div>
-
-
-
-  <br>
-
-    <!-- Right Column -->
-
-    <div class="w-100">
-      <%= render "components/feed_page/add_friends" %>
-    </div>
-  </div>
+<% end %>
+<!-- FEED LOGIC & CARDS -->
+<div class="feed_cards">
+  <%= render "components/feed_page/feed_randomising" %>
+</div>
+<br>
+<!-- Right Column -->
+<div class="w-100">
+  <%= render "components/feed_page/add_friends" %>
+</div>
+</div>
