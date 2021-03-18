@@ -25,16 +25,26 @@
         </div>
       </div>
 
+      <!-- Charities -->
+      <div class="<%= 'active' if current_page?(charities_path) %> nav-links d-flex">
+        <i class="fas fa-hand-holding-heart w-25 mr-4 mb-2" style="font-size: 24px;"></i>
+        <div class="d-flex justify-content-start w-100">
+          <%= link_to "Give Back", charities_path, class:"sidebar-link" %>
+        </div>
+      </div>
+
       <!-- Friends -->
       <div class="<%= 'active' if current_page?(friends_path) %> nav-links d-flex">
         <% count = current_user.requested_friend_ids.count %>
-        <i class="fas fa-smile w-25  mr-4 mb-2" style="font-size: 24px;"></i>
-        <div class="d-flex justify-content-start align-items-center  w-100">
+        <i class="fas fa-smile w-25 mr-4 mb-2" style="font-size: 24px;"></i>
+        <div class="d-flex justify-content-start w-100">
           <%= link_to "Friends ", friends_path, class:"sidebar-link" %>
 
           <% if current_user.requested_friend_ids.count >= 1 %>
 
-            <%= link_to "#{count}", friends_path, class:"badge badge-info ml-2 p-1", remote: true, "data-toggle" => "modal", "data-target" => "#exampleModal"%>
+            <%= link_to friends_path, remote: true, "data-toggle" => "modal", "data-target" => "#exampleModal" do %>
+              <i class="fas fa-circle" id="friend-circle-notification"></i>
+            <% end %>
 
           <% end %>
         </div>
@@ -42,7 +52,7 @@
 
       <!-- Dashboard -->
       <div class="<%= 'active' if current_page?(dashboard_path) %> nav-links d-flex">
-        <i class="fas fa-user-friends w-25 mr-4" style="font-size: 24px;"></i>
+        <i class="fas fa-user-friends w-25 mr-4 mb-2" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start w-100">
           <%= link_to "Dashboard", dashboard_path, class:"sidebar-link" %>
         </div>
@@ -51,24 +61,17 @@
 
       <!-- Messages -->
       <div class="<%= 'active' if current_page?(chatrooms_path) %> nav-links d-flex">
-        <i class="fas fa-comments w-25 mr-4" style="font-size: 24px;"></i>
+        <i class="fas fa-comments w-25 mr-4 mb-2" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start w-100">
           <%= link_to "Conversations", chatrooms_path, class:"sidebar-link" %>
         </div>
       </div>
 
-      <!-- Charities -->
-      <div class="<%= 'active' if current_page?(charities_path) %> nav-links d-flex">
-        <i class="fas fa-hand-holding-heart w-25 mr-4" style="font-size: 24px;"></i>
-        <div class="d-flex justify-content-start w-100">
-          <%= link_to "Give Back", charities_path, class:"sidebar-link" %>
-        </div>
-      </div>
 
 
       <!-- Sign Out -->
       <div class="nav-links d-flex">
-        <i class="fas fa-sign-out-alt w-25 mr-4" style="font-size: 24px;"></i>
+        <i class="fas fa-sign-out-alt w-25 mr-4 mb-2" style="font-size: 24px;"></i>
         <div class="d-flex justify-content-start w-100">
           <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"sidebar-link" %>
         </div>

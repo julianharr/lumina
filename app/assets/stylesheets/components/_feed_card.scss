@@ -115,3 +115,15 @@ p {
   color:#6060d0;
 }
 
+#friend-circle-notification {
+  font-size: 11px;
+  margin-left: 14px;
+  vertical-align: center;
+  color:#6060d0;
+  text-shadow: 0px 0px 17px rgba(0, 242, 255, 1);
+}
+
+#friend-circle-notification:active {
+  text-shadow: 0px 0px 17px rgba(0, 242, 255, 0.6);
+}
+

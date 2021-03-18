@@ -47,7 +47,7 @@ batch_466 = [
   # "lucieroland",
   "anLpk",
   # "diego-mogollon",
-  "maksimumeffort",
+  # "maksimumeffort",
   "lunarness",
   "Escapewithcode",
   "santanu0013",
