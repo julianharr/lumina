@@ -22,8 +22,8 @@
 
           <!-- Event Meetup Unsubscribe Option -->
           <div class="btn-group" role="group">
-            <button id="btnGroupDrop1" type="button" class="btn btn-info btn-request mt-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Your Going!
+            <button id="btnGroupDrop1" type="button" class="btn btn-info btn-request mt-2 dropdown-toggle w-50" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              You're Going!
             </button>
             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
               <%= link_to "I can't go anymore!", events_remove_rsvp_path(@event),controller: "events", action: 'remove_rsvp', method: 'post', class: "dropdown-item", id: @event.id  %>
