@@ -24,7 +24,7 @@
 
                     <% if chatroom.messages.count > 0 %>
                       <small><%= chatroom.messages.last.content.to_s.truncate(50) %></small>
-                      <small id="last-active"><%= chatroom.updated_at.getlocal.strftime("%d %B, %-l:%M%P")%></small>
+                      <small id="last-active"><%= chatroom.messages.last.created_at.getlocal.strftime("%d %B, %-l:%M%P")%></small>
                     <% end %>
 
                   </div>
@@ -40,7 +40,7 @@
 
                     <% if chatroom.messages.count > 0 %>
                       <small><%= chatroom.messages.last.content.to_s.truncate(50) %></small>
-                      <small id="last-active"><%= chatroom.updated_at.getlocal.strftime("%d %B, %-l:%M%P") %></small>
+                      <small id="last-active"><%= chatroom.messages.last.created_at.getlocal.strftime("%d %B, %-l:%M%P") %></small>
                     <% end %>
 
                   </div>

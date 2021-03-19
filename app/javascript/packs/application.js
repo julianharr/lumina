@@ -34,6 +34,10 @@ import { initMapbox, fitMapToMarkers } from "../plugins/init_mapbox";
 import { themeSwitcher } from "../dom/themeswitcher";
 // Event Seach Autocomp
 import { initAutocomplete } from "../plugins/init_autocomplete";
+
+// Chat Window Scroll to Bottom
+import { chatWindowBottom } from "../dom/chatwindow";
+
 // *********************************************************************************************
 
 // FOR THE INTERESTS SELECTION TO ARRAY
@@ -90,5 +94,6 @@ document.addEventListener("turbolinks:load", () => {
   initChatroomCable();
   themeSwitcher();
   initAutocomplete();
+  chatWindowBottom();
   // fitMapToMarkers();
 });
