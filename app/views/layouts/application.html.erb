@@ -8,6 +8,8 @@
     <%= csp_meta_tag %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="algolia-app-id" content="<%= ENV["ALGOLIA_SEARCH_APP_ID"] %>">
+    <meta name="algolia-search-only-api-key" content="<%= ENV["ALGOLIA_SEARCH_API_KEY"] %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>

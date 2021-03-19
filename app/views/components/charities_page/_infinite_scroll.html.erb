@@ -15,15 +15,22 @@
       </h5>
 
       <!-- Charity Search Bar -->
-      <%= form_tag charities_path, method: :get do %>
-        <%= text_field_tag :query,
+      <%#= form_tag charities_path, method: :get do %>
+        <%#= text_field_tag :query,
         params[:query],
         class: "form-control",
           placeholder: "Find a charity",
           autocomplete: "off"
         %>
-        <%= submit_tag "Search for Charities", class: "btn btn-info mt-2", style:"border-radius: 24px;" %>
-      <% end %>
+        <%#= submit_tag "Search for Charities", class: "btn btn-info mt-2", style:"border-radius: 24px;" %>
+      <%# end %>
+
+      <div class="the-search">
+        <input type="text" name="search" id="search" class="btn btn-info mt-2 w-75" placeholder="Search your favourite charities.."/>
+        <ul id="results">
+
+        </ul>
+      </div>
 
     </div>
   </div>

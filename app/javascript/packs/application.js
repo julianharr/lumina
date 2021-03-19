@@ -7,7 +7,8 @@ import Rails from "@rails/ujs";
 import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
-
+// import 'algolia/v3/algoliasearch.min'
+//= require algolia/v3/algoliasearch.min
 
 Rails.start();
 Turbolinks.start();
@@ -33,6 +34,9 @@ import { initMapbox, fitMapToMarkers } from "../plugins/init_mapbox";
 
 // Theme Switcher
 import { themeSwitcher } from "../dom/themeswitcher";
+
+// Algolia
+import { algoliaSearch } from "../plugins/init_algolia_search.js";
 
 // *********************************************************************************************
 
@@ -89,12 +93,47 @@ function createDiv(){
     });
 }
 
+
+// Algolia Search
+
+// const algoliasearch = require("algoliasearch");
+
+// const client = algoliasearch("40SVUJRVRL", "538b021c6295906a012823eebbcc062d");
+// const index = client.initIndex("Charity");
+// index.search('aid', { hitsPerPage: 10, page: 0 })
+//   .then(function searchDone(content) {
+//     console.log(content)
+//   })
+//   .catch(function searchFailure(err) {
+//     console.error(err);
+//   });
+
+// const objects = [
+//   {
+//     objectID: 1,
+//     name: "Foo"
+//   }
+// ];
+
+// index
+//   .saveObjects(objects)
+//   .then(({ objectIDs }) => {
+//     console.log(objectIDs);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
+
+
+
+
 // TURBO DOWN HERE !!!
 document.addEventListener("turbolinks:load", () => {
   initMapbox();
   donateAnimation();
   initChatroomCable();
   themeSwitcher();
+  algoliaSearch();
   // fitMapToMarkers();
 });
 

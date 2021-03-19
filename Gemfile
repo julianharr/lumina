@@ -24,7 +24,7 @@ gem 'redis', '~> 4.0'
 
 # #bootstrap 5?
 # gem 'bootstrap', '~> 5.0.0.beta2'
-
+gem "algoliasearch-rails"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem 'acts_as_favoritor'
