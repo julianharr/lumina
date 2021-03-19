@@ -15,6 +15,7 @@
     <i class="fab fa-facebook-square" style="font-size: 32px; color: ##176ee5;"></i>
   <% end %>
 </div>
+
 </div>
 <div class="container d-flex flex-column flex-lg-row justify-content-center align-items-center signup-container">
   <div class="col-lg-6 col-md-12 col-sm-12 m-5">
@@ -50,8 +51,10 @@
                 input_html: { autocomplete: "new-password" } %>
         <%= f.input :avatar, as: :file %>
       </div>
-      <div class="form-actions">
-        <%= f.button :submit, "Sign up for Lumina", class:"btn btn-info w-50 my-2", style:"border-radius: 12px;"%>
+      <div class="form-actions d-flex align-items-center">
+        <%= f.button :submit, "Sign up for Lumina", class:"btn btn-info my-2 mr-2", style:"border-radius: 12px;"%>
+        <p>Or</p>
+        <%= link_to "Sign in", new_user_session_path, class:"btn btn-primary my-2 ml-2", style:"border-radius: 12px;"  %>
         <%# <%= render "devise/shared/links" %>
       </div>
     <% end %>
