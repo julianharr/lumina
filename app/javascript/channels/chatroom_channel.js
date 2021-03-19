@@ -1,4 +1,5 @@
 import consumer from "./consumer";
+import chatWindowBottom from "../dom/chatwindow";
 
 const initChatroomCable = () => {
 
@@ -11,9 +12,10 @@ const initChatroomCable = () => {
       received(data) {
         console.log(data); // called when data is broadcast in the cable
         messagesContainer.insertAdjacentHTML('beforeend', data);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight; // keep window at scrolled down on each message send
       },
     });
-  }
+  };
 }
 
 export { initChatroomCable };
