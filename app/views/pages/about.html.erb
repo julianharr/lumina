@@ -1,56 +1,51 @@
 <div class="container-fluid container-about d-flex flex-column justify-content-center">
-
+  <% @thomas = User.find_by(git_name: 'Tom-Tee') %>
   <h1 class="ml-5">Team <span>Lumina</span></h1>
   <h4 class="ml-5"><%= link_to '↩️ Back', root_path, style:"text-decoration: none; color:white; margin-left: 10px;" %></h4>
   <div>
     <%= image_tag 'julianharrington.png', class: "img-fluid rounded-circle", id:"img-team-1", style:"height: 200px; width: 200px;" %>
-    <%= image_tag 'thomastemple.jpeg', class: "img-fluid rounded-circle", id:"img-team-2", style:"height: 200px; width: 200px;" %>
+    <%#= image_tag 'thomastemple.jpeg', class: "img-fluid rounded-circle", id:"img-team-2", style:"height: 200px; width: 200px;" %>
+    <%= cl_image_tag(@thomas.avatar.key, height: 200, width: 200, fetch_format: :auto, id:"img-team-2", crop: "fill", class: "img-fluid rounded-circle", alt: "") %>
     <%= image_tag 'chriswade.jpeg', class: "img-fluid rounded-circle", id:"img-team-3", style:"height: 200px; width: 200px;" %>
     <%= image_tag 'sanhaque.jpeg', class: "img-fluid rounded-circle", id:"img-team-4", style:"height: 200px; width: 200px;" %>
   </div>
 </div>
-
 <!-- Team profiles -->
 <div class="lumina-team">
-
   <section id="julian">
     <div class="card-team">
       <%= image_tag 'julianharrington.png', class:"img-fluid" %>
       <h1>Julian Harrington</h1>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
-         tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
-         voluptatibus obcaecati sint dignissimos quas.</p>
+        tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
+        voluptatibus obcaecati sint dignissimos quas.</p>
     </div>
   </section>
-
   <section id="thomas">
     <div class="card-team">
-      <%= image_tag 'thomastemple.jpeg', class:"img-fluid" %>
+      <%= cl_image_tag(@thomas.avatar.key, fetch_format: :auto, crop: "fill", class: "img-fluid", alt: "") %>
       <h1>Thomas Temple</h1>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
-         tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
-         voluptatibus obcaecati sint dignissimos quas.</p>
+        tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
+        voluptatibus obcaecati sint dignissimos quas.</p>
     </div>
   </section>
-
   <section id="chris">
     <div class="card-team">
       <%= image_tag 'chriswade.jpeg', class:"img-fluid" %>
       <h1>Chris Wade</h1>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
-         tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
-         voluptatibus obcaecati sint dignissimos quas.</p>
+        tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
+        voluptatibus obcaecati sint dignissimos quas.</p>
     </div>
   </section>
-
   <section id="san">
     <div class="card-team">
       <%= image_tag 'sanhaque.jpeg', class:"img-fluid" %>
       <h1>San Haque</h1>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque eos, atque sed saepe
-         tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
-         voluptatibus obcaecati sint dignissimos quas.</p>
+        tempore, sequi qui excepturi voluptate ut perspiciatis culpa sit harum, corrupti ullam
+        voluptatibus obcaecati sint dignissimos quas.</p>
     </div>
   </section>
-
 </div>
