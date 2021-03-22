@@ -10,3 +10,15 @@
     color: $purple;
   }
 }
+
+@media only screen and (max-width: 900px) {
+  #container-landing-bottom {
+    h1 {
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  }
+}

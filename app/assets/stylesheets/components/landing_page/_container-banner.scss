@@ -25,6 +25,14 @@
   .container-banner {
     flex-direction: column;
   }
+  #container-banner-left {
+    h1 {
+      font-size: 36px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
 }
 
 
