@@ -309,13 +309,13 @@ end
 puts '--- Charities Done :) ' ###
 puts '---'
 puts '---'
-puts '--- Spooling up events ---'
-#
-# Local meetup API tester below first
-#
-meetup_event_spooler(meetup_events_finder({ latitude: '-37.81', longitude: '144.96', category: 'tech' }))
-meetup_event_spooler(meetup_events_finder({ latitude: '-37.784', longitude: '144.986', category: 'pets' }))
-meetup_event_spooler(meetup_events_finder({ latitude: '-37.784', longitude: '144.986', category: 'fitness' }))
+# puts '--- Spooling up events ---'
+# #
+# # Local meetup API tester below first
+# #
+# meetup_event_spooler(meetup_events_finder({ latitude: '-37.81', longitude: '144.96', category: 'tech' }))
+# meetup_event_spooler(meetup_events_finder({ latitude: '-37.784', longitude: '144.986', category: 'pets' }))
+# meetup_event_spooler(meetup_events_finder({ latitude: '-37.784', longitude: '144.986', category: 'fitness' }))
 
 # Big Daddy Events Scraper Below !!! Caution !!!
 #
@@ -336,7 +336,7 @@ meetup_event_spooler(meetup_events_finder({ latitude: '-37.784', longitude: '144
 #   )
 # end
 
-puts '--- Events Over ---'
+# puts '--- Events Over ---'
 puts '---'
 puts '---'
 puts '--- GAME OVER ---'
