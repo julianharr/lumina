@@ -11,6 +11,7 @@ Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/ra
 Lumina is a social media platform that focuses on **kindness** and acts of **giving**.
 
 *'Connect with your world like never before.'*
+
 *'Lumina is a platform designed to enrich your life. Connect with others from around the world, engage with your local community, and give back to those who might need it the most.'*
 
 ![UI - Home](docs/home.png)
