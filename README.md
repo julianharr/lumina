@@ -47,20 +47,20 @@ You can create a new account with your email address and a password or alternati
 
 You will be presented with our never ending fully randomised feed! Feel free to add a status update:
 
-[feed](docs/feed.png)
+![feed](docs/feed.png)
 
 Navigate to your profile, events, charities and more!
 
-[feed](docs/profile.png)
+![feed](docs/profile.png)
 
-[feed](docs/charities.png)
+![feed](docs/charities.png)
 
 
 You can add friends, and chat with them too!
 
-[feed](docs/friends.png)
+![feed](docs/friends.png)
 
-[feed](docs/chat.png)
+![feed](docs/chat.png)
 
 
 ## Technologies used
