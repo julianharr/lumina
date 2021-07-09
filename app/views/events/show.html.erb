@@ -14,25 +14,28 @@
         <h5 style="color: lightgrey">Happening on <span style="color: #EC0B43"><%= @event.date.strftime("%A %d %B") %></span></h5>
         <h5 style="color: lightgrey">Attendees <span style="color: #EC0B43"><%= @event.attendees %></span></h5>
         <h5 style="color: lightgrey">You might be interested if you like <span style="color: #EC0B43"><%= @event.category %></span></h5>
+
         <!-- Event Meetup Logic START -->
         <% if user_has_meetup?(@user) %>
           <%= link_to "Login with Meetup to RSVP", user_meetup_omniauth_authorize_path, method: 'post', class: "btn btn-info btn-request mt-2 w-50" %>
         <% elsif user_going_to_event?(@user, @event)&& !user_has_meetup?(@user) %>
+
           <!-- Event Meetup Unsubscribe Option -->
           <div class="btn-group" role="group">
-            <button id="btnGroupDrop1" type="button" class="btn btn-info btn-request mt-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Your Going!
+            <button id="btnGroupDrop1" type="button" class="btn btn-info btn-request mt-2 dropdown-toggle w-50" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              You're Going!
             </button>
             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-              <%= link_to "I can't go now !", events_remove_rsvp_path(@event),controller: "events", action: 'remove_rsvp', method: 'post', class: "dropdown-item", id: @event.id  %>
+              <%= link_to "I can't go anymore!", events_remove_rsvp_path(@event),controller: "events", action: 'remove_rsvp', method: 'post', class: "dropdown-item", id: @event.id  %>
             </div>
           </div>
         <% elsif !user_has_meetup?(@user) && event_has_no_questions?(@event) %>
-          <%= link_to "RSVP Here", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id  %>
+          <%= link_to "RSVP to this event", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2 w-50", id: @event.id  %>
           <%# <% elsif !user_has_meetup?(current_user) && !event_has_no_questions?(@event)%>
           <%#= link_to "RSVP w questions", events_rsvp_path(@event), controller: "events", action: 'rsvp', method: 'post', class: "btn btn-info btn-request mt-2", id: @event.id %>
         <% end %>
         <!-- Event Meetup Logic END -->
+
       </div>
     </div>
     <% if current_user.friends.count == 0 %>

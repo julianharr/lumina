@@ -143,11 +143,12 @@
             <h5><span><%= @find_user[0].first_name %> <%= @user_for_status[0].last_name %></span> pledges to donate $<%= @donates_current_user[0].amount.to_i %> to <%= @find_charity[0].name %>, give them some love!</h5>
           </div>
 
-          <!-- Heart -->
-          <% heart = rand(0..10) %>
-
-          <div class="d-flex align-items-center h-25 ml-5">
-            <i class="fas fa-heart mr-2" style="color:red"></i><p><%= heart %></p>
+          <!-- Tom's Warm Heart -->
+          <div class="d-flex align-items-center">
+            <label class="like">
+              <input type="checkbox"/>
+              <div class="hearth"/></div>
+            </label>
           </div>
 
           <% n+= 1 %>

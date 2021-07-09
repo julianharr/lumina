@@ -39,3 +39,11 @@ i {
     color: $white;
   }
 }
+
+@media only screen and (max-width: 900px) {
+  .side-bar {
+    width: 100vw;
+    height: 200px;
+    position: sticky;
+  }
+}

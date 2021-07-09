@@ -1,3 +1,20 @@
 .signup-container {
   margin-top: 10%;
 }
+
+.alt-signup-options {
+  position: absolute;
+  top: 45px;
+  left: 170px;
+}
+
+@media only screen and (max-width: 900px) {
+  .signup-container {
+    margin-top: 25%;
+  }
+  .alt-signup-options {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+  }
+}
