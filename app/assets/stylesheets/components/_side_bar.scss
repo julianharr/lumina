@@ -7,6 +7,16 @@
   top: 0;
 }
 
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.sidebar {
+  margin-left: 24px;
+}
+
 
 .title {
   color:white;
@@ -43,7 +53,22 @@ i {
 @media only screen and (max-width: 900px) {
   .side-bar {
     width: 100vw;
-    height: 200px;
     position: sticky;
+  }
+
+  .sidebar-container {
+    display: flex;
+  }
+
+  .sidebar {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    border: 2px solid red;
+    flex-wrap: wrap;
+  }
+
+  .nav-links i {
+    font-size: 16px;
   }
 }
