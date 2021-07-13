@@ -15,6 +15,7 @@
 
 .sidebar {
   margin-left: 24px;
+  height: 50vh;
 }
 
 
@@ -51,20 +52,23 @@ i {
 }
 
 @media only screen and (max-width: 900px) {
+
   .side-bar {
     width: 100vw;
+    height: 75vh;
     position: sticky;
   }
 
   .sidebar-container {
-    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
 
   .sidebar {
     display: flex;
     justify-content: center;
     font-size: 16px;
-    border: 2px solid red;
+    height: 100vh;
     flex-wrap: wrap;
   }
 
