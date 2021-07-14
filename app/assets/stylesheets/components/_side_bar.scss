@@ -7,6 +7,17 @@
   top: 0;
 }
 
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.sidebar {
+  margin-left: 24px;
+  height: 50vh;
+}
+
 
 .title {
   color:white;
@@ -41,9 +52,27 @@ i {
 }
 
 @media only screen and (max-width: 900px) {
+
   .side-bar {
     width: 100vw;
-    height: 200px;
+    height: 75vh;
     position: sticky;
+  }
+
+  .sidebar-container {
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .sidebar {
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    height: 100vh;
+    flex-wrap: wrap;
+  }
+
+  .nav-links i {
+    font-size: 16px;
   }
 }
